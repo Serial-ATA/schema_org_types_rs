@@ -1,5 +1,3 @@
-mod serde;
-
 use std::{cell::RefCell, collections::HashSet, rc::Rc, str::FromStr};
 
 use convert_case::{Case, Casing};
@@ -10,7 +8,7 @@ use quote::{__private::TokenStream, ToTokens, TokenStreamExt, quote};
 use crate::{
 	deprecated_attribute::DeprecatedAttribute,
 	doc_lines::{DocLines, strings_as_doc_lines},
-	schema::{ReferencedSchema, Schema, class::serde::serde_mod, map_schema_name},
+	schema::{ReferencedSchema, Schema, map_schema_name},
 	sparql::{SchemaQueries, SchemaQuerySolution, node_type::NodeType},
 };
 
@@ -177,9 +175,13 @@ impl ToTokens for Class {
 				get_property_type(referenced_schema),
 			))
 			.unwrap();
+			let original_name = &referenced_schema.name;
 			quote!(
 				#doc_lines
 				#deprecated_attribute
+				#[cfg_attr(feature = "serde", serde(rename = #original_name))]
+				#[cfg_attr(feature = "serde", serde(skip_serializing_if = "Vec::is_empty", default))]
+				#[cfg_attr(feature = "serde", serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>"))]
 				#property,
 			)
 		});
@@ -258,12 +260,13 @@ impl ToTokens for Class {
 				}
 			)
 		});
-		let serde_mod = serde_mod(self);
 		tokens.append_all(quote!(
 			use super::*;
 			#doc_lines
 			#[cfg_attr(feature = "derive-debug", derive(Debug))]
 			#[cfg_attr(feature = "derive-clone", derive(Clone))]
+			#[cfg_attr(feature = "serde", ::serde_with::serde_as)]
+			#[cfg_attr(feature = "serde", derive(::serde::Serialize, ::serde::Deserialize))]
 			#deprecated_attribute
 			pub struct #name {
 				#(#fields)*
@@ -280,10 +283,6 @@ impl ToTokens for Class {
 			}
 
 			#(#parent_trait_impls)*
-			#[cfg(feature = "serde")]
-			mod serde {
-				#serde_mod
-			}
 		));
 	}
 }

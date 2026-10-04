@@ -32,10 +32,11 @@ pub fn serde_mod(data_type: &DataType) -> TokenStream {
 
 				}
 
-				&SerializeWith(&self.0)
+				let s = SerializeWith(&self.0);
+				serializer.serialize_newtype_struct(#name_string, &s)
 			})
 		}
-		None => quote!(&self.0),
+		None => quote!(serializer.serialize_newtype_struct(#name_string, &self.0)),
 	};
 
 	let deserialize_type = match data_type.rust_type.serde_as() {
@@ -58,10 +59,7 @@ pub fn serde_mod(data_type: &DataType) -> TokenStream {
 			where
 				S: Serializer,
 			{
-				serializer.serialize_newtype_struct(
-					#name_string,
-					#serialize_newtype_struct_value,
-				)
+				#serialize_newtype_struct_value
 			}
 		}
 

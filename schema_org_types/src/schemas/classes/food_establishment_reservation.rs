@@ -2,65 +2,328 @@ use super::*;
 /// <https://schema.org/FoodEstablishmentReservation>
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
+#[cfg_attr(feature = "serde", ::serde_with::serde_as)]
+#[cfg_attr(feature = "serde", derive(::serde::Serialize, ::serde::Deserialize))]
 pub struct FoodEstablishmentReservation {
 	/// <https://schema.org/endTime>
+	#[cfg_attr(feature = "serde", serde(rename = "endTime"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#end_time: Vec<EndTimeProperty>,
 	/// <https://schema.org/partySize>
+	#[cfg_attr(feature = "serde", serde(rename = "partySize"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#party_size: Vec<PartySizeProperty>,
 	/// <https://schema.org/startTime>
+	#[cfg_attr(feature = "serde", serde(rename = "startTime"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#start_time: Vec<StartTimeProperty>,
 	/// <https://schema.org/bookingAgent>
 	#[deprecated = "This schema is superseded by <https://schema.org/broker>."]
+	#[cfg_attr(feature = "serde", serde(rename = "bookingAgent"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#booking_agent: Vec<BookingAgentProperty>,
 	/// <https://schema.org/bookingTime>
+	#[cfg_attr(feature = "serde", serde(rename = "bookingTime"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#booking_time: Vec<BookingTimeProperty>,
 	/// <https://schema.org/broker>
+	#[cfg_attr(feature = "serde", serde(rename = "broker"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#broker: Vec<BrokerProperty>,
 	/// <https://schema.org/modifiedTime>
+	#[cfg_attr(feature = "serde", serde(rename = "modifiedTime"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#modified_time: Vec<ModifiedTimeProperty>,
 	/// <https://schema.org/priceCurrency>
+	#[cfg_attr(feature = "serde", serde(rename = "priceCurrency"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#price_currency: Vec<PriceCurrencyProperty>,
 	/// <https://schema.org/programMembershipUsed>
+	#[cfg_attr(feature = "serde", serde(rename = "programMembershipUsed"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#program_membership_used: Vec<ProgramMembershipUsedProperty>,
 	/// <https://schema.org/provider>
+	#[cfg_attr(feature = "serde", serde(rename = "provider"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#provider: Vec<ProviderProperty>,
 	/// <https://schema.org/reservationFor>
+	#[cfg_attr(feature = "serde", serde(rename = "reservationFor"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#reservation_for: Vec<ReservationForProperty>,
 	/// <https://schema.org/reservationId>
+	#[cfg_attr(feature = "serde", serde(rename = "reservationId"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#reservation_id: Vec<ReservationIdProperty>,
 	/// <https://schema.org/reservationStatus>
+	#[cfg_attr(feature = "serde", serde(rename = "reservationStatus"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#reservation_status: Vec<ReservationStatusProperty>,
 	/// <https://schema.org/reservedTicket>
+	#[cfg_attr(feature = "serde", serde(rename = "reservedTicket"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#reserved_ticket: Vec<ReservedTicketProperty>,
 	/// <https://schema.org/totalPrice>
+	#[cfg_attr(feature = "serde", serde(rename = "totalPrice"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#total_price: Vec<TotalPriceProperty>,
 	/// <https://schema.org/underName>
+	#[cfg_attr(feature = "serde", serde(rename = "underName"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#under_name: Vec<UnderNameProperty>,
 	/// <https://schema.org/additionalType>
+	#[cfg_attr(feature = "serde", serde(rename = "additionalType"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#additional_type: Vec<AdditionalTypeProperty>,
 	/// <https://schema.org/alternateName>
+	#[cfg_attr(feature = "serde", serde(rename = "alternateName"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#alternate_name: Vec<AlternateNameProperty>,
 	/// <https://schema.org/description>
+	#[cfg_attr(feature = "serde", serde(rename = "description"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#description: Vec<DescriptionProperty>,
 	/// <https://schema.org/disambiguatingDescription>
+	#[cfg_attr(feature = "serde", serde(rename = "disambiguatingDescription"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#disambiguating_description: Vec<DisambiguatingDescriptionProperty>,
 	/// <https://schema.org/identifier>
+	#[cfg_attr(feature = "serde", serde(rename = "identifier"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#identifier: Vec<IdentifierProperty>,
 	/// <https://schema.org/image>
+	#[cfg_attr(feature = "serde", serde(rename = "image"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#image: Vec<ImageProperty>,
 	/// <https://schema.org/mainEntityOfPage>
+	#[cfg_attr(feature = "serde", serde(rename = "mainEntityOfPage"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#main_entity_of_page: Vec<MainEntityOfPageProperty>,
 	/// <https://schema.org/name>
+	#[cfg_attr(feature = "serde", serde(rename = "name"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#name: Vec<NameProperty>,
 	/// <https://schema.org/owner>
+	#[cfg_attr(feature = "serde", serde(rename = "owner"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#owner: Vec<OwnerProperty>,
 	/// <https://schema.org/potentialAction>
+	#[cfg_attr(feature = "serde", serde(rename = "potentialAction"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#potential_action: Vec<PotentialActionProperty>,
 	/// <https://schema.org/sameAs>
+	#[cfg_attr(feature = "serde", serde(rename = "sameAs"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#same_as: Vec<SameAsProperty>,
 	/// <https://schema.org/subjectOf>
+	#[cfg_attr(feature = "serde", serde(rename = "subjectOf"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#subject_of: Vec<SubjectOfProperty>,
 	/// <https://schema.org/url>
+	#[cfg_attr(feature = "serde", serde(rename = "url"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#url: Vec<UrlProperty>,
 }
 /// This trait is for properties from <https://schema.org/FoodEstablishmentReservation>.
@@ -256,1626 +519,5 @@ impl ThingTrait for FoodEstablishmentReservation {
 	}
 	fn take_url(&mut self) -> Vec<UrlProperty> {
 		std::mem::take(&mut self.r#url)
-	}
-}
-#[cfg(feature = "serde")]
-mod serde {
-	use std::{fmt, fmt::Formatter};
-
-	use ::serde::{
-		Deserialize, Deserializer, Serialize, Serializer, de, de::Visitor, ser::SerializeStruct,
-	};
-
-	use super::*;
-	impl Serialize for FoodEstablishmentReservation {
-		fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-		where
-			S: Serializer,
-		{
-			let len: usize = [
-				!Vec::is_empty(&self.r#end_time) as usize,
-				!Vec::is_empty(&self.r#party_size) as usize,
-				!Vec::is_empty(&self.r#start_time) as usize,
-				!Vec::is_empty(&self.r#booking_agent) as usize,
-				!Vec::is_empty(&self.r#booking_time) as usize,
-				!Vec::is_empty(&self.r#broker) as usize,
-				!Vec::is_empty(&self.r#modified_time) as usize,
-				!Vec::is_empty(&self.r#price_currency) as usize,
-				!Vec::is_empty(&self.r#program_membership_used) as usize,
-				!Vec::is_empty(&self.r#provider) as usize,
-				!Vec::is_empty(&self.r#reservation_for) as usize,
-				!Vec::is_empty(&self.r#reservation_id) as usize,
-				!Vec::is_empty(&self.r#reservation_status) as usize,
-				!Vec::is_empty(&self.r#reserved_ticket) as usize,
-				!Vec::is_empty(&self.r#total_price) as usize,
-				!Vec::is_empty(&self.r#under_name) as usize,
-				!Vec::is_empty(&self.r#additional_type) as usize,
-				!Vec::is_empty(&self.r#alternate_name) as usize,
-				!Vec::is_empty(&self.r#description) as usize,
-				!Vec::is_empty(&self.r#disambiguating_description) as usize,
-				!Vec::is_empty(&self.r#identifier) as usize,
-				!Vec::is_empty(&self.r#image) as usize,
-				!Vec::is_empty(&self.r#main_entity_of_page) as usize,
-				!Vec::is_empty(&self.r#name) as usize,
-				!Vec::is_empty(&self.r#owner) as usize,
-				!Vec::is_empty(&self.r#potential_action) as usize,
-				!Vec::is_empty(&self.r#same_as) as usize,
-				!Vec::is_empty(&self.r#subject_of) as usize,
-				!Vec::is_empty(&self.r#url) as usize,
-			]
-			.iter()
-			.sum();
-			let mut serialize_struct =
-				Serializer::serialize_struct(serializer, "FoodEstablishmentReservation", len)?;
-			if !Vec::is_empty(&self.r#end_time) {
-				serialize_struct.serialize_field("endTime", {
-					struct SerializeWith<'a>(&'a Vec<EndTimeProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#end_time)
-				})?;
-			} else {
-				serialize_struct.skip_field("endTime")?;
-			}
-			if !Vec::is_empty(&self.r#party_size) {
-				serialize_struct.serialize_field("partySize", {
-					struct SerializeWith<'a>(&'a Vec<PartySizeProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#party_size)
-				})?;
-			} else {
-				serialize_struct.skip_field("partySize")?;
-			}
-			if !Vec::is_empty(&self.r#start_time) {
-				serialize_struct.serialize_field("startTime", {
-					struct SerializeWith<'a>(&'a Vec<StartTimeProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#start_time)
-				})?;
-			} else {
-				serialize_struct.skip_field("startTime")?;
-			}
-			if !Vec::is_empty(&self.r#booking_agent) {
-				serialize_struct.serialize_field("bookingAgent", {
-					struct SerializeWith<'a>(&'a Vec<BookingAgentProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#booking_agent)
-				})?;
-			} else {
-				serialize_struct.skip_field("bookingAgent")?;
-			}
-			if !Vec::is_empty(&self.r#booking_time) {
-				serialize_struct.serialize_field("bookingTime", {
-					struct SerializeWith<'a>(&'a Vec<BookingTimeProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#booking_time)
-				})?;
-			} else {
-				serialize_struct.skip_field("bookingTime")?;
-			}
-			if !Vec::is_empty(&self.r#broker) {
-				serialize_struct.serialize_field("broker", {
-					struct SerializeWith<'a>(&'a Vec<BrokerProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#broker)
-				})?;
-			} else {
-				serialize_struct.skip_field("broker")?;
-			}
-			if !Vec::is_empty(&self.r#modified_time) {
-				serialize_struct.serialize_field("modifiedTime", {
-					struct SerializeWith<'a>(&'a Vec<ModifiedTimeProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#modified_time)
-				})?;
-			} else {
-				serialize_struct.skip_field("modifiedTime")?;
-			}
-			if !Vec::is_empty(&self.r#price_currency) {
-				serialize_struct.serialize_field("priceCurrency", {
-					struct SerializeWith<'a>(&'a Vec<PriceCurrencyProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#price_currency)
-				})?;
-			} else {
-				serialize_struct.skip_field("priceCurrency")?;
-			}
-			if !Vec::is_empty(&self.r#program_membership_used) {
-				serialize_struct.serialize_field("programMembershipUsed", {
-					struct SerializeWith<'a>(&'a Vec<ProgramMembershipUsedProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#program_membership_used)
-				})?;
-			} else {
-				serialize_struct.skip_field("programMembershipUsed")?;
-			}
-			if !Vec::is_empty(&self.r#provider) {
-				serialize_struct.serialize_field("provider", {
-					struct SerializeWith<'a>(&'a Vec<ProviderProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#provider)
-				})?;
-			} else {
-				serialize_struct.skip_field("provider")?;
-			}
-			if !Vec::is_empty(&self.r#reservation_for) {
-				serialize_struct.serialize_field("reservationFor", {
-					struct SerializeWith<'a>(&'a Vec<ReservationForProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#reservation_for)
-				})?;
-			} else {
-				serialize_struct.skip_field("reservationFor")?;
-			}
-			if !Vec::is_empty(&self.r#reservation_id) {
-				serialize_struct.serialize_field("reservationId", {
-					struct SerializeWith<'a>(&'a Vec<ReservationIdProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#reservation_id)
-				})?;
-			} else {
-				serialize_struct.skip_field("reservationId")?;
-			}
-			if !Vec::is_empty(&self.r#reservation_status) {
-				serialize_struct.serialize_field("reservationStatus", {
-					struct SerializeWith<'a>(&'a Vec<ReservationStatusProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#reservation_status)
-				})?;
-			} else {
-				serialize_struct.skip_field("reservationStatus")?;
-			}
-			if !Vec::is_empty(&self.r#reserved_ticket) {
-				serialize_struct.serialize_field("reservedTicket", {
-					struct SerializeWith<'a>(&'a Vec<ReservedTicketProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#reserved_ticket)
-				})?;
-			} else {
-				serialize_struct.skip_field("reservedTicket")?;
-			}
-			if !Vec::is_empty(&self.r#total_price) {
-				serialize_struct.serialize_field("totalPrice", {
-					struct SerializeWith<'a>(&'a Vec<TotalPriceProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#total_price)
-				})?;
-			} else {
-				serialize_struct.skip_field("totalPrice")?;
-			}
-			if !Vec::is_empty(&self.r#under_name) {
-				serialize_struct.serialize_field("underName", {
-					struct SerializeWith<'a>(&'a Vec<UnderNameProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#under_name)
-				})?;
-			} else {
-				serialize_struct.skip_field("underName")?;
-			}
-			if !Vec::is_empty(&self.r#additional_type) {
-				serialize_struct.serialize_field("additionalType", {
-					struct SerializeWith<'a>(&'a Vec<AdditionalTypeProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#additional_type)
-				})?;
-			} else {
-				serialize_struct.skip_field("additionalType")?;
-			}
-			if !Vec::is_empty(&self.r#alternate_name) {
-				serialize_struct.serialize_field("alternateName", {
-					struct SerializeWith<'a>(&'a Vec<AlternateNameProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#alternate_name)
-				})?;
-			} else {
-				serialize_struct.skip_field("alternateName")?;
-			}
-			if !Vec::is_empty(&self.r#description) {
-				serialize_struct.serialize_field("description", {
-					struct SerializeWith<'a>(&'a Vec<DescriptionProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#description)
-				})?;
-			} else {
-				serialize_struct.skip_field("description")?;
-			}
-			if !Vec::is_empty(&self.r#disambiguating_description) {
-				serialize_struct.serialize_field("disambiguatingDescription", {
-					struct SerializeWith<'a>(&'a Vec<DisambiguatingDescriptionProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#disambiguating_description)
-				})?;
-			} else {
-				serialize_struct.skip_field("disambiguatingDescription")?;
-			}
-			if !Vec::is_empty(&self.r#identifier) {
-				serialize_struct.serialize_field("identifier", {
-					struct SerializeWith<'a>(&'a Vec<IdentifierProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#identifier)
-				})?;
-			} else {
-				serialize_struct.skip_field("identifier")?;
-			}
-			if !Vec::is_empty(&self.r#image) {
-				serialize_struct.serialize_field("image", {
-					struct SerializeWith<'a>(&'a Vec<ImageProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#image)
-				})?;
-			} else {
-				serialize_struct.skip_field("image")?;
-			}
-			if !Vec::is_empty(&self.r#main_entity_of_page) {
-				serialize_struct.serialize_field("mainEntityOfPage", {
-					struct SerializeWith<'a>(&'a Vec<MainEntityOfPageProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#main_entity_of_page)
-				})?;
-			} else {
-				serialize_struct.skip_field("mainEntityOfPage")?;
-			}
-			if !Vec::is_empty(&self.r#name) {
-				serialize_struct.serialize_field("name", {
-					struct SerializeWith<'a>(&'a Vec<NameProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#name)
-				})?;
-			} else {
-				serialize_struct.skip_field("name")?;
-			}
-			if !Vec::is_empty(&self.r#owner) {
-				serialize_struct.serialize_field("owner", {
-					struct SerializeWith<'a>(&'a Vec<OwnerProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#owner)
-				})?;
-			} else {
-				serialize_struct.skip_field("owner")?;
-			}
-			if !Vec::is_empty(&self.r#potential_action) {
-				serialize_struct.serialize_field("potentialAction", {
-					struct SerializeWith<'a>(&'a Vec<PotentialActionProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#potential_action)
-				})?;
-			} else {
-				serialize_struct.skip_field("potentialAction")?;
-			}
-			if !Vec::is_empty(&self.r#same_as) {
-				serialize_struct.serialize_field("sameAs", {
-					struct SerializeWith<'a>(&'a Vec<SameAsProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#same_as)
-				})?;
-			} else {
-				serialize_struct.skip_field("sameAs")?;
-			}
-			if !Vec::is_empty(&self.r#subject_of) {
-				serialize_struct.serialize_field("subjectOf", {
-					struct SerializeWith<'a>(&'a Vec<SubjectOfProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#subject_of)
-				})?;
-			} else {
-				serialize_struct.skip_field("subjectOf")?;
-			}
-			if !Vec::is_empty(&self.r#url) {
-				serialize_struct.serialize_field("url", {
-					struct SerializeWith<'a>(&'a Vec<UrlProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#url)
-				})?;
-			} else {
-				serialize_struct.skip_field("url")?;
-			}
-			serialize_struct.end()
-		}
-	}
-	impl<'de> Deserialize<'de> for FoodEstablishmentReservation {
-		fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-		where
-			D: Deserializer<'de>,
-		{
-			enum Field {
-				EndTime,
-				PartySize,
-				StartTime,
-				BookingAgent,
-				BookingTime,
-				Broker,
-				ModifiedTime,
-				PriceCurrency,
-				ProgramMembershipUsed,
-				Provider,
-				ReservationFor,
-				ReservationId,
-				ReservationStatus,
-				ReservedTicket,
-				TotalPrice,
-				UnderName,
-				AdditionalType,
-				AlternateName,
-				Description,
-				DisambiguatingDescription,
-				Identifier,
-				Image,
-				MainEntityOfPage,
-				Name,
-				Owner,
-				PotentialAction,
-				SameAs,
-				SubjectOf,
-				Url,
-				Ignore,
-			}
-			struct FieldVisitor;
-			impl<'de> Visitor<'de> for FieldVisitor {
-				type Value = Field;
-				fn expecting(&self, formatter: &mut Formatter) -> fmt::Result {
-					formatter.write_str("field identifier")
-				}
-				fn visit_str<E>(self, value: &str) -> Result<Self::Value, E>
-				where
-					E: de::Error,
-				{
-					match value {
-						"endTime" => Ok(Field::EndTime),
-						"partySize" => Ok(Field::PartySize),
-						"startTime" => Ok(Field::StartTime),
-						"bookingAgent" => Ok(Field::BookingAgent),
-						"bookingTime" => Ok(Field::BookingTime),
-						"broker" => Ok(Field::Broker),
-						"modifiedTime" => Ok(Field::ModifiedTime),
-						"priceCurrency" => Ok(Field::PriceCurrency),
-						"programMembershipUsed" => Ok(Field::ProgramMembershipUsed),
-						"provider" => Ok(Field::Provider),
-						"reservationFor" => Ok(Field::ReservationFor),
-						"reservationId" => Ok(Field::ReservationId),
-						"reservationStatus" => Ok(Field::ReservationStatus),
-						"reservedTicket" => Ok(Field::ReservedTicket),
-						"totalPrice" => Ok(Field::TotalPrice),
-						"underName" => Ok(Field::UnderName),
-						"additionalType" => Ok(Field::AdditionalType),
-						"alternateName" => Ok(Field::AlternateName),
-						"description" => Ok(Field::Description),
-						"disambiguatingDescription" => Ok(Field::DisambiguatingDescription),
-						"identifier" => Ok(Field::Identifier),
-						"image" => Ok(Field::Image),
-						"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
-						"name" => Ok(Field::Name),
-						"owner" => Ok(Field::Owner),
-						"potentialAction" => Ok(Field::PotentialAction),
-						"sameAs" => Ok(Field::SameAs),
-						"subjectOf" => Ok(Field::SubjectOf),
-						"url" => Ok(Field::Url),
-						"id" | "type" => Ok(Field::Ignore),
-						_ => Err(de::Error::unknown_field(value, FIELDS)),
-					}
-				}
-				fn visit_bytes<E>(self, value: &[u8]) -> Result<Self::Value, E>
-				where
-					E: de::Error,
-				{
-					match value {
-						b"endTime" => Ok(Field::EndTime),
-						b"partySize" => Ok(Field::PartySize),
-						b"startTime" => Ok(Field::StartTime),
-						b"bookingAgent" => Ok(Field::BookingAgent),
-						b"bookingTime" => Ok(Field::BookingTime),
-						b"broker" => Ok(Field::Broker),
-						b"modifiedTime" => Ok(Field::ModifiedTime),
-						b"priceCurrency" => Ok(Field::PriceCurrency),
-						b"programMembershipUsed" => Ok(Field::ProgramMembershipUsed),
-						b"provider" => Ok(Field::Provider),
-						b"reservationFor" => Ok(Field::ReservationFor),
-						b"reservationId" => Ok(Field::ReservationId),
-						b"reservationStatus" => Ok(Field::ReservationStatus),
-						b"reservedTicket" => Ok(Field::ReservedTicket),
-						b"totalPrice" => Ok(Field::TotalPrice),
-						b"underName" => Ok(Field::UnderName),
-						b"additionalType" => Ok(Field::AdditionalType),
-						b"alternateName" => Ok(Field::AlternateName),
-						b"description" => Ok(Field::Description),
-						b"disambiguatingDescription" => Ok(Field::DisambiguatingDescription),
-						b"identifier" => Ok(Field::Identifier),
-						b"image" => Ok(Field::Image),
-						b"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
-						b"name" => Ok(Field::Name),
-						b"owner" => Ok(Field::Owner),
-						b"potentialAction" => Ok(Field::PotentialAction),
-						b"sameAs" => Ok(Field::SameAs),
-						b"subjectOf" => Ok(Field::SubjectOf),
-						b"url" => Ok(Field::Url),
-						b"id" | b"type" => Ok(Field::Ignore),
-						_ => {
-							let value = &String::from_utf8_lossy(value);
-							Err(de::Error::unknown_field(value, FIELDS))
-						}
-					}
-				}
-			}
-			impl<'de> Deserialize<'de> for Field {
-				fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-				where
-					D: Deserializer<'de>,
-				{
-					deserializer.deserialize_identifier(FieldVisitor)
-				}
-			}
-			struct ClassVisitor;
-			impl<'de> Visitor<'de> for ClassVisitor {
-				type Value = FoodEstablishmentReservation;
-				fn expecting(&self, formatter: &mut Formatter) -> fmt::Result {
-					formatter.write_str("schema.org schema FoodEstablishmentReservation")
-				}
-				fn visit_map<A>(self, mut map: A) -> Result<Self::Value, A::Error>
-				where
-					A: de::MapAccess<'de>,
-				{
-					let mut r#end_time_property = None;
-					let mut r#party_size_property = None;
-					let mut r#start_time_property = None;
-					let mut r#booking_agent_property = None;
-					let mut r#booking_time_property = None;
-					let mut r#broker_property = None;
-					let mut r#modified_time_property = None;
-					let mut r#price_currency_property = None;
-					let mut r#program_membership_used_property = None;
-					let mut r#provider_property = None;
-					let mut r#reservation_for_property = None;
-					let mut r#reservation_id_property = None;
-					let mut r#reservation_status_property = None;
-					let mut r#reserved_ticket_property = None;
-					let mut r#total_price_property = None;
-					let mut r#under_name_property = None;
-					let mut r#additional_type_property = None;
-					let mut r#alternate_name_property = None;
-					let mut r#description_property = None;
-					let mut r#disambiguating_description_property = None;
-					let mut r#identifier_property = None;
-					let mut r#image_property = None;
-					let mut r#main_entity_of_page_property = None;
-					let mut r#name_property = None;
-					let mut r#owner_property = None;
-					let mut r#potential_action_property = None;
-					let mut r#same_as_property = None;
-					let mut r#subject_of_property = None;
-					let mut r#url_property = None;
-					while let Some(key) = map.next_key::<Field>()? {
-						match key {
-							Field::EndTime => {
-								if r#end_time_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"endTime",
-									));
-								}
-								r#end_time_property = Some({
-									struct DeserializeWith(Vec<EndTimeProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::PartySize => {
-								if r#party_size_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"partySize",
-									));
-								}
-								r#party_size_property = Some({
-									struct DeserializeWith(Vec<PartySizeProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::StartTime => {
-								if r#start_time_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"startTime",
-									));
-								}
-								r#start_time_property = Some({
-									struct DeserializeWith(Vec<StartTimeProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::BookingAgent => {
-								if r#booking_agent_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"bookingAgent",
-									));
-								}
-								r#booking_agent_property = Some({
-									struct DeserializeWith(Vec<BookingAgentProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::BookingTime => {
-								if r#booking_time_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"bookingTime",
-									));
-								}
-								r#booking_time_property = Some({
-									struct DeserializeWith(Vec<BookingTimeProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::Broker => {
-								if r#broker_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field("broker"));
-								}
-								r#broker_property = Some({
-									struct DeserializeWith(Vec<BrokerProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::ModifiedTime => {
-								if r#modified_time_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"modifiedTime",
-									));
-								}
-								r#modified_time_property = Some({
-									struct DeserializeWith(Vec<ModifiedTimeProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::PriceCurrency => {
-								if r#price_currency_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"priceCurrency",
-									));
-								}
-								r#price_currency_property = Some({
-									struct DeserializeWith(Vec<PriceCurrencyProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::ProgramMembershipUsed => {
-								if r#program_membership_used_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"programMembershipUsed",
-									));
-								}
-								r#program_membership_used_property = Some({
-									struct DeserializeWith(Vec<ProgramMembershipUsedProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::Provider => {
-								if r#provider_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"provider",
-									));
-								}
-								r#provider_property = Some({
-									struct DeserializeWith(Vec<ProviderProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::ReservationFor => {
-								if r#reservation_for_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"reservationFor",
-									));
-								}
-								r#reservation_for_property = Some({
-									struct DeserializeWith(Vec<ReservationForProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::ReservationId => {
-								if r#reservation_id_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"reservationId",
-									));
-								}
-								r#reservation_id_property = Some({
-									struct DeserializeWith(Vec<ReservationIdProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::ReservationStatus => {
-								if r#reservation_status_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"reservationStatus",
-									));
-								}
-								r#reservation_status_property = Some({
-									struct DeserializeWith(Vec<ReservationStatusProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::ReservedTicket => {
-								if r#reserved_ticket_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"reservedTicket",
-									));
-								}
-								r#reserved_ticket_property = Some({
-									struct DeserializeWith(Vec<ReservedTicketProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::TotalPrice => {
-								if r#total_price_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"totalPrice",
-									));
-								}
-								r#total_price_property = Some({
-									struct DeserializeWith(Vec<TotalPriceProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::UnderName => {
-								if r#under_name_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"underName",
-									));
-								}
-								r#under_name_property = Some({
-									struct DeserializeWith(Vec<UnderNameProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::AdditionalType => {
-								if r#additional_type_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"additionalType",
-									));
-								}
-								r#additional_type_property = Some({
-									struct DeserializeWith(Vec<AdditionalTypeProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::AlternateName => {
-								if r#alternate_name_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"alternateName",
-									));
-								}
-								r#alternate_name_property = Some({
-									struct DeserializeWith(Vec<AlternateNameProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::Description => {
-								if r#description_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"description",
-									));
-								}
-								r#description_property = Some({
-									struct DeserializeWith(Vec<DescriptionProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::DisambiguatingDescription => {
-								if r#disambiguating_description_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"disambiguatingDescription",
-									));
-								}
-								r#disambiguating_description_property = Some({
-									struct DeserializeWith(Vec<DisambiguatingDescriptionProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::Identifier => {
-								if r#identifier_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"identifier",
-									));
-								}
-								r#identifier_property = Some({
-									struct DeserializeWith(Vec<IdentifierProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::Image => {
-								if r#image_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field("image"));
-								}
-								r#image_property = Some({
-									struct DeserializeWith(Vec<ImageProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::MainEntityOfPage => {
-								if r#main_entity_of_page_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"mainEntityOfPage",
-									));
-								}
-								r#main_entity_of_page_property = Some({
-									struct DeserializeWith(Vec<MainEntityOfPageProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::Name => {
-								if r#name_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field("name"));
-								}
-								r#name_property = Some({
-									struct DeserializeWith(Vec<NameProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::Owner => {
-								if r#owner_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field("owner"));
-								}
-								r#owner_property = Some({
-									struct DeserializeWith(Vec<OwnerProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::PotentialAction => {
-								if r#potential_action_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"potentialAction",
-									));
-								}
-								r#potential_action_property = Some({
-									struct DeserializeWith(Vec<PotentialActionProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::SameAs => {
-								if r#same_as_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field("sameAs"));
-								}
-								r#same_as_property = Some({
-									struct DeserializeWith(Vec<SameAsProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::SubjectOf => {
-								if r#subject_of_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"subjectOf",
-									));
-								}
-								r#subject_of_property = Some({
-									struct DeserializeWith(Vec<SubjectOfProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::Url => {
-								if r#url_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field("url"));
-								}
-								r#url_property = Some({
-									struct DeserializeWith(Vec<UrlProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::Ignore => {
-								let _ = map.next_value::<de::IgnoredAny>()?;
-							}
-						}
-					}
-					Ok(FoodEstablishmentReservation {
-						r#end_time: r#end_time_property.unwrap_or_default(),
-						r#party_size: r#party_size_property.unwrap_or_default(),
-						r#start_time: r#start_time_property.unwrap_or_default(),
-						r#booking_agent: r#booking_agent_property.unwrap_or_default(),
-						r#booking_time: r#booking_time_property.unwrap_or_default(),
-						r#broker: r#broker_property.unwrap_or_default(),
-						r#modified_time: r#modified_time_property.unwrap_or_default(),
-						r#price_currency: r#price_currency_property.unwrap_or_default(),
-						r#program_membership_used: r#program_membership_used_property
-							.unwrap_or_default(),
-						r#provider: r#provider_property.unwrap_or_default(),
-						r#reservation_for: r#reservation_for_property.unwrap_or_default(),
-						r#reservation_id: r#reservation_id_property.unwrap_or_default(),
-						r#reservation_status: r#reservation_status_property.unwrap_or_default(),
-						r#reserved_ticket: r#reserved_ticket_property.unwrap_or_default(),
-						r#total_price: r#total_price_property.unwrap_or_default(),
-						r#under_name: r#under_name_property.unwrap_or_default(),
-						r#additional_type: r#additional_type_property.unwrap_or_default(),
-						r#alternate_name: r#alternate_name_property.unwrap_or_default(),
-						r#description: r#description_property.unwrap_or_default(),
-						r#disambiguating_description: r#disambiguating_description_property
-							.unwrap_or_default(),
-						r#identifier: r#identifier_property.unwrap_or_default(),
-						r#image: r#image_property.unwrap_or_default(),
-						r#main_entity_of_page: r#main_entity_of_page_property.unwrap_or_default(),
-						r#name: r#name_property.unwrap_or_default(),
-						r#owner: r#owner_property.unwrap_or_default(),
-						r#potential_action: r#potential_action_property.unwrap_or_default(),
-						r#same_as: r#same_as_property.unwrap_or_default(),
-						r#subject_of: r#subject_of_property.unwrap_or_default(),
-						r#url: r#url_property.unwrap_or_default(),
-					})
-				}
-			}
-			const FIELDS: &[&str] = &[
-				"endTime",
-				"partySize",
-				"startTime",
-				"bookingAgent",
-				"bookingTime",
-				"broker",
-				"modifiedTime",
-				"priceCurrency",
-				"programMembershipUsed",
-				"provider",
-				"reservationFor",
-				"reservationId",
-				"reservationStatus",
-				"reservedTicket",
-				"totalPrice",
-				"underName",
-				"additionalType",
-				"alternateName",
-				"description",
-				"disambiguatingDescription",
-				"identifier",
-				"image",
-				"mainEntityOfPage",
-				"name",
-				"owner",
-				"potentialAction",
-				"sameAs",
-				"subjectOf",
-				"url",
-			];
-			deserializer.deserialize_struct("FoodEstablishmentReservation", FIELDS, ClassVisitor)
-		}
 	}
 }

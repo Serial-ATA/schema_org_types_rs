@@ -16,7 +16,7 @@ features = [
 
 [dependencies]
 json-number = "0.4.10"
-serde = { version = "1.0.229", features = ["default"], optional = true }
+serde = { version = "1.0.229", features = ["derive"], optional = true }
 serde_with = { version = "3.24.0", optional = true }
 speedate = "0.17.0"
 url = "2.5.8"

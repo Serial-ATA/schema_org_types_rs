@@ -23,7 +23,7 @@ mod serde {
 		where
 			S: Serializer,
 		{
-			serializer.serialize_newtype_struct("Time", {
+			{
 				struct SerializeWith<'a>(&'a crate::date_types::Time);
 				impl<'a> Serialize for SerializeWith<'a> {
 					fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
@@ -33,8 +33,9 @@ mod serde {
 						serde_with::As::<serde_with::DisplayFromStr>::serialize(self.0, serializer)
 					}
 				}
-				&SerializeWith(&self.0)
-			})
+				let s = SerializeWith(&self.0);
+				serializer.serialize_newtype_struct("Time", &s)
+			}
 		}
 	}
 	impl<'de> Deserialize<'de> for Time {

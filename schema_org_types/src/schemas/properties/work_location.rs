@@ -2,6 +2,8 @@ use super::*;
 /// <https://schema.org/workLocation>
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
+#[cfg_attr(feature = "serde", derive(::serde::Serialize, ::serde::Deserialize))]
+#[cfg_attr(feature = "serde", serde(untagged))]
 pub enum WorkLocationProperty {
 	/// <https://schema.org/ContactPoint>
 	ContactPoint(ContactPoint),
@@ -9,63 +11,4 @@ pub enum WorkLocationProperty {
 	Place(Place),
 	#[cfg(any(all(feature = "fallible", feature = "serde"), doc))]
 	SerdeFail(crate::fallible::FailValue),
-}
-#[cfg(feature = "serde")]
-mod serde {
-	use std::{fmt, fmt::Formatter};
-
-	use ::serde::{
-		Deserialize, Deserializer, Serialize, Serializer, de, de::Visitor, ser::SerializeStruct,
-	};
-
-	use super::*;
-	impl Serialize for WorkLocationProperty {
-		fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-		where
-			S: Serializer,
-		{
-			match *self {
-				WorkLocationProperty::ContactPoint(ref inner) => inner.serialize(serializer),
-				WorkLocationProperty::Place(ref inner) => inner.serialize(serializer),
-				#[cfg(all(feature = "fallible", feature = "serde"))]
-				WorkLocationProperty::SerdeFail(ref inner) => inner.serialize(serializer),
-			}
-		}
-	}
-	impl<'de> Deserialize<'de> for WorkLocationProperty {
-		fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-		where
-			D: Deserializer<'de>,
-		{
-			let content =
-				<::serde::__private::de::Content as Deserialize>::deserialize(deserializer)?;
-			let deserializer =
-				::serde::__private::de::ContentRefDeserializer::<D::Error>::new(&content);
-			if let Ok(ok) = Result::map(
-				<ContactPoint as Deserialize>::deserialize(deserializer),
-				WorkLocationProperty::ContactPoint,
-			) {
-				return Ok(ok);
-			}
-			if let Ok(ok) = Result::map(
-				<Place as Deserialize>::deserialize(deserializer),
-				WorkLocationProperty::Place,
-			) {
-				return Ok(ok);
-			}
-			#[cfg(all(feature = "fallible", feature = "serde"))]
-			if let Ok(ok) = Result::map(
-				<crate::fallible::FailValue as Deserialize>::deserialize(deserializer),
-				WorkLocationProperty::SerdeFail,
-			) {
-				return Ok(ok);
-			}
-			#[cfg(all(feature = "fallible", feature = "serde"))]
-			const CUSTOM_ERROR: &str = "data did neither match any variant of schema.org property workLocation or was able to be deserialized into a generic value";
-			#[cfg(any(not(feature = "fallible"), not(feature = "serde")))]
-			const CUSTOM_ERROR: &str =
-				"data did not match any variant of schema.org property workLocation";
-			Err(de::Error::custom(CUSTOM_ERROR))
-		}
-	}
 }

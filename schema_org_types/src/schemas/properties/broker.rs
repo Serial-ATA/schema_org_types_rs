@@ -2,6 +2,8 @@ use super::*;
 /// <https://schema.org/broker>
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
+#[cfg_attr(feature = "serde", derive(::serde::Serialize, ::serde::Deserialize))]
+#[cfg_attr(feature = "serde", serde(untagged))]
 pub enum BrokerProperty {
 	/// <https://schema.org/Organization>
 	Organization(Organization),
@@ -9,63 +11,4 @@ pub enum BrokerProperty {
 	Person(Person),
 	#[cfg(any(all(feature = "fallible", feature = "serde"), doc))]
 	SerdeFail(crate::fallible::FailValue),
-}
-#[cfg(feature = "serde")]
-mod serde {
-	use std::{fmt, fmt::Formatter};
-
-	use ::serde::{
-		Deserialize, Deserializer, Serialize, Serializer, de, de::Visitor, ser::SerializeStruct,
-	};
-
-	use super::*;
-	impl Serialize for BrokerProperty {
-		fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-		where
-			S: Serializer,
-		{
-			match *self {
-				BrokerProperty::Organization(ref inner) => inner.serialize(serializer),
-				BrokerProperty::Person(ref inner) => inner.serialize(serializer),
-				#[cfg(all(feature = "fallible", feature = "serde"))]
-				BrokerProperty::SerdeFail(ref inner) => inner.serialize(serializer),
-			}
-		}
-	}
-	impl<'de> Deserialize<'de> for BrokerProperty {
-		fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-		where
-			D: Deserializer<'de>,
-		{
-			let content =
-				<::serde::__private::de::Content as Deserialize>::deserialize(deserializer)?;
-			let deserializer =
-				::serde::__private::de::ContentRefDeserializer::<D::Error>::new(&content);
-			if let Ok(ok) = Result::map(
-				<Organization as Deserialize>::deserialize(deserializer),
-				BrokerProperty::Organization,
-			) {
-				return Ok(ok);
-			}
-			if let Ok(ok) = Result::map(
-				<Person as Deserialize>::deserialize(deserializer),
-				BrokerProperty::Person,
-			) {
-				return Ok(ok);
-			}
-			#[cfg(all(feature = "fallible", feature = "serde"))]
-			if let Ok(ok) = Result::map(
-				<crate::fallible::FailValue as Deserialize>::deserialize(deserializer),
-				BrokerProperty::SerdeFail,
-			) {
-				return Ok(ok);
-			}
-			#[cfg(all(feature = "fallible", feature = "serde"))]
-			const CUSTOM_ERROR: &str = "data did neither match any variant of schema.org property broker or was able to be deserialized into a generic value";
-			#[cfg(any(not(feature = "fallible"), not(feature = "serde")))]
-			const CUSTOM_ERROR: &str =
-				"data did not match any variant of schema.org property broker";
-			Err(de::Error::custom(CUSTOM_ERROR))
-		}
-	}
 }

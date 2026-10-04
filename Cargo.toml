@@ -2,7 +2,7 @@
 resolver = "3"
 members = [
     "generator",
-    "schema_org_types"
+    "schema_org_types",
 ]
 
 [workspace.package]

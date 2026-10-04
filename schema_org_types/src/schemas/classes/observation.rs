@@ -2,66 +2,338 @@ use super::*;
 /// <https://schema.org/Observation>
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
+#[cfg_attr(feature = "serde", ::serde_with::serde_as)]
+#[cfg_attr(feature = "serde", derive(::serde::Serialize, ::serde::Deserialize))]
 pub struct Observation {
 	/// <https://schema.org/marginOfError>
+	#[cfg_attr(feature = "serde", serde(rename = "marginOfError"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#margin_of_error: Vec<MarginOfErrorProperty>,
 	/// <https://schema.org/measuredProperty>
+	#[cfg_attr(feature = "serde", serde(rename = "measuredProperty"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#measured_property: Vec<MeasuredPropertyProperty>,
 	/// <https://schema.org/measurementDenominator>
+	#[cfg_attr(feature = "serde", serde(rename = "measurementDenominator"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#measurement_denominator: Vec<MeasurementDenominatorProperty>,
 	/// <https://schema.org/measurementMethod>
+	#[cfg_attr(feature = "serde", serde(rename = "measurementMethod"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#measurement_method: Vec<MeasurementMethodProperty>,
 	/// <https://schema.org/measurementQualifier>
+	#[cfg_attr(feature = "serde", serde(rename = "measurementQualifier"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#measurement_qualifier: Vec<MeasurementQualifierProperty>,
 	/// <https://schema.org/measurementTechnique>
+	#[cfg_attr(feature = "serde", serde(rename = "measurementTechnique"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#measurement_technique: Vec<MeasurementTechniqueProperty>,
 	/// <https://schema.org/observationAbout>
+	#[cfg_attr(feature = "serde", serde(rename = "observationAbout"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#observation_about: Vec<ObservationAboutProperty>,
 	/// <https://schema.org/observationDate>
+	#[cfg_attr(feature = "serde", serde(rename = "observationDate"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#observation_date: Vec<ObservationDateProperty>,
 	/// <https://schema.org/observationPeriod>
+	#[cfg_attr(feature = "serde", serde(rename = "observationPeriod"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#observation_period: Vec<ObservationPeriodProperty>,
 	/// <https://schema.org/variableMeasured>
+	#[cfg_attr(feature = "serde", serde(rename = "variableMeasured"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#variable_measured: Vec<VariableMeasuredProperty>,
 	/// <https://schema.org/additionalProperty>
+	#[cfg_attr(feature = "serde", serde(rename = "additionalProperty"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#additional_property: Vec<AdditionalPropertyProperty>,
 	/// <https://schema.org/maxValue>
+	#[cfg_attr(feature = "serde", serde(rename = "maxValue"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#max_value: Vec<MaxValueProperty>,
 	/// <https://schema.org/minValue>
+	#[cfg_attr(feature = "serde", serde(rename = "minValue"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#min_value: Vec<MinValueProperty>,
 	/// <https://schema.org/unitCode>
+	#[cfg_attr(feature = "serde", serde(rename = "unitCode"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#unit_code: Vec<UnitCodeProperty>,
 	/// <https://schema.org/unitText>
+	#[cfg_attr(feature = "serde", serde(rename = "unitText"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#unit_text: Vec<UnitTextProperty>,
 	/// <https://schema.org/value>
+	#[cfg_attr(feature = "serde", serde(rename = "value"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#value: Vec<ValueProperty>,
 	/// <https://schema.org/valueReference>
+	#[cfg_attr(feature = "serde", serde(rename = "valueReference"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#value_reference: Vec<ValueReferenceProperty>,
 	/// <https://schema.org/additionalType>
+	#[cfg_attr(feature = "serde", serde(rename = "additionalType"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#additional_type: Vec<AdditionalTypeProperty>,
 	/// <https://schema.org/alternateName>
+	#[cfg_attr(feature = "serde", serde(rename = "alternateName"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#alternate_name: Vec<AlternateNameProperty>,
 	/// <https://schema.org/description>
+	#[cfg_attr(feature = "serde", serde(rename = "description"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#description: Vec<DescriptionProperty>,
 	/// <https://schema.org/disambiguatingDescription>
+	#[cfg_attr(feature = "serde", serde(rename = "disambiguatingDescription"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#disambiguating_description: Vec<DisambiguatingDescriptionProperty>,
 	/// <https://schema.org/identifier>
+	#[cfg_attr(feature = "serde", serde(rename = "identifier"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#identifier: Vec<IdentifierProperty>,
 	/// <https://schema.org/image>
+	#[cfg_attr(feature = "serde", serde(rename = "image"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#image: Vec<ImageProperty>,
 	/// <https://schema.org/mainEntityOfPage>
+	#[cfg_attr(feature = "serde", serde(rename = "mainEntityOfPage"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#main_entity_of_page: Vec<MainEntityOfPageProperty>,
 	/// <https://schema.org/name>
+	#[cfg_attr(feature = "serde", serde(rename = "name"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#name: Vec<NameProperty>,
 	/// <https://schema.org/owner>
+	#[cfg_attr(feature = "serde", serde(rename = "owner"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#owner: Vec<OwnerProperty>,
 	/// <https://schema.org/potentialAction>
+	#[cfg_attr(feature = "serde", serde(rename = "potentialAction"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#potential_action: Vec<PotentialActionProperty>,
 	/// <https://schema.org/sameAs>
+	#[cfg_attr(feature = "serde", serde(rename = "sameAs"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#same_as: Vec<SameAsProperty>,
 	/// <https://schema.org/subjectOf>
+	#[cfg_attr(feature = "serde", serde(rename = "subjectOf"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#subject_of: Vec<SubjectOfProperty>,
 	/// <https://schema.org/url>
+	#[cfg_attr(feature = "serde", serde(rename = "url"))]
+	#[cfg_attr(
+		feature = "serde",
+		serde(skip_serializing_if = "Vec::is_empty", default)
+	)]
+	#[cfg_attr(
+		feature = "serde",
+		serde_as(as = "::serde_with::OneOrMany<::serde_with::Same>")
+	)]
 	pub r#url: Vec<UrlProperty>,
 }
 /// This trait is for properties from <https://schema.org/Observation>.
@@ -292,1681 +564,5 @@ impl ThingTrait for Observation {
 	}
 	fn take_url(&mut self) -> Vec<UrlProperty> {
 		std::mem::take(&mut self.r#url)
-	}
-}
-#[cfg(feature = "serde")]
-mod serde {
-	use std::{fmt, fmt::Formatter};
-
-	use ::serde::{
-		Deserialize, Deserializer, Serialize, Serializer, de, de::Visitor, ser::SerializeStruct,
-	};
-
-	use super::*;
-	impl Serialize for Observation {
-		fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-		where
-			S: Serializer,
-		{
-			let len: usize = [
-				!Vec::is_empty(&self.r#margin_of_error) as usize,
-				!Vec::is_empty(&self.r#measured_property) as usize,
-				!Vec::is_empty(&self.r#measurement_denominator) as usize,
-				!Vec::is_empty(&self.r#measurement_method) as usize,
-				!Vec::is_empty(&self.r#measurement_qualifier) as usize,
-				!Vec::is_empty(&self.r#measurement_technique) as usize,
-				!Vec::is_empty(&self.r#observation_about) as usize,
-				!Vec::is_empty(&self.r#observation_date) as usize,
-				!Vec::is_empty(&self.r#observation_period) as usize,
-				!Vec::is_empty(&self.r#variable_measured) as usize,
-				!Vec::is_empty(&self.r#additional_property) as usize,
-				!Vec::is_empty(&self.r#max_value) as usize,
-				!Vec::is_empty(&self.r#min_value) as usize,
-				!Vec::is_empty(&self.r#unit_code) as usize,
-				!Vec::is_empty(&self.r#unit_text) as usize,
-				!Vec::is_empty(&self.r#value) as usize,
-				!Vec::is_empty(&self.r#value_reference) as usize,
-				!Vec::is_empty(&self.r#additional_type) as usize,
-				!Vec::is_empty(&self.r#alternate_name) as usize,
-				!Vec::is_empty(&self.r#description) as usize,
-				!Vec::is_empty(&self.r#disambiguating_description) as usize,
-				!Vec::is_empty(&self.r#identifier) as usize,
-				!Vec::is_empty(&self.r#image) as usize,
-				!Vec::is_empty(&self.r#main_entity_of_page) as usize,
-				!Vec::is_empty(&self.r#name) as usize,
-				!Vec::is_empty(&self.r#owner) as usize,
-				!Vec::is_empty(&self.r#potential_action) as usize,
-				!Vec::is_empty(&self.r#same_as) as usize,
-				!Vec::is_empty(&self.r#subject_of) as usize,
-				!Vec::is_empty(&self.r#url) as usize,
-			]
-			.iter()
-			.sum();
-			let mut serialize_struct =
-				Serializer::serialize_struct(serializer, "Observation", len)?;
-			if !Vec::is_empty(&self.r#margin_of_error) {
-				serialize_struct.serialize_field("marginOfError", {
-					struct SerializeWith<'a>(&'a Vec<MarginOfErrorProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#margin_of_error)
-				})?;
-			} else {
-				serialize_struct.skip_field("marginOfError")?;
-			}
-			if !Vec::is_empty(&self.r#measured_property) {
-				serialize_struct.serialize_field("measuredProperty", {
-					struct SerializeWith<'a>(&'a Vec<MeasuredPropertyProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#measured_property)
-				})?;
-			} else {
-				serialize_struct.skip_field("measuredProperty")?;
-			}
-			if !Vec::is_empty(&self.r#measurement_denominator) {
-				serialize_struct.serialize_field("measurementDenominator", {
-					struct SerializeWith<'a>(&'a Vec<MeasurementDenominatorProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#measurement_denominator)
-				})?;
-			} else {
-				serialize_struct.skip_field("measurementDenominator")?;
-			}
-			if !Vec::is_empty(&self.r#measurement_method) {
-				serialize_struct.serialize_field("measurementMethod", {
-					struct SerializeWith<'a>(&'a Vec<MeasurementMethodProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#measurement_method)
-				})?;
-			} else {
-				serialize_struct.skip_field("measurementMethod")?;
-			}
-			if !Vec::is_empty(&self.r#measurement_qualifier) {
-				serialize_struct.serialize_field("measurementQualifier", {
-					struct SerializeWith<'a>(&'a Vec<MeasurementQualifierProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#measurement_qualifier)
-				})?;
-			} else {
-				serialize_struct.skip_field("measurementQualifier")?;
-			}
-			if !Vec::is_empty(&self.r#measurement_technique) {
-				serialize_struct.serialize_field("measurementTechnique", {
-					struct SerializeWith<'a>(&'a Vec<MeasurementTechniqueProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#measurement_technique)
-				})?;
-			} else {
-				serialize_struct.skip_field("measurementTechnique")?;
-			}
-			if !Vec::is_empty(&self.r#observation_about) {
-				serialize_struct.serialize_field("observationAbout", {
-					struct SerializeWith<'a>(&'a Vec<ObservationAboutProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#observation_about)
-				})?;
-			} else {
-				serialize_struct.skip_field("observationAbout")?;
-			}
-			if !Vec::is_empty(&self.r#observation_date) {
-				serialize_struct.serialize_field("observationDate", {
-					struct SerializeWith<'a>(&'a Vec<ObservationDateProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#observation_date)
-				})?;
-			} else {
-				serialize_struct.skip_field("observationDate")?;
-			}
-			if !Vec::is_empty(&self.r#observation_period) {
-				serialize_struct.serialize_field("observationPeriod", {
-					struct SerializeWith<'a>(&'a Vec<ObservationPeriodProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#observation_period)
-				})?;
-			} else {
-				serialize_struct.skip_field("observationPeriod")?;
-			}
-			if !Vec::is_empty(&self.r#variable_measured) {
-				serialize_struct.serialize_field("variableMeasured", {
-					struct SerializeWith<'a>(&'a Vec<VariableMeasuredProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#variable_measured)
-				})?;
-			} else {
-				serialize_struct.skip_field("variableMeasured")?;
-			}
-			if !Vec::is_empty(&self.r#additional_property) {
-				serialize_struct.serialize_field("additionalProperty", {
-					struct SerializeWith<'a>(&'a Vec<AdditionalPropertyProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#additional_property)
-				})?;
-			} else {
-				serialize_struct.skip_field("additionalProperty")?;
-			}
-			if !Vec::is_empty(&self.r#max_value) {
-				serialize_struct.serialize_field("maxValue", {
-					struct SerializeWith<'a>(&'a Vec<MaxValueProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#max_value)
-				})?;
-			} else {
-				serialize_struct.skip_field("maxValue")?;
-			}
-			if !Vec::is_empty(&self.r#min_value) {
-				serialize_struct.serialize_field("minValue", {
-					struct SerializeWith<'a>(&'a Vec<MinValueProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#min_value)
-				})?;
-			} else {
-				serialize_struct.skip_field("minValue")?;
-			}
-			if !Vec::is_empty(&self.r#unit_code) {
-				serialize_struct.serialize_field("unitCode", {
-					struct SerializeWith<'a>(&'a Vec<UnitCodeProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#unit_code)
-				})?;
-			} else {
-				serialize_struct.skip_field("unitCode")?;
-			}
-			if !Vec::is_empty(&self.r#unit_text) {
-				serialize_struct.serialize_field("unitText", {
-					struct SerializeWith<'a>(&'a Vec<UnitTextProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#unit_text)
-				})?;
-			} else {
-				serialize_struct.skip_field("unitText")?;
-			}
-			if !Vec::is_empty(&self.r#value) {
-				serialize_struct.serialize_field("value", {
-					struct SerializeWith<'a>(&'a Vec<ValueProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#value)
-				})?;
-			} else {
-				serialize_struct.skip_field("value")?;
-			}
-			if !Vec::is_empty(&self.r#value_reference) {
-				serialize_struct.serialize_field("valueReference", {
-					struct SerializeWith<'a>(&'a Vec<ValueReferenceProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#value_reference)
-				})?;
-			} else {
-				serialize_struct.skip_field("valueReference")?;
-			}
-			if !Vec::is_empty(&self.r#additional_type) {
-				serialize_struct.serialize_field("additionalType", {
-					struct SerializeWith<'a>(&'a Vec<AdditionalTypeProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#additional_type)
-				})?;
-			} else {
-				serialize_struct.skip_field("additionalType")?;
-			}
-			if !Vec::is_empty(&self.r#alternate_name) {
-				serialize_struct.serialize_field("alternateName", {
-					struct SerializeWith<'a>(&'a Vec<AlternateNameProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#alternate_name)
-				})?;
-			} else {
-				serialize_struct.skip_field("alternateName")?;
-			}
-			if !Vec::is_empty(&self.r#description) {
-				serialize_struct.serialize_field("description", {
-					struct SerializeWith<'a>(&'a Vec<DescriptionProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#description)
-				})?;
-			} else {
-				serialize_struct.skip_field("description")?;
-			}
-			if !Vec::is_empty(&self.r#disambiguating_description) {
-				serialize_struct.serialize_field("disambiguatingDescription", {
-					struct SerializeWith<'a>(&'a Vec<DisambiguatingDescriptionProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#disambiguating_description)
-				})?;
-			} else {
-				serialize_struct.skip_field("disambiguatingDescription")?;
-			}
-			if !Vec::is_empty(&self.r#identifier) {
-				serialize_struct.serialize_field("identifier", {
-					struct SerializeWith<'a>(&'a Vec<IdentifierProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#identifier)
-				})?;
-			} else {
-				serialize_struct.skip_field("identifier")?;
-			}
-			if !Vec::is_empty(&self.r#image) {
-				serialize_struct.serialize_field("image", {
-					struct SerializeWith<'a>(&'a Vec<ImageProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#image)
-				})?;
-			} else {
-				serialize_struct.skip_field("image")?;
-			}
-			if !Vec::is_empty(&self.r#main_entity_of_page) {
-				serialize_struct.serialize_field("mainEntityOfPage", {
-					struct SerializeWith<'a>(&'a Vec<MainEntityOfPageProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#main_entity_of_page)
-				})?;
-			} else {
-				serialize_struct.skip_field("mainEntityOfPage")?;
-			}
-			if !Vec::is_empty(&self.r#name) {
-				serialize_struct.serialize_field("name", {
-					struct SerializeWith<'a>(&'a Vec<NameProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#name)
-				})?;
-			} else {
-				serialize_struct.skip_field("name")?;
-			}
-			if !Vec::is_empty(&self.r#owner) {
-				serialize_struct.serialize_field("owner", {
-					struct SerializeWith<'a>(&'a Vec<OwnerProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#owner)
-				})?;
-			} else {
-				serialize_struct.skip_field("owner")?;
-			}
-			if !Vec::is_empty(&self.r#potential_action) {
-				serialize_struct.serialize_field("potentialAction", {
-					struct SerializeWith<'a>(&'a Vec<PotentialActionProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#potential_action)
-				})?;
-			} else {
-				serialize_struct.skip_field("potentialAction")?;
-			}
-			if !Vec::is_empty(&self.r#same_as) {
-				serialize_struct.serialize_field("sameAs", {
-					struct SerializeWith<'a>(&'a Vec<SameAsProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#same_as)
-				})?;
-			} else {
-				serialize_struct.skip_field("sameAs")?;
-			}
-			if !Vec::is_empty(&self.r#subject_of) {
-				serialize_struct.serialize_field("subjectOf", {
-					struct SerializeWith<'a>(&'a Vec<SubjectOfProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#subject_of)
-				})?;
-			} else {
-				serialize_struct.skip_field("subjectOf")?;
-			}
-			if !Vec::is_empty(&self.r#url) {
-				serialize_struct.serialize_field("url", {
-					struct SerializeWith<'a>(&'a Vec<UrlProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#url)
-				})?;
-			} else {
-				serialize_struct.skip_field("url")?;
-			}
-			serialize_struct.end()
-		}
-	}
-	impl<'de> Deserialize<'de> for Observation {
-		fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-		where
-			D: Deserializer<'de>,
-		{
-			enum Field {
-				MarginOfError,
-				MeasuredProperty,
-				MeasurementDenominator,
-				MeasurementMethod,
-				MeasurementQualifier,
-				MeasurementTechnique,
-				ObservationAbout,
-				ObservationDate,
-				ObservationPeriod,
-				VariableMeasured,
-				AdditionalProperty,
-				MaxValue,
-				MinValue,
-				UnitCode,
-				UnitText,
-				Value,
-				ValueReference,
-				AdditionalType,
-				AlternateName,
-				Description,
-				DisambiguatingDescription,
-				Identifier,
-				Image,
-				MainEntityOfPage,
-				Name,
-				Owner,
-				PotentialAction,
-				SameAs,
-				SubjectOf,
-				Url,
-				Ignore,
-			}
-			struct FieldVisitor;
-			impl<'de> Visitor<'de> for FieldVisitor {
-				type Value = Field;
-				fn expecting(&self, formatter: &mut Formatter) -> fmt::Result {
-					formatter.write_str("field identifier")
-				}
-				fn visit_str<E>(self, value: &str) -> Result<Self::Value, E>
-				where
-					E: de::Error,
-				{
-					match value {
-						"marginOfError" => Ok(Field::MarginOfError),
-						"measuredProperty" => Ok(Field::MeasuredProperty),
-						"measurementDenominator" => Ok(Field::MeasurementDenominator),
-						"measurementMethod" => Ok(Field::MeasurementMethod),
-						"measurementQualifier" => Ok(Field::MeasurementQualifier),
-						"measurementTechnique" => Ok(Field::MeasurementTechnique),
-						"observationAbout" => Ok(Field::ObservationAbout),
-						"observationDate" => Ok(Field::ObservationDate),
-						"observationPeriod" => Ok(Field::ObservationPeriod),
-						"variableMeasured" => Ok(Field::VariableMeasured),
-						"additionalProperty" => Ok(Field::AdditionalProperty),
-						"maxValue" => Ok(Field::MaxValue),
-						"minValue" => Ok(Field::MinValue),
-						"unitCode" => Ok(Field::UnitCode),
-						"unitText" => Ok(Field::UnitText),
-						"value" => Ok(Field::Value),
-						"valueReference" => Ok(Field::ValueReference),
-						"additionalType" => Ok(Field::AdditionalType),
-						"alternateName" => Ok(Field::AlternateName),
-						"description" => Ok(Field::Description),
-						"disambiguatingDescription" => Ok(Field::DisambiguatingDescription),
-						"identifier" => Ok(Field::Identifier),
-						"image" => Ok(Field::Image),
-						"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
-						"name" => Ok(Field::Name),
-						"owner" => Ok(Field::Owner),
-						"potentialAction" => Ok(Field::PotentialAction),
-						"sameAs" => Ok(Field::SameAs),
-						"subjectOf" => Ok(Field::SubjectOf),
-						"url" => Ok(Field::Url),
-						"id" | "type" => Ok(Field::Ignore),
-						_ => Err(de::Error::unknown_field(value, FIELDS)),
-					}
-				}
-				fn visit_bytes<E>(self, value: &[u8]) -> Result<Self::Value, E>
-				where
-					E: de::Error,
-				{
-					match value {
-						b"marginOfError" => Ok(Field::MarginOfError),
-						b"measuredProperty" => Ok(Field::MeasuredProperty),
-						b"measurementDenominator" => Ok(Field::MeasurementDenominator),
-						b"measurementMethod" => Ok(Field::MeasurementMethod),
-						b"measurementQualifier" => Ok(Field::MeasurementQualifier),
-						b"measurementTechnique" => Ok(Field::MeasurementTechnique),
-						b"observationAbout" => Ok(Field::ObservationAbout),
-						b"observationDate" => Ok(Field::ObservationDate),
-						b"observationPeriod" => Ok(Field::ObservationPeriod),
-						b"variableMeasured" => Ok(Field::VariableMeasured),
-						b"additionalProperty" => Ok(Field::AdditionalProperty),
-						b"maxValue" => Ok(Field::MaxValue),
-						b"minValue" => Ok(Field::MinValue),
-						b"unitCode" => Ok(Field::UnitCode),
-						b"unitText" => Ok(Field::UnitText),
-						b"value" => Ok(Field::Value),
-						b"valueReference" => Ok(Field::ValueReference),
-						b"additionalType" => Ok(Field::AdditionalType),
-						b"alternateName" => Ok(Field::AlternateName),
-						b"description" => Ok(Field::Description),
-						b"disambiguatingDescription" => Ok(Field::DisambiguatingDescription),
-						b"identifier" => Ok(Field::Identifier),
-						b"image" => Ok(Field::Image),
-						b"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
-						b"name" => Ok(Field::Name),
-						b"owner" => Ok(Field::Owner),
-						b"potentialAction" => Ok(Field::PotentialAction),
-						b"sameAs" => Ok(Field::SameAs),
-						b"subjectOf" => Ok(Field::SubjectOf),
-						b"url" => Ok(Field::Url),
-						b"id" | b"type" => Ok(Field::Ignore),
-						_ => {
-							let value = &String::from_utf8_lossy(value);
-							Err(de::Error::unknown_field(value, FIELDS))
-						}
-					}
-				}
-			}
-			impl<'de> Deserialize<'de> for Field {
-				fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-				where
-					D: Deserializer<'de>,
-				{
-					deserializer.deserialize_identifier(FieldVisitor)
-				}
-			}
-			struct ClassVisitor;
-			impl<'de> Visitor<'de> for ClassVisitor {
-				type Value = Observation;
-				fn expecting(&self, formatter: &mut Formatter) -> fmt::Result {
-					formatter.write_str("schema.org schema Observation")
-				}
-				fn visit_map<A>(self, mut map: A) -> Result<Self::Value, A::Error>
-				where
-					A: de::MapAccess<'de>,
-				{
-					let mut r#margin_of_error_property = None;
-					let mut r#measured_property_property = None;
-					let mut r#measurement_denominator_property = None;
-					let mut r#measurement_method_property = None;
-					let mut r#measurement_qualifier_property = None;
-					let mut r#measurement_technique_property = None;
-					let mut r#observation_about_property = None;
-					let mut r#observation_date_property = None;
-					let mut r#observation_period_property = None;
-					let mut r#variable_measured_property = None;
-					let mut r#additional_property_property = None;
-					let mut r#max_value_property = None;
-					let mut r#min_value_property = None;
-					let mut r#unit_code_property = None;
-					let mut r#unit_text_property = None;
-					let mut r#value_property = None;
-					let mut r#value_reference_property = None;
-					let mut r#additional_type_property = None;
-					let mut r#alternate_name_property = None;
-					let mut r#description_property = None;
-					let mut r#disambiguating_description_property = None;
-					let mut r#identifier_property = None;
-					let mut r#image_property = None;
-					let mut r#main_entity_of_page_property = None;
-					let mut r#name_property = None;
-					let mut r#owner_property = None;
-					let mut r#potential_action_property = None;
-					let mut r#same_as_property = None;
-					let mut r#subject_of_property = None;
-					let mut r#url_property = None;
-					while let Some(key) = map.next_key::<Field>()? {
-						match key {
-							Field::MarginOfError => {
-								if r#margin_of_error_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"marginOfError",
-									));
-								}
-								r#margin_of_error_property = Some({
-									struct DeserializeWith(Vec<MarginOfErrorProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::MeasuredProperty => {
-								if r#measured_property_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"measuredProperty",
-									));
-								}
-								r#measured_property_property = Some({
-									struct DeserializeWith(Vec<MeasuredPropertyProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::MeasurementDenominator => {
-								if r#measurement_denominator_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"measurementDenominator",
-									));
-								}
-								r#measurement_denominator_property = Some({
-									struct DeserializeWith(Vec<MeasurementDenominatorProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::MeasurementMethod => {
-								if r#measurement_method_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"measurementMethod",
-									));
-								}
-								r#measurement_method_property = Some({
-									struct DeserializeWith(Vec<MeasurementMethodProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::MeasurementQualifier => {
-								if r#measurement_qualifier_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"measurementQualifier",
-									));
-								}
-								r#measurement_qualifier_property = Some({
-									struct DeserializeWith(Vec<MeasurementQualifierProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::MeasurementTechnique => {
-								if r#measurement_technique_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"measurementTechnique",
-									));
-								}
-								r#measurement_technique_property = Some({
-									struct DeserializeWith(Vec<MeasurementTechniqueProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::ObservationAbout => {
-								if r#observation_about_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"observationAbout",
-									));
-								}
-								r#observation_about_property = Some({
-									struct DeserializeWith(Vec<ObservationAboutProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::ObservationDate => {
-								if r#observation_date_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"observationDate",
-									));
-								}
-								r#observation_date_property = Some({
-									struct DeserializeWith(Vec<ObservationDateProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::ObservationPeriod => {
-								if r#observation_period_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"observationPeriod",
-									));
-								}
-								r#observation_period_property = Some({
-									struct DeserializeWith(Vec<ObservationPeriodProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::VariableMeasured => {
-								if r#variable_measured_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"variableMeasured",
-									));
-								}
-								r#variable_measured_property = Some({
-									struct DeserializeWith(Vec<VariableMeasuredProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::AdditionalProperty => {
-								if r#additional_property_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"additionalProperty",
-									));
-								}
-								r#additional_property_property = Some({
-									struct DeserializeWith(Vec<AdditionalPropertyProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::MaxValue => {
-								if r#max_value_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"maxValue",
-									));
-								}
-								r#max_value_property = Some({
-									struct DeserializeWith(Vec<MaxValueProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::MinValue => {
-								if r#min_value_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"minValue",
-									));
-								}
-								r#min_value_property = Some({
-									struct DeserializeWith(Vec<MinValueProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::UnitCode => {
-								if r#unit_code_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"unitCode",
-									));
-								}
-								r#unit_code_property = Some({
-									struct DeserializeWith(Vec<UnitCodeProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::UnitText => {
-								if r#unit_text_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"unitText",
-									));
-								}
-								r#unit_text_property = Some({
-									struct DeserializeWith(Vec<UnitTextProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::Value => {
-								if r#value_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field("value"));
-								}
-								r#value_property = Some({
-									struct DeserializeWith(Vec<ValueProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::ValueReference => {
-								if r#value_reference_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"valueReference",
-									));
-								}
-								r#value_reference_property = Some({
-									struct DeserializeWith(Vec<ValueReferenceProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::AdditionalType => {
-								if r#additional_type_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"additionalType",
-									));
-								}
-								r#additional_type_property = Some({
-									struct DeserializeWith(Vec<AdditionalTypeProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::AlternateName => {
-								if r#alternate_name_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"alternateName",
-									));
-								}
-								r#alternate_name_property = Some({
-									struct DeserializeWith(Vec<AlternateNameProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::Description => {
-								if r#description_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"description",
-									));
-								}
-								r#description_property = Some({
-									struct DeserializeWith(Vec<DescriptionProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::DisambiguatingDescription => {
-								if r#disambiguating_description_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"disambiguatingDescription",
-									));
-								}
-								r#disambiguating_description_property = Some({
-									struct DeserializeWith(Vec<DisambiguatingDescriptionProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::Identifier => {
-								if r#identifier_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"identifier",
-									));
-								}
-								r#identifier_property = Some({
-									struct DeserializeWith(Vec<IdentifierProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::Image => {
-								if r#image_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field("image"));
-								}
-								r#image_property = Some({
-									struct DeserializeWith(Vec<ImageProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::MainEntityOfPage => {
-								if r#main_entity_of_page_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"mainEntityOfPage",
-									));
-								}
-								r#main_entity_of_page_property = Some({
-									struct DeserializeWith(Vec<MainEntityOfPageProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::Name => {
-								if r#name_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field("name"));
-								}
-								r#name_property = Some({
-									struct DeserializeWith(Vec<NameProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::Owner => {
-								if r#owner_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field("owner"));
-								}
-								r#owner_property = Some({
-									struct DeserializeWith(Vec<OwnerProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::PotentialAction => {
-								if r#potential_action_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"potentialAction",
-									));
-								}
-								r#potential_action_property = Some({
-									struct DeserializeWith(Vec<PotentialActionProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::SameAs => {
-								if r#same_as_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field("sameAs"));
-								}
-								r#same_as_property = Some({
-									struct DeserializeWith(Vec<SameAsProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::SubjectOf => {
-								if r#subject_of_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"subjectOf",
-									));
-								}
-								r#subject_of_property = Some({
-									struct DeserializeWith(Vec<SubjectOfProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::Url => {
-								if r#url_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field("url"));
-								}
-								r#url_property = Some({
-									struct DeserializeWith(Vec<UrlProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::Ignore => {
-								let _ = map.next_value::<de::IgnoredAny>()?;
-							}
-						}
-					}
-					Ok(Observation {
-						r#margin_of_error: r#margin_of_error_property.unwrap_or_default(),
-						r#measured_property: r#measured_property_property.unwrap_or_default(),
-						r#measurement_denominator: r#measurement_denominator_property
-							.unwrap_or_default(),
-						r#measurement_method: r#measurement_method_property.unwrap_or_default(),
-						r#measurement_qualifier: r#measurement_qualifier_property
-							.unwrap_or_default(),
-						r#measurement_technique: r#measurement_technique_property
-							.unwrap_or_default(),
-						r#observation_about: r#observation_about_property.unwrap_or_default(),
-						r#observation_date: r#observation_date_property.unwrap_or_default(),
-						r#observation_period: r#observation_period_property.unwrap_or_default(),
-						r#variable_measured: r#variable_measured_property.unwrap_or_default(),
-						r#additional_property: r#additional_property_property.unwrap_or_default(),
-						r#max_value: r#max_value_property.unwrap_or_default(),
-						r#min_value: r#min_value_property.unwrap_or_default(),
-						r#unit_code: r#unit_code_property.unwrap_or_default(),
-						r#unit_text: r#unit_text_property.unwrap_or_default(),
-						r#value: r#value_property.unwrap_or_default(),
-						r#value_reference: r#value_reference_property.unwrap_or_default(),
-						r#additional_type: r#additional_type_property.unwrap_or_default(),
-						r#alternate_name: r#alternate_name_property.unwrap_or_default(),
-						r#description: r#description_property.unwrap_or_default(),
-						r#disambiguating_description: r#disambiguating_description_property
-							.unwrap_or_default(),
-						r#identifier: r#identifier_property.unwrap_or_default(),
-						r#image: r#image_property.unwrap_or_default(),
-						r#main_entity_of_page: r#main_entity_of_page_property.unwrap_or_default(),
-						r#name: r#name_property.unwrap_or_default(),
-						r#owner: r#owner_property.unwrap_or_default(),
-						r#potential_action: r#potential_action_property.unwrap_or_default(),
-						r#same_as: r#same_as_property.unwrap_or_default(),
-						r#subject_of: r#subject_of_property.unwrap_or_default(),
-						r#url: r#url_property.unwrap_or_default(),
-					})
-				}
-			}
-			const FIELDS: &[&str] = &[
-				"marginOfError",
-				"measuredProperty",
-				"measurementDenominator",
-				"measurementMethod",
-				"measurementQualifier",
-				"measurementTechnique",
-				"observationAbout",
-				"observationDate",
-				"observationPeriod",
-				"variableMeasured",
-				"additionalProperty",
-				"maxValue",
-				"minValue",
-				"unitCode",
-				"unitText",
-				"value",
-				"valueReference",
-				"additionalType",
-				"alternateName",
-				"description",
-				"disambiguatingDescription",
-				"identifier",
-				"image",
-				"mainEntityOfPage",
-				"name",
-				"owner",
-				"potentialAction",
-				"sameAs",
-				"subjectOf",
-				"url",
-			];
-			deserializer.deserialize_struct("Observation", FIELDS, ClassVisitor)
-		}
 	}
 }

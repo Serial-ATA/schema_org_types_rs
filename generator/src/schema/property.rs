@@ -1,5 +1,3 @@
-mod serde;
-
 use std::{cmp::Ordering, str::FromStr};
 
 use convert_case::{Case, Casing};
@@ -11,10 +9,7 @@ use crate::{
 	deprecated_attribute::DeprecatedAttribute,
 	doc_lines::{DocLines, strings_as_doc_lines},
 	feature::Feature,
-	schema::{
-		ReferencedSchema, Schema, data_type::rust_type::RustType, map_schema_name,
-		property::serde::serde_mod,
-	},
+	schema::{ReferencedSchema, Schema, data_type::rust_type::RustType, map_schema_name},
 	sparql::{SchemaQueries, SchemaQuerySolution},
 };
 
@@ -142,7 +137,6 @@ impl ToTokens for Property {
 				#variant_name(#variant_name),
 			)
 		});
-		let serde_mod = serde_mod(self);
 		let fallible_feature_gate = Feature::All(vec![
 			Feature::Name("fallible".to_string()),
 			Feature::Name("serde".to_string()),
@@ -153,16 +147,13 @@ impl ToTokens for Property {
 			#doc_lines
 			#[cfg_attr(feature = "derive-debug", derive(Debug))]
 			#[cfg_attr(feature = "derive-clone", derive(Clone))]
+			#[cfg_attr(feature = "serde", derive(::serde::Serialize, ::serde::Deserialize))]
+			#[cfg_attr(feature = "serde", serde(untagged))]
 			#deprecated_attribute
 			pub enum #name {
 				#(#variants)*
 				#fallible_feature_gate
 				SerdeFail(crate::fallible::FailValue),
-			}
-
-			#[cfg(feature = "serde")]
-			mod serde {
-				#serde_mod
 			}
 		));
 	}
