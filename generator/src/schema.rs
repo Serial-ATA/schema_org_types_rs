@@ -28,7 +28,10 @@ pub trait Schema {
 	}
 
 	/// Build the complete schema from a query solution and the RDF store.
-	fn from_solution(store: &Store, solution: SchemaQuerySolution) -> Self;
+	fn from_solution(store: &Store, solution: &SchemaQuerySolution) -> Self;
+
+	/// The names of all other schemas that this depends on.
+	fn dependencies(&self) -> Vec<String>;
 }
 
 #[derive(Debug, Clone, Derivative)]
@@ -70,9 +73,9 @@ impl DeprecatedAttribute for ReferencedSchema {
 }
 
 /// Map schema names which are incompatible with rust as identifier.
-pub fn map_schema_name(name: String) -> String {
-	match name.as_str() {
+pub fn map_schema_name(name: &str) -> String {
+	match name {
 		"3DModel" => "Model3D".to_string(),
-		_ => name,
+		_ => name.to_string(),
 	}
 }

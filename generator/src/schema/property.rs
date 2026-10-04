@@ -48,7 +48,7 @@ impl Schema for Property {
 		&self.iri
 	}
 
-	fn from_solution(store: &Store, solution: SchemaQuerySolution) -> Self {
+	fn from_solution(store: &Store, solution: &SchemaQuerySolution) -> Self {
 		let mut variants: Vec<ReferencedSchema> = store
 			.get_variants_of_property(&solution.iri)
 			.into_iter()
@@ -101,12 +101,16 @@ impl Schema for Property {
 			.map(|solution| ReferencedSchema::from_solution(store, solution))
 			.collect();
 		Self {
-			iri: solution.iri,
-			name: map_schema_name(solution.label),
+			iri: solution.iri.clone(),
+			name: map_schema_name(&solution.label),
 			variants,
 			superseded_by,
 			in_attic: solution.in_attic,
 		}
+	}
+
+	fn dependencies(&self) -> Vec<String> {
+		self.variants.iter().map(|v| v.name.clone()).collect()
 	}
 }
 
@@ -155,6 +159,7 @@ impl ToTokens for Property {
 				#fallible_feature_gate
 				SerdeFail(crate::fallible::FailValue),
 			}
+
 			#[cfg(feature = "serde")]
 			mod serde {
 				#serde_mod

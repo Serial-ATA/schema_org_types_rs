@@ -44,7 +44,7 @@ impl Schema for DataType {
 		&self.iri
 	}
 
-	fn from_solution(store: &Store, solution: SchemaQuerySolution) -> Self {
+	fn from_solution(store: &Store, solution: &SchemaQuerySolution) -> Self {
 		let transformable_type =
 			store.get_transformable_data_type_label_of_data_type(&solution.iri);
 		let superseded_by = store
@@ -53,12 +53,16 @@ impl Schema for DataType {
 			.map(|solution| ReferencedSchema::from_solution(store, solution))
 			.collect();
 		Self {
-			iri: solution.iri,
-			name: map_schema_name(solution.label),
+			iri: solution.iri.clone(),
+			name: map_schema_name(&solution.label),
 			rust_type: RustType::from(transformable_type.as_str()),
 			superseded_by,
 			in_attic: solution.in_attic,
 		}
+	}
+
+	fn dependencies(&self) -> Vec<String> {
+		Vec::new() // Doesn't depend on anything
 	}
 }
 

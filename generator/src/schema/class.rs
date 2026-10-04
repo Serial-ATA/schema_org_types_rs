@@ -72,7 +72,7 @@ impl Schema for Class {
 		&self.iri
 	}
 
-	fn from_solution(store: &Store, solution: SchemaQuerySolution) -> Self {
+	fn from_solution(store: &Store, solution: &SchemaQuerySolution) -> Self {
 		let mut properties: Vec<_> = store
 			.get_properties_of_class(&solution.iri)
 			.into_iter()
@@ -103,13 +103,21 @@ impl Schema for Class {
 			.map(|solution| ReferencedSchema::from_solution(store, solution))
 			.collect();
 		Class {
-			iri: solution.iri,
-			name: map_schema_name(solution.label),
+			iri: solution.iri.clone(),
+			name: map_schema_name(&solution.label),
 			properties,
 			parents,
 			superseded_by,
 			in_attic: solution.in_attic,
 		}
+	}
+
+	fn dependencies(&self) -> Vec<String> {
+		self.properties
+			.iter()
+			.map(|s| s.name.clone())
+			.chain(self.parents.iter().map(|s| s.name.clone()))
+			.collect()
 	}
 }
 
@@ -260,14 +268,17 @@ impl ToTokens for Class {
 			pub struct #name {
 				#(#fields)*
 			}
+
 			#trait_doc_lines
 			#deprecated_attribute
 			pub trait #trait_name {
 				#(#trait_functions)*
 			}
+
 			impl #trait_name for #name {
 				#trait_function_impls
 			}
+
 			#(#parent_trait_impls)*
 			#[cfg(feature = "serde")]
 			mod serde {

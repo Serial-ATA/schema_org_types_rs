@@ -46,7 +46,7 @@ impl Schema for Enumeration {
 		&self.iri
 	}
 
-	fn from_solution(store: &Store, solution: SchemaQuerySolution) -> Self {
+	fn from_solution(store: &Store, solution: &SchemaQuerySolution) -> Self {
 		let mut variants: Vec<EnumerationVariant> = store
 			.get_variants_of_enumeration(&solution.iri)
 			.into_iter()
@@ -58,7 +58,7 @@ impl Schema for Enumeration {
 					.collect();
 				EnumerationVariant {
 					iri: solution.iri,
-					name: map_schema_name(solution.label),
+					name: map_schema_name(&solution.label),
 					superseded_by,
 					in_attic: solution.in_attic,
 				}
@@ -71,12 +71,16 @@ impl Schema for Enumeration {
 			.map(|solution| ReferencedSchema::from_solution(store, solution))
 			.collect();
 		Self {
-			iri: solution.iri,
-			name: map_schema_name(solution.label),
+			iri: solution.iri.clone(),
+			name: map_schema_name(&solution.label),
 			variants,
 			superseded_by,
 			in_attic: solution.in_attic,
 		}
+	}
+
+	fn dependencies(&self) -> Vec<String> {
+		Vec::new() // Enums don't depend on anything
 	}
 }
 
@@ -105,6 +109,7 @@ impl ToTokens for Enumeration {
 			pub enum #name {
 				#(#variants)*
 			}
+
 			#[cfg(feature = "serde")]
 			mod serde {
 				#serde_mod
