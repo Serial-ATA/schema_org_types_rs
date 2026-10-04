@@ -20,7 +20,7 @@
 
 #![recursion_limit = "512"]
 // https://doc.rust-lang.org/rustdoc/unstable-features.html#doc_auto_cfg-automatically-generate-doccfg
-#![cfg_attr(doc, feature(doc_auto_cfg))]
+#![cfg_attr(doc, feature(doc_cfg))]
 
 pub mod date_types;
 #[cfg(any(feature = "fallible", doc))]
