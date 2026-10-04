@@ -4,6 +4,8 @@
 pub enum MedicalSpecialty {
 	/// <https://schema.org/Anesthesia>
 	Anesthesia,
+	/// <https://schema.org/Audiology>
+	Audiology,
 	/// <https://schema.org/Cardiovascular>
 	Cardiovascular,
 	/// <https://schema.org/CommunityHealth>
@@ -47,6 +49,8 @@ pub enum MedicalSpecialty {
 	Obstetric,
 	/// <https://schema.org/Oncologic>
 	Oncologic,
+	/// <https://schema.org/Ophthalmology>
+	Ophthalmology,
 	/// <https://schema.org/Optometric>
 	Optometric,
 	/// <https://schema.org/Otolaryngologic>
@@ -106,134 +110,142 @@ mod serde {
 				MedicalSpecialty::Anesthesia => {
 					serializer.serialize_unit_variant("MedicalSpecialty", 0u32, "Anesthesia")
 				}
+				MedicalSpecialty::Audiology => {
+					serializer.serialize_unit_variant("MedicalSpecialty", 1u32, "Audiology")
+				}
 				MedicalSpecialty::Cardiovascular => {
-					serializer.serialize_unit_variant("MedicalSpecialty", 1u32, "Cardiovascular")
+					serializer.serialize_unit_variant("MedicalSpecialty", 2u32, "Cardiovascular")
 				}
 				MedicalSpecialty::CommunityHealth => {
-					serializer.serialize_unit_variant("MedicalSpecialty", 2u32, "CommunityHealth")
+					serializer.serialize_unit_variant("MedicalSpecialty", 3u32, "CommunityHealth")
 				}
 				MedicalSpecialty::Dentistry => {
-					serializer.serialize_unit_variant("MedicalSpecialty", 3u32, "Dentistry")
+					serializer.serialize_unit_variant("MedicalSpecialty", 4u32, "Dentistry")
 				}
 				MedicalSpecialty::Dermatologic => {
-					serializer.serialize_unit_variant("MedicalSpecialty", 4u32, "Dermatologic")
+					serializer.serialize_unit_variant("MedicalSpecialty", 5u32, "Dermatologic")
 				}
 				MedicalSpecialty::Dermatology => {
-					serializer.serialize_unit_variant("MedicalSpecialty", 5u32, "Dermatology")
+					serializer.serialize_unit_variant("MedicalSpecialty", 6u32, "Dermatology")
 				}
 				MedicalSpecialty::DietNutrition => {
-					serializer.serialize_unit_variant("MedicalSpecialty", 6u32, "DietNutrition")
+					serializer.serialize_unit_variant("MedicalSpecialty", 7u32, "DietNutrition")
 				}
 				MedicalSpecialty::Emergency => {
-					serializer.serialize_unit_variant("MedicalSpecialty", 7u32, "Emergency")
+					serializer.serialize_unit_variant("MedicalSpecialty", 8u32, "Emergency")
 				}
 				MedicalSpecialty::Endocrine => {
-					serializer.serialize_unit_variant("MedicalSpecialty", 8u32, "Endocrine")
+					serializer.serialize_unit_variant("MedicalSpecialty", 9u32, "Endocrine")
 				}
-				MedicalSpecialty::Gastroenterologic => {
-					serializer.serialize_unit_variant("MedicalSpecialty", 9u32, "Gastroenterologic")
-				}
+				MedicalSpecialty::Gastroenterologic => serializer.serialize_unit_variant(
+					"MedicalSpecialty",
+					10u32,
+					"Gastroenterologic",
+				),
 				MedicalSpecialty::Genetic => {
-					serializer.serialize_unit_variant("MedicalSpecialty", 10u32, "Genetic")
+					serializer.serialize_unit_variant("MedicalSpecialty", 11u32, "Genetic")
 				}
 				MedicalSpecialty::Geriatric => {
-					serializer.serialize_unit_variant("MedicalSpecialty", 11u32, "Geriatric")
+					serializer.serialize_unit_variant("MedicalSpecialty", 12u32, "Geriatric")
 				}
 				MedicalSpecialty::Gynecologic => {
-					serializer.serialize_unit_variant("MedicalSpecialty", 12u32, "Gynecologic")
+					serializer.serialize_unit_variant("MedicalSpecialty", 13u32, "Gynecologic")
 				}
 				MedicalSpecialty::Hematologic => {
-					serializer.serialize_unit_variant("MedicalSpecialty", 13u32, "Hematologic")
+					serializer.serialize_unit_variant("MedicalSpecialty", 14u32, "Hematologic")
 				}
 				MedicalSpecialty::Infectious => {
-					serializer.serialize_unit_variant("MedicalSpecialty", 14u32, "Infectious")
+					serializer.serialize_unit_variant("MedicalSpecialty", 15u32, "Infectious")
 				}
 				MedicalSpecialty::LaboratoryScience => serializer.serialize_unit_variant(
 					"MedicalSpecialty",
-					15u32,
+					16u32,
 					"LaboratoryScience",
 				),
 				MedicalSpecialty::Midwifery => {
-					serializer.serialize_unit_variant("MedicalSpecialty", 16u32, "Midwifery")
+					serializer.serialize_unit_variant("MedicalSpecialty", 17u32, "Midwifery")
 				}
 				MedicalSpecialty::Musculoskeletal => {
-					serializer.serialize_unit_variant("MedicalSpecialty", 17u32, "Musculoskeletal")
+					serializer.serialize_unit_variant("MedicalSpecialty", 18u32, "Musculoskeletal")
 				}
 				MedicalSpecialty::Neurologic => {
-					serializer.serialize_unit_variant("MedicalSpecialty", 18u32, "Neurologic")
+					serializer.serialize_unit_variant("MedicalSpecialty", 19u32, "Neurologic")
 				}
 				MedicalSpecialty::Nursing => {
-					serializer.serialize_unit_variant("MedicalSpecialty", 19u32, "Nursing")
+					serializer.serialize_unit_variant("MedicalSpecialty", 20u32, "Nursing")
 				}
 				MedicalSpecialty::Obstetric => {
-					serializer.serialize_unit_variant("MedicalSpecialty", 20u32, "Obstetric")
+					serializer.serialize_unit_variant("MedicalSpecialty", 21u32, "Obstetric")
 				}
 				MedicalSpecialty::Oncologic => {
-					serializer.serialize_unit_variant("MedicalSpecialty", 21u32, "Oncologic")
+					serializer.serialize_unit_variant("MedicalSpecialty", 22u32, "Oncologic")
+				}
+				MedicalSpecialty::Ophthalmology => {
+					serializer.serialize_unit_variant("MedicalSpecialty", 23u32, "Ophthalmology")
 				}
 				MedicalSpecialty::Optometric => {
-					serializer.serialize_unit_variant("MedicalSpecialty", 22u32, "Optometric")
+					serializer.serialize_unit_variant("MedicalSpecialty", 24u32, "Optometric")
 				}
 				MedicalSpecialty::Otolaryngologic => {
-					serializer.serialize_unit_variant("MedicalSpecialty", 23u32, "Otolaryngologic")
+					serializer.serialize_unit_variant("MedicalSpecialty", 25u32, "Otolaryngologic")
 				}
 				MedicalSpecialty::Pathology => {
-					serializer.serialize_unit_variant("MedicalSpecialty", 24u32, "Pathology")
+					serializer.serialize_unit_variant("MedicalSpecialty", 26u32, "Pathology")
 				}
 				MedicalSpecialty::Pediatric => {
-					serializer.serialize_unit_variant("MedicalSpecialty", 25u32, "Pediatric")
+					serializer.serialize_unit_variant("MedicalSpecialty", 27u32, "Pediatric")
 				}
 				MedicalSpecialty::PharmacySpecialty => serializer.serialize_unit_variant(
 					"MedicalSpecialty",
-					26u32,
+					28u32,
 					"PharmacySpecialty",
 				),
 				MedicalSpecialty::Physiotherapy => {
-					serializer.serialize_unit_variant("MedicalSpecialty", 27u32, "Physiotherapy")
+					serializer.serialize_unit_variant("MedicalSpecialty", 29u32, "Physiotherapy")
 				}
 				MedicalSpecialty::PlasticSurgery => {
-					serializer.serialize_unit_variant("MedicalSpecialty", 28u32, "PlasticSurgery")
+					serializer.serialize_unit_variant("MedicalSpecialty", 30u32, "PlasticSurgery")
 				}
 				MedicalSpecialty::Podiatric => {
-					serializer.serialize_unit_variant("MedicalSpecialty", 29u32, "Podiatric")
+					serializer.serialize_unit_variant("MedicalSpecialty", 31u32, "Podiatric")
 				}
 				MedicalSpecialty::PrimaryCare => {
-					serializer.serialize_unit_variant("MedicalSpecialty", 30u32, "PrimaryCare")
+					serializer.serialize_unit_variant("MedicalSpecialty", 32u32, "PrimaryCare")
 				}
 				MedicalSpecialty::Psychiatric => {
-					serializer.serialize_unit_variant("MedicalSpecialty", 31u32, "Psychiatric")
+					serializer.serialize_unit_variant("MedicalSpecialty", 33u32, "Psychiatric")
 				}
 				MedicalSpecialty::PublicHealth => {
-					serializer.serialize_unit_variant("MedicalSpecialty", 32u32, "PublicHealth")
+					serializer.serialize_unit_variant("MedicalSpecialty", 34u32, "PublicHealth")
 				}
 				MedicalSpecialty::Pulmonary => {
-					serializer.serialize_unit_variant("MedicalSpecialty", 33u32, "Pulmonary")
+					serializer.serialize_unit_variant("MedicalSpecialty", 35u32, "Pulmonary")
 				}
 				MedicalSpecialty::Radiography => {
-					serializer.serialize_unit_variant("MedicalSpecialty", 34u32, "Radiography")
+					serializer.serialize_unit_variant("MedicalSpecialty", 36u32, "Radiography")
 				}
 				MedicalSpecialty::Renal => {
-					serializer.serialize_unit_variant("MedicalSpecialty", 35u32, "Renal")
+					serializer.serialize_unit_variant("MedicalSpecialty", 37u32, "Renal")
 				}
 				MedicalSpecialty::RespiratoryTherapy => serializer.serialize_unit_variant(
 					"MedicalSpecialty",
-					36u32,
+					38u32,
 					"RespiratoryTherapy",
 				),
 				MedicalSpecialty::Rheumatologic => {
-					serializer.serialize_unit_variant("MedicalSpecialty", 37u32, "Rheumatologic")
+					serializer.serialize_unit_variant("MedicalSpecialty", 39u32, "Rheumatologic")
 				}
 				MedicalSpecialty::SpeechPathology => {
-					serializer.serialize_unit_variant("MedicalSpecialty", 38u32, "SpeechPathology")
+					serializer.serialize_unit_variant("MedicalSpecialty", 40u32, "SpeechPathology")
 				}
 				MedicalSpecialty::Surgical => {
-					serializer.serialize_unit_variant("MedicalSpecialty", 39u32, "Surgical")
+					serializer.serialize_unit_variant("MedicalSpecialty", 41u32, "Surgical")
 				}
 				MedicalSpecialty::Toxicologic => {
-					serializer.serialize_unit_variant("MedicalSpecialty", 40u32, "Toxicologic")
+					serializer.serialize_unit_variant("MedicalSpecialty", 42u32, "Toxicologic")
 				}
 				MedicalSpecialty::Urologic => {
-					serializer.serialize_unit_variant("MedicalSpecialty", 41u32, "Urologic")
+					serializer.serialize_unit_variant("MedicalSpecialty", 43u32, "Urologic")
 				}
 			}
 		}
@@ -245,6 +257,7 @@ mod serde {
 		{
 			enum Field {
 				Anesthesia,
+				Audiology,
 				Cardiovascular,
 				CommunityHealth,
 				Dentistry,
@@ -266,6 +279,7 @@ mod serde {
 				Nursing,
 				Obstetric,
 				Oncologic,
+				Ophthalmology,
 				Optometric,
 				Otolaryngologic,
 				Pathology,
@@ -299,6 +313,7 @@ mod serde {
 				{
 					match value {
 						"Anesthesia" => Ok(Field::Anesthesia),
+						"Audiology" => Ok(Field::Audiology),
 						"Cardiovascular" => Ok(Field::Cardiovascular),
 						"CommunityHealth" => Ok(Field::CommunityHealth),
 						"Dentistry" => Ok(Field::Dentistry),
@@ -320,6 +335,7 @@ mod serde {
 						"Nursing" => Ok(Field::Nursing),
 						"Obstetric" => Ok(Field::Obstetric),
 						"Oncologic" => Ok(Field::Oncologic),
+						"Ophthalmology" => Ok(Field::Ophthalmology),
 						"Optometric" => Ok(Field::Optometric),
 						"Otolaryngologic" => Ok(Field::Otolaryngologic),
 						"Pathology" => Ok(Field::Pathology),
@@ -349,6 +365,7 @@ mod serde {
 				{
 					match value {
 						b"Anesthesia" => Ok(Field::Anesthesia),
+						b"Audiology" => Ok(Field::Audiology),
 						b"Cardiovascular" => Ok(Field::Cardiovascular),
 						b"CommunityHealth" => Ok(Field::CommunityHealth),
 						b"Dentistry" => Ok(Field::Dentistry),
@@ -370,6 +387,7 @@ mod serde {
 						b"Nursing" => Ok(Field::Nursing),
 						b"Obstetric" => Ok(Field::Obstetric),
 						b"Oncologic" => Ok(Field::Oncologic),
+						b"Ophthalmology" => Ok(Field::Ophthalmology),
 						b"Optometric" => Ok(Field::Optometric),
 						b"Otolaryngologic" => Ok(Field::Otolaryngologic),
 						b"Pathology" => Ok(Field::Pathology),
@@ -419,6 +437,10 @@ mod serde {
 						(Field::Anesthesia, variant) => {
 							de::VariantAccess::unit_variant(variant)?;
 							Ok(MedicalSpecialty::Anesthesia)
+						}
+						(Field::Audiology, variant) => {
+							de::VariantAccess::unit_variant(variant)?;
+							Ok(MedicalSpecialty::Audiology)
 						}
 						(Field::Cardiovascular, variant) => {
 							de::VariantAccess::unit_variant(variant)?;
@@ -503,6 +525,10 @@ mod serde {
 						(Field::Oncologic, variant) => {
 							de::VariantAccess::unit_variant(variant)?;
 							Ok(MedicalSpecialty::Oncologic)
+						}
+						(Field::Ophthalmology, variant) => {
+							de::VariantAccess::unit_variant(variant)?;
+							Ok(MedicalSpecialty::Ophthalmology)
 						}
 						(Field::Optometric, variant) => {
 							de::VariantAccess::unit_variant(variant)?;
@@ -589,6 +615,7 @@ mod serde {
 			}
 			const VARIANTS: &[&str] = &[
 				"Anesthesia",
+				"Audiology",
 				"Cardiovascular",
 				"CommunityHealth",
 				"Dentistry",
@@ -610,6 +637,7 @@ mod serde {
 				"Nursing",
 				"Obstetric",
 				"Oncologic",
+				"Ophthalmology",
 				"Optometric",
 				"Otolaryngologic",
 				"Pathology",

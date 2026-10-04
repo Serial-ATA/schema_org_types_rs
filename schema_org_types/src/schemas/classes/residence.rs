@@ -5,6 +5,8 @@ use super::*;
 pub struct Residence {
 	/// <https://schema.org/accommodationFloorPlan>
 	pub r#accommodation_floor_plan: Vec<AccommodationFloorPlanProperty>,
+	/// <https://schema.org/floorLevel>
+	pub r#floor_level: Vec<FloorLevelProperty>,
 	/// <https://schema.org/additionalProperty>
 	pub r#additional_property: Vec<AdditionalPropertyProperty>,
 	/// <https://schema.org/address>
@@ -53,8 +55,12 @@ pub struct Residence {
 	pub r#geo_within: Vec<GeoWithinProperty>,
 	/// <https://schema.org/globalLocationNumber>
 	pub r#global_location_number: Vec<GlobalLocationNumberProperty>,
+	/// <https://schema.org/hasCertification>
+	pub r#has_certification: Vec<HasCertificationProperty>,
 	/// <https://schema.org/hasDriveThroughService>
 	pub r#has_drive_through_service: Vec<HasDriveThroughServiceProperty>,
+	/// <https://schema.org/hasGS1DigitalLink>
+	pub r#has_gs_1_digital_link: Vec<HasGs1DigitalLinkProperty>,
 	/// <https://schema.org/hasMap>
 	pub r#has_map: Vec<HasMapProperty>,
 	/// <https://schema.org/isAccessibleForFree>
@@ -117,6 +123,8 @@ pub struct Residence {
 	pub r#main_entity_of_page: Vec<MainEntityOfPageProperty>,
 	/// <https://schema.org/name>
 	pub r#name: Vec<NameProperty>,
+	/// <https://schema.org/owner>
+	pub r#owner: Vec<OwnerProperty>,
 	/// <https://schema.org/potentialAction>
 	pub r#potential_action: Vec<PotentialActionProperty>,
 	/// <https://schema.org/sameAs>
@@ -132,6 +140,10 @@ pub trait ResidenceTrait {
 	fn get_accommodation_floor_plan(&self) -> &[AccommodationFloorPlanProperty];
 	/// Take <https://schema.org/accommodationFloorPlan> from [`Self`] as owned vector.
 	fn take_accommodation_floor_plan(&mut self) -> Vec<AccommodationFloorPlanProperty>;
+	/// Get <https://schema.org/floorLevel> from [`Self`] as borrowed slice.
+	fn get_floor_level(&self) -> &[FloorLevelProperty];
+	/// Take <https://schema.org/floorLevel> from [`Self`] as owned vector.
+	fn take_floor_level(&mut self) -> Vec<FloorLevelProperty>;
 }
 impl ResidenceTrait for Residence {
 	fn get_accommodation_floor_plan(&self) -> &[AccommodationFloorPlanProperty] {
@@ -139,6 +151,12 @@ impl ResidenceTrait for Residence {
 	}
 	fn take_accommodation_floor_plan(&mut self) -> Vec<AccommodationFloorPlanProperty> {
 		std::mem::take(&mut self.r#accommodation_floor_plan)
+	}
+	fn get_floor_level(&self) -> &[FloorLevelProperty] {
+		self.r#floor_level.as_slice()
+	}
+	fn take_floor_level(&mut self) -> Vec<FloorLevelProperty> {
+		std::mem::take(&mut self.r#floor_level)
 	}
 }
 impl PlaceTrait for Residence {
@@ -280,11 +298,23 @@ impl PlaceTrait for Residence {
 	fn take_global_location_number(&mut self) -> Vec<GlobalLocationNumberProperty> {
 		std::mem::take(&mut self.r#global_location_number)
 	}
+	fn get_has_certification(&self) -> &[HasCertificationProperty] {
+		self.r#has_certification.as_slice()
+	}
+	fn take_has_certification(&mut self) -> Vec<HasCertificationProperty> {
+		std::mem::take(&mut self.r#has_certification)
+	}
 	fn get_has_drive_through_service(&self) -> &[HasDriveThroughServiceProperty] {
 		self.r#has_drive_through_service.as_slice()
 	}
 	fn take_has_drive_through_service(&mut self) -> Vec<HasDriveThroughServiceProperty> {
 		std::mem::take(&mut self.r#has_drive_through_service)
+	}
+	fn get_has_gs_1_digital_link(&self) -> &[HasGs1DigitalLinkProperty] {
+		self.r#has_gs_1_digital_link.as_slice()
+	}
+	fn take_has_gs_1_digital_link(&mut self) -> Vec<HasGs1DigitalLinkProperty> {
+		std::mem::take(&mut self.r#has_gs_1_digital_link)
 	}
 	fn get_has_map(&self) -> &[HasMapProperty] {
 		self.r#has_map.as_slice()
@@ -466,6 +496,12 @@ impl ThingTrait for Residence {
 	fn take_name(&mut self) -> Vec<NameProperty> {
 		std::mem::take(&mut self.r#name)
 	}
+	fn get_owner(&self) -> &[OwnerProperty] {
+		self.r#owner.as_slice()
+	}
+	fn take_owner(&mut self) -> Vec<OwnerProperty> {
+		std::mem::take(&mut self.r#owner)
+	}
 	fn get_potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
 	}
@@ -507,6 +543,7 @@ mod serde {
 		{
 			let len: usize = [
 				!Vec::is_empty(&self.r#accommodation_floor_plan) as usize,
+				!Vec::is_empty(&self.r#floor_level) as usize,
 				!Vec::is_empty(&self.r#additional_property) as usize,
 				!Vec::is_empty(&self.r#address) as usize,
 				!Vec::is_empty(&self.r#aggregate_rating) as usize,
@@ -530,7 +567,9 @@ mod serde {
 				!Vec::is_empty(&self.r#geo_touches) as usize,
 				!Vec::is_empty(&self.r#geo_within) as usize,
 				!Vec::is_empty(&self.r#global_location_number) as usize,
+				!Vec::is_empty(&self.r#has_certification) as usize,
 				!Vec::is_empty(&self.r#has_drive_through_service) as usize,
+				!Vec::is_empty(&self.r#has_gs_1_digital_link) as usize,
 				!Vec::is_empty(&self.r#has_map) as usize,
 				!Vec::is_empty(&self.r#is_accessible_for_free) as usize,
 				!Vec::is_empty(&self.r#isic_v_4) as usize,
@@ -560,6 +599,7 @@ mod serde {
 				!Vec::is_empty(&self.r#image) as usize,
 				!Vec::is_empty(&self.r#main_entity_of_page) as usize,
 				!Vec::is_empty(&self.r#name) as usize,
+				!Vec::is_empty(&self.r#owner) as usize,
 				!Vec::is_empty(&self.r#potential_action) as usize,
 				!Vec::is_empty(&self.r#same_as) as usize,
 				!Vec::is_empty(&self.r#subject_of) as usize,
@@ -585,6 +625,24 @@ mod serde {
 				})?;
 			} else {
 				serialize_struct.skip_field("accommodationFloorPlan")?;
+			}
+			if !Vec::is_empty(&self.r#floor_level) {
+				serialize_struct.serialize_field("floorLevel", {
+					struct SerializeWith<'a>(&'a Vec<FloorLevelProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#floor_level)
+				})?;
+			} else {
+				serialize_struct.skip_field("floorLevel")?;
 			}
 			if !Vec::is_empty(&self.r#additional_property) {
 				serialize_struct.serialize_field("additionalProperty", {
@@ -1000,6 +1058,24 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("globalLocationNumber")?;
 			}
+			if !Vec::is_empty(&self.r#has_certification) {
+				serialize_struct.serialize_field("hasCertification", {
+					struct SerializeWith<'a>(&'a Vec<HasCertificationProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#has_certification)
+				})?;
+			} else {
+				serialize_struct.skip_field("hasCertification")?;
+			}
 			if !Vec::is_empty(&self.r#has_drive_through_service) {
 				serialize_struct.serialize_field("hasDriveThroughService", {
 					struct SerializeWith<'a>(&'a Vec<HasDriveThroughServiceProperty>);
@@ -1017,6 +1093,24 @@ mod serde {
 				})?;
 			} else {
 				serialize_struct.skip_field("hasDriveThroughService")?;
+			}
+			if !Vec::is_empty(&self.r#has_gs_1_digital_link) {
+				serialize_struct.serialize_field("hasGS1DigitalLink", {
+					struct SerializeWith<'a>(&'a Vec<HasGs1DigitalLinkProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#has_gs_1_digital_link)
+				})?;
+			} else {
+				serialize_struct.skip_field("hasGS1DigitalLink")?;
 			}
 			if !Vec::is_empty(&self.r#has_map) {
 				serialize_struct.serialize_field("hasMap", {
@@ -1540,6 +1634,24 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("name")?;
 			}
+			if !Vec::is_empty(&self.r#owner) {
+				serialize_struct.serialize_field("owner", {
+					struct SerializeWith<'a>(&'a Vec<OwnerProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#owner)
+				})?;
+			} else {
+				serialize_struct.skip_field("owner")?;
+			}
 			if !Vec::is_empty(&self.r#potential_action) {
 				serialize_struct.serialize_field("potentialAction", {
 					struct SerializeWith<'a>(&'a Vec<PotentialActionProperty>);
@@ -1622,6 +1734,7 @@ mod serde {
 		{
 			enum Field {
 				AccommodationFloorPlan,
+				FloorLevel,
 				AdditionalProperty,
 				Address,
 				AggregateRating,
@@ -1645,7 +1758,9 @@ mod serde {
 				GeoTouches,
 				GeoWithin,
 				GlobalLocationNumber,
+				HasCertification,
 				HasDriveThroughService,
+				HasGs1DigitalLink,
 				HasMap,
 				IsAccessibleForFree,
 				IsicV4,
@@ -1675,6 +1790,7 @@ mod serde {
 				Image,
 				MainEntityOfPage,
 				Name,
+				Owner,
 				PotentialAction,
 				SameAs,
 				SubjectOf,
@@ -1693,6 +1809,7 @@ mod serde {
 				{
 					match value {
 						"accommodationFloorPlan" => Ok(Field::AccommodationFloorPlan),
+						"floorLevel" => Ok(Field::FloorLevel),
 						"additionalProperty" => Ok(Field::AdditionalProperty),
 						"address" => Ok(Field::Address),
 						"aggregateRating" => Ok(Field::AggregateRating),
@@ -1716,7 +1833,9 @@ mod serde {
 						"geoTouches" => Ok(Field::GeoTouches),
 						"geoWithin" => Ok(Field::GeoWithin),
 						"globalLocationNumber" => Ok(Field::GlobalLocationNumber),
+						"hasCertification" => Ok(Field::HasCertification),
 						"hasDriveThroughService" => Ok(Field::HasDriveThroughService),
+						"hasGS1DigitalLink" => Ok(Field::HasGs1DigitalLink),
 						"hasMap" => Ok(Field::HasMap),
 						"isAccessibleForFree" => Ok(Field::IsAccessibleForFree),
 						"isicV4" => Ok(Field::IsicV4),
@@ -1748,6 +1867,7 @@ mod serde {
 						"image" => Ok(Field::Image),
 						"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
 						"name" => Ok(Field::Name),
+						"owner" => Ok(Field::Owner),
 						"potentialAction" => Ok(Field::PotentialAction),
 						"sameAs" => Ok(Field::SameAs),
 						"subjectOf" => Ok(Field::SubjectOf),
@@ -1762,6 +1882,7 @@ mod serde {
 				{
 					match value {
 						b"accommodationFloorPlan" => Ok(Field::AccommodationFloorPlan),
+						b"floorLevel" => Ok(Field::FloorLevel),
 						b"additionalProperty" => Ok(Field::AdditionalProperty),
 						b"address" => Ok(Field::Address),
 						b"aggregateRating" => Ok(Field::AggregateRating),
@@ -1785,7 +1906,9 @@ mod serde {
 						b"geoTouches" => Ok(Field::GeoTouches),
 						b"geoWithin" => Ok(Field::GeoWithin),
 						b"globalLocationNumber" => Ok(Field::GlobalLocationNumber),
+						b"hasCertification" => Ok(Field::HasCertification),
 						b"hasDriveThroughService" => Ok(Field::HasDriveThroughService),
+						b"hasGS1DigitalLink" => Ok(Field::HasGs1DigitalLink),
 						b"hasMap" => Ok(Field::HasMap),
 						b"isAccessibleForFree" => Ok(Field::IsAccessibleForFree),
 						b"isicV4" => Ok(Field::IsicV4),
@@ -1817,6 +1940,7 @@ mod serde {
 						b"image" => Ok(Field::Image),
 						b"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
 						b"name" => Ok(Field::Name),
+						b"owner" => Ok(Field::Owner),
 						b"potentialAction" => Ok(Field::PotentialAction),
 						b"sameAs" => Ok(Field::SameAs),
 						b"subjectOf" => Ok(Field::SubjectOf),
@@ -1848,6 +1972,7 @@ mod serde {
 					A: de::MapAccess<'de>,
 				{
 					let mut r#accommodation_floor_plan_property = None;
+					let mut r#floor_level_property = None;
 					let mut r#additional_property_property = None;
 					let mut r#address_property = None;
 					let mut r#aggregate_rating_property = None;
@@ -1871,7 +1996,9 @@ mod serde {
 					let mut r#geo_touches_property = None;
 					let mut r#geo_within_property = None;
 					let mut r#global_location_number_property = None;
+					let mut r#has_certification_property = None;
 					let mut r#has_drive_through_service_property = None;
+					let mut r#has_gs_1_digital_link_property = None;
 					let mut r#has_map_property = None;
 					let mut r#is_accessible_for_free_property = None;
 					let mut r#isic_v_4_property = None;
@@ -1901,6 +2028,7 @@ mod serde {
 					let mut r#image_property = None;
 					let mut r#main_entity_of_page_property = None;
 					let mut r#name_property = None;
+					let mut r#owner_property = None;
 					let mut r#potential_action_property = None;
 					let mut r#same_as_property = None;
 					let mut r#subject_of_property = None;
@@ -1915,6 +2043,34 @@ mod serde {
 								}
 								r#accommodation_floor_plan_property = Some({
 									struct DeserializeWith(Vec<AccommodationFloorPlanProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::FloorLevel => {
+								if r#floor_level_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"floorLevel",
+									));
+								}
+								r#floor_level_property = Some({
+									struct DeserializeWith(Vec<FloorLevelProperty>);
 									impl<'de> Deserialize<'de> for DeserializeWith {
 										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
 										where
@@ -2573,6 +2729,34 @@ mod serde {
 									}
 								});
 							}
+							Field::HasCertification => {
+								if r#has_certification_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"hasCertification",
+									));
+								}
+								r#has_certification_property = Some({
+									struct DeserializeWith(Vec<HasCertificationProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::HasDriveThroughService => {
 								if r#has_drive_through_service_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -2581,6 +2765,34 @@ mod serde {
 								}
 								r#has_drive_through_service_property = Some({
 									struct DeserializeWith(Vec<HasDriveThroughServiceProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::HasGs1DigitalLink => {
+								if r#has_gs_1_digital_link_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"hasGS1DigitalLink",
+									));
+								}
+								r#has_gs_1_digital_link_property = Some({
+									struct DeserializeWith(Vec<HasGs1DigitalLinkProperty>);
 									impl<'de> Deserialize<'de> for DeserializeWith {
 										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
 										where
@@ -3393,6 +3605,32 @@ mod serde {
 									}
 								});
 							}
+							Field::Owner => {
+								if r#owner_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field("owner"));
+								}
+								r#owner_property = Some({
+									struct DeserializeWith(Vec<OwnerProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::PotentialAction => {
 								if r#potential_action_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -3509,6 +3747,7 @@ mod serde {
 					Ok(Residence {
 						r#accommodation_floor_plan: r#accommodation_floor_plan_property
 							.unwrap_or_default(),
+						r#floor_level: r#floor_level_property.unwrap_or_default(),
 						r#additional_property: r#additional_property_property.unwrap_or_default(),
 						r#address: r#address_property.unwrap_or_default(),
 						r#aggregate_rating: r#aggregate_rating_property.unwrap_or_default(),
@@ -3533,7 +3772,10 @@ mod serde {
 						r#geo_within: r#geo_within_property.unwrap_or_default(),
 						r#global_location_number: r#global_location_number_property
 							.unwrap_or_default(),
+						r#has_certification: r#has_certification_property.unwrap_or_default(),
 						r#has_drive_through_service: r#has_drive_through_service_property
+							.unwrap_or_default(),
+						r#has_gs_1_digital_link: r#has_gs_1_digital_link_property
 							.unwrap_or_default(),
 						r#has_map: r#has_map_property.unwrap_or_default(),
 						r#is_accessible_for_free: r#is_accessible_for_free_property
@@ -3569,6 +3811,7 @@ mod serde {
 						r#image: r#image_property.unwrap_or_default(),
 						r#main_entity_of_page: r#main_entity_of_page_property.unwrap_or_default(),
 						r#name: r#name_property.unwrap_or_default(),
+						r#owner: r#owner_property.unwrap_or_default(),
 						r#potential_action: r#potential_action_property.unwrap_or_default(),
 						r#same_as: r#same_as_property.unwrap_or_default(),
 						r#subject_of: r#subject_of_property.unwrap_or_default(),
@@ -3578,6 +3821,7 @@ mod serde {
 			}
 			const FIELDS: &[&str] = &[
 				"accommodationFloorPlan",
+				"floorLevel",
 				"additionalProperty",
 				"address",
 				"aggregateRating",
@@ -3601,7 +3845,9 @@ mod serde {
 				"geoTouches",
 				"geoWithin",
 				"globalLocationNumber",
+				"hasCertification",
 				"hasDriveThroughService",
+				"hasGS1DigitalLink",
 				"hasMap",
 				"isAccessibleForFree",
 				"isicV4",
@@ -3631,6 +3877,7 @@ mod serde {
 				"image",
 				"mainEntityOfPage",
 				"name",
+				"owner",
 				"potentialAction",
 				"sameAs",
 				"subjectOf",

@@ -3,6 +3,8 @@ use super::*;
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 pub enum SuitableForDietProperty {
+	/// <https://schema.org/Diet>
+	Diet(Diet),
 	/// <https://schema.org/RestrictedDiet>
 	RestrictedDiet(RestrictedDiet),
 	#[cfg(any(all(feature = "fallible", feature = "serde"), doc))]
@@ -23,6 +25,7 @@ mod serde {
 			S: Serializer,
 		{
 			match *self {
+				SuitableForDietProperty::Diet(ref inner) => inner.serialize(serializer),
 				SuitableForDietProperty::RestrictedDiet(ref inner) => inner.serialize(serializer),
 				#[cfg(all(feature = "fallible", feature = "serde"))]
 				SuitableForDietProperty::SerdeFail(ref inner) => inner.serialize(serializer),
@@ -38,6 +41,12 @@ mod serde {
 				<::serde::__private::de::Content as Deserialize>::deserialize(deserializer)?;
 			let deserializer =
 				::serde::__private::de::ContentRefDeserializer::<D::Error>::new(&content);
+			if let Ok(ok) = Result::map(
+				<Diet as Deserialize>::deserialize(deserializer),
+				SuitableForDietProperty::Diet,
+			) {
+				return Ok(ok);
+			}
 			if let Ok(ok) = Result::map(
 				<RestrictedDiet as Deserialize>::deserialize(deserializer),
 				SuitableForDietProperty::RestrictedDiet,

@@ -88,8 +88,12 @@ pub struct MobileApplication {
 	pub r#date_modified: Vec<DateModifiedProperty>,
 	/// <https://schema.org/datePublished>
 	pub r#date_published: Vec<DatePublishedProperty>,
+	/// <https://schema.org/digitalSourceType>
+	pub r#digital_source_type: Vec<DigitalSourceTypeProperty>,
 	/// <https://schema.org/discussionUrl>
 	pub r#discussion_url: Vec<DiscussionUrlProperty>,
+	/// <https://schema.org/displayLocation>
+	pub r#display_location: Vec<DisplayLocationProperty>,
 	/// <https://schema.org/editEIDR>
 	pub r#edit_eidr: Vec<EditEidrProperty>,
 	/// <https://schema.org/editor>
@@ -232,6 +236,8 @@ pub struct MobileApplication {
 	pub r#version: Vec<VersionProperty>,
 	/// <https://schema.org/video>
 	pub r#video: Vec<VideoProperty>,
+	/// <https://schema.org/wordCount>
+	pub r#word_count: Vec<WordCountProperty>,
 	/// <https://schema.org/workExample>
 	pub r#work_example: Vec<WorkExampleProperty>,
 	/// <https://schema.org/workTranslation>
@@ -272,6 +278,8 @@ pub struct MobileApplication {
 	/// <https://schema.org/requirements>
 	#[deprecated = "This schema is superseded by <https://schema.org/softwareRequirements>."]
 	pub r#requirements: Vec<RequirementsProperty>,
+	/// <https://schema.org/runtimePlatform>
+	pub r#runtime_platform: Vec<RuntimePlatformProperty>,
 	/// <https://schema.org/screenshot>
 	pub r#screenshot: Vec<ScreenshotProperty>,
 	/// <https://schema.org/softwareAddOn>
@@ -302,6 +310,8 @@ pub struct MobileApplication {
 	pub r#main_entity_of_page: Vec<MainEntityOfPageProperty>,
 	/// <https://schema.org/name>
 	pub r#name: Vec<NameProperty>,
+	/// <https://schema.org/owner>
+	pub r#owner: Vec<OwnerProperty>,
 	/// <https://schema.org/potentialAction>
 	pub r#potential_action: Vec<PotentialActionProperty>,
 	/// <https://schema.org/sameAs>
@@ -573,11 +583,23 @@ impl CreativeWorkTrait for MobileApplication {
 	fn take_date_published(&mut self) -> Vec<DatePublishedProperty> {
 		std::mem::take(&mut self.r#date_published)
 	}
+	fn get_digital_source_type(&self) -> &[DigitalSourceTypeProperty] {
+		self.r#digital_source_type.as_slice()
+	}
+	fn take_digital_source_type(&mut self) -> Vec<DigitalSourceTypeProperty> {
+		std::mem::take(&mut self.r#digital_source_type)
+	}
 	fn get_discussion_url(&self) -> &[DiscussionUrlProperty] {
 		self.r#discussion_url.as_slice()
 	}
 	fn take_discussion_url(&mut self) -> Vec<DiscussionUrlProperty> {
 		std::mem::take(&mut self.r#discussion_url)
+	}
+	fn get_display_location(&self) -> &[DisplayLocationProperty] {
+		self.r#display_location.as_slice()
+	}
+	fn take_display_location(&mut self) -> Vec<DisplayLocationProperty> {
+		std::mem::take(&mut self.r#display_location)
 	}
 	fn get_edit_eidr(&self) -> &[EditEidrProperty] {
 		self.r#edit_eidr.as_slice()
@@ -993,6 +1015,12 @@ impl CreativeWorkTrait for MobileApplication {
 	fn take_video(&mut self) -> Vec<VideoProperty> {
 		std::mem::take(&mut self.r#video)
 	}
+	fn get_word_count(&self) -> &[WordCountProperty] {
+		self.r#word_count.as_slice()
+	}
+	fn take_word_count(&mut self) -> Vec<WordCountProperty> {
+		std::mem::take(&mut self.r#word_count)
+	}
 	fn get_work_example(&self) -> &[WorkExampleProperty] {
 		self.r#work_example.as_slice()
 	}
@@ -1109,6 +1137,12 @@ impl SoftwareApplicationTrait for MobileApplication {
 	fn take_requirements(&mut self) -> Vec<RequirementsProperty> {
 		std::mem::take(&mut self.r#requirements)
 	}
+	fn get_runtime_platform(&self) -> &[RuntimePlatformProperty] {
+		self.r#runtime_platform.as_slice()
+	}
+	fn take_runtime_platform(&mut self) -> Vec<RuntimePlatformProperty> {
+		std::mem::take(&mut self.r#runtime_platform)
+	}
 	fn get_screenshot(&self) -> &[ScreenshotProperty] {
 		self.r#screenshot.as_slice()
 	}
@@ -1201,6 +1235,12 @@ impl ThingTrait for MobileApplication {
 	fn take_name(&mut self) -> Vec<NameProperty> {
 		std::mem::take(&mut self.r#name)
 	}
+	fn get_owner(&self) -> &[OwnerProperty] {
+		self.r#owner.as_slice()
+	}
+	fn take_owner(&mut self) -> Vec<OwnerProperty> {
+		std::mem::take(&mut self.r#owner)
+	}
 	fn get_potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
 	}
@@ -1283,7 +1323,9 @@ mod serde {
 				!Vec::is_empty(&self.r#date_created) as usize,
 				!Vec::is_empty(&self.r#date_modified) as usize,
 				!Vec::is_empty(&self.r#date_published) as usize,
+				!Vec::is_empty(&self.r#digital_source_type) as usize,
 				!Vec::is_empty(&self.r#discussion_url) as usize,
+				!Vec::is_empty(&self.r#display_location) as usize,
 				!Vec::is_empty(&self.r#edit_eidr) as usize,
 				!Vec::is_empty(&self.r#editor) as usize,
 				!Vec::is_empty(&self.r#educational_alignment) as usize,
@@ -1353,6 +1395,7 @@ mod serde {
 				!Vec::is_empty(&self.r#usage_info) as usize,
 				!Vec::is_empty(&self.r#version) as usize,
 				!Vec::is_empty(&self.r#video) as usize,
+				!Vec::is_empty(&self.r#word_count) as usize,
 				!Vec::is_empty(&self.r#work_example) as usize,
 				!Vec::is_empty(&self.r#work_translation) as usize,
 				!Vec::is_empty(&self.r#application_category) as usize,
@@ -1372,6 +1415,7 @@ mod serde {
 				!Vec::is_empty(&self.r#processor_requirements) as usize,
 				!Vec::is_empty(&self.r#release_notes) as usize,
 				!Vec::is_empty(&self.r#requirements) as usize,
+				!Vec::is_empty(&self.r#runtime_platform) as usize,
 				!Vec::is_empty(&self.r#screenshot) as usize,
 				!Vec::is_empty(&self.r#software_add_on) as usize,
 				!Vec::is_empty(&self.r#software_help) as usize,
@@ -1387,6 +1431,7 @@ mod serde {
 				!Vec::is_empty(&self.r#image) as usize,
 				!Vec::is_empty(&self.r#main_entity_of_page) as usize,
 				!Vec::is_empty(&self.r#name) as usize,
+				!Vec::is_empty(&self.r#owner) as usize,
 				!Vec::is_empty(&self.r#potential_action) as usize,
 				!Vec::is_empty(&self.r#same_as) as usize,
 				!Vec::is_empty(&self.r#subject_of) as usize,
@@ -2152,6 +2197,24 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("datePublished")?;
 			}
+			if !Vec::is_empty(&self.r#digital_source_type) {
+				serialize_struct.serialize_field("digitalSourceType", {
+					struct SerializeWith<'a>(&'a Vec<DigitalSourceTypeProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#digital_source_type)
+				})?;
+			} else {
+				serialize_struct.skip_field("digitalSourceType")?;
+			}
 			if !Vec::is_empty(&self.r#discussion_url) {
 				serialize_struct.serialize_field("discussionUrl", {
 					struct SerializeWith<'a>(&'a Vec<DiscussionUrlProperty>);
@@ -2169,6 +2232,24 @@ mod serde {
 				})?;
 			} else {
 				serialize_struct.skip_field("discussionUrl")?;
+			}
+			if !Vec::is_empty(&self.r#display_location) {
+				serialize_struct.serialize_field("displayLocation", {
+					struct SerializeWith<'a>(&'a Vec<DisplayLocationProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#display_location)
+				})?;
+			} else {
+				serialize_struct.skip_field("displayLocation")?;
 			}
 			if !Vec::is_empty(&self.r#edit_eidr) {
 				serialize_struct.serialize_field("editEIDR", {
@@ -3412,6 +3493,24 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("video")?;
 			}
+			if !Vec::is_empty(&self.r#word_count) {
+				serialize_struct.serialize_field("wordCount", {
+					struct SerializeWith<'a>(&'a Vec<WordCountProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#word_count)
+				})?;
+			} else {
+				serialize_struct.skip_field("wordCount")?;
+			}
 			if !Vec::is_empty(&self.r#work_example) {
 				serialize_struct.serialize_field("workExample", {
 					struct SerializeWith<'a>(&'a Vec<WorkExampleProperty>);
@@ -3754,6 +3853,24 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("requirements")?;
 			}
+			if !Vec::is_empty(&self.r#runtime_platform) {
+				serialize_struct.serialize_field("runtimePlatform", {
+					struct SerializeWith<'a>(&'a Vec<RuntimePlatformProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#runtime_platform)
+				})?;
+			} else {
+				serialize_struct.skip_field("runtimePlatform")?;
+			}
 			if !Vec::is_empty(&self.r#screenshot) {
 				serialize_struct.serialize_field("screenshot", {
 					struct SerializeWith<'a>(&'a Vec<ScreenshotProperty>);
@@ -4024,6 +4141,24 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("name")?;
 			}
+			if !Vec::is_empty(&self.r#owner) {
+				serialize_struct.serialize_field("owner", {
+					struct SerializeWith<'a>(&'a Vec<OwnerProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#owner)
+				})?;
+			} else {
+				serialize_struct.skip_field("owner")?;
+			}
 			if !Vec::is_empty(&self.r#potential_action) {
 				serialize_struct.serialize_field("potentialAction", {
 					struct SerializeWith<'a>(&'a Vec<PotentialActionProperty>);
@@ -4147,7 +4282,9 @@ mod serde {
 				DateCreated,
 				DateModified,
 				DatePublished,
+				DigitalSourceType,
 				DiscussionUrl,
+				DisplayLocation,
 				EditEidr,
 				Editor,
 				EducationalAlignment,
@@ -4217,6 +4354,7 @@ mod serde {
 				UsageInfo,
 				Version,
 				Video,
+				WordCount,
 				WorkExample,
 				WorkTranslation,
 				ApplicationCategory,
@@ -4236,6 +4374,7 @@ mod serde {
 				ProcessorRequirements,
 				ReleaseNotes,
 				Requirements,
+				RuntimePlatform,
 				Screenshot,
 				SoftwareAddOn,
 				SoftwareHelp,
@@ -4251,6 +4390,7 @@ mod serde {
 				Image,
 				MainEntityOfPage,
 				Name,
+				Owner,
 				PotentialAction,
 				SameAs,
 				SubjectOf,
@@ -4310,7 +4450,9 @@ mod serde {
 						"dateCreated" => Ok(Field::DateCreated),
 						"dateModified" => Ok(Field::DateModified),
 						"datePublished" => Ok(Field::DatePublished),
+						"digitalSourceType" => Ok(Field::DigitalSourceType),
 						"discussionUrl" => Ok(Field::DiscussionUrl),
+						"displayLocation" => Ok(Field::DisplayLocation),
 						"editEIDR" => Ok(Field::EditEidr),
 						"editor" => Ok(Field::Editor),
 						"educationalAlignment" => Ok(Field::EducationalAlignment),
@@ -4380,6 +4522,7 @@ mod serde {
 						"usageInfo" => Ok(Field::UsageInfo),
 						"version" => Ok(Field::Version),
 						"video" => Ok(Field::Video),
+						"wordCount" => Ok(Field::WordCount),
 						"workExample" => Ok(Field::WorkExample),
 						"workTranslation" => Ok(Field::WorkTranslation),
 						"applicationCategory" => Ok(Field::ApplicationCategory),
@@ -4399,6 +4542,7 @@ mod serde {
 						"processorRequirements" => Ok(Field::ProcessorRequirements),
 						"releaseNotes" => Ok(Field::ReleaseNotes),
 						"requirements" => Ok(Field::Requirements),
+						"runtimePlatform" => Ok(Field::RuntimePlatform),
 						"screenshot" => Ok(Field::Screenshot),
 						"softwareAddOn" => Ok(Field::SoftwareAddOn),
 						"softwareHelp" => Ok(Field::SoftwareHelp),
@@ -4414,6 +4558,7 @@ mod serde {
 						"image" => Ok(Field::Image),
 						"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
 						"name" => Ok(Field::Name),
+						"owner" => Ok(Field::Owner),
 						"potentialAction" => Ok(Field::PotentialAction),
 						"sameAs" => Ok(Field::SameAs),
 						"subjectOf" => Ok(Field::SubjectOf),
@@ -4469,7 +4614,9 @@ mod serde {
 						b"dateCreated" => Ok(Field::DateCreated),
 						b"dateModified" => Ok(Field::DateModified),
 						b"datePublished" => Ok(Field::DatePublished),
+						b"digitalSourceType" => Ok(Field::DigitalSourceType),
 						b"discussionUrl" => Ok(Field::DiscussionUrl),
+						b"displayLocation" => Ok(Field::DisplayLocation),
 						b"editEIDR" => Ok(Field::EditEidr),
 						b"editor" => Ok(Field::Editor),
 						b"educationalAlignment" => Ok(Field::EducationalAlignment),
@@ -4539,6 +4686,7 @@ mod serde {
 						b"usageInfo" => Ok(Field::UsageInfo),
 						b"version" => Ok(Field::Version),
 						b"video" => Ok(Field::Video),
+						b"wordCount" => Ok(Field::WordCount),
 						b"workExample" => Ok(Field::WorkExample),
 						b"workTranslation" => Ok(Field::WorkTranslation),
 						b"applicationCategory" => Ok(Field::ApplicationCategory),
@@ -4558,6 +4706,7 @@ mod serde {
 						b"processorRequirements" => Ok(Field::ProcessorRequirements),
 						b"releaseNotes" => Ok(Field::ReleaseNotes),
 						b"requirements" => Ok(Field::Requirements),
+						b"runtimePlatform" => Ok(Field::RuntimePlatform),
 						b"screenshot" => Ok(Field::Screenshot),
 						b"softwareAddOn" => Ok(Field::SoftwareAddOn),
 						b"softwareHelp" => Ok(Field::SoftwareHelp),
@@ -4573,6 +4722,7 @@ mod serde {
 						b"image" => Ok(Field::Image),
 						b"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
 						b"name" => Ok(Field::Name),
+						b"owner" => Ok(Field::Owner),
 						b"potentialAction" => Ok(Field::PotentialAction),
 						b"sameAs" => Ok(Field::SameAs),
 						b"subjectOf" => Ok(Field::SubjectOf),
@@ -4645,7 +4795,9 @@ mod serde {
 					let mut r#date_created_property = None;
 					let mut r#date_modified_property = None;
 					let mut r#date_published_property = None;
+					let mut r#digital_source_type_property = None;
 					let mut r#discussion_url_property = None;
+					let mut r#display_location_property = None;
 					let mut r#edit_eidr_property = None;
 					let mut r#editor_property = None;
 					let mut r#educational_alignment_property = None;
@@ -4715,6 +4867,7 @@ mod serde {
 					let mut r#usage_info_property = None;
 					let mut r#version_property = None;
 					let mut r#video_property = None;
+					let mut r#word_count_property = None;
 					let mut r#work_example_property = None;
 					let mut r#work_translation_property = None;
 					let mut r#application_category_property = None;
@@ -4734,6 +4887,7 @@ mod serde {
 					let mut r#processor_requirements_property = None;
 					let mut r#release_notes_property = None;
 					let mut r#requirements_property = None;
+					let mut r#runtime_platform_property = None;
 					let mut r#screenshot_property = None;
 					let mut r#software_add_on_property = None;
 					let mut r#software_help_property = None;
@@ -4749,6 +4903,7 @@ mod serde {
 					let mut r#image_property = None;
 					let mut r#main_entity_of_page_property = None;
 					let mut r#name_property = None;
+					let mut r#owner_property = None;
 					let mut r#potential_action_property = None;
 					let mut r#same_as_property = None;
 					let mut r#subject_of_property = None;
@@ -5921,6 +6076,34 @@ mod serde {
 									}
 								});
 							}
+							Field::DigitalSourceType => {
+								if r#digital_source_type_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"digitalSourceType",
+									));
+								}
+								r#digital_source_type_property = Some({
+									struct DeserializeWith(Vec<DigitalSourceTypeProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::DiscussionUrl => {
 								if r#discussion_url_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -5929,6 +6112,34 @@ mod serde {
 								}
 								r#discussion_url_property = Some({
 									struct DeserializeWith(Vec<DiscussionUrlProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::DisplayLocation => {
+								if r#display_location_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"displayLocation",
+									));
+								}
+								r#display_location_property = Some({
+									struct DeserializeWith(Vec<DisplayLocationProperty>);
 									impl<'de> Deserialize<'de> for DeserializeWith {
 										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
 										where
@@ -7865,6 +8076,34 @@ mod serde {
 									}
 								});
 							}
+							Field::WordCount => {
+								if r#word_count_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"wordCount",
+									));
+								}
+								r#word_count_property = Some({
+									struct DeserializeWith(Vec<WordCountProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::WorkExample => {
 								if r#work_example_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -8395,6 +8634,34 @@ mod serde {
 									}
 								});
 							}
+							Field::RuntimePlatform => {
+								if r#runtime_platform_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"runtimePlatform",
+									));
+								}
+								r#runtime_platform_property = Some({
+									struct DeserializeWith(Vec<RuntimePlatformProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::Screenshot => {
 								if r#screenshot_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -8811,6 +9078,32 @@ mod serde {
 									}
 								});
 							}
+							Field::Owner => {
+								if r#owner_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field("owner"));
+								}
+								r#owner_property = Some({
+									struct DeserializeWith(Vec<OwnerProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::PotentialAction => {
 								if r#potential_action_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -8972,7 +9265,9 @@ mod serde {
 						r#date_created: r#date_created_property.unwrap_or_default(),
 						r#date_modified: r#date_modified_property.unwrap_or_default(),
 						r#date_published: r#date_published_property.unwrap_or_default(),
+						r#digital_source_type: r#digital_source_type_property.unwrap_or_default(),
 						r#discussion_url: r#discussion_url_property.unwrap_or_default(),
+						r#display_location: r#display_location_property.unwrap_or_default(),
 						r#edit_eidr: r#edit_eidr_property.unwrap_or_default(),
 						r#editor: r#editor_property.unwrap_or_default(),
 						r#educational_alignment: r#educational_alignment_property
@@ -9047,6 +9342,7 @@ mod serde {
 						r#usage_info: r#usage_info_property.unwrap_or_default(),
 						r#version: r#version_property.unwrap_or_default(),
 						r#video: r#video_property.unwrap_or_default(),
+						r#word_count: r#word_count_property.unwrap_or_default(),
 						r#work_example: r#work_example_property.unwrap_or_default(),
 						r#work_translation: r#work_translation_property.unwrap_or_default(),
 						r#application_category: r#application_category_property.unwrap_or_default(),
@@ -9069,6 +9365,7 @@ mod serde {
 							.unwrap_or_default(),
 						r#release_notes: r#release_notes_property.unwrap_or_default(),
 						r#requirements: r#requirements_property.unwrap_or_default(),
+						r#runtime_platform: r#runtime_platform_property.unwrap_or_default(),
 						r#screenshot: r#screenshot_property.unwrap_or_default(),
 						r#software_add_on: r#software_add_on_property.unwrap_or_default(),
 						r#software_help: r#software_help_property.unwrap_or_default(),
@@ -9086,6 +9383,7 @@ mod serde {
 						r#image: r#image_property.unwrap_or_default(),
 						r#main_entity_of_page: r#main_entity_of_page_property.unwrap_or_default(),
 						r#name: r#name_property.unwrap_or_default(),
+						r#owner: r#owner_property.unwrap_or_default(),
 						r#potential_action: r#potential_action_property.unwrap_or_default(),
 						r#same_as: r#same_as_property.unwrap_or_default(),
 						r#subject_of: r#subject_of_property.unwrap_or_default(),
@@ -9136,7 +9434,9 @@ mod serde {
 				"dateCreated",
 				"dateModified",
 				"datePublished",
+				"digitalSourceType",
 				"discussionUrl",
+				"displayLocation",
 				"editEIDR",
 				"editor",
 				"educationalAlignment",
@@ -9206,6 +9506,7 @@ mod serde {
 				"usageInfo",
 				"version",
 				"video",
+				"wordCount",
 				"workExample",
 				"workTranslation",
 				"applicationCategory",
@@ -9225,6 +9526,7 @@ mod serde {
 				"processorRequirements",
 				"releaseNotes",
 				"requirements",
+				"runtimePlatform",
 				"screenshot",
 				"softwareAddOn",
 				"softwareHelp",
@@ -9240,6 +9542,7 @@ mod serde {
 				"image",
 				"mainEntityOfPage",
 				"name",
+				"owner",
 				"potentialAction",
 				"sameAs",
 				"subjectOf",

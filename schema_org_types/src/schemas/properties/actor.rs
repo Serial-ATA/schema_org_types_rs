@@ -3,6 +3,8 @@ use super::*;
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 pub enum ActorProperty {
+	/// <https://schema.org/PerformingGroup>
+	PerformingGroup(PerformingGroup),
 	/// <https://schema.org/Person>
 	Person(Person),
 	#[cfg(any(all(feature = "fallible", feature = "serde"), doc))]
@@ -23,6 +25,7 @@ mod serde {
 			S: Serializer,
 		{
 			match *self {
+				ActorProperty::PerformingGroup(ref inner) => inner.serialize(serializer),
 				ActorProperty::Person(ref inner) => inner.serialize(serializer),
 				#[cfg(all(feature = "fallible", feature = "serde"))]
 				ActorProperty::SerdeFail(ref inner) => inner.serialize(serializer),
@@ -38,6 +41,12 @@ mod serde {
 				<::serde::__private::de::Content as Deserialize>::deserialize(deserializer)?;
 			let deserializer =
 				::serde::__private::de::ContentRefDeserializer::<D::Error>::new(&content);
+			if let Ok(ok) = Result::map(
+				<PerformingGroup as Deserialize>::deserialize(deserializer),
+				ActorProperty::PerformingGroup,
+			) {
+				return Ok(ok);
+			}
 			if let Ok(ok) = Result::map(
 				<Person as Deserialize>::deserialize(deserializer),
 				ActorProperty::Person,

@@ -9,12 +9,16 @@ pub struct PriceSpecification {
 	pub r#eligible_transaction_volume: Vec<EligibleTransactionVolumeProperty>,
 	/// <https://schema.org/maxPrice>
 	pub r#max_price: Vec<MaxPriceProperty>,
+	/// <https://schema.org/membershipPointsEarned>
+	pub r#membership_points_earned: Vec<MembershipPointsEarnedProperty>,
 	/// <https://schema.org/minPrice>
 	pub r#min_price: Vec<MinPriceProperty>,
 	/// <https://schema.org/price>
 	pub r#price: Vec<PriceProperty>,
 	/// <https://schema.org/priceCurrency>
 	pub r#price_currency: Vec<PriceCurrencyProperty>,
+	/// <https://schema.org/validForMemberTier>
+	pub r#valid_for_member_tier: Vec<ValidForMemberTierProperty>,
 	/// <https://schema.org/validFrom>
 	pub r#valid_from: Vec<ValidFromProperty>,
 	/// <https://schema.org/validThrough>
@@ -37,6 +41,8 @@ pub struct PriceSpecification {
 	pub r#main_entity_of_page: Vec<MainEntityOfPageProperty>,
 	/// <https://schema.org/name>
 	pub r#name: Vec<NameProperty>,
+	/// <https://schema.org/owner>
+	pub r#owner: Vec<OwnerProperty>,
 	/// <https://schema.org/potentialAction>
 	pub r#potential_action: Vec<PotentialActionProperty>,
 	/// <https://schema.org/sameAs>
@@ -60,6 +66,10 @@ pub trait PriceSpecificationTrait {
 	fn get_max_price(&self) -> &[MaxPriceProperty];
 	/// Take <https://schema.org/maxPrice> from [`Self`] as owned vector.
 	fn take_max_price(&mut self) -> Vec<MaxPriceProperty>;
+	/// Get <https://schema.org/membershipPointsEarned> from [`Self`] as borrowed slice.
+	fn get_membership_points_earned(&self) -> &[MembershipPointsEarnedProperty];
+	/// Take <https://schema.org/membershipPointsEarned> from [`Self`] as owned vector.
+	fn take_membership_points_earned(&mut self) -> Vec<MembershipPointsEarnedProperty>;
 	/// Get <https://schema.org/minPrice> from [`Self`] as borrowed slice.
 	fn get_min_price(&self) -> &[MinPriceProperty];
 	/// Take <https://schema.org/minPrice> from [`Self`] as owned vector.
@@ -72,6 +82,10 @@ pub trait PriceSpecificationTrait {
 	fn get_price_currency(&self) -> &[PriceCurrencyProperty];
 	/// Take <https://schema.org/priceCurrency> from [`Self`] as owned vector.
 	fn take_price_currency(&mut self) -> Vec<PriceCurrencyProperty>;
+	/// Get <https://schema.org/validForMemberTier> from [`Self`] as borrowed slice.
+	fn get_valid_for_member_tier(&self) -> &[ValidForMemberTierProperty];
+	/// Take <https://schema.org/validForMemberTier> from [`Self`] as owned vector.
+	fn take_valid_for_member_tier(&mut self) -> Vec<ValidForMemberTierProperty>;
 	/// Get <https://schema.org/validFrom> from [`Self`] as borrowed slice.
 	fn get_valid_from(&self) -> &[ValidFromProperty];
 	/// Take <https://schema.org/validFrom> from [`Self`] as owned vector.
@@ -104,6 +118,12 @@ impl PriceSpecificationTrait for PriceSpecification {
 	fn take_max_price(&mut self) -> Vec<MaxPriceProperty> {
 		std::mem::take(&mut self.r#max_price)
 	}
+	fn get_membership_points_earned(&self) -> &[MembershipPointsEarnedProperty] {
+		self.r#membership_points_earned.as_slice()
+	}
+	fn take_membership_points_earned(&mut self) -> Vec<MembershipPointsEarnedProperty> {
+		std::mem::take(&mut self.r#membership_points_earned)
+	}
 	fn get_min_price(&self) -> &[MinPriceProperty] {
 		self.r#min_price.as_slice()
 	}
@@ -121,6 +141,12 @@ impl PriceSpecificationTrait for PriceSpecification {
 	}
 	fn take_price_currency(&mut self) -> Vec<PriceCurrencyProperty> {
 		std::mem::take(&mut self.r#price_currency)
+	}
+	fn get_valid_for_member_tier(&self) -> &[ValidForMemberTierProperty] {
+		self.r#valid_for_member_tier.as_slice()
+	}
+	fn take_valid_for_member_tier(&mut self) -> Vec<ValidForMemberTierProperty> {
+		std::mem::take(&mut self.r#valid_for_member_tier)
 	}
 	fn get_valid_from(&self) -> &[ValidFromProperty] {
 		self.r#valid_from.as_slice()
@@ -191,6 +217,12 @@ impl ThingTrait for PriceSpecification {
 	fn take_name(&mut self) -> Vec<NameProperty> {
 		std::mem::take(&mut self.r#name)
 	}
+	fn get_owner(&self) -> &[OwnerProperty] {
+		self.r#owner.as_slice()
+	}
+	fn take_owner(&mut self) -> Vec<OwnerProperty> {
+		std::mem::take(&mut self.r#owner)
+	}
 	fn get_potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
 	}
@@ -234,9 +266,11 @@ mod serde {
 				!Vec::is_empty(&self.r#eligible_quantity) as usize,
 				!Vec::is_empty(&self.r#eligible_transaction_volume) as usize,
 				!Vec::is_empty(&self.r#max_price) as usize,
+				!Vec::is_empty(&self.r#membership_points_earned) as usize,
 				!Vec::is_empty(&self.r#min_price) as usize,
 				!Vec::is_empty(&self.r#price) as usize,
 				!Vec::is_empty(&self.r#price_currency) as usize,
+				!Vec::is_empty(&self.r#valid_for_member_tier) as usize,
 				!Vec::is_empty(&self.r#valid_from) as usize,
 				!Vec::is_empty(&self.r#valid_through) as usize,
 				!Vec::is_empty(&self.r#value_added_tax_included) as usize,
@@ -248,6 +282,7 @@ mod serde {
 				!Vec::is_empty(&self.r#image) as usize,
 				!Vec::is_empty(&self.r#main_entity_of_page) as usize,
 				!Vec::is_empty(&self.r#name) as usize,
+				!Vec::is_empty(&self.r#owner) as usize,
 				!Vec::is_empty(&self.r#potential_action) as usize,
 				!Vec::is_empty(&self.r#same_as) as usize,
 				!Vec::is_empty(&self.r#subject_of) as usize,
@@ -311,6 +346,24 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("maxPrice")?;
 			}
+			if !Vec::is_empty(&self.r#membership_points_earned) {
+				serialize_struct.serialize_field("membershipPointsEarned", {
+					struct SerializeWith<'a>(&'a Vec<MembershipPointsEarnedProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#membership_points_earned)
+				})?;
+			} else {
+				serialize_struct.skip_field("membershipPointsEarned")?;
+			}
 			if !Vec::is_empty(&self.r#min_price) {
 				serialize_struct.serialize_field("minPrice", {
 					struct SerializeWith<'a>(&'a Vec<MinPriceProperty>);
@@ -364,6 +417,24 @@ mod serde {
 				})?;
 			} else {
 				serialize_struct.skip_field("priceCurrency")?;
+			}
+			if !Vec::is_empty(&self.r#valid_for_member_tier) {
+				serialize_struct.serialize_field("validForMemberTier", {
+					struct SerializeWith<'a>(&'a Vec<ValidForMemberTierProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#valid_for_member_tier)
+				})?;
+			} else {
+				serialize_struct.skip_field("validForMemberTier")?;
 			}
 			if !Vec::is_empty(&self.r#valid_from) {
 				serialize_struct.serialize_field("validFrom", {
@@ -563,6 +634,24 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("name")?;
 			}
+			if !Vec::is_empty(&self.r#owner) {
+				serialize_struct.serialize_field("owner", {
+					struct SerializeWith<'a>(&'a Vec<OwnerProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#owner)
+				})?;
+			} else {
+				serialize_struct.skip_field("owner")?;
+			}
 			if !Vec::is_empty(&self.r#potential_action) {
 				serialize_struct.serialize_field("potentialAction", {
 					struct SerializeWith<'a>(&'a Vec<PotentialActionProperty>);
@@ -647,9 +736,11 @@ mod serde {
 				EligibleQuantity,
 				EligibleTransactionVolume,
 				MaxPrice,
+				MembershipPointsEarned,
 				MinPrice,
 				Price,
 				PriceCurrency,
+				ValidForMemberTier,
 				ValidFrom,
 				ValidThrough,
 				ValueAddedTaxIncluded,
@@ -661,6 +752,7 @@ mod serde {
 				Image,
 				MainEntityOfPage,
 				Name,
+				Owner,
 				PotentialAction,
 				SameAs,
 				SubjectOf,
@@ -681,9 +773,11 @@ mod serde {
 						"eligibleQuantity" => Ok(Field::EligibleQuantity),
 						"eligibleTransactionVolume" => Ok(Field::EligibleTransactionVolume),
 						"maxPrice" => Ok(Field::MaxPrice),
+						"membershipPointsEarned" => Ok(Field::MembershipPointsEarned),
 						"minPrice" => Ok(Field::MinPrice),
 						"price" => Ok(Field::Price),
 						"priceCurrency" => Ok(Field::PriceCurrency),
+						"validForMemberTier" => Ok(Field::ValidForMemberTier),
 						"validFrom" => Ok(Field::ValidFrom),
 						"validThrough" => Ok(Field::ValidThrough),
 						"valueAddedTaxIncluded" => Ok(Field::ValueAddedTaxIncluded),
@@ -695,6 +789,7 @@ mod serde {
 						"image" => Ok(Field::Image),
 						"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
 						"name" => Ok(Field::Name),
+						"owner" => Ok(Field::Owner),
 						"potentialAction" => Ok(Field::PotentialAction),
 						"sameAs" => Ok(Field::SameAs),
 						"subjectOf" => Ok(Field::SubjectOf),
@@ -711,9 +806,11 @@ mod serde {
 						b"eligibleQuantity" => Ok(Field::EligibleQuantity),
 						b"eligibleTransactionVolume" => Ok(Field::EligibleTransactionVolume),
 						b"maxPrice" => Ok(Field::MaxPrice),
+						b"membershipPointsEarned" => Ok(Field::MembershipPointsEarned),
 						b"minPrice" => Ok(Field::MinPrice),
 						b"price" => Ok(Field::Price),
 						b"priceCurrency" => Ok(Field::PriceCurrency),
+						b"validForMemberTier" => Ok(Field::ValidForMemberTier),
 						b"validFrom" => Ok(Field::ValidFrom),
 						b"validThrough" => Ok(Field::ValidThrough),
 						b"valueAddedTaxIncluded" => Ok(Field::ValueAddedTaxIncluded),
@@ -725,6 +822,7 @@ mod serde {
 						b"image" => Ok(Field::Image),
 						b"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
 						b"name" => Ok(Field::Name),
+						b"owner" => Ok(Field::Owner),
 						b"potentialAction" => Ok(Field::PotentialAction),
 						b"sameAs" => Ok(Field::SameAs),
 						b"subjectOf" => Ok(Field::SubjectOf),
@@ -758,9 +856,11 @@ mod serde {
 					let mut r#eligible_quantity_property = None;
 					let mut r#eligible_transaction_volume_property = None;
 					let mut r#max_price_property = None;
+					let mut r#membership_points_earned_property = None;
 					let mut r#min_price_property = None;
 					let mut r#price_property = None;
 					let mut r#price_currency_property = None;
+					let mut r#valid_for_member_tier_property = None;
 					let mut r#valid_from_property = None;
 					let mut r#valid_through_property = None;
 					let mut r#value_added_tax_included_property = None;
@@ -772,6 +872,7 @@ mod serde {
 					let mut r#image_property = None;
 					let mut r#main_entity_of_page_property = None;
 					let mut r#name_property = None;
+					let mut r#owner_property = None;
 					let mut r#potential_action_property = None;
 					let mut r#same_as_property = None;
 					let mut r#subject_of_property = None;
@@ -862,6 +963,34 @@ mod serde {
 									}
 								});
 							}
+							Field::MembershipPointsEarned => {
+								if r#membership_points_earned_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"membershipPointsEarned",
+									));
+								}
+								r#membership_points_earned_property = Some({
+									struct DeserializeWith(Vec<MembershipPointsEarnedProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::MinPrice => {
 								if r#min_price_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -924,6 +1053,34 @@ mod serde {
 								}
 								r#price_currency_property = Some({
 									struct DeserializeWith(Vec<PriceCurrencyProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::ValidForMemberTier => {
+								if r#valid_for_member_tier_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"validForMemberTier",
+									));
+								}
+								r#valid_for_member_tier_property = Some({
+									struct DeserializeWith(Vec<ValidForMemberTierProperty>);
 									impl<'de> Deserialize<'de> for DeserializeWith {
 										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
 										where
@@ -1248,6 +1405,32 @@ mod serde {
 									}
 								});
 							}
+							Field::Owner => {
+								if r#owner_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field("owner"));
+								}
+								r#owner_property = Some({
+									struct DeserializeWith(Vec<OwnerProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::PotentialAction => {
 								if r#potential_action_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -1366,9 +1549,13 @@ mod serde {
 						r#eligible_transaction_volume: r#eligible_transaction_volume_property
 							.unwrap_or_default(),
 						r#max_price: r#max_price_property.unwrap_or_default(),
+						r#membership_points_earned: r#membership_points_earned_property
+							.unwrap_or_default(),
 						r#min_price: r#min_price_property.unwrap_or_default(),
 						r#price: r#price_property.unwrap_or_default(),
 						r#price_currency: r#price_currency_property.unwrap_or_default(),
+						r#valid_for_member_tier: r#valid_for_member_tier_property
+							.unwrap_or_default(),
 						r#valid_from: r#valid_from_property.unwrap_or_default(),
 						r#valid_through: r#valid_through_property.unwrap_or_default(),
 						r#value_added_tax_included: r#value_added_tax_included_property
@@ -1382,6 +1569,7 @@ mod serde {
 						r#image: r#image_property.unwrap_or_default(),
 						r#main_entity_of_page: r#main_entity_of_page_property.unwrap_or_default(),
 						r#name: r#name_property.unwrap_or_default(),
+						r#owner: r#owner_property.unwrap_or_default(),
 						r#potential_action: r#potential_action_property.unwrap_or_default(),
 						r#same_as: r#same_as_property.unwrap_or_default(),
 						r#subject_of: r#subject_of_property.unwrap_or_default(),
@@ -1393,9 +1581,11 @@ mod serde {
 				"eligibleQuantity",
 				"eligibleTransactionVolume",
 				"maxPrice",
+				"membershipPointsEarned",
 				"minPrice",
 				"price",
 				"priceCurrency",
+				"validForMemberTier",
 				"validFrom",
 				"validThrough",
 				"valueAddedTaxIncluded",
@@ -1407,6 +1597,7 @@ mod serde {
 				"image",
 				"mainEntityOfPage",
 				"name",
+				"owner",
 				"potentialAction",
 				"sameAs",
 				"subjectOf",

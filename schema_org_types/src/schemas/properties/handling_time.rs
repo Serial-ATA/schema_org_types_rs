@@ -5,6 +5,8 @@ use super::*;
 pub enum HandlingTimeProperty {
 	/// <https://schema.org/QuantitativeValue>
 	QuantitativeValue(QuantitativeValue),
+	/// <https://schema.org/ServicePeriod>
+	ServicePeriod(ServicePeriod),
 	#[cfg(any(all(feature = "fallible", feature = "serde"), doc))]
 	SerdeFail(crate::fallible::FailValue),
 }
@@ -24,6 +26,7 @@ mod serde {
 		{
 			match *self {
 				HandlingTimeProperty::QuantitativeValue(ref inner) => inner.serialize(serializer),
+				HandlingTimeProperty::ServicePeriod(ref inner) => inner.serialize(serializer),
 				#[cfg(all(feature = "fallible", feature = "serde"))]
 				HandlingTimeProperty::SerdeFail(ref inner) => inner.serialize(serializer),
 			}
@@ -41,6 +44,12 @@ mod serde {
 			if let Ok(ok) = Result::map(
 				<QuantitativeValue as Deserialize>::deserialize(deserializer),
 				HandlingTimeProperty::QuantitativeValue,
+			) {
+				return Ok(ok);
+			}
+			if let Ok(ok) = Result::map(
+				<ServicePeriod as Deserialize>::deserialize(deserializer),
+				HandlingTimeProperty::ServicePeriod,
 			) {
 				return Ok(ok);
 			}

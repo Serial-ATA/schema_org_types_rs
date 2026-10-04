@@ -3,6 +3,8 @@ use super::*;
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 pub enum GenreProperty {
+	/// <https://schema.org/DefinedTerm>
+	DefinedTerm(DefinedTerm),
 	/// <https://schema.org/URL>
 	Url(Url),
 	/// <https://schema.org/Text>
@@ -25,6 +27,7 @@ mod serde {
 			S: Serializer,
 		{
 			match *self {
+				GenreProperty::DefinedTerm(ref inner) => inner.serialize(serializer),
 				GenreProperty::Url(ref inner) => inner.serialize(serializer),
 				GenreProperty::Text(ref inner) => inner.serialize(serializer),
 				#[cfg(all(feature = "fallible", feature = "serde"))]
@@ -41,6 +44,12 @@ mod serde {
 				<::serde::__private::de::Content as Deserialize>::deserialize(deserializer)?;
 			let deserializer =
 				::serde::__private::de::ContentRefDeserializer::<D::Error>::new(&content);
+			if let Ok(ok) = Result::map(
+				<DefinedTerm as Deserialize>::deserialize(deserializer),
+				GenreProperty::DefinedTerm,
+			) {
+				return Ok(ok);
+			}
 			if let Ok(ok) = Result::map(
 				<Url as Deserialize>::deserialize(deserializer),
 				GenreProperty::Url,

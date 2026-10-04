@@ -1,8 +1,12 @@
 use super::*;
-/// <https://schema.org/Distance>
+/// <https://schema.org/MemberProgram>
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
-pub struct Distance {
+pub struct MemberProgram {
+	/// <https://schema.org/hasTiers>
+	pub r#has_tiers: Vec<HasTiersProperty>,
+	/// <https://schema.org/hostingOrganization>
+	pub r#hosting_organization: Vec<HostingOrganizationProperty>,
 	/// <https://schema.org/additionalType>
 	pub r#additional_type: Vec<AdditionalTypeProperty>,
 	/// <https://schema.org/alternateName>
@@ -19,6 +23,8 @@ pub struct Distance {
 	pub r#main_entity_of_page: Vec<MainEntityOfPageProperty>,
 	/// <https://schema.org/name>
 	pub r#name: Vec<NameProperty>,
+	/// <https://schema.org/owner>
+	pub r#owner: Vec<OwnerProperty>,
 	/// <https://schema.org/potentialAction>
 	pub r#potential_action: Vec<PotentialActionProperty>,
 	/// <https://schema.org/sameAs>
@@ -28,11 +34,32 @@ pub struct Distance {
 	/// <https://schema.org/url>
 	pub r#url: Vec<UrlProperty>,
 }
-/// This trait is for properties from <https://schema.org/Distance>.
-pub trait DistanceTrait {}
-impl DistanceTrait for Distance {}
-impl QuantityTrait for Distance {}
-impl ThingTrait for Distance {
+/// This trait is for properties from <https://schema.org/MemberProgram>.
+pub trait MemberProgramTrait {
+	/// Get <https://schema.org/hasTiers> from [`Self`] as borrowed slice.
+	fn get_has_tiers(&self) -> &[HasTiersProperty];
+	/// Take <https://schema.org/hasTiers> from [`Self`] as owned vector.
+	fn take_has_tiers(&mut self) -> Vec<HasTiersProperty>;
+	/// Get <https://schema.org/hostingOrganization> from [`Self`] as borrowed slice.
+	fn get_hosting_organization(&self) -> &[HostingOrganizationProperty];
+	/// Take <https://schema.org/hostingOrganization> from [`Self`] as owned vector.
+	fn take_hosting_organization(&mut self) -> Vec<HostingOrganizationProperty>;
+}
+impl MemberProgramTrait for MemberProgram {
+	fn get_has_tiers(&self) -> &[HasTiersProperty] {
+		self.r#has_tiers.as_slice()
+	}
+	fn take_has_tiers(&mut self) -> Vec<HasTiersProperty> {
+		std::mem::take(&mut self.r#has_tiers)
+	}
+	fn get_hosting_organization(&self) -> &[HostingOrganizationProperty] {
+		self.r#hosting_organization.as_slice()
+	}
+	fn take_hosting_organization(&mut self) -> Vec<HostingOrganizationProperty> {
+		std::mem::take(&mut self.r#hosting_organization)
+	}
+}
+impl ThingTrait for MemberProgram {
 	fn get_additional_type(&self) -> &[AdditionalTypeProperty] {
 		self.r#additional_type.as_slice()
 	}
@@ -81,6 +108,12 @@ impl ThingTrait for Distance {
 	fn take_name(&mut self) -> Vec<NameProperty> {
 		std::mem::take(&mut self.r#name)
 	}
+	fn get_owner(&self) -> &[OwnerProperty] {
+		self.r#owner.as_slice()
+	}
+	fn take_owner(&mut self) -> Vec<OwnerProperty> {
+		std::mem::take(&mut self.r#owner)
+	}
 	fn get_potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
 	}
@@ -115,12 +148,14 @@ mod serde {
 	};
 
 	use super::*;
-	impl Serialize for Distance {
+	impl Serialize for MemberProgram {
 		fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
 		where
 			S: Serializer,
 		{
 			let len: usize = [
+				!Vec::is_empty(&self.r#has_tiers) as usize,
+				!Vec::is_empty(&self.r#hosting_organization) as usize,
 				!Vec::is_empty(&self.r#additional_type) as usize,
 				!Vec::is_empty(&self.r#alternate_name) as usize,
 				!Vec::is_empty(&self.r#description) as usize,
@@ -129,6 +164,7 @@ mod serde {
 				!Vec::is_empty(&self.r#image) as usize,
 				!Vec::is_empty(&self.r#main_entity_of_page) as usize,
 				!Vec::is_empty(&self.r#name) as usize,
+				!Vec::is_empty(&self.r#owner) as usize,
 				!Vec::is_empty(&self.r#potential_action) as usize,
 				!Vec::is_empty(&self.r#same_as) as usize,
 				!Vec::is_empty(&self.r#subject_of) as usize,
@@ -136,7 +172,44 @@ mod serde {
 			]
 			.iter()
 			.sum();
-			let mut serialize_struct = Serializer::serialize_struct(serializer, "Distance", len)?;
+			let mut serialize_struct =
+				Serializer::serialize_struct(serializer, "MemberProgram", len)?;
+			if !Vec::is_empty(&self.r#has_tiers) {
+				serialize_struct.serialize_field("hasTiers", {
+					struct SerializeWith<'a>(&'a Vec<HasTiersProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#has_tiers)
+				})?;
+			} else {
+				serialize_struct.skip_field("hasTiers")?;
+			}
+			if !Vec::is_empty(&self.r#hosting_organization) {
+				serialize_struct.serialize_field("hostingOrganization", {
+					struct SerializeWith<'a>(&'a Vec<HostingOrganizationProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#hosting_organization)
+				})?;
+			} else {
+				serialize_struct.skip_field("hostingOrganization")?;
+			}
 			if !Vec::is_empty(&self.r#additional_type) {
 				serialize_struct.serialize_field("additionalType", {
 					struct SerializeWith<'a>(&'a Vec<AdditionalTypeProperty>);
@@ -281,6 +354,24 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("name")?;
 			}
+			if !Vec::is_empty(&self.r#owner) {
+				serialize_struct.serialize_field("owner", {
+					struct SerializeWith<'a>(&'a Vec<OwnerProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#owner)
+				})?;
+			} else {
+				serialize_struct.skip_field("owner")?;
+			}
 			if !Vec::is_empty(&self.r#potential_action) {
 				serialize_struct.serialize_field("potentialAction", {
 					struct SerializeWith<'a>(&'a Vec<PotentialActionProperty>);
@@ -356,12 +447,14 @@ mod serde {
 			serialize_struct.end()
 		}
 	}
-	impl<'de> Deserialize<'de> for Distance {
+	impl<'de> Deserialize<'de> for MemberProgram {
 		fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
 		where
 			D: Deserializer<'de>,
 		{
 			enum Field {
+				HasTiers,
+				HostingOrganization,
 				AdditionalType,
 				AlternateName,
 				Description,
@@ -370,6 +463,7 @@ mod serde {
 				Image,
 				MainEntityOfPage,
 				Name,
+				Owner,
 				PotentialAction,
 				SameAs,
 				SubjectOf,
@@ -387,6 +481,8 @@ mod serde {
 					E: de::Error,
 				{
 					match value {
+						"hasTiers" => Ok(Field::HasTiers),
+						"hostingOrganization" => Ok(Field::HostingOrganization),
 						"additionalType" => Ok(Field::AdditionalType),
 						"alternateName" => Ok(Field::AlternateName),
 						"description" => Ok(Field::Description),
@@ -395,6 +491,7 @@ mod serde {
 						"image" => Ok(Field::Image),
 						"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
 						"name" => Ok(Field::Name),
+						"owner" => Ok(Field::Owner),
 						"potentialAction" => Ok(Field::PotentialAction),
 						"sameAs" => Ok(Field::SameAs),
 						"subjectOf" => Ok(Field::SubjectOf),
@@ -408,6 +505,8 @@ mod serde {
 					E: de::Error,
 				{
 					match value {
+						b"hasTiers" => Ok(Field::HasTiers),
+						b"hostingOrganization" => Ok(Field::HostingOrganization),
 						b"additionalType" => Ok(Field::AdditionalType),
 						b"alternateName" => Ok(Field::AlternateName),
 						b"description" => Ok(Field::Description),
@@ -416,6 +515,7 @@ mod serde {
 						b"image" => Ok(Field::Image),
 						b"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
 						b"name" => Ok(Field::Name),
+						b"owner" => Ok(Field::Owner),
 						b"potentialAction" => Ok(Field::PotentialAction),
 						b"sameAs" => Ok(Field::SameAs),
 						b"subjectOf" => Ok(Field::SubjectOf),
@@ -438,14 +538,16 @@ mod serde {
 			}
 			struct ClassVisitor;
 			impl<'de> Visitor<'de> for ClassVisitor {
-				type Value = Distance;
+				type Value = MemberProgram;
 				fn expecting(&self, formatter: &mut Formatter) -> fmt::Result {
-					formatter.write_str("schema.org schema Distance")
+					formatter.write_str("schema.org schema MemberProgram")
 				}
 				fn visit_map<A>(self, mut map: A) -> Result<Self::Value, A::Error>
 				where
 					A: de::MapAccess<'de>,
 				{
+					let mut r#has_tiers_property = None;
+					let mut r#hosting_organization_property = None;
 					let mut r#additional_type_property = None;
 					let mut r#alternate_name_property = None;
 					let mut r#description_property = None;
@@ -454,12 +556,69 @@ mod serde {
 					let mut r#image_property = None;
 					let mut r#main_entity_of_page_property = None;
 					let mut r#name_property = None;
+					let mut r#owner_property = None;
 					let mut r#potential_action_property = None;
 					let mut r#same_as_property = None;
 					let mut r#subject_of_property = None;
 					let mut r#url_property = None;
 					while let Some(key) = map.next_key::<Field>()? {
 						match key {
+							Field::HasTiers => {
+								if r#has_tiers_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"hasTiers",
+									));
+								}
+								r#has_tiers_property = Some({
+									struct DeserializeWith(Vec<HasTiersProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::HostingOrganization => {
+								if r#hosting_organization_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"hostingOrganization",
+									));
+								}
+								r#hosting_organization_property = Some({
+									struct DeserializeWith(Vec<HostingOrganizationProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::AdditionalType => {
 								if r#additional_type_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -680,6 +839,32 @@ mod serde {
 									}
 								});
 							}
+							Field::Owner => {
+								if r#owner_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field("owner"));
+								}
+								r#owner_property = Some({
+									struct DeserializeWith(Vec<OwnerProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::PotentialAction => {
 								if r#potential_action_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -793,7 +978,9 @@ mod serde {
 							}
 						}
 					}
-					Ok(Distance {
+					Ok(MemberProgram {
+						r#has_tiers: r#has_tiers_property.unwrap_or_default(),
+						r#hosting_organization: r#hosting_organization_property.unwrap_or_default(),
 						r#additional_type: r#additional_type_property.unwrap_or_default(),
 						r#alternate_name: r#alternate_name_property.unwrap_or_default(),
 						r#description: r#description_property.unwrap_or_default(),
@@ -803,6 +990,7 @@ mod serde {
 						r#image: r#image_property.unwrap_or_default(),
 						r#main_entity_of_page: r#main_entity_of_page_property.unwrap_or_default(),
 						r#name: r#name_property.unwrap_or_default(),
+						r#owner: r#owner_property.unwrap_or_default(),
 						r#potential_action: r#potential_action_property.unwrap_or_default(),
 						r#same_as: r#same_as_property.unwrap_or_default(),
 						r#subject_of: r#subject_of_property.unwrap_or_default(),
@@ -811,6 +999,8 @@ mod serde {
 				}
 			}
 			const FIELDS: &[&str] = &[
+				"hasTiers",
+				"hostingOrganization",
 				"additionalType",
 				"alternateName",
 				"description",
@@ -819,12 +1009,13 @@ mod serde {
 				"image",
 				"mainEntityOfPage",
 				"name",
+				"owner",
 				"potentialAction",
 				"sameAs",
 				"subjectOf",
 				"url",
 			];
-			deserializer.deserialize_struct("Distance", FIELDS, ClassVisitor)
+			deserializer.deserialize_struct("MemberProgram", FIELDS, ClassVisitor)
 		}
 	}
 }

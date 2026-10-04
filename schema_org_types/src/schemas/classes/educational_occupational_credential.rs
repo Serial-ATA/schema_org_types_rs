@@ -5,16 +5,8 @@ use super::*;
 pub struct EducationalOccupationalCredential {
 	/// <https://schema.org/competencyRequired>
 	pub r#competency_required: Vec<CompetencyRequiredProperty>,
-	/// <https://schema.org/credentialCategory>
-	pub r#credential_category: Vec<CredentialCategoryProperty>,
 	/// <https://schema.org/educationalLevel>
 	pub r#educational_level: Vec<EducationalLevelProperty>,
-	/// <https://schema.org/recognizedBy>
-	pub r#recognized_by: Vec<RecognizedByProperty>,
-	/// <https://schema.org/validFor>
-	pub r#valid_for: Vec<ValidForProperty>,
-	/// <https://schema.org/validIn>
-	pub r#valid_in: Vec<ValidInProperty>,
 	/// <https://schema.org/about>
 	pub r#about: Vec<AboutProperty>,
 	/// <https://schema.org/abstract>
@@ -98,8 +90,12 @@ pub struct EducationalOccupationalCredential {
 	pub r#date_modified: Vec<DateModifiedProperty>,
 	/// <https://schema.org/datePublished>
 	pub r#date_published: Vec<DatePublishedProperty>,
+	/// <https://schema.org/digitalSourceType>
+	pub r#digital_source_type: Vec<DigitalSourceTypeProperty>,
 	/// <https://schema.org/discussionUrl>
 	pub r#discussion_url: Vec<DiscussionUrlProperty>,
+	/// <https://schema.org/displayLocation>
+	pub r#display_location: Vec<DisplayLocationProperty>,
 	/// <https://schema.org/editEIDR>
 	pub r#edit_eidr: Vec<EditEidrProperty>,
 	/// <https://schema.org/editor>
@@ -240,10 +236,20 @@ pub struct EducationalOccupationalCredential {
 	pub r#version: Vec<VersionProperty>,
 	/// <https://schema.org/video>
 	pub r#video: Vec<VideoProperty>,
+	/// <https://schema.org/wordCount>
+	pub r#word_count: Vec<WordCountProperty>,
 	/// <https://schema.org/workExample>
 	pub r#work_example: Vec<WorkExampleProperty>,
 	/// <https://schema.org/workTranslation>
 	pub r#work_translation: Vec<WorkTranslationProperty>,
+	/// <https://schema.org/credentialCategory>
+	pub r#credential_category: Vec<CredentialCategoryProperty>,
+	/// <https://schema.org/recognizedBy>
+	pub r#recognized_by: Vec<RecognizedByProperty>,
+	/// <https://schema.org/validFor>
+	pub r#valid_for: Vec<ValidForProperty>,
+	/// <https://schema.org/validIn>
+	pub r#valid_in: Vec<ValidInProperty>,
 	/// <https://schema.org/additionalType>
 	pub r#additional_type: Vec<AdditionalTypeProperty>,
 	/// <https://schema.org/alternateName>
@@ -260,6 +266,8 @@ pub struct EducationalOccupationalCredential {
 	pub r#main_entity_of_page: Vec<MainEntityOfPageProperty>,
 	/// <https://schema.org/name>
 	pub r#name: Vec<NameProperty>,
+	/// <https://schema.org/owner>
+	pub r#owner: Vec<OwnerProperty>,
 	/// <https://schema.org/potentialAction>
 	pub r#potential_action: Vec<PotentialActionProperty>,
 	/// <https://schema.org/sameAs>
@@ -275,26 +283,10 @@ pub trait EducationalOccupationalCredentialTrait {
 	fn get_competency_required(&self) -> &[CompetencyRequiredProperty];
 	/// Take <https://schema.org/competencyRequired> from [`Self`] as owned vector.
 	fn take_competency_required(&mut self) -> Vec<CompetencyRequiredProperty>;
-	/// Get <https://schema.org/credentialCategory> from [`Self`] as borrowed slice.
-	fn get_credential_category(&self) -> &[CredentialCategoryProperty];
-	/// Take <https://schema.org/credentialCategory> from [`Self`] as owned vector.
-	fn take_credential_category(&mut self) -> Vec<CredentialCategoryProperty>;
 	/// Get <https://schema.org/educationalLevel> from [`Self`] as borrowed slice.
 	fn get_educational_level(&self) -> &[EducationalLevelProperty];
 	/// Take <https://schema.org/educationalLevel> from [`Self`] as owned vector.
 	fn take_educational_level(&mut self) -> Vec<EducationalLevelProperty>;
-	/// Get <https://schema.org/recognizedBy> from [`Self`] as borrowed slice.
-	fn get_recognized_by(&self) -> &[RecognizedByProperty];
-	/// Take <https://schema.org/recognizedBy> from [`Self`] as owned vector.
-	fn take_recognized_by(&mut self) -> Vec<RecognizedByProperty>;
-	/// Get <https://schema.org/validFor> from [`Self`] as borrowed slice.
-	fn get_valid_for(&self) -> &[ValidForProperty];
-	/// Take <https://schema.org/validFor> from [`Self`] as owned vector.
-	fn take_valid_for(&mut self) -> Vec<ValidForProperty>;
-	/// Get <https://schema.org/validIn> from [`Self`] as borrowed slice.
-	fn get_valid_in(&self) -> &[ValidInProperty];
-	/// Take <https://schema.org/validIn> from [`Self`] as owned vector.
-	fn take_valid_in(&mut self) -> Vec<ValidInProperty>;
 }
 impl EducationalOccupationalCredentialTrait for EducationalOccupationalCredential {
 	fn get_competency_required(&self) -> &[CompetencyRequiredProperty] {
@@ -303,35 +295,11 @@ impl EducationalOccupationalCredentialTrait for EducationalOccupationalCredentia
 	fn take_competency_required(&mut self) -> Vec<CompetencyRequiredProperty> {
 		std::mem::take(&mut self.r#competency_required)
 	}
-	fn get_credential_category(&self) -> &[CredentialCategoryProperty] {
-		self.r#credential_category.as_slice()
-	}
-	fn take_credential_category(&mut self) -> Vec<CredentialCategoryProperty> {
-		std::mem::take(&mut self.r#credential_category)
-	}
 	fn get_educational_level(&self) -> &[EducationalLevelProperty] {
 		self.r#educational_level.as_slice()
 	}
 	fn take_educational_level(&mut self) -> Vec<EducationalLevelProperty> {
 		std::mem::take(&mut self.r#educational_level)
-	}
-	fn get_recognized_by(&self) -> &[RecognizedByProperty] {
-		self.r#recognized_by.as_slice()
-	}
-	fn take_recognized_by(&mut self) -> Vec<RecognizedByProperty> {
-		std::mem::take(&mut self.r#recognized_by)
-	}
-	fn get_valid_for(&self) -> &[ValidForProperty] {
-		self.r#valid_for.as_slice()
-	}
-	fn take_valid_for(&mut self) -> Vec<ValidForProperty> {
-		std::mem::take(&mut self.r#valid_for)
-	}
-	fn get_valid_in(&self) -> &[ValidInProperty] {
-		self.r#valid_in.as_slice()
-	}
-	fn take_valid_in(&mut self) -> Vec<ValidInProperty> {
-		std::mem::take(&mut self.r#valid_in)
 	}
 }
 impl CreativeWorkTrait for EducationalOccupationalCredential {
@@ -581,11 +549,23 @@ impl CreativeWorkTrait for EducationalOccupationalCredential {
 	fn take_date_published(&mut self) -> Vec<DatePublishedProperty> {
 		std::mem::take(&mut self.r#date_published)
 	}
+	fn get_digital_source_type(&self) -> &[DigitalSourceTypeProperty] {
+		self.r#digital_source_type.as_slice()
+	}
+	fn take_digital_source_type(&mut self) -> Vec<DigitalSourceTypeProperty> {
+		std::mem::take(&mut self.r#digital_source_type)
+	}
 	fn get_discussion_url(&self) -> &[DiscussionUrlProperty] {
 		self.r#discussion_url.as_slice()
 	}
 	fn take_discussion_url(&mut self) -> Vec<DiscussionUrlProperty> {
 		std::mem::take(&mut self.r#discussion_url)
+	}
+	fn get_display_location(&self) -> &[DisplayLocationProperty] {
+		self.r#display_location.as_slice()
+	}
+	fn take_display_location(&mut self) -> Vec<DisplayLocationProperty> {
+		std::mem::take(&mut self.r#display_location)
 	}
 	fn get_edit_eidr(&self) -> &[EditEidrProperty] {
 		self.r#edit_eidr.as_slice()
@@ -1001,6 +981,12 @@ impl CreativeWorkTrait for EducationalOccupationalCredential {
 	fn take_video(&mut self) -> Vec<VideoProperty> {
 		std::mem::take(&mut self.r#video)
 	}
+	fn get_word_count(&self) -> &[WordCountProperty] {
+		self.r#word_count.as_slice()
+	}
+	fn take_word_count(&mut self) -> Vec<WordCountProperty> {
+		std::mem::take(&mut self.r#word_count)
+	}
 	fn get_work_example(&self) -> &[WorkExampleProperty] {
 		self.r#work_example.as_slice()
 	}
@@ -1012,6 +998,32 @@ impl CreativeWorkTrait for EducationalOccupationalCredential {
 	}
 	fn take_work_translation(&mut self) -> Vec<WorkTranslationProperty> {
 		std::mem::take(&mut self.r#work_translation)
+	}
+}
+impl CredentialTrait for EducationalOccupationalCredential {
+	fn get_credential_category(&self) -> &[CredentialCategoryProperty] {
+		self.r#credential_category.as_slice()
+	}
+	fn take_credential_category(&mut self) -> Vec<CredentialCategoryProperty> {
+		std::mem::take(&mut self.r#credential_category)
+	}
+	fn get_recognized_by(&self) -> &[RecognizedByProperty] {
+		self.r#recognized_by.as_slice()
+	}
+	fn take_recognized_by(&mut self) -> Vec<RecognizedByProperty> {
+		std::mem::take(&mut self.r#recognized_by)
+	}
+	fn get_valid_for(&self) -> &[ValidForProperty] {
+		self.r#valid_for.as_slice()
+	}
+	fn take_valid_for(&mut self) -> Vec<ValidForProperty> {
+		std::mem::take(&mut self.r#valid_for)
+	}
+	fn get_valid_in(&self) -> &[ValidInProperty] {
+		self.r#valid_in.as_slice()
+	}
+	fn take_valid_in(&mut self) -> Vec<ValidInProperty> {
+		std::mem::take(&mut self.r#valid_in)
 	}
 }
 impl ThingTrait for EducationalOccupationalCredential {
@@ -1063,6 +1075,12 @@ impl ThingTrait for EducationalOccupationalCredential {
 	fn take_name(&mut self) -> Vec<NameProperty> {
 		std::mem::take(&mut self.r#name)
 	}
+	fn get_owner(&self) -> &[OwnerProperty] {
+		self.r#owner.as_slice()
+	}
+	fn take_owner(&mut self) -> Vec<OwnerProperty> {
+		std::mem::take(&mut self.r#owner)
+	}
 	fn get_potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
 	}
@@ -1104,11 +1122,7 @@ mod serde {
 		{
 			let len: usize = [
 				!Vec::is_empty(&self.r#competency_required) as usize,
-				!Vec::is_empty(&self.r#credential_category) as usize,
 				!Vec::is_empty(&self.r#educational_level) as usize,
-				!Vec::is_empty(&self.r#recognized_by) as usize,
-				!Vec::is_empty(&self.r#valid_for) as usize,
-				!Vec::is_empty(&self.r#valid_in) as usize,
 				!Vec::is_empty(&self.r#about) as usize,
 				!Vec::is_empty(&self.r#abstract) as usize,
 				!Vec::is_empty(&self.r#access_mode) as usize,
@@ -1150,7 +1164,9 @@ mod serde {
 				!Vec::is_empty(&self.r#date_created) as usize,
 				!Vec::is_empty(&self.r#date_modified) as usize,
 				!Vec::is_empty(&self.r#date_published) as usize,
+				!Vec::is_empty(&self.r#digital_source_type) as usize,
 				!Vec::is_empty(&self.r#discussion_url) as usize,
+				!Vec::is_empty(&self.r#display_location) as usize,
 				!Vec::is_empty(&self.r#edit_eidr) as usize,
 				!Vec::is_empty(&self.r#editor) as usize,
 				!Vec::is_empty(&self.r#educational_alignment) as usize,
@@ -1219,8 +1235,13 @@ mod serde {
 				!Vec::is_empty(&self.r#usage_info) as usize,
 				!Vec::is_empty(&self.r#version) as usize,
 				!Vec::is_empty(&self.r#video) as usize,
+				!Vec::is_empty(&self.r#word_count) as usize,
 				!Vec::is_empty(&self.r#work_example) as usize,
 				!Vec::is_empty(&self.r#work_translation) as usize,
+				!Vec::is_empty(&self.r#credential_category) as usize,
+				!Vec::is_empty(&self.r#recognized_by) as usize,
+				!Vec::is_empty(&self.r#valid_for) as usize,
+				!Vec::is_empty(&self.r#valid_in) as usize,
 				!Vec::is_empty(&self.r#additional_type) as usize,
 				!Vec::is_empty(&self.r#alternate_name) as usize,
 				!Vec::is_empty(&self.r#description) as usize,
@@ -1229,6 +1250,7 @@ mod serde {
 				!Vec::is_empty(&self.r#image) as usize,
 				!Vec::is_empty(&self.r#main_entity_of_page) as usize,
 				!Vec::is_empty(&self.r#name) as usize,
+				!Vec::is_empty(&self.r#owner) as usize,
 				!Vec::is_empty(&self.r#potential_action) as usize,
 				!Vec::is_empty(&self.r#same_as) as usize,
 				!Vec::is_empty(&self.r#subject_of) as usize,
@@ -1256,24 +1278,6 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("competencyRequired")?;
 			}
-			if !Vec::is_empty(&self.r#credential_category) {
-				serialize_struct.serialize_field("credentialCategory", {
-					struct SerializeWith<'a>(&'a Vec<CredentialCategoryProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#credential_category)
-				})?;
-			} else {
-				serialize_struct.skip_field("credentialCategory")?;
-			}
 			if !Vec::is_empty(&self.r#educational_level) {
 				serialize_struct.serialize_field("educationalLevel", {
 					struct SerializeWith<'a>(&'a Vec<EducationalLevelProperty>);
@@ -1291,60 +1295,6 @@ mod serde {
 				})?;
 			} else {
 				serialize_struct.skip_field("educationalLevel")?;
-			}
-			if !Vec::is_empty(&self.r#recognized_by) {
-				serialize_struct.serialize_field("recognizedBy", {
-					struct SerializeWith<'a>(&'a Vec<RecognizedByProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#recognized_by)
-				})?;
-			} else {
-				serialize_struct.skip_field("recognizedBy")?;
-			}
-			if !Vec::is_empty(&self.r#valid_for) {
-				serialize_struct.serialize_field("validFor", {
-					struct SerializeWith<'a>(&'a Vec<ValidForProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#valid_for)
-				})?;
-			} else {
-				serialize_struct.skip_field("validFor")?;
-			}
-			if !Vec::is_empty(&self.r#valid_in) {
-				serialize_struct.serialize_field("validIn", {
-					struct SerializeWith<'a>(&'a Vec<ValidInProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#valid_in)
-				})?;
-			} else {
-				serialize_struct.skip_field("validIn")?;
 			}
 			if !Vec::is_empty(&self.r#about) {
 				serialize_struct.serialize_field("about", {
@@ -2084,6 +2034,24 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("datePublished")?;
 			}
+			if !Vec::is_empty(&self.r#digital_source_type) {
+				serialize_struct.serialize_field("digitalSourceType", {
+					struct SerializeWith<'a>(&'a Vec<DigitalSourceTypeProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#digital_source_type)
+				})?;
+			} else {
+				serialize_struct.skip_field("digitalSourceType")?;
+			}
 			if !Vec::is_empty(&self.r#discussion_url) {
 				serialize_struct.serialize_field("discussionUrl", {
 					struct SerializeWith<'a>(&'a Vec<DiscussionUrlProperty>);
@@ -2101,6 +2069,24 @@ mod serde {
 				})?;
 			} else {
 				serialize_struct.skip_field("discussionUrl")?;
+			}
+			if !Vec::is_empty(&self.r#display_location) {
+				serialize_struct.serialize_field("displayLocation", {
+					struct SerializeWith<'a>(&'a Vec<DisplayLocationProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#display_location)
+				})?;
+			} else {
+				serialize_struct.skip_field("displayLocation")?;
 			}
 			if !Vec::is_empty(&self.r#edit_eidr) {
 				serialize_struct.serialize_field("editEIDR", {
@@ -3326,6 +3312,24 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("video")?;
 			}
+			if !Vec::is_empty(&self.r#word_count) {
+				serialize_struct.serialize_field("wordCount", {
+					struct SerializeWith<'a>(&'a Vec<WordCountProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#word_count)
+				})?;
+			} else {
+				serialize_struct.skip_field("wordCount")?;
+			}
 			if !Vec::is_empty(&self.r#work_example) {
 				serialize_struct.serialize_field("workExample", {
 					struct SerializeWith<'a>(&'a Vec<WorkExampleProperty>);
@@ -3361,6 +3365,78 @@ mod serde {
 				})?;
 			} else {
 				serialize_struct.skip_field("workTranslation")?;
+			}
+			if !Vec::is_empty(&self.r#credential_category) {
+				serialize_struct.serialize_field("credentialCategory", {
+					struct SerializeWith<'a>(&'a Vec<CredentialCategoryProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#credential_category)
+				})?;
+			} else {
+				serialize_struct.skip_field("credentialCategory")?;
+			}
+			if !Vec::is_empty(&self.r#recognized_by) {
+				serialize_struct.serialize_field("recognizedBy", {
+					struct SerializeWith<'a>(&'a Vec<RecognizedByProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#recognized_by)
+				})?;
+			} else {
+				serialize_struct.skip_field("recognizedBy")?;
+			}
+			if !Vec::is_empty(&self.r#valid_for) {
+				serialize_struct.serialize_field("validFor", {
+					struct SerializeWith<'a>(&'a Vec<ValidForProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#valid_for)
+				})?;
+			} else {
+				serialize_struct.skip_field("validFor")?;
+			}
+			if !Vec::is_empty(&self.r#valid_in) {
+				serialize_struct.serialize_field("validIn", {
+					struct SerializeWith<'a>(&'a Vec<ValidInProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#valid_in)
+				})?;
+			} else {
+				serialize_struct.skip_field("validIn")?;
 			}
 			if !Vec::is_empty(&self.r#additional_type) {
 				serialize_struct.serialize_field("additionalType", {
@@ -3506,6 +3582,24 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("name")?;
 			}
+			if !Vec::is_empty(&self.r#owner) {
+				serialize_struct.serialize_field("owner", {
+					struct SerializeWith<'a>(&'a Vec<OwnerProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#owner)
+				})?;
+			} else {
+				serialize_struct.skip_field("owner")?;
+			}
 			if !Vec::is_empty(&self.r#potential_action) {
 				serialize_struct.serialize_field("potentialAction", {
 					struct SerializeWith<'a>(&'a Vec<PotentialActionProperty>);
@@ -3588,11 +3682,7 @@ mod serde {
 		{
 			enum Field {
 				CompetencyRequired,
-				CredentialCategory,
 				EducationalLevel,
-				RecognizedBy,
-				ValidFor,
-				ValidIn,
 				About,
 				Abstract,
 				AccessMode,
@@ -3634,7 +3724,9 @@ mod serde {
 				DateCreated,
 				DateModified,
 				DatePublished,
+				DigitalSourceType,
 				DiscussionUrl,
+				DisplayLocation,
 				EditEidr,
 				Editor,
 				EducationalAlignment,
@@ -3703,8 +3795,13 @@ mod serde {
 				UsageInfo,
 				Version,
 				Video,
+				WordCount,
 				WorkExample,
 				WorkTranslation,
+				CredentialCategory,
+				RecognizedBy,
+				ValidFor,
+				ValidIn,
 				AdditionalType,
 				AlternateName,
 				Description,
@@ -3713,6 +3810,7 @@ mod serde {
 				Image,
 				MainEntityOfPage,
 				Name,
+				Owner,
 				PotentialAction,
 				SameAs,
 				SubjectOf,
@@ -3731,11 +3829,7 @@ mod serde {
 				{
 					match value {
 						"competencyRequired" => Ok(Field::CompetencyRequired),
-						"credentialCategory" => Ok(Field::CredentialCategory),
 						"educationalLevel" => Ok(Field::EducationalLevel),
-						"recognizedBy" => Ok(Field::RecognizedBy),
-						"validFor" => Ok(Field::ValidFor),
-						"validIn" => Ok(Field::ValidIn),
 						"about" => Ok(Field::About),
 						"abstract" => Ok(Field::Abstract),
 						"accessMode" => Ok(Field::AccessMode),
@@ -3777,7 +3871,9 @@ mod serde {
 						"dateCreated" => Ok(Field::DateCreated),
 						"dateModified" => Ok(Field::DateModified),
 						"datePublished" => Ok(Field::DatePublished),
+						"digitalSourceType" => Ok(Field::DigitalSourceType),
 						"discussionUrl" => Ok(Field::DiscussionUrl),
+						"displayLocation" => Ok(Field::DisplayLocation),
 						"editEIDR" => Ok(Field::EditEidr),
 						"editor" => Ok(Field::Editor),
 						"educationalAlignment" => Ok(Field::EducationalAlignment),
@@ -3846,8 +3942,13 @@ mod serde {
 						"usageInfo" => Ok(Field::UsageInfo),
 						"version" => Ok(Field::Version),
 						"video" => Ok(Field::Video),
+						"wordCount" => Ok(Field::WordCount),
 						"workExample" => Ok(Field::WorkExample),
 						"workTranslation" => Ok(Field::WorkTranslation),
+						"credentialCategory" => Ok(Field::CredentialCategory),
+						"recognizedBy" => Ok(Field::RecognizedBy),
+						"validFor" => Ok(Field::ValidFor),
+						"validIn" => Ok(Field::ValidIn),
 						"additionalType" => Ok(Field::AdditionalType),
 						"alternateName" => Ok(Field::AlternateName),
 						"description" => Ok(Field::Description),
@@ -3856,6 +3957,7 @@ mod serde {
 						"image" => Ok(Field::Image),
 						"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
 						"name" => Ok(Field::Name),
+						"owner" => Ok(Field::Owner),
 						"potentialAction" => Ok(Field::PotentialAction),
 						"sameAs" => Ok(Field::SameAs),
 						"subjectOf" => Ok(Field::SubjectOf),
@@ -3870,11 +3972,7 @@ mod serde {
 				{
 					match value {
 						b"competencyRequired" => Ok(Field::CompetencyRequired),
-						b"credentialCategory" => Ok(Field::CredentialCategory),
 						b"educationalLevel" => Ok(Field::EducationalLevel),
-						b"recognizedBy" => Ok(Field::RecognizedBy),
-						b"validFor" => Ok(Field::ValidFor),
-						b"validIn" => Ok(Field::ValidIn),
 						b"about" => Ok(Field::About),
 						b"abstract" => Ok(Field::Abstract),
 						b"accessMode" => Ok(Field::AccessMode),
@@ -3916,7 +4014,9 @@ mod serde {
 						b"dateCreated" => Ok(Field::DateCreated),
 						b"dateModified" => Ok(Field::DateModified),
 						b"datePublished" => Ok(Field::DatePublished),
+						b"digitalSourceType" => Ok(Field::DigitalSourceType),
 						b"discussionUrl" => Ok(Field::DiscussionUrl),
+						b"displayLocation" => Ok(Field::DisplayLocation),
 						b"editEIDR" => Ok(Field::EditEidr),
 						b"editor" => Ok(Field::Editor),
 						b"educationalAlignment" => Ok(Field::EducationalAlignment),
@@ -3985,8 +4085,13 @@ mod serde {
 						b"usageInfo" => Ok(Field::UsageInfo),
 						b"version" => Ok(Field::Version),
 						b"video" => Ok(Field::Video),
+						b"wordCount" => Ok(Field::WordCount),
 						b"workExample" => Ok(Field::WorkExample),
 						b"workTranslation" => Ok(Field::WorkTranslation),
+						b"credentialCategory" => Ok(Field::CredentialCategory),
+						b"recognizedBy" => Ok(Field::RecognizedBy),
+						b"validFor" => Ok(Field::ValidFor),
+						b"validIn" => Ok(Field::ValidIn),
 						b"additionalType" => Ok(Field::AdditionalType),
 						b"alternateName" => Ok(Field::AlternateName),
 						b"description" => Ok(Field::Description),
@@ -3995,6 +4100,7 @@ mod serde {
 						b"image" => Ok(Field::Image),
 						b"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
 						b"name" => Ok(Field::Name),
+						b"owner" => Ok(Field::Owner),
 						b"potentialAction" => Ok(Field::PotentialAction),
 						b"sameAs" => Ok(Field::SameAs),
 						b"subjectOf" => Ok(Field::SubjectOf),
@@ -4026,11 +4132,7 @@ mod serde {
 					A: de::MapAccess<'de>,
 				{
 					let mut r#competency_required_property = None;
-					let mut r#credential_category_property = None;
 					let mut r#educational_level_property = None;
-					let mut r#recognized_by_property = None;
-					let mut r#valid_for_property = None;
-					let mut r#valid_in_property = None;
 					let mut r#about_property = None;
 					let mut r#abstract_property = None;
 					let mut r#access_mode_property = None;
@@ -4072,7 +4174,9 @@ mod serde {
 					let mut r#date_created_property = None;
 					let mut r#date_modified_property = None;
 					let mut r#date_published_property = None;
+					let mut r#digital_source_type_property = None;
 					let mut r#discussion_url_property = None;
+					let mut r#display_location_property = None;
 					let mut r#edit_eidr_property = None;
 					let mut r#editor_property = None;
 					let mut r#educational_alignment_property = None;
@@ -4141,8 +4245,13 @@ mod serde {
 					let mut r#usage_info_property = None;
 					let mut r#version_property = None;
 					let mut r#video_property = None;
+					let mut r#word_count_property = None;
 					let mut r#work_example_property = None;
 					let mut r#work_translation_property = None;
+					let mut r#credential_category_property = None;
+					let mut r#recognized_by_property = None;
+					let mut r#valid_for_property = None;
+					let mut r#valid_in_property = None;
 					let mut r#additional_type_property = None;
 					let mut r#alternate_name_property = None;
 					let mut r#description_property = None;
@@ -4151,6 +4260,7 @@ mod serde {
 					let mut r#image_property = None;
 					let mut r#main_entity_of_page_property = None;
 					let mut r#name_property = None;
+					let mut r#owner_property = None;
 					let mut r#potential_action_property = None;
 					let mut r#same_as_property = None;
 					let mut r#subject_of_property = None;
@@ -4185,34 +4295,6 @@ mod serde {
 									}
 								});
 							}
-							Field::CredentialCategory => {
-								if r#credential_category_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"credentialCategory",
-									));
-								}
-								r#credential_category_property = Some({
-									struct DeserializeWith(Vec<CredentialCategoryProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
 							Field::EducationalLevel => {
 								if r#educational_level_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -4221,90 +4303,6 @@ mod serde {
 								}
 								r#educational_level_property = Some({
 									struct DeserializeWith(Vec<EducationalLevelProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::RecognizedBy => {
-								if r#recognized_by_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"recognizedBy",
-									));
-								}
-								r#recognized_by_property = Some({
-									struct DeserializeWith(Vec<RecognizedByProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::ValidFor => {
-								if r#valid_for_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"validFor",
-									));
-								}
-								r#valid_for_property = Some({
-									struct DeserializeWith(Vec<ValidForProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::ValidIn => {
-								if r#valid_in_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"validIn",
-									));
-								}
-								r#valid_in_property = Some({
-									struct DeserializeWith(Vec<ValidInProperty>);
 									impl<'de> Deserialize<'de> for DeserializeWith {
 										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
 										where
@@ -5463,6 +5461,34 @@ mod serde {
 									}
 								});
 							}
+							Field::DigitalSourceType => {
+								if r#digital_source_type_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"digitalSourceType",
+									));
+								}
+								r#digital_source_type_property = Some({
+									struct DeserializeWith(Vec<DigitalSourceTypeProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::DiscussionUrl => {
 								if r#discussion_url_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -5471,6 +5497,34 @@ mod serde {
 								}
 								r#discussion_url_property = Some({
 									struct DeserializeWith(Vec<DiscussionUrlProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::DisplayLocation => {
+								if r#display_location_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"displayLocation",
+									));
+								}
+								r#display_location_property = Some({
+									struct DeserializeWith(Vec<DisplayLocationProperty>);
 									impl<'de> Deserialize<'de> for DeserializeWith {
 										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
 										where
@@ -7379,6 +7433,34 @@ mod serde {
 									}
 								});
 							}
+							Field::WordCount => {
+								if r#word_count_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"wordCount",
+									));
+								}
+								r#word_count_property = Some({
+									struct DeserializeWith(Vec<WordCountProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::WorkExample => {
 								if r#work_example_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -7415,6 +7497,118 @@ mod serde {
 								}
 								r#work_translation_property = Some({
 									struct DeserializeWith(Vec<WorkTranslationProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::CredentialCategory => {
+								if r#credential_category_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"credentialCategory",
+									));
+								}
+								r#credential_category_property = Some({
+									struct DeserializeWith(Vec<CredentialCategoryProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::RecognizedBy => {
+								if r#recognized_by_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"recognizedBy",
+									));
+								}
+								r#recognized_by_property = Some({
+									struct DeserializeWith(Vec<RecognizedByProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::ValidFor => {
+								if r#valid_for_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"validFor",
+									));
+								}
+								r#valid_for_property = Some({
+									struct DeserializeWith(Vec<ValidForProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::ValidIn => {
+								if r#valid_in_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"validIn",
+									));
+								}
+								r#valid_in_property = Some({
+									struct DeserializeWith(Vec<ValidInProperty>);
 									impl<'de> Deserialize<'de> for DeserializeWith {
 										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
 										where
@@ -7655,6 +7849,32 @@ mod serde {
 									}
 								});
 							}
+							Field::Owner => {
+								if r#owner_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field("owner"));
+								}
+								r#owner_property = Some({
+									struct DeserializeWith(Vec<OwnerProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::PotentialAction => {
 								if r#potential_action_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -7770,11 +7990,7 @@ mod serde {
 					}
 					Ok(EducationalOccupationalCredential {
 						r#competency_required: r#competency_required_property.unwrap_or_default(),
-						r#credential_category: r#credential_category_property.unwrap_or_default(),
 						r#educational_level: r#educational_level_property.unwrap_or_default(),
-						r#recognized_by: r#recognized_by_property.unwrap_or_default(),
-						r#valid_for: r#valid_for_property.unwrap_or_default(),
-						r#valid_in: r#valid_in_property.unwrap_or_default(),
 						r#about: r#about_property.unwrap_or_default(),
 						r#abstract: r#abstract_property.unwrap_or_default(),
 						r#access_mode: r#access_mode_property.unwrap_or_default(),
@@ -7821,7 +8037,9 @@ mod serde {
 						r#date_created: r#date_created_property.unwrap_or_default(),
 						r#date_modified: r#date_modified_property.unwrap_or_default(),
 						r#date_published: r#date_published_property.unwrap_or_default(),
+						r#digital_source_type: r#digital_source_type_property.unwrap_or_default(),
 						r#discussion_url: r#discussion_url_property.unwrap_or_default(),
+						r#display_location: r#display_location_property.unwrap_or_default(),
 						r#edit_eidr: r#edit_eidr_property.unwrap_or_default(),
 						r#editor: r#editor_property.unwrap_or_default(),
 						r#educational_alignment: r#educational_alignment_property
@@ -7895,8 +8113,13 @@ mod serde {
 						r#usage_info: r#usage_info_property.unwrap_or_default(),
 						r#version: r#version_property.unwrap_or_default(),
 						r#video: r#video_property.unwrap_or_default(),
+						r#word_count: r#word_count_property.unwrap_or_default(),
 						r#work_example: r#work_example_property.unwrap_or_default(),
 						r#work_translation: r#work_translation_property.unwrap_or_default(),
+						r#credential_category: r#credential_category_property.unwrap_or_default(),
+						r#recognized_by: r#recognized_by_property.unwrap_or_default(),
+						r#valid_for: r#valid_for_property.unwrap_or_default(),
+						r#valid_in: r#valid_in_property.unwrap_or_default(),
 						r#additional_type: r#additional_type_property.unwrap_or_default(),
 						r#alternate_name: r#alternate_name_property.unwrap_or_default(),
 						r#description: r#description_property.unwrap_or_default(),
@@ -7906,6 +8129,7 @@ mod serde {
 						r#image: r#image_property.unwrap_or_default(),
 						r#main_entity_of_page: r#main_entity_of_page_property.unwrap_or_default(),
 						r#name: r#name_property.unwrap_or_default(),
+						r#owner: r#owner_property.unwrap_or_default(),
 						r#potential_action: r#potential_action_property.unwrap_or_default(),
 						r#same_as: r#same_as_property.unwrap_or_default(),
 						r#subject_of: r#subject_of_property.unwrap_or_default(),
@@ -7915,11 +8139,7 @@ mod serde {
 			}
 			const FIELDS: &[&str] = &[
 				"competencyRequired",
-				"credentialCategory",
 				"educationalLevel",
-				"recognizedBy",
-				"validFor",
-				"validIn",
 				"about",
 				"abstract",
 				"accessMode",
@@ -7961,7 +8181,9 @@ mod serde {
 				"dateCreated",
 				"dateModified",
 				"datePublished",
+				"digitalSourceType",
 				"discussionUrl",
+				"displayLocation",
 				"editEIDR",
 				"editor",
 				"educationalAlignment",
@@ -8030,8 +8252,13 @@ mod serde {
 				"usageInfo",
 				"version",
 				"video",
+				"wordCount",
 				"workExample",
 				"workTranslation",
+				"credentialCategory",
+				"recognizedBy",
+				"validFor",
+				"validIn",
 				"additionalType",
 				"alternateName",
 				"description",
@@ -8040,6 +8267,7 @@ mod serde {
 				"image",
 				"mainEntityOfPage",
 				"name",
+				"owner",
 				"potentialAction",
 				"sameAs",
 				"subjectOf",

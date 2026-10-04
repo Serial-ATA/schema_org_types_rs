@@ -9,6 +9,8 @@ pub struct PostalAddress {
 	pub r#address_locality: Vec<AddressLocalityProperty>,
 	/// <https://schema.org/addressRegion>
 	pub r#address_region: Vec<AddressRegionProperty>,
+	/// <https://schema.org/extendedAddress>
+	pub r#extended_address: Vec<ExtendedAddressProperty>,
 	/// <https://schema.org/postOfficeBoxNumber>
 	pub r#post_office_box_number: Vec<PostOfficeBoxNumberProperty>,
 	/// <https://schema.org/postalCode>
@@ -52,6 +54,8 @@ pub struct PostalAddress {
 	pub r#main_entity_of_page: Vec<MainEntityOfPageProperty>,
 	/// <https://schema.org/name>
 	pub r#name: Vec<NameProperty>,
+	/// <https://schema.org/owner>
+	pub r#owner: Vec<OwnerProperty>,
 	/// <https://schema.org/potentialAction>
 	pub r#potential_action: Vec<PotentialActionProperty>,
 	/// <https://schema.org/sameAs>
@@ -75,6 +79,10 @@ pub trait PostalAddressTrait {
 	fn get_address_region(&self) -> &[AddressRegionProperty];
 	/// Take <https://schema.org/addressRegion> from [`Self`] as owned vector.
 	fn take_address_region(&mut self) -> Vec<AddressRegionProperty>;
+	/// Get <https://schema.org/extendedAddress> from [`Self`] as borrowed slice.
+	fn get_extended_address(&self) -> &[ExtendedAddressProperty];
+	/// Take <https://schema.org/extendedAddress> from [`Self`] as owned vector.
+	fn take_extended_address(&mut self) -> Vec<ExtendedAddressProperty>;
 	/// Get <https://schema.org/postOfficeBoxNumber> from [`Self`] as borrowed slice.
 	fn get_post_office_box_number(&self) -> &[PostOfficeBoxNumberProperty];
 	/// Take <https://schema.org/postOfficeBoxNumber> from [`Self`] as owned vector.
@@ -106,6 +114,12 @@ impl PostalAddressTrait for PostalAddress {
 	}
 	fn take_address_region(&mut self) -> Vec<AddressRegionProperty> {
 		std::mem::take(&mut self.r#address_region)
+	}
+	fn get_extended_address(&self) -> &[ExtendedAddressProperty] {
+		self.r#extended_address.as_slice()
+	}
+	fn take_extended_address(&mut self) -> Vec<ExtendedAddressProperty> {
+		std::mem::take(&mut self.r#extended_address)
 	}
 	fn get_post_office_box_number(&self) -> &[PostOfficeBoxNumberProperty] {
 		self.r#post_office_box_number.as_slice()
@@ -238,6 +252,12 @@ impl ThingTrait for PostalAddress {
 	fn take_name(&mut self) -> Vec<NameProperty> {
 		std::mem::take(&mut self.r#name)
 	}
+	fn get_owner(&self) -> &[OwnerProperty] {
+		self.r#owner.as_slice()
+	}
+	fn take_owner(&mut self) -> Vec<OwnerProperty> {
+		std::mem::take(&mut self.r#owner)
+	}
 	fn get_potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
 	}
@@ -281,6 +301,7 @@ mod serde {
 				!Vec::is_empty(&self.r#address_country) as usize,
 				!Vec::is_empty(&self.r#address_locality) as usize,
 				!Vec::is_empty(&self.r#address_region) as usize,
+				!Vec::is_empty(&self.r#extended_address) as usize,
 				!Vec::is_empty(&self.r#post_office_box_number) as usize,
 				!Vec::is_empty(&self.r#postal_code) as usize,
 				!Vec::is_empty(&self.r#street_address) as usize,
@@ -302,6 +323,7 @@ mod serde {
 				!Vec::is_empty(&self.r#image) as usize,
 				!Vec::is_empty(&self.r#main_entity_of_page) as usize,
 				!Vec::is_empty(&self.r#name) as usize,
+				!Vec::is_empty(&self.r#owner) as usize,
 				!Vec::is_empty(&self.r#potential_action) as usize,
 				!Vec::is_empty(&self.r#same_as) as usize,
 				!Vec::is_empty(&self.r#subject_of) as usize,
@@ -364,6 +386,24 @@ mod serde {
 				})?;
 			} else {
 				serialize_struct.skip_field("addressRegion")?;
+			}
+			if !Vec::is_empty(&self.r#extended_address) {
+				serialize_struct.serialize_field("extendedAddress", {
+					struct SerializeWith<'a>(&'a Vec<ExtendedAddressProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#extended_address)
+				})?;
+			} else {
+				serialize_struct.skip_field("extendedAddress")?;
 			}
 			if !Vec::is_empty(&self.r#post_office_box_number) {
 				serialize_struct.serialize_field("postOfficeBoxNumber", {
@@ -743,6 +783,24 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("name")?;
 			}
+			if !Vec::is_empty(&self.r#owner) {
+				serialize_struct.serialize_field("owner", {
+					struct SerializeWith<'a>(&'a Vec<OwnerProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#owner)
+				})?;
+			} else {
+				serialize_struct.skip_field("owner")?;
+			}
 			if !Vec::is_empty(&self.r#potential_action) {
 				serialize_struct.serialize_field("potentialAction", {
 					struct SerializeWith<'a>(&'a Vec<PotentialActionProperty>);
@@ -827,6 +885,7 @@ mod serde {
 				AddressCountry,
 				AddressLocality,
 				AddressRegion,
+				ExtendedAddress,
 				PostOfficeBoxNumber,
 				PostalCode,
 				StreetAddress,
@@ -848,6 +907,7 @@ mod serde {
 				Image,
 				MainEntityOfPage,
 				Name,
+				Owner,
 				PotentialAction,
 				SameAs,
 				SubjectOf,
@@ -868,6 +928,7 @@ mod serde {
 						"addressCountry" => Ok(Field::AddressCountry),
 						"addressLocality" => Ok(Field::AddressLocality),
 						"addressRegion" => Ok(Field::AddressRegion),
+						"extendedAddress" => Ok(Field::ExtendedAddress),
 						"postOfficeBoxNumber" => Ok(Field::PostOfficeBoxNumber),
 						"postalCode" => Ok(Field::PostalCode),
 						"streetAddress" => Ok(Field::StreetAddress),
@@ -889,6 +950,7 @@ mod serde {
 						"image" => Ok(Field::Image),
 						"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
 						"name" => Ok(Field::Name),
+						"owner" => Ok(Field::Owner),
 						"potentialAction" => Ok(Field::PotentialAction),
 						"sameAs" => Ok(Field::SameAs),
 						"subjectOf" => Ok(Field::SubjectOf),
@@ -905,6 +967,7 @@ mod serde {
 						b"addressCountry" => Ok(Field::AddressCountry),
 						b"addressLocality" => Ok(Field::AddressLocality),
 						b"addressRegion" => Ok(Field::AddressRegion),
+						b"extendedAddress" => Ok(Field::ExtendedAddress),
 						b"postOfficeBoxNumber" => Ok(Field::PostOfficeBoxNumber),
 						b"postalCode" => Ok(Field::PostalCode),
 						b"streetAddress" => Ok(Field::StreetAddress),
@@ -926,6 +989,7 @@ mod serde {
 						b"image" => Ok(Field::Image),
 						b"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
 						b"name" => Ok(Field::Name),
+						b"owner" => Ok(Field::Owner),
 						b"potentialAction" => Ok(Field::PotentialAction),
 						b"sameAs" => Ok(Field::SameAs),
 						b"subjectOf" => Ok(Field::SubjectOf),
@@ -959,6 +1023,7 @@ mod serde {
 					let mut r#address_country_property = None;
 					let mut r#address_locality_property = None;
 					let mut r#address_region_property = None;
+					let mut r#extended_address_property = None;
 					let mut r#post_office_box_number_property = None;
 					let mut r#postal_code_property = None;
 					let mut r#street_address_property = None;
@@ -980,6 +1045,7 @@ mod serde {
 					let mut r#image_property = None;
 					let mut r#main_entity_of_page_property = None;
 					let mut r#name_property = None;
+					let mut r#owner_property = None;
 					let mut r#potential_action_property = None;
 					let mut r#same_as_property = None;
 					let mut r#subject_of_property = None;
@@ -1050,6 +1116,34 @@ mod serde {
 								}
 								r#address_region_property = Some({
 									struct DeserializeWith(Vec<AddressRegionProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::ExtendedAddress => {
+								if r#extended_address_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"extendedAddress",
+									));
+								}
+								r#extended_address_property = Some({
+									struct DeserializeWith(Vec<ExtendedAddressProperty>);
 									impl<'de> Deserialize<'de> for DeserializeWith {
 										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
 										where
@@ -1652,6 +1746,32 @@ mod serde {
 									}
 								});
 							}
+							Field::Owner => {
+								if r#owner_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field("owner"));
+								}
+								r#owner_property = Some({
+									struct DeserializeWith(Vec<OwnerProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::PotentialAction => {
 								if r#potential_action_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -1769,6 +1889,7 @@ mod serde {
 						r#address_country: r#address_country_property.unwrap_or_default(),
 						r#address_locality: r#address_locality_property.unwrap_or_default(),
 						r#address_region: r#address_region_property.unwrap_or_default(),
+						r#extended_address: r#extended_address_property.unwrap_or_default(),
 						r#post_office_box_number: r#post_office_box_number_property
 							.unwrap_or_default(),
 						r#postal_code: r#postal_code_property.unwrap_or_default(),
@@ -1792,6 +1913,7 @@ mod serde {
 						r#image: r#image_property.unwrap_or_default(),
 						r#main_entity_of_page: r#main_entity_of_page_property.unwrap_or_default(),
 						r#name: r#name_property.unwrap_or_default(),
+						r#owner: r#owner_property.unwrap_or_default(),
 						r#potential_action: r#potential_action_property.unwrap_or_default(),
 						r#same_as: r#same_as_property.unwrap_or_default(),
 						r#subject_of: r#subject_of_property.unwrap_or_default(),
@@ -1803,6 +1925,7 @@ mod serde {
 				"addressCountry",
 				"addressLocality",
 				"addressRegion",
+				"extendedAddress",
 				"postOfficeBoxNumber",
 				"postalCode",
 				"streetAddress",
@@ -1824,6 +1947,7 @@ mod serde {
 				"image",
 				"mainEntityOfPage",
 				"name",
+				"owner",
 				"potentialAction",
 				"sameAs",
 				"subjectOf",

@@ -1,8 +1,16 @@
 use super::*;
-/// <https://schema.org/Mass>
+/// <https://schema.org/Error>
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
-pub struct Mass {
+pub struct Error {
+	/// <https://schema.org/errorCode>
+	pub r#error_code: Vec<ErrorCodeProperty>,
+	/// <https://schema.org/data>
+	pub r#data: Vec<DataProperty>,
+	/// <https://schema.org/source>
+	pub r#source: Vec<SourceProperty>,
+	/// <https://schema.org/timestamp>
+	pub r#timestamp: Vec<TimestampProperty>,
 	/// <https://schema.org/additionalType>
 	pub r#additional_type: Vec<AdditionalTypeProperty>,
 	/// <https://schema.org/alternateName>
@@ -19,6 +27,8 @@ pub struct Mass {
 	pub r#main_entity_of_page: Vec<MainEntityOfPageProperty>,
 	/// <https://schema.org/name>
 	pub r#name: Vec<NameProperty>,
+	/// <https://schema.org/owner>
+	pub r#owner: Vec<OwnerProperty>,
 	/// <https://schema.org/potentialAction>
 	pub r#potential_action: Vec<PotentialActionProperty>,
 	/// <https://schema.org/sameAs>
@@ -28,11 +38,43 @@ pub struct Mass {
 	/// <https://schema.org/url>
 	pub r#url: Vec<UrlProperty>,
 }
-/// This trait is for properties from <https://schema.org/Mass>.
-pub trait MassTrait {}
-impl MassTrait for Mass {}
-impl QuantityTrait for Mass {}
-impl ThingTrait for Mass {
+/// This trait is for properties from <https://schema.org/Error>.
+pub trait ErrorTrait {
+	/// Get <https://schema.org/errorCode> from [`Self`] as borrowed slice.
+	fn get_error_code(&self) -> &[ErrorCodeProperty];
+	/// Take <https://schema.org/errorCode> from [`Self`] as owned vector.
+	fn take_error_code(&mut self) -> Vec<ErrorCodeProperty>;
+}
+impl ErrorTrait for Error {
+	fn get_error_code(&self) -> &[ErrorCodeProperty] {
+		self.r#error_code.as_slice()
+	}
+	fn take_error_code(&mut self) -> Vec<ErrorCodeProperty> {
+		std::mem::take(&mut self.r#error_code)
+	}
+}
+impl InstantaneousEventTrait for Error {
+	fn get_data(&self) -> &[DataProperty] {
+		self.r#data.as_slice()
+	}
+	fn take_data(&mut self) -> Vec<DataProperty> {
+		std::mem::take(&mut self.r#data)
+	}
+	fn get_source(&self) -> &[SourceProperty] {
+		self.r#source.as_slice()
+	}
+	fn take_source(&mut self) -> Vec<SourceProperty> {
+		std::mem::take(&mut self.r#source)
+	}
+	fn get_timestamp(&self) -> &[TimestampProperty] {
+		self.r#timestamp.as_slice()
+	}
+	fn take_timestamp(&mut self) -> Vec<TimestampProperty> {
+		std::mem::take(&mut self.r#timestamp)
+	}
+}
+impl StructuredValueTrait for Error {}
+impl ThingTrait for Error {
 	fn get_additional_type(&self) -> &[AdditionalTypeProperty] {
 		self.r#additional_type.as_slice()
 	}
@@ -81,6 +123,12 @@ impl ThingTrait for Mass {
 	fn take_name(&mut self) -> Vec<NameProperty> {
 		std::mem::take(&mut self.r#name)
 	}
+	fn get_owner(&self) -> &[OwnerProperty] {
+		self.r#owner.as_slice()
+	}
+	fn take_owner(&mut self) -> Vec<OwnerProperty> {
+		std::mem::take(&mut self.r#owner)
+	}
 	fn get_potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
 	}
@@ -115,12 +163,16 @@ mod serde {
 	};
 
 	use super::*;
-	impl Serialize for Mass {
+	impl Serialize for Error {
 		fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
 		where
 			S: Serializer,
 		{
 			let len: usize = [
+				!Vec::is_empty(&self.r#error_code) as usize,
+				!Vec::is_empty(&self.r#data) as usize,
+				!Vec::is_empty(&self.r#source) as usize,
+				!Vec::is_empty(&self.r#timestamp) as usize,
 				!Vec::is_empty(&self.r#additional_type) as usize,
 				!Vec::is_empty(&self.r#alternate_name) as usize,
 				!Vec::is_empty(&self.r#description) as usize,
@@ -129,6 +181,7 @@ mod serde {
 				!Vec::is_empty(&self.r#image) as usize,
 				!Vec::is_empty(&self.r#main_entity_of_page) as usize,
 				!Vec::is_empty(&self.r#name) as usize,
+				!Vec::is_empty(&self.r#owner) as usize,
 				!Vec::is_empty(&self.r#potential_action) as usize,
 				!Vec::is_empty(&self.r#same_as) as usize,
 				!Vec::is_empty(&self.r#subject_of) as usize,
@@ -136,7 +189,79 @@ mod serde {
 			]
 			.iter()
 			.sum();
-			let mut serialize_struct = Serializer::serialize_struct(serializer, "Mass", len)?;
+			let mut serialize_struct = Serializer::serialize_struct(serializer, "Error", len)?;
+			if !Vec::is_empty(&self.r#error_code) {
+				serialize_struct.serialize_field("errorCode", {
+					struct SerializeWith<'a>(&'a Vec<ErrorCodeProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#error_code)
+				})?;
+			} else {
+				serialize_struct.skip_field("errorCode")?;
+			}
+			if !Vec::is_empty(&self.r#data) {
+				serialize_struct.serialize_field("data", {
+					struct SerializeWith<'a>(&'a Vec<DataProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#data)
+				})?;
+			} else {
+				serialize_struct.skip_field("data")?;
+			}
+			if !Vec::is_empty(&self.r#source) {
+				serialize_struct.serialize_field("source", {
+					struct SerializeWith<'a>(&'a Vec<SourceProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#source)
+				})?;
+			} else {
+				serialize_struct.skip_field("source")?;
+			}
+			if !Vec::is_empty(&self.r#timestamp) {
+				serialize_struct.serialize_field("timestamp", {
+					struct SerializeWith<'a>(&'a Vec<TimestampProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#timestamp)
+				})?;
+			} else {
+				serialize_struct.skip_field("timestamp")?;
+			}
 			if !Vec::is_empty(&self.r#additional_type) {
 				serialize_struct.serialize_field("additionalType", {
 					struct SerializeWith<'a>(&'a Vec<AdditionalTypeProperty>);
@@ -281,6 +406,24 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("name")?;
 			}
+			if !Vec::is_empty(&self.r#owner) {
+				serialize_struct.serialize_field("owner", {
+					struct SerializeWith<'a>(&'a Vec<OwnerProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#owner)
+				})?;
+			} else {
+				serialize_struct.skip_field("owner")?;
+			}
 			if !Vec::is_empty(&self.r#potential_action) {
 				serialize_struct.serialize_field("potentialAction", {
 					struct SerializeWith<'a>(&'a Vec<PotentialActionProperty>);
@@ -356,12 +499,16 @@ mod serde {
 			serialize_struct.end()
 		}
 	}
-	impl<'de> Deserialize<'de> for Mass {
+	impl<'de> Deserialize<'de> for Error {
 		fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
 		where
 			D: Deserializer<'de>,
 		{
 			enum Field {
+				ErrorCode,
+				Data,
+				Source,
+				Timestamp,
 				AdditionalType,
 				AlternateName,
 				Description,
@@ -370,6 +517,7 @@ mod serde {
 				Image,
 				MainEntityOfPage,
 				Name,
+				Owner,
 				PotentialAction,
 				SameAs,
 				SubjectOf,
@@ -387,6 +535,10 @@ mod serde {
 					E: de::Error,
 				{
 					match value {
+						"errorCode" => Ok(Field::ErrorCode),
+						"data" => Ok(Field::Data),
+						"source" => Ok(Field::Source),
+						"timestamp" => Ok(Field::Timestamp),
 						"additionalType" => Ok(Field::AdditionalType),
 						"alternateName" => Ok(Field::AlternateName),
 						"description" => Ok(Field::Description),
@@ -395,6 +547,7 @@ mod serde {
 						"image" => Ok(Field::Image),
 						"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
 						"name" => Ok(Field::Name),
+						"owner" => Ok(Field::Owner),
 						"potentialAction" => Ok(Field::PotentialAction),
 						"sameAs" => Ok(Field::SameAs),
 						"subjectOf" => Ok(Field::SubjectOf),
@@ -408,6 +561,10 @@ mod serde {
 					E: de::Error,
 				{
 					match value {
+						b"errorCode" => Ok(Field::ErrorCode),
+						b"data" => Ok(Field::Data),
+						b"source" => Ok(Field::Source),
+						b"timestamp" => Ok(Field::Timestamp),
 						b"additionalType" => Ok(Field::AdditionalType),
 						b"alternateName" => Ok(Field::AlternateName),
 						b"description" => Ok(Field::Description),
@@ -416,6 +573,7 @@ mod serde {
 						b"image" => Ok(Field::Image),
 						b"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
 						b"name" => Ok(Field::Name),
+						b"owner" => Ok(Field::Owner),
 						b"potentialAction" => Ok(Field::PotentialAction),
 						b"sameAs" => Ok(Field::SameAs),
 						b"subjectOf" => Ok(Field::SubjectOf),
@@ -438,14 +596,18 @@ mod serde {
 			}
 			struct ClassVisitor;
 			impl<'de> Visitor<'de> for ClassVisitor {
-				type Value = Mass;
+				type Value = Error;
 				fn expecting(&self, formatter: &mut Formatter) -> fmt::Result {
-					formatter.write_str("schema.org schema Mass")
+					formatter.write_str("schema.org schema Error")
 				}
 				fn visit_map<A>(self, mut map: A) -> Result<Self::Value, A::Error>
 				where
 					A: de::MapAccess<'de>,
 				{
+					let mut r#error_code_property = None;
+					let mut r#data_property = None;
+					let mut r#source_property = None;
+					let mut r#timestamp_property = None;
 					let mut r#additional_type_property = None;
 					let mut r#alternate_name_property = None;
 					let mut r#description_property = None;
@@ -454,12 +616,121 @@ mod serde {
 					let mut r#image_property = None;
 					let mut r#main_entity_of_page_property = None;
 					let mut r#name_property = None;
+					let mut r#owner_property = None;
 					let mut r#potential_action_property = None;
 					let mut r#same_as_property = None;
 					let mut r#subject_of_property = None;
 					let mut r#url_property = None;
 					while let Some(key) = map.next_key::<Field>()? {
 						match key {
+							Field::ErrorCode => {
+								if r#error_code_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"errorCode",
+									));
+								}
+								r#error_code_property = Some({
+									struct DeserializeWith(Vec<ErrorCodeProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::Data => {
+								if r#data_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field("data"));
+								}
+								r#data_property = Some({
+									struct DeserializeWith(Vec<DataProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::Source => {
+								if r#source_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field("source"));
+								}
+								r#source_property = Some({
+									struct DeserializeWith(Vec<SourceProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::Timestamp => {
+								if r#timestamp_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"timestamp",
+									));
+								}
+								r#timestamp_property = Some({
+									struct DeserializeWith(Vec<TimestampProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::AdditionalType => {
 								if r#additional_type_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -680,6 +951,32 @@ mod serde {
 									}
 								});
 							}
+							Field::Owner => {
+								if r#owner_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field("owner"));
+								}
+								r#owner_property = Some({
+									struct DeserializeWith(Vec<OwnerProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::PotentialAction => {
 								if r#potential_action_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -793,7 +1090,11 @@ mod serde {
 							}
 						}
 					}
-					Ok(Mass {
+					Ok(Error {
+						r#error_code: r#error_code_property.unwrap_or_default(),
+						r#data: r#data_property.unwrap_or_default(),
+						r#source: r#source_property.unwrap_or_default(),
+						r#timestamp: r#timestamp_property.unwrap_or_default(),
 						r#additional_type: r#additional_type_property.unwrap_or_default(),
 						r#alternate_name: r#alternate_name_property.unwrap_or_default(),
 						r#description: r#description_property.unwrap_or_default(),
@@ -803,6 +1104,7 @@ mod serde {
 						r#image: r#image_property.unwrap_or_default(),
 						r#main_entity_of_page: r#main_entity_of_page_property.unwrap_or_default(),
 						r#name: r#name_property.unwrap_or_default(),
+						r#owner: r#owner_property.unwrap_or_default(),
 						r#potential_action: r#potential_action_property.unwrap_or_default(),
 						r#same_as: r#same_as_property.unwrap_or_default(),
 						r#subject_of: r#subject_of_property.unwrap_or_default(),
@@ -811,6 +1113,10 @@ mod serde {
 				}
 			}
 			const FIELDS: &[&str] = &[
+				"errorCode",
+				"data",
+				"source",
+				"timestamp",
 				"additionalType",
 				"alternateName",
 				"description",
@@ -819,12 +1125,13 @@ mod serde {
 				"image",
 				"mainEntityOfPage",
 				"name",
+				"owner",
 				"potentialAction",
 				"sameAs",
 				"subjectOf",
 				"url",
 			];
-			deserializer.deserialize_struct("Mass", FIELDS, ClassVisitor)
+			deserializer.deserialize_struct("Error", FIELDS, ClassVisitor)
 		}
 	}
 }

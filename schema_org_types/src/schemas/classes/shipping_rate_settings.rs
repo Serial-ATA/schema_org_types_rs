@@ -9,12 +9,18 @@ pub struct ShippingRateSettings {
 	pub r#free_shipping_threshold: Vec<FreeShippingThresholdProperty>,
 	/// <https://schema.org/isUnlabelledFallback>
 	pub r#is_unlabelled_fallback: Vec<IsUnlabelledFallbackProperty>,
+	/// <https://schema.org/minimumOrderValue>
+	pub r#minimum_order_value: Vec<MinimumOrderValueProperty>,
+	/// <https://schema.org/orderPercentage>
+	pub r#order_percentage: Vec<OrderPercentageProperty>,
 	/// <https://schema.org/shippingDestination>
 	pub r#shipping_destination: Vec<ShippingDestinationProperty>,
 	/// <https://schema.org/shippingLabel>
 	pub r#shipping_label: Vec<ShippingLabelProperty>,
 	/// <https://schema.org/shippingRate>
 	pub r#shipping_rate: Vec<ShippingRateProperty>,
+	/// <https://schema.org/weightPercentage>
+	pub r#weight_percentage: Vec<WeightPercentageProperty>,
 	/// <https://schema.org/additionalType>
 	pub r#additional_type: Vec<AdditionalTypeProperty>,
 	/// <https://schema.org/alternateName>
@@ -31,6 +37,8 @@ pub struct ShippingRateSettings {
 	pub r#main_entity_of_page: Vec<MainEntityOfPageProperty>,
 	/// <https://schema.org/name>
 	pub r#name: Vec<NameProperty>,
+	/// <https://schema.org/owner>
+	pub r#owner: Vec<OwnerProperty>,
 	/// <https://schema.org/potentialAction>
 	pub r#potential_action: Vec<PotentialActionProperty>,
 	/// <https://schema.org/sameAs>
@@ -54,6 +62,14 @@ pub trait ShippingRateSettingsTrait {
 	fn get_is_unlabelled_fallback(&self) -> &[IsUnlabelledFallbackProperty];
 	/// Take <https://schema.org/isUnlabelledFallback> from [`Self`] as owned vector.
 	fn take_is_unlabelled_fallback(&mut self) -> Vec<IsUnlabelledFallbackProperty>;
+	/// Get <https://schema.org/minimumOrderValue> from [`Self`] as borrowed slice.
+	fn get_minimum_order_value(&self) -> &[MinimumOrderValueProperty];
+	/// Take <https://schema.org/minimumOrderValue> from [`Self`] as owned vector.
+	fn take_minimum_order_value(&mut self) -> Vec<MinimumOrderValueProperty>;
+	/// Get <https://schema.org/orderPercentage> from [`Self`] as borrowed slice.
+	fn get_order_percentage(&self) -> &[OrderPercentageProperty];
+	/// Take <https://schema.org/orderPercentage> from [`Self`] as owned vector.
+	fn take_order_percentage(&mut self) -> Vec<OrderPercentageProperty>;
 	/// Get <https://schema.org/shippingDestination> from [`Self`] as borrowed slice.
 	fn get_shipping_destination(&self) -> &[ShippingDestinationProperty];
 	/// Take <https://schema.org/shippingDestination> from [`Self`] as owned vector.
@@ -66,6 +82,10 @@ pub trait ShippingRateSettingsTrait {
 	fn get_shipping_rate(&self) -> &[ShippingRateProperty];
 	/// Take <https://schema.org/shippingRate> from [`Self`] as owned vector.
 	fn take_shipping_rate(&mut self) -> Vec<ShippingRateProperty>;
+	/// Get <https://schema.org/weightPercentage> from [`Self`] as borrowed slice.
+	fn get_weight_percentage(&self) -> &[WeightPercentageProperty];
+	/// Take <https://schema.org/weightPercentage> from [`Self`] as owned vector.
+	fn take_weight_percentage(&mut self) -> Vec<WeightPercentageProperty>;
 }
 impl ShippingRateSettingsTrait for ShippingRateSettings {
 	fn get_does_not_ship(&self) -> &[DoesNotShipProperty] {
@@ -86,6 +106,18 @@ impl ShippingRateSettingsTrait for ShippingRateSettings {
 	fn take_is_unlabelled_fallback(&mut self) -> Vec<IsUnlabelledFallbackProperty> {
 		std::mem::take(&mut self.r#is_unlabelled_fallback)
 	}
+	fn get_minimum_order_value(&self) -> &[MinimumOrderValueProperty] {
+		self.r#minimum_order_value.as_slice()
+	}
+	fn take_minimum_order_value(&mut self) -> Vec<MinimumOrderValueProperty> {
+		std::mem::take(&mut self.r#minimum_order_value)
+	}
+	fn get_order_percentage(&self) -> &[OrderPercentageProperty] {
+		self.r#order_percentage.as_slice()
+	}
+	fn take_order_percentage(&mut self) -> Vec<OrderPercentageProperty> {
+		std::mem::take(&mut self.r#order_percentage)
+	}
 	fn get_shipping_destination(&self) -> &[ShippingDestinationProperty] {
 		self.r#shipping_destination.as_slice()
 	}
@@ -103,6 +135,12 @@ impl ShippingRateSettingsTrait for ShippingRateSettings {
 	}
 	fn take_shipping_rate(&mut self) -> Vec<ShippingRateProperty> {
 		std::mem::take(&mut self.r#shipping_rate)
+	}
+	fn get_weight_percentage(&self) -> &[WeightPercentageProperty] {
+		self.r#weight_percentage.as_slice()
+	}
+	fn take_weight_percentage(&mut self) -> Vec<WeightPercentageProperty> {
+		std::mem::take(&mut self.r#weight_percentage)
 	}
 }
 impl StructuredValueTrait for ShippingRateSettings {}
@@ -155,6 +193,12 @@ impl ThingTrait for ShippingRateSettings {
 	fn take_name(&mut self) -> Vec<NameProperty> {
 		std::mem::take(&mut self.r#name)
 	}
+	fn get_owner(&self) -> &[OwnerProperty] {
+		self.r#owner.as_slice()
+	}
+	fn take_owner(&mut self) -> Vec<OwnerProperty> {
+		std::mem::take(&mut self.r#owner)
+	}
 	fn get_potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
 	}
@@ -198,9 +242,12 @@ mod serde {
 				!Vec::is_empty(&self.r#does_not_ship) as usize,
 				!Vec::is_empty(&self.r#free_shipping_threshold) as usize,
 				!Vec::is_empty(&self.r#is_unlabelled_fallback) as usize,
+				!Vec::is_empty(&self.r#minimum_order_value) as usize,
+				!Vec::is_empty(&self.r#order_percentage) as usize,
 				!Vec::is_empty(&self.r#shipping_destination) as usize,
 				!Vec::is_empty(&self.r#shipping_label) as usize,
 				!Vec::is_empty(&self.r#shipping_rate) as usize,
+				!Vec::is_empty(&self.r#weight_percentage) as usize,
 				!Vec::is_empty(&self.r#additional_type) as usize,
 				!Vec::is_empty(&self.r#alternate_name) as usize,
 				!Vec::is_empty(&self.r#description) as usize,
@@ -209,6 +256,7 @@ mod serde {
 				!Vec::is_empty(&self.r#image) as usize,
 				!Vec::is_empty(&self.r#main_entity_of_page) as usize,
 				!Vec::is_empty(&self.r#name) as usize,
+				!Vec::is_empty(&self.r#owner) as usize,
 				!Vec::is_empty(&self.r#potential_action) as usize,
 				!Vec::is_empty(&self.r#same_as) as usize,
 				!Vec::is_empty(&self.r#subject_of) as usize,
@@ -272,6 +320,42 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("isUnlabelledFallback")?;
 			}
+			if !Vec::is_empty(&self.r#minimum_order_value) {
+				serialize_struct.serialize_field("minimumOrderValue", {
+					struct SerializeWith<'a>(&'a Vec<MinimumOrderValueProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#minimum_order_value)
+				})?;
+			} else {
+				serialize_struct.skip_field("minimumOrderValue")?;
+			}
+			if !Vec::is_empty(&self.r#order_percentage) {
+				serialize_struct.serialize_field("orderPercentage", {
+					struct SerializeWith<'a>(&'a Vec<OrderPercentageProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#order_percentage)
+				})?;
+			} else {
+				serialize_struct.skip_field("orderPercentage")?;
+			}
 			if !Vec::is_empty(&self.r#shipping_destination) {
 				serialize_struct.serialize_field("shippingDestination", {
 					struct SerializeWith<'a>(&'a Vec<ShippingDestinationProperty>);
@@ -325,6 +409,24 @@ mod serde {
 				})?;
 			} else {
 				serialize_struct.skip_field("shippingRate")?;
+			}
+			if !Vec::is_empty(&self.r#weight_percentage) {
+				serialize_struct.serialize_field("weightPercentage", {
+					struct SerializeWith<'a>(&'a Vec<WeightPercentageProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#weight_percentage)
+				})?;
+			} else {
+				serialize_struct.skip_field("weightPercentage")?;
 			}
 			if !Vec::is_empty(&self.r#additional_type) {
 				serialize_struct.serialize_field("additionalType", {
@@ -470,6 +572,24 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("name")?;
 			}
+			if !Vec::is_empty(&self.r#owner) {
+				serialize_struct.serialize_field("owner", {
+					struct SerializeWith<'a>(&'a Vec<OwnerProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#owner)
+				})?;
+			} else {
+				serialize_struct.skip_field("owner")?;
+			}
 			if !Vec::is_empty(&self.r#potential_action) {
 				serialize_struct.serialize_field("potentialAction", {
 					struct SerializeWith<'a>(&'a Vec<PotentialActionProperty>);
@@ -554,9 +674,12 @@ mod serde {
 				DoesNotShip,
 				FreeShippingThreshold,
 				IsUnlabelledFallback,
+				MinimumOrderValue,
+				OrderPercentage,
 				ShippingDestination,
 				ShippingLabel,
 				ShippingRate,
+				WeightPercentage,
 				AdditionalType,
 				AlternateName,
 				Description,
@@ -565,6 +688,7 @@ mod serde {
 				Image,
 				MainEntityOfPage,
 				Name,
+				Owner,
 				PotentialAction,
 				SameAs,
 				SubjectOf,
@@ -585,9 +709,12 @@ mod serde {
 						"doesNotShip" => Ok(Field::DoesNotShip),
 						"freeShippingThreshold" => Ok(Field::FreeShippingThreshold),
 						"isUnlabelledFallback" => Ok(Field::IsUnlabelledFallback),
+						"minimumOrderValue" => Ok(Field::MinimumOrderValue),
+						"orderPercentage" => Ok(Field::OrderPercentage),
 						"shippingDestination" => Ok(Field::ShippingDestination),
 						"shippingLabel" => Ok(Field::ShippingLabel),
 						"shippingRate" => Ok(Field::ShippingRate),
+						"weightPercentage" => Ok(Field::WeightPercentage),
 						"additionalType" => Ok(Field::AdditionalType),
 						"alternateName" => Ok(Field::AlternateName),
 						"description" => Ok(Field::Description),
@@ -596,6 +723,7 @@ mod serde {
 						"image" => Ok(Field::Image),
 						"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
 						"name" => Ok(Field::Name),
+						"owner" => Ok(Field::Owner),
 						"potentialAction" => Ok(Field::PotentialAction),
 						"sameAs" => Ok(Field::SameAs),
 						"subjectOf" => Ok(Field::SubjectOf),
@@ -612,9 +740,12 @@ mod serde {
 						b"doesNotShip" => Ok(Field::DoesNotShip),
 						b"freeShippingThreshold" => Ok(Field::FreeShippingThreshold),
 						b"isUnlabelledFallback" => Ok(Field::IsUnlabelledFallback),
+						b"minimumOrderValue" => Ok(Field::MinimumOrderValue),
+						b"orderPercentage" => Ok(Field::OrderPercentage),
 						b"shippingDestination" => Ok(Field::ShippingDestination),
 						b"shippingLabel" => Ok(Field::ShippingLabel),
 						b"shippingRate" => Ok(Field::ShippingRate),
+						b"weightPercentage" => Ok(Field::WeightPercentage),
 						b"additionalType" => Ok(Field::AdditionalType),
 						b"alternateName" => Ok(Field::AlternateName),
 						b"description" => Ok(Field::Description),
@@ -623,6 +754,7 @@ mod serde {
 						b"image" => Ok(Field::Image),
 						b"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
 						b"name" => Ok(Field::Name),
+						b"owner" => Ok(Field::Owner),
 						b"potentialAction" => Ok(Field::PotentialAction),
 						b"sameAs" => Ok(Field::SameAs),
 						b"subjectOf" => Ok(Field::SubjectOf),
@@ -656,9 +788,12 @@ mod serde {
 					let mut r#does_not_ship_property = None;
 					let mut r#free_shipping_threshold_property = None;
 					let mut r#is_unlabelled_fallback_property = None;
+					let mut r#minimum_order_value_property = None;
+					let mut r#order_percentage_property = None;
 					let mut r#shipping_destination_property = None;
 					let mut r#shipping_label_property = None;
 					let mut r#shipping_rate_property = None;
+					let mut r#weight_percentage_property = None;
 					let mut r#additional_type_property = None;
 					let mut r#alternate_name_property = None;
 					let mut r#description_property = None;
@@ -667,6 +802,7 @@ mod serde {
 					let mut r#image_property = None;
 					let mut r#main_entity_of_page_property = None;
 					let mut r#name_property = None;
+					let mut r#owner_property = None;
 					let mut r#potential_action_property = None;
 					let mut r#same_as_property = None;
 					let mut r#subject_of_property = None;
@@ -757,6 +893,62 @@ mod serde {
 									}
 								});
 							}
+							Field::MinimumOrderValue => {
+								if r#minimum_order_value_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"minimumOrderValue",
+									));
+								}
+								r#minimum_order_value_property = Some({
+									struct DeserializeWith(Vec<MinimumOrderValueProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::OrderPercentage => {
+								if r#order_percentage_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"orderPercentage",
+									));
+								}
+								r#order_percentage_property = Some({
+									struct DeserializeWith(Vec<OrderPercentageProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::ShippingDestination => {
 								if r#shipping_destination_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -821,6 +1013,34 @@ mod serde {
 								}
 								r#shipping_rate_property = Some({
 									struct DeserializeWith(Vec<ShippingRateProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::WeightPercentage => {
+								if r#weight_percentage_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"weightPercentage",
+									));
+								}
+								r#weight_percentage_property = Some({
+									struct DeserializeWith(Vec<WeightPercentageProperty>);
 									impl<'de> Deserialize<'de> for DeserializeWith {
 										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
 										where
@@ -1061,6 +1281,32 @@ mod serde {
 									}
 								});
 							}
+							Field::Owner => {
+								if r#owner_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field("owner"));
+								}
+								r#owner_property = Some({
+									struct DeserializeWith(Vec<OwnerProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::PotentialAction => {
 								if r#potential_action_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -1180,9 +1426,12 @@ mod serde {
 							.unwrap_or_default(),
 						r#is_unlabelled_fallback: r#is_unlabelled_fallback_property
 							.unwrap_or_default(),
+						r#minimum_order_value: r#minimum_order_value_property.unwrap_or_default(),
+						r#order_percentage: r#order_percentage_property.unwrap_or_default(),
 						r#shipping_destination: r#shipping_destination_property.unwrap_or_default(),
 						r#shipping_label: r#shipping_label_property.unwrap_or_default(),
 						r#shipping_rate: r#shipping_rate_property.unwrap_or_default(),
+						r#weight_percentage: r#weight_percentage_property.unwrap_or_default(),
 						r#additional_type: r#additional_type_property.unwrap_or_default(),
 						r#alternate_name: r#alternate_name_property.unwrap_or_default(),
 						r#description: r#description_property.unwrap_or_default(),
@@ -1192,6 +1441,7 @@ mod serde {
 						r#image: r#image_property.unwrap_or_default(),
 						r#main_entity_of_page: r#main_entity_of_page_property.unwrap_or_default(),
 						r#name: r#name_property.unwrap_or_default(),
+						r#owner: r#owner_property.unwrap_or_default(),
 						r#potential_action: r#potential_action_property.unwrap_or_default(),
 						r#same_as: r#same_as_property.unwrap_or_default(),
 						r#subject_of: r#subject_of_property.unwrap_or_default(),
@@ -1203,9 +1453,12 @@ mod serde {
 				"doesNotShip",
 				"freeShippingThreshold",
 				"isUnlabelledFallback",
+				"minimumOrderValue",
+				"orderPercentage",
 				"shippingDestination",
 				"shippingLabel",
 				"shippingRate",
+				"weightPercentage",
 				"additionalType",
 				"alternateName",
 				"description",
@@ -1214,6 +1467,7 @@ mod serde {
 				"image",
 				"mainEntityOfPage",
 				"name",
+				"owner",
 				"potentialAction",
 				"sameAs",
 				"subjectOf",

@@ -12,6 +12,8 @@ pub enum ItemAvailability {
 	InStoreOnly,
 	/// <https://schema.org/LimitedAvailability>
 	LimitedAvailability,
+	/// <https://schema.org/MadeToOrder>
+	MadeToOrder,
 	/// <https://schema.org/OnlineOnly>
 	OnlineOnly,
 	/// <https://schema.org/OutOfStock>
@@ -20,6 +22,8 @@ pub enum ItemAvailability {
 	PreOrder,
 	/// <https://schema.org/PreSale>
 	PreSale,
+	/// <https://schema.org/Reserved>
+	Reserved,
 	/// <https://schema.org/SoldOut>
 	SoldOut,
 }
@@ -55,20 +59,26 @@ mod serde {
 					4u32,
 					"LimitedAvailability",
 				),
+				ItemAvailability::MadeToOrder => {
+					serializer.serialize_unit_variant("ItemAvailability", 5u32, "MadeToOrder")
+				}
 				ItemAvailability::OnlineOnly => {
-					serializer.serialize_unit_variant("ItemAvailability", 5u32, "OnlineOnly")
+					serializer.serialize_unit_variant("ItemAvailability", 6u32, "OnlineOnly")
 				}
 				ItemAvailability::OutOfStock => {
-					serializer.serialize_unit_variant("ItemAvailability", 6u32, "OutOfStock")
+					serializer.serialize_unit_variant("ItemAvailability", 7u32, "OutOfStock")
 				}
 				ItemAvailability::PreOrder => {
-					serializer.serialize_unit_variant("ItemAvailability", 7u32, "PreOrder")
+					serializer.serialize_unit_variant("ItemAvailability", 8u32, "PreOrder")
 				}
 				ItemAvailability::PreSale => {
-					serializer.serialize_unit_variant("ItemAvailability", 8u32, "PreSale")
+					serializer.serialize_unit_variant("ItemAvailability", 9u32, "PreSale")
+				}
+				ItemAvailability::Reserved => {
+					serializer.serialize_unit_variant("ItemAvailability", 10u32, "Reserved")
 				}
 				ItemAvailability::SoldOut => {
-					serializer.serialize_unit_variant("ItemAvailability", 9u32, "SoldOut")
+					serializer.serialize_unit_variant("ItemAvailability", 11u32, "SoldOut")
 				}
 			}
 		}
@@ -84,10 +94,12 @@ mod serde {
 				InStock,
 				InStoreOnly,
 				LimitedAvailability,
+				MadeToOrder,
 				OnlineOnly,
 				OutOfStock,
 				PreOrder,
 				PreSale,
+				Reserved,
 				SoldOut,
 			}
 			struct FieldVisitor;
@@ -106,10 +118,12 @@ mod serde {
 						"InStock" => Ok(Field::InStock),
 						"InStoreOnly" => Ok(Field::InStoreOnly),
 						"LimitedAvailability" => Ok(Field::LimitedAvailability),
+						"MadeToOrder" => Ok(Field::MadeToOrder),
 						"OnlineOnly" => Ok(Field::OnlineOnly),
 						"OutOfStock" => Ok(Field::OutOfStock),
 						"PreOrder" => Ok(Field::PreOrder),
 						"PreSale" => Ok(Field::PreSale),
+						"Reserved" => Ok(Field::Reserved),
 						"SoldOut" => Ok(Field::SoldOut),
 						_ => Err(de::Error::unknown_variant(value, VARIANTS)),
 					}
@@ -124,10 +138,12 @@ mod serde {
 						b"InStock" => Ok(Field::InStock),
 						b"InStoreOnly" => Ok(Field::InStoreOnly),
 						b"LimitedAvailability" => Ok(Field::LimitedAvailability),
+						b"MadeToOrder" => Ok(Field::MadeToOrder),
 						b"OnlineOnly" => Ok(Field::OnlineOnly),
 						b"OutOfStock" => Ok(Field::OutOfStock),
 						b"PreOrder" => Ok(Field::PreOrder),
 						b"PreSale" => Ok(Field::PreSale),
+						b"Reserved" => Ok(Field::Reserved),
 						b"SoldOut" => Ok(Field::SoldOut),
 						_ => {
 							let value = &String::from_utf8_lossy(value);
@@ -175,6 +191,10 @@ mod serde {
 							de::VariantAccess::unit_variant(variant)?;
 							Ok(ItemAvailability::LimitedAvailability)
 						}
+						(Field::MadeToOrder, variant) => {
+							de::VariantAccess::unit_variant(variant)?;
+							Ok(ItemAvailability::MadeToOrder)
+						}
 						(Field::OnlineOnly, variant) => {
 							de::VariantAccess::unit_variant(variant)?;
 							Ok(ItemAvailability::OnlineOnly)
@@ -191,6 +211,10 @@ mod serde {
 							de::VariantAccess::unit_variant(variant)?;
 							Ok(ItemAvailability::PreSale)
 						}
+						(Field::Reserved, variant) => {
+							de::VariantAccess::unit_variant(variant)?;
+							Ok(ItemAvailability::Reserved)
+						}
 						(Field::SoldOut, variant) => {
 							de::VariantAccess::unit_variant(variant)?;
 							Ok(ItemAvailability::SoldOut)
@@ -204,10 +228,12 @@ mod serde {
 				"InStock",
 				"InStoreOnly",
 				"LimitedAvailability",
+				"MadeToOrder",
 				"OnlineOnly",
 				"OutOfStock",
 				"PreOrder",
 				"PreSale",
+				"Reserved",
 				"SoldOut",
 			];
 			deserializer.deserialize_enum("ItemAvailability", VARIANTS, EnumerationVisitor)

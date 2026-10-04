@@ -88,6 +88,8 @@ pub struct Patient {
 	pub r#given_name: Vec<GivenNameProperty>,
 	/// <https://schema.org/globalLocationNumber>
 	pub r#global_location_number: Vec<GlobalLocationNumberProperty>,
+	/// <https://schema.org/hasCertification>
+	pub r#has_certification: Vec<HasCertificationProperty>,
 	/// <https://schema.org/hasCredential>
 	pub r#has_credential: Vec<HasCredentialProperty>,
 	/// <https://schema.org/hasOccupation>
@@ -116,6 +118,8 @@ pub struct Patient {
 	pub r#knows_about: Vec<KnowsAboutProperty>,
 	/// <https://schema.org/knowsLanguage>
 	pub r#knows_language: Vec<KnowsLanguageProperty>,
+	/// <https://schema.org/lifeEvent>
+	pub r#life_event: Vec<LifeEventProperty>,
 	/// <https://schema.org/makesOffer>
 	pub r#makes_offer: Vec<MakesOfferProperty>,
 	/// <https://schema.org/memberOf>
@@ -135,6 +139,8 @@ pub struct Patient {
 	pub r#parents: Vec<ParentsProperty>,
 	/// <https://schema.org/performerIn>
 	pub r#performer_in: Vec<PerformerInProperty>,
+	/// <https://schema.org/pronouns>
+	pub r#pronouns: Vec<PronounsProperty>,
 	/// <https://schema.org/publishingPrinciples>
 	pub r#publishing_principles: Vec<PublishingPrinciplesProperty>,
 	/// <https://schema.org/relatedTo>
@@ -146,6 +152,8 @@ pub struct Patient {
 	/// <https://schema.org/siblings>
 	#[deprecated = "This schema is superseded by <https://schema.org/sibling>."]
 	pub r#siblings: Vec<SiblingsProperty>,
+	/// <https://schema.org/skills>
+	pub r#skills: Vec<SkillsProperty>,
 	/// <https://schema.org/sponsor>
 	pub r#sponsor: Vec<SponsorProperty>,
 	/// <https://schema.org/spouse>
@@ -178,6 +186,8 @@ pub struct Patient {
 	pub r#main_entity_of_page: Vec<MainEntityOfPageProperty>,
 	/// <https://schema.org/name>
 	pub r#name: Vec<NameProperty>,
+	/// <https://schema.org/owner>
+	pub r#owner: Vec<OwnerProperty>,
 	/// <https://schema.org/potentialAction>
 	pub r#potential_action: Vec<PotentialActionProperty>,
 	/// <https://schema.org/sameAs>
@@ -462,6 +472,12 @@ impl PersonTrait for Patient {
 	fn take_global_location_number(&mut self) -> Vec<GlobalLocationNumberProperty> {
 		std::mem::take(&mut self.r#global_location_number)
 	}
+	fn get_has_certification(&self) -> &[HasCertificationProperty] {
+		self.r#has_certification.as_slice()
+	}
+	fn take_has_certification(&mut self) -> Vec<HasCertificationProperty> {
+		std::mem::take(&mut self.r#has_certification)
+	}
 	fn get_has_credential(&self) -> &[HasCredentialProperty] {
 		self.r#has_credential.as_slice()
 	}
@@ -546,6 +562,12 @@ impl PersonTrait for Patient {
 	fn take_knows_language(&mut self) -> Vec<KnowsLanguageProperty> {
 		std::mem::take(&mut self.r#knows_language)
 	}
+	fn get_life_event(&self) -> &[LifeEventProperty] {
+		self.r#life_event.as_slice()
+	}
+	fn take_life_event(&mut self) -> Vec<LifeEventProperty> {
+		std::mem::take(&mut self.r#life_event)
+	}
 	fn get_makes_offer(&self) -> &[MakesOfferProperty] {
 		self.r#makes_offer.as_slice()
 	}
@@ -600,6 +622,12 @@ impl PersonTrait for Patient {
 	fn take_performer_in(&mut self) -> Vec<PerformerInProperty> {
 		std::mem::take(&mut self.r#performer_in)
 	}
+	fn get_pronouns(&self) -> &[PronounsProperty] {
+		self.r#pronouns.as_slice()
+	}
+	fn take_pronouns(&mut self) -> Vec<PronounsProperty> {
+		std::mem::take(&mut self.r#pronouns)
+	}
 	fn get_publishing_principles(&self) -> &[PublishingPrinciplesProperty] {
 		self.r#publishing_principles.as_slice()
 	}
@@ -629,6 +657,12 @@ impl PersonTrait for Patient {
 	}
 	fn take_siblings(&mut self) -> Vec<SiblingsProperty> {
 		std::mem::take(&mut self.r#siblings)
+	}
+	fn get_skills(&self) -> &[SkillsProperty] {
+		self.r#skills.as_slice()
+	}
+	fn take_skills(&mut self) -> Vec<SkillsProperty> {
+		std::mem::take(&mut self.r#skills)
 	}
 	fn get_sponsor(&self) -> &[SponsorProperty] {
 		self.r#sponsor.as_slice()
@@ -728,6 +762,12 @@ impl ThingTrait for Patient {
 	fn take_name(&mut self) -> Vec<NameProperty> {
 		std::mem::take(&mut self.r#name)
 	}
+	fn get_owner(&self) -> &[OwnerProperty] {
+		self.r#owner.as_slice()
+	}
+	fn take_owner(&mut self) -> Vec<OwnerProperty> {
+		std::mem::take(&mut self.r#owner)
+	}
 	fn get_potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
 	}
@@ -809,6 +849,7 @@ mod serde {
 				!Vec::is_empty(&self.r#gender) as usize,
 				!Vec::is_empty(&self.r#given_name) as usize,
 				!Vec::is_empty(&self.r#global_location_number) as usize,
+				!Vec::is_empty(&self.r#has_certification) as usize,
 				!Vec::is_empty(&self.r#has_credential) as usize,
 				!Vec::is_empty(&self.r#has_occupation) as usize,
 				!Vec::is_empty(&self.r#has_offer_catalog) as usize,
@@ -823,6 +864,7 @@ mod serde {
 				!Vec::is_empty(&self.r#knows) as usize,
 				!Vec::is_empty(&self.r#knows_about) as usize,
 				!Vec::is_empty(&self.r#knows_language) as usize,
+				!Vec::is_empty(&self.r#life_event) as usize,
 				!Vec::is_empty(&self.r#makes_offer) as usize,
 				!Vec::is_empty(&self.r#member_of) as usize,
 				!Vec::is_empty(&self.r#naics) as usize,
@@ -832,11 +874,13 @@ mod serde {
 				!Vec::is_empty(&self.r#parent) as usize,
 				!Vec::is_empty(&self.r#parents) as usize,
 				!Vec::is_empty(&self.r#performer_in) as usize,
+				!Vec::is_empty(&self.r#pronouns) as usize,
 				!Vec::is_empty(&self.r#publishing_principles) as usize,
 				!Vec::is_empty(&self.r#related_to) as usize,
 				!Vec::is_empty(&self.r#seeks) as usize,
 				!Vec::is_empty(&self.r#sibling) as usize,
 				!Vec::is_empty(&self.r#siblings) as usize,
+				!Vec::is_empty(&self.r#skills) as usize,
 				!Vec::is_empty(&self.r#sponsor) as usize,
 				!Vec::is_empty(&self.r#spouse) as usize,
 				!Vec::is_empty(&self.r#tax_id) as usize,
@@ -853,6 +897,7 @@ mod serde {
 				!Vec::is_empty(&self.r#image) as usize,
 				!Vec::is_empty(&self.r#main_entity_of_page) as usize,
 				!Vec::is_empty(&self.r#name) as usize,
+				!Vec::is_empty(&self.r#owner) as usize,
 				!Vec::is_empty(&self.r#potential_action) as usize,
 				!Vec::is_empty(&self.r#same_as) as usize,
 				!Vec::is_empty(&self.r#subject_of) as usize,
@@ -1599,6 +1644,24 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("globalLocationNumber")?;
 			}
+			if !Vec::is_empty(&self.r#has_certification) {
+				serialize_struct.serialize_field("hasCertification", {
+					struct SerializeWith<'a>(&'a Vec<HasCertificationProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#has_certification)
+				})?;
+			} else {
+				serialize_struct.skip_field("hasCertification")?;
+			}
 			if !Vec::is_empty(&self.r#has_credential) {
 				serialize_struct.serialize_field("hasCredential", {
 					struct SerializeWith<'a>(&'a Vec<HasCredentialProperty>);
@@ -1851,6 +1914,24 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("knowsLanguage")?;
 			}
+			if !Vec::is_empty(&self.r#life_event) {
+				serialize_struct.serialize_field("lifeEvent", {
+					struct SerializeWith<'a>(&'a Vec<LifeEventProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#life_event)
+				})?;
+			} else {
+				serialize_struct.skip_field("lifeEvent")?;
+			}
 			if !Vec::is_empty(&self.r#makes_offer) {
 				serialize_struct.serialize_field("makesOffer", {
 					struct SerializeWith<'a>(&'a Vec<MakesOfferProperty>);
@@ -2013,6 +2094,24 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("performerIn")?;
 			}
+			if !Vec::is_empty(&self.r#pronouns) {
+				serialize_struct.serialize_field("pronouns", {
+					struct SerializeWith<'a>(&'a Vec<PronounsProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#pronouns)
+				})?;
+			} else {
+				serialize_struct.skip_field("pronouns")?;
+			}
 			if !Vec::is_empty(&self.r#publishing_principles) {
 				serialize_struct.serialize_field("publishingPrinciples", {
 					struct SerializeWith<'a>(&'a Vec<PublishingPrinciplesProperty>);
@@ -2102,6 +2201,24 @@ mod serde {
 				})?;
 			} else {
 				serialize_struct.skip_field("siblings")?;
+			}
+			if !Vec::is_empty(&self.r#skills) {
+				serialize_struct.serialize_field("skills", {
+					struct SerializeWith<'a>(&'a Vec<SkillsProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#skills)
+				})?;
+			} else {
+				serialize_struct.skip_field("skills")?;
 			}
 			if !Vec::is_empty(&self.r#sponsor) {
 				serialize_struct.serialize_field("sponsor", {
@@ -2391,6 +2508,24 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("name")?;
 			}
+			if !Vec::is_empty(&self.r#owner) {
+				serialize_struct.serialize_field("owner", {
+					struct SerializeWith<'a>(&'a Vec<OwnerProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#owner)
+				})?;
+			} else {
+				serialize_struct.skip_field("owner")?;
+			}
 			if !Vec::is_empty(&self.r#potential_action) {
 				serialize_struct.serialize_field("potentialAction", {
 					struct SerializeWith<'a>(&'a Vec<PotentialActionProperty>);
@@ -2513,6 +2648,7 @@ mod serde {
 				Gender,
 				GivenName,
 				GlobalLocationNumber,
+				HasCertification,
 				HasCredential,
 				HasOccupation,
 				HasOfferCatalog,
@@ -2527,6 +2663,7 @@ mod serde {
 				Knows,
 				KnowsAbout,
 				KnowsLanguage,
+				LifeEvent,
 				MakesOffer,
 				MemberOf,
 				Naics,
@@ -2536,11 +2673,13 @@ mod serde {
 				Parent,
 				Parents,
 				PerformerIn,
+				Pronouns,
 				PublishingPrinciples,
 				RelatedTo,
 				Seeks,
 				Sibling,
 				Siblings,
+				Skills,
 				Sponsor,
 				Spouse,
 				TaxId,
@@ -2557,6 +2696,7 @@ mod serde {
 				Image,
 				MainEntityOfPage,
 				Name,
+				Owner,
 				PotentialAction,
 				SameAs,
 				SubjectOf,
@@ -2615,6 +2755,7 @@ mod serde {
 						"gender" => Ok(Field::Gender),
 						"givenName" => Ok(Field::GivenName),
 						"globalLocationNumber" => Ok(Field::GlobalLocationNumber),
+						"hasCertification" => Ok(Field::HasCertification),
 						"hasCredential" => Ok(Field::HasCredential),
 						"hasOccupation" => Ok(Field::HasOccupation),
 						"hasOfferCatalog" => Ok(Field::HasOfferCatalog),
@@ -2629,6 +2770,7 @@ mod serde {
 						"knows" => Ok(Field::Knows),
 						"knowsAbout" => Ok(Field::KnowsAbout),
 						"knowsLanguage" => Ok(Field::KnowsLanguage),
+						"lifeEvent" => Ok(Field::LifeEvent),
 						"makesOffer" => Ok(Field::MakesOffer),
 						"memberOf" => Ok(Field::MemberOf),
 						"naics" => Ok(Field::Naics),
@@ -2638,11 +2780,13 @@ mod serde {
 						"parent" => Ok(Field::Parent),
 						"parents" => Ok(Field::Parents),
 						"performerIn" => Ok(Field::PerformerIn),
+						"pronouns" => Ok(Field::Pronouns),
 						"publishingPrinciples" => Ok(Field::PublishingPrinciples),
 						"relatedTo" => Ok(Field::RelatedTo),
 						"seeks" => Ok(Field::Seeks),
 						"sibling" => Ok(Field::Sibling),
 						"siblings" => Ok(Field::Siblings),
+						"skills" => Ok(Field::Skills),
 						"sponsor" => Ok(Field::Sponsor),
 						"spouse" => Ok(Field::Spouse),
 						"taxID" => Ok(Field::TaxId),
@@ -2659,6 +2803,7 @@ mod serde {
 						"image" => Ok(Field::Image),
 						"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
 						"name" => Ok(Field::Name),
+						"owner" => Ok(Field::Owner),
 						"potentialAction" => Ok(Field::PotentialAction),
 						"sameAs" => Ok(Field::SameAs),
 						"subjectOf" => Ok(Field::SubjectOf),
@@ -2713,6 +2858,7 @@ mod serde {
 						b"gender" => Ok(Field::Gender),
 						b"givenName" => Ok(Field::GivenName),
 						b"globalLocationNumber" => Ok(Field::GlobalLocationNumber),
+						b"hasCertification" => Ok(Field::HasCertification),
 						b"hasCredential" => Ok(Field::HasCredential),
 						b"hasOccupation" => Ok(Field::HasOccupation),
 						b"hasOfferCatalog" => Ok(Field::HasOfferCatalog),
@@ -2727,6 +2873,7 @@ mod serde {
 						b"knows" => Ok(Field::Knows),
 						b"knowsAbout" => Ok(Field::KnowsAbout),
 						b"knowsLanguage" => Ok(Field::KnowsLanguage),
+						b"lifeEvent" => Ok(Field::LifeEvent),
 						b"makesOffer" => Ok(Field::MakesOffer),
 						b"memberOf" => Ok(Field::MemberOf),
 						b"naics" => Ok(Field::Naics),
@@ -2736,11 +2883,13 @@ mod serde {
 						b"parent" => Ok(Field::Parent),
 						b"parents" => Ok(Field::Parents),
 						b"performerIn" => Ok(Field::PerformerIn),
+						b"pronouns" => Ok(Field::Pronouns),
 						b"publishingPrinciples" => Ok(Field::PublishingPrinciples),
 						b"relatedTo" => Ok(Field::RelatedTo),
 						b"seeks" => Ok(Field::Seeks),
 						b"sibling" => Ok(Field::Sibling),
 						b"siblings" => Ok(Field::Siblings),
+						b"skills" => Ok(Field::Skills),
 						b"sponsor" => Ok(Field::Sponsor),
 						b"spouse" => Ok(Field::Spouse),
 						b"taxID" => Ok(Field::TaxId),
@@ -2757,6 +2906,7 @@ mod serde {
 						b"image" => Ok(Field::Image),
 						b"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
 						b"name" => Ok(Field::Name),
+						b"owner" => Ok(Field::Owner),
 						b"potentialAction" => Ok(Field::PotentialAction),
 						b"sameAs" => Ok(Field::SameAs),
 						b"subjectOf" => Ok(Field::SubjectOf),
@@ -2828,6 +2978,7 @@ mod serde {
 					let mut r#gender_property = None;
 					let mut r#given_name_property = None;
 					let mut r#global_location_number_property = None;
+					let mut r#has_certification_property = None;
 					let mut r#has_credential_property = None;
 					let mut r#has_occupation_property = None;
 					let mut r#has_offer_catalog_property = None;
@@ -2842,6 +2993,7 @@ mod serde {
 					let mut r#knows_property = None;
 					let mut r#knows_about_property = None;
 					let mut r#knows_language_property = None;
+					let mut r#life_event_property = None;
 					let mut r#makes_offer_property = None;
 					let mut r#member_of_property = None;
 					let mut r#naics_property = None;
@@ -2851,11 +3003,13 @@ mod serde {
 					let mut r#parent_property = None;
 					let mut r#parents_property = None;
 					let mut r#performer_in_property = None;
+					let mut r#pronouns_property = None;
 					let mut r#publishing_principles_property = None;
 					let mut r#related_to_property = None;
 					let mut r#seeks_property = None;
 					let mut r#sibling_property = None;
 					let mut r#siblings_property = None;
+					let mut r#skills_property = None;
 					let mut r#sponsor_property = None;
 					let mut r#spouse_property = None;
 					let mut r#tax_id_property = None;
@@ -2872,6 +3026,7 @@ mod serde {
 					let mut r#image_property = None;
 					let mut r#main_entity_of_page_property = None;
 					let mut r#name_property = None;
+					let mut r#owner_property = None;
 					let mut r#potential_action_property = None;
 					let mut r#same_as_property = None;
 					let mut r#subject_of_property = None;
@@ -4010,6 +4165,34 @@ mod serde {
 									}
 								});
 							}
+							Field::HasCertification => {
+								if r#has_certification_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"hasCertification",
+									));
+								}
+								r#has_certification_property = Some({
+									struct DeserializeWith(Vec<HasCertificationProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::HasCredential => {
 								if r#has_credential_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -4394,6 +4577,34 @@ mod serde {
 									}
 								});
 							}
+							Field::LifeEvent => {
+								if r#life_event_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"lifeEvent",
+									));
+								}
+								r#life_event_property = Some({
+									struct DeserializeWith(Vec<LifeEventProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::MakesOffer => {
 								if r#makes_offer_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -4640,6 +4851,34 @@ mod serde {
 									}
 								});
 							}
+							Field::Pronouns => {
+								if r#pronouns_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"pronouns",
+									));
+								}
+								r#pronouns_property = Some({
+									struct DeserializeWith(Vec<PronounsProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::PublishingPrinciples => {
 								if r#publishing_principles_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -4758,6 +4997,32 @@ mod serde {
 								}
 								r#siblings_property = Some({
 									struct DeserializeWith(Vec<SiblingsProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::Skills => {
+								if r#skills_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field("skills"));
+								}
+								r#skills_property = Some({
+									struct DeserializeWith(Vec<SkillsProperty>);
 									impl<'de> Deserialize<'de> for DeserializeWith {
 										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
 										where
@@ -5214,6 +5479,32 @@ mod serde {
 									}
 								});
 							}
+							Field::Owner => {
+								if r#owner_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field("owner"));
+								}
+								r#owner_property = Some({
+									struct DeserializeWith(Vec<OwnerProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::PotentialAction => {
 								if r#potential_action_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -5372,6 +5663,7 @@ mod serde {
 						r#given_name: r#given_name_property.unwrap_or_default(),
 						r#global_location_number: r#global_location_number_property
 							.unwrap_or_default(),
+						r#has_certification: r#has_certification_property.unwrap_or_default(),
 						r#has_credential: r#has_credential_property.unwrap_or_default(),
 						r#has_occupation: r#has_occupation_property.unwrap_or_default(),
 						r#has_offer_catalog: r#has_offer_catalog_property.unwrap_or_default(),
@@ -5387,6 +5679,7 @@ mod serde {
 						r#knows: r#knows_property.unwrap_or_default(),
 						r#knows_about: r#knows_about_property.unwrap_or_default(),
 						r#knows_language: r#knows_language_property.unwrap_or_default(),
+						r#life_event: r#life_event_property.unwrap_or_default(),
 						r#makes_offer: r#makes_offer_property.unwrap_or_default(),
 						r#member_of: r#member_of_property.unwrap_or_default(),
 						r#naics: r#naics_property.unwrap_or_default(),
@@ -5396,12 +5689,14 @@ mod serde {
 						r#parent: r#parent_property.unwrap_or_default(),
 						r#parents: r#parents_property.unwrap_or_default(),
 						r#performer_in: r#performer_in_property.unwrap_or_default(),
+						r#pronouns: r#pronouns_property.unwrap_or_default(),
 						r#publishing_principles: r#publishing_principles_property
 							.unwrap_or_default(),
 						r#related_to: r#related_to_property.unwrap_or_default(),
 						r#seeks: r#seeks_property.unwrap_or_default(),
 						r#sibling: r#sibling_property.unwrap_or_default(),
 						r#siblings: r#siblings_property.unwrap_or_default(),
+						r#skills: r#skills_property.unwrap_or_default(),
 						r#sponsor: r#sponsor_property.unwrap_or_default(),
 						r#spouse: r#spouse_property.unwrap_or_default(),
 						r#tax_id: r#tax_id_property.unwrap_or_default(),
@@ -5419,6 +5714,7 @@ mod serde {
 						r#image: r#image_property.unwrap_or_default(),
 						r#main_entity_of_page: r#main_entity_of_page_property.unwrap_or_default(),
 						r#name: r#name_property.unwrap_or_default(),
+						r#owner: r#owner_property.unwrap_or_default(),
 						r#potential_action: r#potential_action_property.unwrap_or_default(),
 						r#same_as: r#same_as_property.unwrap_or_default(),
 						r#subject_of: r#subject_of_property.unwrap_or_default(),
@@ -5468,6 +5764,7 @@ mod serde {
 				"gender",
 				"givenName",
 				"globalLocationNumber",
+				"hasCertification",
 				"hasCredential",
 				"hasOccupation",
 				"hasOfferCatalog",
@@ -5482,6 +5779,7 @@ mod serde {
 				"knows",
 				"knowsAbout",
 				"knowsLanguage",
+				"lifeEvent",
 				"makesOffer",
 				"memberOf",
 				"naics",
@@ -5491,11 +5789,13 @@ mod serde {
 				"parent",
 				"parents",
 				"performerIn",
+				"pronouns",
 				"publishingPrinciples",
 				"relatedTo",
 				"seeks",
 				"sibling",
 				"siblings",
+				"skills",
 				"sponsor",
 				"spouse",
 				"taxID",
@@ -5512,6 +5812,7 @@ mod serde {
 				"image",
 				"mainEntityOfPage",
 				"name",
+				"owner",
 				"potentialAction",
 				"sameAs",
 				"subjectOf",

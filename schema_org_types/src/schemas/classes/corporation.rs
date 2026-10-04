@@ -5,6 +5,8 @@ use super::*;
 pub struct Corporation {
 	/// <https://schema.org/tickerSymbol>
 	pub r#ticker_symbol: Vec<TickerSymbolProperty>,
+	/// <https://schema.org/acceptedPaymentMethod>
+	pub r#accepted_payment_method: Vec<AcceptedPaymentMethodProperty>,
 	/// <https://schema.org/actionableFeedbackPolicy>
 	pub r#actionable_feedback_policy: Vec<ActionableFeedbackPolicyProperty>,
 	/// <https://schema.org/address>
@@ -17,6 +19,8 @@ pub struct Corporation {
 	pub r#alumni: Vec<AlumniProperty>,
 	/// <https://schema.org/areaServed>
 	pub r#area_served: Vec<AreaServedProperty>,
+	/// <https://schema.org/authorizedRepresentative>
+	pub r#authorized_representative: Vec<AuthorizedRepresentativeProperty>,
 	/// <https://schema.org/award>
 	pub r#award: Vec<AwardProperty>,
 	/// <https://schema.org/awards>
@@ -24,6 +28,8 @@ pub struct Corporation {
 	pub r#awards: Vec<AwardsProperty>,
 	/// <https://schema.org/brand>
 	pub r#brand: Vec<BrandProperty>,
+	/// <https://schema.org/companyRegistration>
+	pub r#company_registration: Vec<CompanyRegistrationProperty>,
 	/// <https://schema.org/contactPoint>
 	pub r#contact_point: Vec<ContactPointProperty>,
 	/// <https://schema.org/contactPoints>
@@ -72,8 +78,14 @@ pub struct Corporation {
 	pub r#funding: Vec<FundingProperty>,
 	/// <https://schema.org/globalLocationNumber>
 	pub r#global_location_number: Vec<GlobalLocationNumberProperty>,
+	/// <https://schema.org/hasCertification>
+	pub r#has_certification: Vec<HasCertificationProperty>,
 	/// <https://schema.org/hasCredential>
 	pub r#has_credential: Vec<HasCredentialProperty>,
+	/// <https://schema.org/hasGS1DigitalLink>
+	pub r#has_gs_1_digital_link: Vec<HasGs1DigitalLinkProperty>,
+	/// <https://schema.org/hasMemberProgram>
+	pub r#has_member_program: Vec<HasMemberProgramProperty>,
 	/// <https://schema.org/hasMerchantReturnPolicy>
 	pub r#has_merchant_return_policy: Vec<HasMerchantReturnPolicyProperty>,
 	/// <https://schema.org/hasOfferCatalog>
@@ -81,8 +93,10 @@ pub struct Corporation {
 	/// <https://schema.org/hasPOS>
 	pub r#has_pos: Vec<HasPosProperty>,
 	/// <https://schema.org/hasProductReturnPolicy>
-	#[deprecated = "This schema is archived, see <https://schema.org/docs/attic.home.html>. This schema is superseded by <https://schema.org/hasMerchantReturnPolicy>."]
+	#[deprecated = "This schema is superseded by <https://schema.org/hasMerchantReturnPolicy>."]
 	pub r#has_product_return_policy: Vec<HasProductReturnPolicyProperty>,
+	/// <https://schema.org/hasShippingService>
+	pub r#has_shipping_service: Vec<HasShippingServiceProperty>,
 	/// <https://schema.org/interactionStatistic>
 	pub r#interaction_statistic: Vec<InteractionStatisticProperty>,
 	/// <https://schema.org/isicV4>
@@ -95,8 +109,12 @@ pub struct Corporation {
 	pub r#knows_about: Vec<KnowsAboutProperty>,
 	/// <https://schema.org/knowsLanguage>
 	pub r#knows_language: Vec<KnowsLanguageProperty>,
+	/// <https://schema.org/legalAddress>
+	pub r#legal_address: Vec<LegalAddressProperty>,
 	/// <https://schema.org/legalName>
 	pub r#legal_name: Vec<LegalNameProperty>,
+	/// <https://schema.org/legalRepresentative>
+	pub r#legal_representative: Vec<LegalRepresentativeProperty>,
 	/// <https://schema.org/leiCode>
 	pub r#lei_code: Vec<LeiCodeProperty>,
 	/// <https://schema.org/location>
@@ -136,6 +154,8 @@ pub struct Corporation {
 	/// <https://schema.org/serviceArea>
 	#[deprecated = "This schema is superseded by <https://schema.org/areaServed>."]
 	pub r#service_area: Vec<ServiceAreaProperty>,
+	/// <https://schema.org/skills>
+	pub r#skills: Vec<SkillsProperty>,
 	/// <https://schema.org/slogan>
 	pub r#slogan: Vec<SloganProperty>,
 	/// <https://schema.org/sponsor>
@@ -166,6 +186,8 @@ pub struct Corporation {
 	pub r#main_entity_of_page: Vec<MainEntityOfPageProperty>,
 	/// <https://schema.org/name>
 	pub r#name: Vec<NameProperty>,
+	/// <https://schema.org/owner>
+	pub r#owner: Vec<OwnerProperty>,
 	/// <https://schema.org/potentialAction>
 	pub r#potential_action: Vec<PotentialActionProperty>,
 	/// <https://schema.org/sameAs>
@@ -191,6 +213,12 @@ impl CorporationTrait for Corporation {
 	}
 }
 impl OrganizationTrait for Corporation {
+	fn get_accepted_payment_method(&self) -> &[AcceptedPaymentMethodProperty] {
+		self.r#accepted_payment_method.as_slice()
+	}
+	fn take_accepted_payment_method(&mut self) -> Vec<AcceptedPaymentMethodProperty> {
+		std::mem::take(&mut self.r#accepted_payment_method)
+	}
 	fn get_actionable_feedback_policy(&self) -> &[ActionableFeedbackPolicyProperty] {
 		self.r#actionable_feedback_policy.as_slice()
 	}
@@ -227,6 +255,12 @@ impl OrganizationTrait for Corporation {
 	fn take_area_served(&mut self) -> Vec<AreaServedProperty> {
 		std::mem::take(&mut self.r#area_served)
 	}
+	fn get_authorized_representative(&self) -> &[AuthorizedRepresentativeProperty] {
+		self.r#authorized_representative.as_slice()
+	}
+	fn take_authorized_representative(&mut self) -> Vec<AuthorizedRepresentativeProperty> {
+		std::mem::take(&mut self.r#authorized_representative)
+	}
 	fn get_award(&self) -> &[AwardProperty] {
 		self.r#award.as_slice()
 	}
@@ -244,6 +278,12 @@ impl OrganizationTrait for Corporation {
 	}
 	fn take_brand(&mut self) -> Vec<BrandProperty> {
 		std::mem::take(&mut self.r#brand)
+	}
+	fn get_company_registration(&self) -> &[CompanyRegistrationProperty] {
+		self.r#company_registration.as_slice()
+	}
+	fn take_company_registration(&mut self) -> Vec<CompanyRegistrationProperty> {
+		std::mem::take(&mut self.r#company_registration)
 	}
 	fn get_contact_point(&self) -> &[ContactPointProperty] {
 		self.r#contact_point.as_slice()
@@ -377,11 +417,29 @@ impl OrganizationTrait for Corporation {
 	fn take_global_location_number(&mut self) -> Vec<GlobalLocationNumberProperty> {
 		std::mem::take(&mut self.r#global_location_number)
 	}
+	fn get_has_certification(&self) -> &[HasCertificationProperty] {
+		self.r#has_certification.as_slice()
+	}
+	fn take_has_certification(&mut self) -> Vec<HasCertificationProperty> {
+		std::mem::take(&mut self.r#has_certification)
+	}
 	fn get_has_credential(&self) -> &[HasCredentialProperty] {
 		self.r#has_credential.as_slice()
 	}
 	fn take_has_credential(&mut self) -> Vec<HasCredentialProperty> {
 		std::mem::take(&mut self.r#has_credential)
+	}
+	fn get_has_gs_1_digital_link(&self) -> &[HasGs1DigitalLinkProperty] {
+		self.r#has_gs_1_digital_link.as_slice()
+	}
+	fn take_has_gs_1_digital_link(&mut self) -> Vec<HasGs1DigitalLinkProperty> {
+		std::mem::take(&mut self.r#has_gs_1_digital_link)
+	}
+	fn get_has_member_program(&self) -> &[HasMemberProgramProperty] {
+		self.r#has_member_program.as_slice()
+	}
+	fn take_has_member_program(&mut self) -> Vec<HasMemberProgramProperty> {
+		std::mem::take(&mut self.r#has_member_program)
 	}
 	fn get_has_merchant_return_policy(&self) -> &[HasMerchantReturnPolicyProperty] {
 		self.r#has_merchant_return_policy.as_slice()
@@ -406,6 +464,12 @@ impl OrganizationTrait for Corporation {
 	}
 	fn take_has_product_return_policy(&mut self) -> Vec<HasProductReturnPolicyProperty> {
 		std::mem::take(&mut self.r#has_product_return_policy)
+	}
+	fn get_has_shipping_service(&self) -> &[HasShippingServiceProperty] {
+		self.r#has_shipping_service.as_slice()
+	}
+	fn take_has_shipping_service(&mut self) -> Vec<HasShippingServiceProperty> {
+		std::mem::take(&mut self.r#has_shipping_service)
 	}
 	fn get_interaction_statistic(&self) -> &[InteractionStatisticProperty] {
 		self.r#interaction_statistic.as_slice()
@@ -443,11 +507,23 @@ impl OrganizationTrait for Corporation {
 	fn take_knows_language(&mut self) -> Vec<KnowsLanguageProperty> {
 		std::mem::take(&mut self.r#knows_language)
 	}
+	fn get_legal_address(&self) -> &[LegalAddressProperty] {
+		self.r#legal_address.as_slice()
+	}
+	fn take_legal_address(&mut self) -> Vec<LegalAddressProperty> {
+		std::mem::take(&mut self.r#legal_address)
+	}
 	fn get_legal_name(&self) -> &[LegalNameProperty] {
 		self.r#legal_name.as_slice()
 	}
 	fn take_legal_name(&mut self) -> Vec<LegalNameProperty> {
 		std::mem::take(&mut self.r#legal_name)
+	}
+	fn get_legal_representative(&self) -> &[LegalRepresentativeProperty] {
+		self.r#legal_representative.as_slice()
+	}
+	fn take_legal_representative(&mut self) -> Vec<LegalRepresentativeProperty> {
+		std::mem::take(&mut self.r#legal_representative)
 	}
 	fn get_lei_code(&self) -> &[LeiCodeProperty] {
 		self.r#lei_code.as_slice()
@@ -557,6 +633,12 @@ impl OrganizationTrait for Corporation {
 	fn take_service_area(&mut self) -> Vec<ServiceAreaProperty> {
 		std::mem::take(&mut self.r#service_area)
 	}
+	fn get_skills(&self) -> &[SkillsProperty] {
+		self.r#skills.as_slice()
+	}
+	fn take_skills(&mut self) -> Vec<SkillsProperty> {
+		std::mem::take(&mut self.r#skills)
+	}
 	fn get_slogan(&self) -> &[SloganProperty] {
 		self.r#slogan.as_slice()
 	}
@@ -649,6 +731,12 @@ impl ThingTrait for Corporation {
 	fn take_name(&mut self) -> Vec<NameProperty> {
 		std::mem::take(&mut self.r#name)
 	}
+	fn get_owner(&self) -> &[OwnerProperty] {
+		self.r#owner.as_slice()
+	}
+	fn take_owner(&mut self) -> Vec<OwnerProperty> {
+		std::mem::take(&mut self.r#owner)
+	}
 	fn get_potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
 	}
@@ -690,15 +778,18 @@ mod serde {
 		{
 			let len: usize = [
 				!Vec::is_empty(&self.r#ticker_symbol) as usize,
+				!Vec::is_empty(&self.r#accepted_payment_method) as usize,
 				!Vec::is_empty(&self.r#actionable_feedback_policy) as usize,
 				!Vec::is_empty(&self.r#address) as usize,
 				!Vec::is_empty(&self.r#agent_interaction_statistic) as usize,
 				!Vec::is_empty(&self.r#aggregate_rating) as usize,
 				!Vec::is_empty(&self.r#alumni) as usize,
 				!Vec::is_empty(&self.r#area_served) as usize,
+				!Vec::is_empty(&self.r#authorized_representative) as usize,
 				!Vec::is_empty(&self.r#award) as usize,
 				!Vec::is_empty(&self.r#awards) as usize,
 				!Vec::is_empty(&self.r#brand) as usize,
+				!Vec::is_empty(&self.r#company_registration) as usize,
 				!Vec::is_empty(&self.r#contact_point) as usize,
 				!Vec::is_empty(&self.r#contact_points) as usize,
 				!Vec::is_empty(&self.r#corrections_policy) as usize,
@@ -721,18 +812,24 @@ mod serde {
 				!Vec::is_empty(&self.r#funder) as usize,
 				!Vec::is_empty(&self.r#funding) as usize,
 				!Vec::is_empty(&self.r#global_location_number) as usize,
+				!Vec::is_empty(&self.r#has_certification) as usize,
 				!Vec::is_empty(&self.r#has_credential) as usize,
+				!Vec::is_empty(&self.r#has_gs_1_digital_link) as usize,
+				!Vec::is_empty(&self.r#has_member_program) as usize,
 				!Vec::is_empty(&self.r#has_merchant_return_policy) as usize,
 				!Vec::is_empty(&self.r#has_offer_catalog) as usize,
 				!Vec::is_empty(&self.r#has_pos) as usize,
 				!Vec::is_empty(&self.r#has_product_return_policy) as usize,
+				!Vec::is_empty(&self.r#has_shipping_service) as usize,
 				!Vec::is_empty(&self.r#interaction_statistic) as usize,
 				!Vec::is_empty(&self.r#isic_v_4) as usize,
 				!Vec::is_empty(&self.r#iso_6523_code) as usize,
 				!Vec::is_empty(&self.r#keywords) as usize,
 				!Vec::is_empty(&self.r#knows_about) as usize,
 				!Vec::is_empty(&self.r#knows_language) as usize,
+				!Vec::is_empty(&self.r#legal_address) as usize,
 				!Vec::is_empty(&self.r#legal_name) as usize,
+				!Vec::is_empty(&self.r#legal_representative) as usize,
 				!Vec::is_empty(&self.r#lei_code) as usize,
 				!Vec::is_empty(&self.r#location) as usize,
 				!Vec::is_empty(&self.r#logo) as usize,
@@ -751,6 +848,7 @@ mod serde {
 				!Vec::is_empty(&self.r#reviews) as usize,
 				!Vec::is_empty(&self.r#seeks) as usize,
 				!Vec::is_empty(&self.r#service_area) as usize,
+				!Vec::is_empty(&self.r#skills) as usize,
 				!Vec::is_empty(&self.r#slogan) as usize,
 				!Vec::is_empty(&self.r#sponsor) as usize,
 				!Vec::is_empty(&self.r#sub_organization) as usize,
@@ -766,6 +864,7 @@ mod serde {
 				!Vec::is_empty(&self.r#image) as usize,
 				!Vec::is_empty(&self.r#main_entity_of_page) as usize,
 				!Vec::is_empty(&self.r#name) as usize,
+				!Vec::is_empty(&self.r#owner) as usize,
 				!Vec::is_empty(&self.r#potential_action) as usize,
 				!Vec::is_empty(&self.r#same_as) as usize,
 				!Vec::is_empty(&self.r#subject_of) as usize,
@@ -792,6 +891,24 @@ mod serde {
 				})?;
 			} else {
 				serialize_struct.skip_field("tickerSymbol")?;
+			}
+			if !Vec::is_empty(&self.r#accepted_payment_method) {
+				serialize_struct.serialize_field("acceptedPaymentMethod", {
+					struct SerializeWith<'a>(&'a Vec<AcceptedPaymentMethodProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#accepted_payment_method)
+				})?;
+			} else {
+				serialize_struct.skip_field("acceptedPaymentMethod")?;
 			}
 			if !Vec::is_empty(&self.r#actionable_feedback_policy) {
 				serialize_struct.serialize_field("actionableFeedbackPolicy", {
@@ -901,6 +1018,24 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("areaServed")?;
 			}
+			if !Vec::is_empty(&self.r#authorized_representative) {
+				serialize_struct.serialize_field("authorizedRepresentative", {
+					struct SerializeWith<'a>(&'a Vec<AuthorizedRepresentativeProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#authorized_representative)
+				})?;
+			} else {
+				serialize_struct.skip_field("authorizedRepresentative")?;
+			}
 			if !Vec::is_empty(&self.r#award) {
 				serialize_struct.serialize_field("award", {
 					struct SerializeWith<'a>(&'a Vec<AwardProperty>);
@@ -954,6 +1089,24 @@ mod serde {
 				})?;
 			} else {
 				serialize_struct.skip_field("brand")?;
+			}
+			if !Vec::is_empty(&self.r#company_registration) {
+				serialize_struct.serialize_field("companyRegistration", {
+					struct SerializeWith<'a>(&'a Vec<CompanyRegistrationProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#company_registration)
+				})?;
+			} else {
+				serialize_struct.skip_field("companyRegistration")?;
 			}
 			if !Vec::is_empty(&self.r#contact_point) {
 				serialize_struct.serialize_field("contactPoint", {
@@ -1351,6 +1504,24 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("globalLocationNumber")?;
 			}
+			if !Vec::is_empty(&self.r#has_certification) {
+				serialize_struct.serialize_field("hasCertification", {
+					struct SerializeWith<'a>(&'a Vec<HasCertificationProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#has_certification)
+				})?;
+			} else {
+				serialize_struct.skip_field("hasCertification")?;
+			}
 			if !Vec::is_empty(&self.r#has_credential) {
 				serialize_struct.serialize_field("hasCredential", {
 					struct SerializeWith<'a>(&'a Vec<HasCredentialProperty>);
@@ -1368,6 +1539,42 @@ mod serde {
 				})?;
 			} else {
 				serialize_struct.skip_field("hasCredential")?;
+			}
+			if !Vec::is_empty(&self.r#has_gs_1_digital_link) {
+				serialize_struct.serialize_field("hasGS1DigitalLink", {
+					struct SerializeWith<'a>(&'a Vec<HasGs1DigitalLinkProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#has_gs_1_digital_link)
+				})?;
+			} else {
+				serialize_struct.skip_field("hasGS1DigitalLink")?;
+			}
+			if !Vec::is_empty(&self.r#has_member_program) {
+				serialize_struct.serialize_field("hasMemberProgram", {
+					struct SerializeWith<'a>(&'a Vec<HasMemberProgramProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#has_member_program)
+				})?;
+			} else {
+				serialize_struct.skip_field("hasMemberProgram")?;
 			}
 			if !Vec::is_empty(&self.r#has_merchant_return_policy) {
 				serialize_struct.serialize_field("hasMerchantReturnPolicy", {
@@ -1440,6 +1647,24 @@ mod serde {
 				})?;
 			} else {
 				serialize_struct.skip_field("hasProductReturnPolicy")?;
+			}
+			if !Vec::is_empty(&self.r#has_shipping_service) {
+				serialize_struct.serialize_field("hasShippingService", {
+					struct SerializeWith<'a>(&'a Vec<HasShippingServiceProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#has_shipping_service)
+				})?;
+			} else {
+				serialize_struct.skip_field("hasShippingService")?;
 			}
 			if !Vec::is_empty(&self.r#interaction_statistic) {
 				serialize_struct.serialize_field("interactionStatistic", {
@@ -1549,6 +1774,24 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("knowsLanguage")?;
 			}
+			if !Vec::is_empty(&self.r#legal_address) {
+				serialize_struct.serialize_field("legalAddress", {
+					struct SerializeWith<'a>(&'a Vec<LegalAddressProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#legal_address)
+				})?;
+			} else {
+				serialize_struct.skip_field("legalAddress")?;
+			}
 			if !Vec::is_empty(&self.r#legal_name) {
 				serialize_struct.serialize_field("legalName", {
 					struct SerializeWith<'a>(&'a Vec<LegalNameProperty>);
@@ -1566,6 +1809,24 @@ mod serde {
 				})?;
 			} else {
 				serialize_struct.skip_field("legalName")?;
+			}
+			if !Vec::is_empty(&self.r#legal_representative) {
+				serialize_struct.serialize_field("legalRepresentative", {
+					struct SerializeWith<'a>(&'a Vec<LegalRepresentativeProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#legal_representative)
+				})?;
+			} else {
+				serialize_struct.skip_field("legalRepresentative")?;
 			}
 			if !Vec::is_empty(&self.r#lei_code) {
 				serialize_struct.serialize_field("leiCode", {
@@ -1891,6 +2152,24 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("serviceArea")?;
 			}
+			if !Vec::is_empty(&self.r#skills) {
+				serialize_struct.serialize_field("skills", {
+					struct SerializeWith<'a>(&'a Vec<SkillsProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#skills)
+				})?;
+			} else {
+				serialize_struct.skip_field("skills")?;
+			}
 			if !Vec::is_empty(&self.r#slogan) {
 				serialize_struct.serialize_field("slogan", {
 					struct SerializeWith<'a>(&'a Vec<SloganProperty>);
@@ -2161,6 +2440,24 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("name")?;
 			}
+			if !Vec::is_empty(&self.r#owner) {
+				serialize_struct.serialize_field("owner", {
+					struct SerializeWith<'a>(&'a Vec<OwnerProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#owner)
+				})?;
+			} else {
+				serialize_struct.skip_field("owner")?;
+			}
 			if !Vec::is_empty(&self.r#potential_action) {
 				serialize_struct.serialize_field("potentialAction", {
 					struct SerializeWith<'a>(&'a Vec<PotentialActionProperty>);
@@ -2243,15 +2540,18 @@ mod serde {
 		{
 			enum Field {
 				TickerSymbol,
+				AcceptedPaymentMethod,
 				ActionableFeedbackPolicy,
 				Address,
 				AgentInteractionStatistic,
 				AggregateRating,
 				Alumni,
 				AreaServed,
+				AuthorizedRepresentative,
 				Award,
 				Awards,
 				Brand,
+				CompanyRegistration,
 				ContactPoint,
 				ContactPoints,
 				CorrectionsPolicy,
@@ -2274,18 +2574,24 @@ mod serde {
 				Funder,
 				Funding,
 				GlobalLocationNumber,
+				HasCertification,
 				HasCredential,
+				HasGs1DigitalLink,
+				HasMemberProgram,
 				HasMerchantReturnPolicy,
 				HasOfferCatalog,
 				HasPos,
 				HasProductReturnPolicy,
+				HasShippingService,
 				InteractionStatistic,
 				IsicV4,
 				Iso6523Code,
 				Keywords,
 				KnowsAbout,
 				KnowsLanguage,
+				LegalAddress,
 				LegalName,
+				LegalRepresentative,
 				LeiCode,
 				Location,
 				Logo,
@@ -2304,6 +2610,7 @@ mod serde {
 				Reviews,
 				Seeks,
 				ServiceArea,
+				Skills,
 				Slogan,
 				Sponsor,
 				SubOrganization,
@@ -2319,6 +2626,7 @@ mod serde {
 				Image,
 				MainEntityOfPage,
 				Name,
+				Owner,
 				PotentialAction,
 				SameAs,
 				SubjectOf,
@@ -2337,15 +2645,18 @@ mod serde {
 				{
 					match value {
 						"tickerSymbol" => Ok(Field::TickerSymbol),
+						"acceptedPaymentMethod" => Ok(Field::AcceptedPaymentMethod),
 						"actionableFeedbackPolicy" => Ok(Field::ActionableFeedbackPolicy),
 						"address" => Ok(Field::Address),
 						"agentInteractionStatistic" => Ok(Field::AgentInteractionStatistic),
 						"aggregateRating" => Ok(Field::AggregateRating),
 						"alumni" => Ok(Field::Alumni),
 						"areaServed" => Ok(Field::AreaServed),
+						"authorizedRepresentative" => Ok(Field::AuthorizedRepresentative),
 						"award" => Ok(Field::Award),
 						"awards" => Ok(Field::Awards),
 						"brand" => Ok(Field::Brand),
+						"companyRegistration" => Ok(Field::CompanyRegistration),
 						"contactPoint" => Ok(Field::ContactPoint),
 						"contactPoints" => Ok(Field::ContactPoints),
 						"correctionsPolicy" => Ok(Field::CorrectionsPolicy),
@@ -2368,18 +2679,24 @@ mod serde {
 						"funder" => Ok(Field::Funder),
 						"funding" => Ok(Field::Funding),
 						"globalLocationNumber" => Ok(Field::GlobalLocationNumber),
+						"hasCertification" => Ok(Field::HasCertification),
 						"hasCredential" => Ok(Field::HasCredential),
+						"hasGS1DigitalLink" => Ok(Field::HasGs1DigitalLink),
+						"hasMemberProgram" => Ok(Field::HasMemberProgram),
 						"hasMerchantReturnPolicy" => Ok(Field::HasMerchantReturnPolicy),
 						"hasOfferCatalog" => Ok(Field::HasOfferCatalog),
 						"hasPOS" => Ok(Field::HasPos),
 						"hasProductReturnPolicy" => Ok(Field::HasProductReturnPolicy),
+						"hasShippingService" => Ok(Field::HasShippingService),
 						"interactionStatistic" => Ok(Field::InteractionStatistic),
 						"isicV4" => Ok(Field::IsicV4),
 						"iso6523Code" => Ok(Field::Iso6523Code),
 						"keywords" => Ok(Field::Keywords),
 						"knowsAbout" => Ok(Field::KnowsAbout),
 						"knowsLanguage" => Ok(Field::KnowsLanguage),
+						"legalAddress" => Ok(Field::LegalAddress),
 						"legalName" => Ok(Field::LegalName),
+						"legalRepresentative" => Ok(Field::LegalRepresentative),
 						"leiCode" => Ok(Field::LeiCode),
 						"location" => Ok(Field::Location),
 						"logo" => Ok(Field::Logo),
@@ -2398,6 +2715,7 @@ mod serde {
 						"reviews" => Ok(Field::Reviews),
 						"seeks" => Ok(Field::Seeks),
 						"serviceArea" => Ok(Field::ServiceArea),
+						"skills" => Ok(Field::Skills),
 						"slogan" => Ok(Field::Slogan),
 						"sponsor" => Ok(Field::Sponsor),
 						"subOrganization" => Ok(Field::SubOrganization),
@@ -2413,6 +2731,7 @@ mod serde {
 						"image" => Ok(Field::Image),
 						"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
 						"name" => Ok(Field::Name),
+						"owner" => Ok(Field::Owner),
 						"potentialAction" => Ok(Field::PotentialAction),
 						"sameAs" => Ok(Field::SameAs),
 						"subjectOf" => Ok(Field::SubjectOf),
@@ -2427,15 +2746,18 @@ mod serde {
 				{
 					match value {
 						b"tickerSymbol" => Ok(Field::TickerSymbol),
+						b"acceptedPaymentMethod" => Ok(Field::AcceptedPaymentMethod),
 						b"actionableFeedbackPolicy" => Ok(Field::ActionableFeedbackPolicy),
 						b"address" => Ok(Field::Address),
 						b"agentInteractionStatistic" => Ok(Field::AgentInteractionStatistic),
 						b"aggregateRating" => Ok(Field::AggregateRating),
 						b"alumni" => Ok(Field::Alumni),
 						b"areaServed" => Ok(Field::AreaServed),
+						b"authorizedRepresentative" => Ok(Field::AuthorizedRepresentative),
 						b"award" => Ok(Field::Award),
 						b"awards" => Ok(Field::Awards),
 						b"brand" => Ok(Field::Brand),
+						b"companyRegistration" => Ok(Field::CompanyRegistration),
 						b"contactPoint" => Ok(Field::ContactPoint),
 						b"contactPoints" => Ok(Field::ContactPoints),
 						b"correctionsPolicy" => Ok(Field::CorrectionsPolicy),
@@ -2458,18 +2780,24 @@ mod serde {
 						b"funder" => Ok(Field::Funder),
 						b"funding" => Ok(Field::Funding),
 						b"globalLocationNumber" => Ok(Field::GlobalLocationNumber),
+						b"hasCertification" => Ok(Field::HasCertification),
 						b"hasCredential" => Ok(Field::HasCredential),
+						b"hasGS1DigitalLink" => Ok(Field::HasGs1DigitalLink),
+						b"hasMemberProgram" => Ok(Field::HasMemberProgram),
 						b"hasMerchantReturnPolicy" => Ok(Field::HasMerchantReturnPolicy),
 						b"hasOfferCatalog" => Ok(Field::HasOfferCatalog),
 						b"hasPOS" => Ok(Field::HasPos),
 						b"hasProductReturnPolicy" => Ok(Field::HasProductReturnPolicy),
+						b"hasShippingService" => Ok(Field::HasShippingService),
 						b"interactionStatistic" => Ok(Field::InteractionStatistic),
 						b"isicV4" => Ok(Field::IsicV4),
 						b"iso6523Code" => Ok(Field::Iso6523Code),
 						b"keywords" => Ok(Field::Keywords),
 						b"knowsAbout" => Ok(Field::KnowsAbout),
 						b"knowsLanguage" => Ok(Field::KnowsLanguage),
+						b"legalAddress" => Ok(Field::LegalAddress),
 						b"legalName" => Ok(Field::LegalName),
+						b"legalRepresentative" => Ok(Field::LegalRepresentative),
 						b"leiCode" => Ok(Field::LeiCode),
 						b"location" => Ok(Field::Location),
 						b"logo" => Ok(Field::Logo),
@@ -2488,6 +2816,7 @@ mod serde {
 						b"reviews" => Ok(Field::Reviews),
 						b"seeks" => Ok(Field::Seeks),
 						b"serviceArea" => Ok(Field::ServiceArea),
+						b"skills" => Ok(Field::Skills),
 						b"slogan" => Ok(Field::Slogan),
 						b"sponsor" => Ok(Field::Sponsor),
 						b"subOrganization" => Ok(Field::SubOrganization),
@@ -2503,6 +2832,7 @@ mod serde {
 						b"image" => Ok(Field::Image),
 						b"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
 						b"name" => Ok(Field::Name),
+						b"owner" => Ok(Field::Owner),
 						b"potentialAction" => Ok(Field::PotentialAction),
 						b"sameAs" => Ok(Field::SameAs),
 						b"subjectOf" => Ok(Field::SubjectOf),
@@ -2534,15 +2864,18 @@ mod serde {
 					A: de::MapAccess<'de>,
 				{
 					let mut r#ticker_symbol_property = None;
+					let mut r#accepted_payment_method_property = None;
 					let mut r#actionable_feedback_policy_property = None;
 					let mut r#address_property = None;
 					let mut r#agent_interaction_statistic_property = None;
 					let mut r#aggregate_rating_property = None;
 					let mut r#alumni_property = None;
 					let mut r#area_served_property = None;
+					let mut r#authorized_representative_property = None;
 					let mut r#award_property = None;
 					let mut r#awards_property = None;
 					let mut r#brand_property = None;
+					let mut r#company_registration_property = None;
 					let mut r#contact_point_property = None;
 					let mut r#contact_points_property = None;
 					let mut r#corrections_policy_property = None;
@@ -2565,18 +2898,24 @@ mod serde {
 					let mut r#funder_property = None;
 					let mut r#funding_property = None;
 					let mut r#global_location_number_property = None;
+					let mut r#has_certification_property = None;
 					let mut r#has_credential_property = None;
+					let mut r#has_gs_1_digital_link_property = None;
+					let mut r#has_member_program_property = None;
 					let mut r#has_merchant_return_policy_property = None;
 					let mut r#has_offer_catalog_property = None;
 					let mut r#has_pos_property = None;
 					let mut r#has_product_return_policy_property = None;
+					let mut r#has_shipping_service_property = None;
 					let mut r#interaction_statistic_property = None;
 					let mut r#isic_v_4_property = None;
 					let mut r#iso_6523_code_property = None;
 					let mut r#keywords_property = None;
 					let mut r#knows_about_property = None;
 					let mut r#knows_language_property = None;
+					let mut r#legal_address_property = None;
 					let mut r#legal_name_property = None;
+					let mut r#legal_representative_property = None;
 					let mut r#lei_code_property = None;
 					let mut r#location_property = None;
 					let mut r#logo_property = None;
@@ -2595,6 +2934,7 @@ mod serde {
 					let mut r#reviews_property = None;
 					let mut r#seeks_property = None;
 					let mut r#service_area_property = None;
+					let mut r#skills_property = None;
 					let mut r#slogan_property = None;
 					let mut r#sponsor_property = None;
 					let mut r#sub_organization_property = None;
@@ -2610,6 +2950,7 @@ mod serde {
 					let mut r#image_property = None;
 					let mut r#main_entity_of_page_property = None;
 					let mut r#name_property = None;
+					let mut r#owner_property = None;
 					let mut r#potential_action_property = None;
 					let mut r#same_as_property = None;
 					let mut r#subject_of_property = None;
@@ -2624,6 +2965,34 @@ mod serde {
 								}
 								r#ticker_symbol_property = Some({
 									struct DeserializeWith(Vec<TickerSymbolProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::AcceptedPaymentMethod => {
+								if r#accepted_payment_method_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"acceptedPaymentMethod",
+									));
+								}
+								r#accepted_payment_method_property = Some({
+									struct DeserializeWith(Vec<AcceptedPaymentMethodProperty>);
 									impl<'de> Deserialize<'de> for DeserializeWith {
 										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
 										where
@@ -2810,6 +3179,34 @@ mod serde {
 									}
 								});
 							}
+							Field::AuthorizedRepresentative => {
+								if r#authorized_representative_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"authorizedRepresentative",
+									));
+								}
+								r#authorized_representative_property = Some({
+									struct DeserializeWith(Vec<AuthorizedRepresentativeProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::Award => {
 								if r#award_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field("award"));
@@ -2868,6 +3265,34 @@ mod serde {
 								}
 								r#brand_property = Some({
 									struct DeserializeWith(Vec<BrandProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::CompanyRegistration => {
+								if r#company_registration_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"companyRegistration",
+									));
+								}
+								r#company_registration_property = Some({
+									struct DeserializeWith(Vec<CompanyRegistrationProperty>);
 									impl<'de> Deserialize<'de> for DeserializeWith {
 										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
 										where
@@ -3494,6 +3919,34 @@ mod serde {
 									}
 								});
 							}
+							Field::HasCertification => {
+								if r#has_certification_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"hasCertification",
+									));
+								}
+								r#has_certification_property = Some({
+									struct DeserializeWith(Vec<HasCertificationProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::HasCredential => {
 								if r#has_credential_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -3502,6 +3955,62 @@ mod serde {
 								}
 								r#has_credential_property = Some({
 									struct DeserializeWith(Vec<HasCredentialProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::HasGs1DigitalLink => {
+								if r#has_gs_1_digital_link_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"hasGS1DigitalLink",
+									));
+								}
+								r#has_gs_1_digital_link_property = Some({
+									struct DeserializeWith(Vec<HasGs1DigitalLinkProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::HasMemberProgram => {
+								if r#has_member_program_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"hasMemberProgram",
+									));
+								}
+								r#has_member_program_property = Some({
+									struct DeserializeWith(Vec<HasMemberProgramProperty>);
 									impl<'de> Deserialize<'de> for DeserializeWith {
 										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
 										where
@@ -3612,6 +4121,34 @@ mod serde {
 								}
 								r#has_product_return_policy_property = Some({
 									struct DeserializeWith(Vec<HasProductReturnPolicyProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::HasShippingService => {
+								if r#has_shipping_service_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"hasShippingService",
+									));
+								}
+								r#has_shipping_service_property = Some({
+									struct DeserializeWith(Vec<HasShippingServiceProperty>);
 									impl<'de> Deserialize<'de> for DeserializeWith {
 										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
 										where
@@ -3798,6 +4335,34 @@ mod serde {
 									}
 								});
 							}
+							Field::LegalAddress => {
+								if r#legal_address_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"legalAddress",
+									));
+								}
+								r#legal_address_property = Some({
+									struct DeserializeWith(Vec<LegalAddressProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::LegalName => {
 								if r#legal_name_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -3806,6 +4371,34 @@ mod serde {
 								}
 								r#legal_name_property = Some({
 									struct DeserializeWith(Vec<LegalNameProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::LegalRepresentative => {
+								if r#legal_representative_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"legalRepresentative",
+									));
+								}
+								r#legal_representative_property = Some({
+									struct DeserializeWith(Vec<LegalRepresentativeProperty>);
 									impl<'de> Deserialize<'de> for DeserializeWith {
 										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
 										where
@@ -4318,6 +4911,32 @@ mod serde {
 									}
 								});
 							}
+							Field::Skills => {
+								if r#skills_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field("skills"));
+								}
+								r#skills_property = Some({
+									struct DeserializeWith(Vec<SkillsProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::Slogan => {
 								if r#slogan_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field("slogan"));
@@ -4728,6 +5347,32 @@ mod serde {
 									}
 								});
 							}
+							Field::Owner => {
+								if r#owner_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field("owner"));
+								}
+								r#owner_property = Some({
+									struct DeserializeWith(Vec<OwnerProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::PotentialAction => {
 								if r#potential_action_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -4843,6 +5488,8 @@ mod serde {
 					}
 					Ok(Corporation {
 						r#ticker_symbol: r#ticker_symbol_property.unwrap_or_default(),
+						r#accepted_payment_method: r#accepted_payment_method_property
+							.unwrap_or_default(),
 						r#actionable_feedback_policy: r#actionable_feedback_policy_property
 							.unwrap_or_default(),
 						r#address: r#address_property.unwrap_or_default(),
@@ -4851,9 +5498,12 @@ mod serde {
 						r#aggregate_rating: r#aggregate_rating_property.unwrap_or_default(),
 						r#alumni: r#alumni_property.unwrap_or_default(),
 						r#area_served: r#area_served_property.unwrap_or_default(),
+						r#authorized_representative: r#authorized_representative_property
+							.unwrap_or_default(),
 						r#award: r#award_property.unwrap_or_default(),
 						r#awards: r#awards_property.unwrap_or_default(),
 						r#brand: r#brand_property.unwrap_or_default(),
+						r#company_registration: r#company_registration_property.unwrap_or_default(),
 						r#contact_point: r#contact_point_property.unwrap_or_default(),
 						r#contact_points: r#contact_points_property.unwrap_or_default(),
 						r#corrections_policy: r#corrections_policy_property.unwrap_or_default(),
@@ -4878,13 +5528,18 @@ mod serde {
 						r#funding: r#funding_property.unwrap_or_default(),
 						r#global_location_number: r#global_location_number_property
 							.unwrap_or_default(),
+						r#has_certification: r#has_certification_property.unwrap_or_default(),
 						r#has_credential: r#has_credential_property.unwrap_or_default(),
+						r#has_gs_1_digital_link: r#has_gs_1_digital_link_property
+							.unwrap_or_default(),
+						r#has_member_program: r#has_member_program_property.unwrap_or_default(),
 						r#has_merchant_return_policy: r#has_merchant_return_policy_property
 							.unwrap_or_default(),
 						r#has_offer_catalog: r#has_offer_catalog_property.unwrap_or_default(),
 						r#has_pos: r#has_pos_property.unwrap_or_default(),
 						r#has_product_return_policy: r#has_product_return_policy_property
 							.unwrap_or_default(),
+						r#has_shipping_service: r#has_shipping_service_property.unwrap_or_default(),
 						r#interaction_statistic: r#interaction_statistic_property
 							.unwrap_or_default(),
 						r#isic_v_4: r#isic_v_4_property.unwrap_or_default(),
@@ -4892,7 +5547,9 @@ mod serde {
 						r#keywords: r#keywords_property.unwrap_or_default(),
 						r#knows_about: r#knows_about_property.unwrap_or_default(),
 						r#knows_language: r#knows_language_property.unwrap_or_default(),
+						r#legal_address: r#legal_address_property.unwrap_or_default(),
 						r#legal_name: r#legal_name_property.unwrap_or_default(),
+						r#legal_representative: r#legal_representative_property.unwrap_or_default(),
 						r#lei_code: r#lei_code_property.unwrap_or_default(),
 						r#location: r#location_property.unwrap_or_default(),
 						r#logo: r#logo_property.unwrap_or_default(),
@@ -4913,6 +5570,7 @@ mod serde {
 						r#reviews: r#reviews_property.unwrap_or_default(),
 						r#seeks: r#seeks_property.unwrap_or_default(),
 						r#service_area: r#service_area_property.unwrap_or_default(),
+						r#skills: r#skills_property.unwrap_or_default(),
 						r#slogan: r#slogan_property.unwrap_or_default(),
 						r#sponsor: r#sponsor_property.unwrap_or_default(),
 						r#sub_organization: r#sub_organization_property.unwrap_or_default(),
@@ -4930,6 +5588,7 @@ mod serde {
 						r#image: r#image_property.unwrap_or_default(),
 						r#main_entity_of_page: r#main_entity_of_page_property.unwrap_or_default(),
 						r#name: r#name_property.unwrap_or_default(),
+						r#owner: r#owner_property.unwrap_or_default(),
 						r#potential_action: r#potential_action_property.unwrap_or_default(),
 						r#same_as: r#same_as_property.unwrap_or_default(),
 						r#subject_of: r#subject_of_property.unwrap_or_default(),
@@ -4939,15 +5598,18 @@ mod serde {
 			}
 			const FIELDS: &[&str] = &[
 				"tickerSymbol",
+				"acceptedPaymentMethod",
 				"actionableFeedbackPolicy",
 				"address",
 				"agentInteractionStatistic",
 				"aggregateRating",
 				"alumni",
 				"areaServed",
+				"authorizedRepresentative",
 				"award",
 				"awards",
 				"brand",
+				"companyRegistration",
 				"contactPoint",
 				"contactPoints",
 				"correctionsPolicy",
@@ -4970,18 +5632,24 @@ mod serde {
 				"funder",
 				"funding",
 				"globalLocationNumber",
+				"hasCertification",
 				"hasCredential",
+				"hasGS1DigitalLink",
+				"hasMemberProgram",
 				"hasMerchantReturnPolicy",
 				"hasOfferCatalog",
 				"hasPOS",
 				"hasProductReturnPolicy",
+				"hasShippingService",
 				"interactionStatistic",
 				"isicV4",
 				"iso6523Code",
 				"keywords",
 				"knowsAbout",
 				"knowsLanguage",
+				"legalAddress",
 				"legalName",
+				"legalRepresentative",
 				"leiCode",
 				"location",
 				"logo",
@@ -5000,6 +5668,7 @@ mod serde {
 				"reviews",
 				"seeks",
 				"serviceArea",
+				"skills",
 				"slogan",
 				"sponsor",
 				"subOrganization",
@@ -5015,6 +5684,7 @@ mod serde {
 				"image",
 				"mainEntityOfPage",
 				"name",
+				"owner",
 				"potentialAction",
 				"sameAs",
 				"subjectOf",

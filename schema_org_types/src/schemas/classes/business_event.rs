@@ -38,6 +38,10 @@ pub struct BusinessEvent {
 	pub r#funder: Vec<FunderProperty>,
 	/// <https://schema.org/funding>
 	pub r#funding: Vec<FundingProperty>,
+	/// <https://schema.org/hasParticipationOffer>
+	pub r#has_participation_offer: Vec<HasParticipationOfferProperty>,
+	/// <https://schema.org/hasSponsorshipOffer>
+	pub r#has_sponsorship_offer: Vec<HasSponsorshipOfferProperty>,
 	/// <https://schema.org/inLanguage>
 	pub r#in_language: Vec<InLanguageProperty>,
 	/// <https://schema.org/isAccessibleForFree>
@@ -104,6 +108,8 @@ pub struct BusinessEvent {
 	pub r#main_entity_of_page: Vec<MainEntityOfPageProperty>,
 	/// <https://schema.org/name>
 	pub r#name: Vec<NameProperty>,
+	/// <https://schema.org/owner>
+	pub r#owner: Vec<OwnerProperty>,
 	/// <https://schema.org/potentialAction>
 	pub r#potential_action: Vec<PotentialActionProperty>,
 	/// <https://schema.org/sameAs>
@@ -218,6 +224,18 @@ impl EventTrait for BusinessEvent {
 	}
 	fn take_funding(&mut self) -> Vec<FundingProperty> {
 		std::mem::take(&mut self.r#funding)
+	}
+	fn get_has_participation_offer(&self) -> &[HasParticipationOfferProperty] {
+		self.r#has_participation_offer.as_slice()
+	}
+	fn take_has_participation_offer(&mut self) -> Vec<HasParticipationOfferProperty> {
+		std::mem::take(&mut self.r#has_participation_offer)
+	}
+	fn get_has_sponsorship_offer(&self) -> &[HasSponsorshipOfferProperty] {
+		self.r#has_sponsorship_offer.as_slice()
+	}
+	fn take_has_sponsorship_offer(&mut self) -> Vec<HasSponsorshipOfferProperty> {
+		std::mem::take(&mut self.r#has_sponsorship_offer)
 	}
 	fn get_in_language(&self) -> &[InLanguageProperty] {
 		self.r#in_language.as_slice()
@@ -417,6 +435,12 @@ impl ThingTrait for BusinessEvent {
 	fn take_name(&mut self) -> Vec<NameProperty> {
 		std::mem::take(&mut self.r#name)
 	}
+	fn get_owner(&self) -> &[OwnerProperty] {
+		self.r#owner.as_slice()
+	}
+	fn take_owner(&mut self) -> Vec<OwnerProperty> {
+		std::mem::take(&mut self.r#owner)
+	}
 	fn get_potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
 	}
@@ -474,6 +498,8 @@ mod serde {
 				!Vec::is_empty(&self.r#event_status) as usize,
 				!Vec::is_empty(&self.r#funder) as usize,
 				!Vec::is_empty(&self.r#funding) as usize,
+				!Vec::is_empty(&self.r#has_participation_offer) as usize,
+				!Vec::is_empty(&self.r#has_sponsorship_offer) as usize,
 				!Vec::is_empty(&self.r#in_language) as usize,
 				!Vec::is_empty(&self.r#is_accessible_for_free) as usize,
 				!Vec::is_empty(&self.r#keywords) as usize,
@@ -506,6 +532,7 @@ mod serde {
 				!Vec::is_empty(&self.r#image) as usize,
 				!Vec::is_empty(&self.r#main_entity_of_page) as usize,
 				!Vec::is_empty(&self.r#name) as usize,
+				!Vec::is_empty(&self.r#owner) as usize,
 				!Vec::is_empty(&self.r#potential_action) as usize,
 				!Vec::is_empty(&self.r#same_as) as usize,
 				!Vec::is_empty(&self.r#subject_of) as usize,
@@ -820,6 +847,42 @@ mod serde {
 				})?;
 			} else {
 				serialize_struct.skip_field("funding")?;
+			}
+			if !Vec::is_empty(&self.r#has_participation_offer) {
+				serialize_struct.serialize_field("hasParticipationOffer", {
+					struct SerializeWith<'a>(&'a Vec<HasParticipationOfferProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#has_participation_offer)
+				})?;
+			} else {
+				serialize_struct.skip_field("hasParticipationOffer")?;
+			}
+			if !Vec::is_empty(&self.r#has_sponsorship_offer) {
+				serialize_struct.serialize_field("hasSponsorshipOffer", {
+					struct SerializeWith<'a>(&'a Vec<HasSponsorshipOfferProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#has_sponsorship_offer)
+				})?;
+			} else {
+				serialize_struct.skip_field("hasSponsorshipOffer")?;
 			}
 			if !Vec::is_empty(&self.r#in_language) {
 				serialize_struct.serialize_field("inLanguage", {
@@ -1397,6 +1460,24 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("name")?;
 			}
+			if !Vec::is_empty(&self.r#owner) {
+				serialize_struct.serialize_field("owner", {
+					struct SerializeWith<'a>(&'a Vec<OwnerProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#owner)
+				})?;
+			} else {
+				serialize_struct.skip_field("owner")?;
+			}
 			if !Vec::is_empty(&self.r#potential_action) {
 				serialize_struct.serialize_field("potentialAction", {
 					struct SerializeWith<'a>(&'a Vec<PotentialActionProperty>);
@@ -1495,6 +1576,8 @@ mod serde {
 				EventStatus,
 				Funder,
 				Funding,
+				HasParticipationOffer,
+				HasSponsorshipOffer,
 				InLanguage,
 				IsAccessibleForFree,
 				Keywords,
@@ -1527,6 +1610,7 @@ mod serde {
 				Image,
 				MainEntityOfPage,
 				Name,
+				Owner,
 				PotentialAction,
 				SameAs,
 				SubjectOf,
@@ -1561,6 +1645,8 @@ mod serde {
 						"eventStatus" => Ok(Field::EventStatus),
 						"funder" => Ok(Field::Funder),
 						"funding" => Ok(Field::Funding),
+						"hasParticipationOffer" => Ok(Field::HasParticipationOffer),
+						"hasSponsorshipOffer" => Ok(Field::HasSponsorshipOffer),
 						"inLanguage" => Ok(Field::InLanguage),
 						"isAccessibleForFree" => Ok(Field::IsAccessibleForFree),
 						"keywords" => Ok(Field::Keywords),
@@ -1597,6 +1683,7 @@ mod serde {
 						"image" => Ok(Field::Image),
 						"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
 						"name" => Ok(Field::Name),
+						"owner" => Ok(Field::Owner),
 						"potentialAction" => Ok(Field::PotentialAction),
 						"sameAs" => Ok(Field::SameAs),
 						"subjectOf" => Ok(Field::SubjectOf),
@@ -1627,6 +1714,8 @@ mod serde {
 						b"eventStatus" => Ok(Field::EventStatus),
 						b"funder" => Ok(Field::Funder),
 						b"funding" => Ok(Field::Funding),
+						b"hasParticipationOffer" => Ok(Field::HasParticipationOffer),
+						b"hasSponsorshipOffer" => Ok(Field::HasSponsorshipOffer),
 						b"inLanguage" => Ok(Field::InLanguage),
 						b"isAccessibleForFree" => Ok(Field::IsAccessibleForFree),
 						b"keywords" => Ok(Field::Keywords),
@@ -1663,6 +1752,7 @@ mod serde {
 						b"image" => Ok(Field::Image),
 						b"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
 						b"name" => Ok(Field::Name),
+						b"owner" => Ok(Field::Owner),
 						b"potentialAction" => Ok(Field::PotentialAction),
 						b"sameAs" => Ok(Field::SameAs),
 						b"subjectOf" => Ok(Field::SubjectOf),
@@ -1710,6 +1800,8 @@ mod serde {
 					let mut r#event_status_property = None;
 					let mut r#funder_property = None;
 					let mut r#funding_property = None;
+					let mut r#has_participation_offer_property = None;
+					let mut r#has_sponsorship_offer_property = None;
 					let mut r#in_language_property = None;
 					let mut r#is_accessible_for_free_property = None;
 					let mut r#keywords_property = None;
@@ -1742,6 +1834,7 @@ mod serde {
 					let mut r#image_property = None;
 					let mut r#main_entity_of_page_property = None;
 					let mut r#name_property = None;
+					let mut r#owner_property = None;
 					let mut r#potential_action_property = None;
 					let mut r#same_as_property = None;
 					let mut r#subject_of_property = None;
@@ -2198,6 +2291,62 @@ mod serde {
 								}
 								r#funding_property = Some({
 									struct DeserializeWith(Vec<FundingProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::HasParticipationOffer => {
+								if r#has_participation_offer_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"hasParticipationOffer",
+									));
+								}
+								r#has_participation_offer_property = Some({
+									struct DeserializeWith(Vec<HasParticipationOfferProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::HasSponsorshipOffer => {
+								if r#has_sponsorship_offer_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"hasSponsorshipOffer",
+									));
+								}
+								r#has_sponsorship_offer_property = Some({
+									struct DeserializeWith(Vec<HasSponsorshipOfferProperty>);
 									impl<'de> Deserialize<'de> for DeserializeWith {
 										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
 										where
@@ -3110,6 +3259,32 @@ mod serde {
 									}
 								});
 							}
+							Field::Owner => {
+								if r#owner_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field("owner"));
+								}
+								r#owner_property = Some({
+									struct DeserializeWith(Vec<OwnerProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::PotentialAction => {
 								if r#potential_action_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -3242,6 +3417,10 @@ mod serde {
 						r#event_status: r#event_status_property.unwrap_or_default(),
 						r#funder: r#funder_property.unwrap_or_default(),
 						r#funding: r#funding_property.unwrap_or_default(),
+						r#has_participation_offer: r#has_participation_offer_property
+							.unwrap_or_default(),
+						r#has_sponsorship_offer: r#has_sponsorship_offer_property
+							.unwrap_or_default(),
 						r#in_language: r#in_language_property.unwrap_or_default(),
 						r#is_accessible_for_free: r#is_accessible_for_free_property
 							.unwrap_or_default(),
@@ -3280,6 +3459,7 @@ mod serde {
 						r#image: r#image_property.unwrap_or_default(),
 						r#main_entity_of_page: r#main_entity_of_page_property.unwrap_or_default(),
 						r#name: r#name_property.unwrap_or_default(),
+						r#owner: r#owner_property.unwrap_or_default(),
 						r#potential_action: r#potential_action_property.unwrap_or_default(),
 						r#same_as: r#same_as_property.unwrap_or_default(),
 						r#subject_of: r#subject_of_property.unwrap_or_default(),
@@ -3305,6 +3485,8 @@ mod serde {
 				"eventStatus",
 				"funder",
 				"funding",
+				"hasParticipationOffer",
+				"hasSponsorshipOffer",
 				"inLanguage",
 				"isAccessibleForFree",
 				"keywords",
@@ -3337,6 +3519,7 @@ mod serde {
 				"image",
 				"mainEntityOfPage",
 				"name",
+				"owner",
 				"potentialAction",
 				"sameAs",
 				"subjectOf",

@@ -5,16 +5,28 @@ use super::*;
 pub struct Legislation {
 	/// <https://schema.org/jurisdiction>
 	pub r#jurisdiction: Vec<JurisdictionProperty>,
+	/// <https://schema.org/legislationAmends>
+	pub r#legislation_amends: Vec<LegislationAmendsProperty>,
 	/// <https://schema.org/legislationApplies>
 	pub r#legislation_applies: Vec<LegislationAppliesProperty>,
 	/// <https://schema.org/legislationChanges>
 	pub r#legislation_changes: Vec<LegislationChangesProperty>,
+	/// <https://schema.org/legislationCommences>
+	pub r#legislation_commences: Vec<LegislationCommencesProperty>,
 	/// <https://schema.org/legislationConsolidates>
 	pub r#legislation_consolidates: Vec<LegislationConsolidatesProperty>,
+	/// <https://schema.org/legislationCorrects>
+	pub r#legislation_corrects: Vec<LegislationCorrectsProperty>,
+	/// <https://schema.org/legislationCountersignedBy>
+	pub r#legislation_countersigned_by: Vec<LegislationCountersignedByProperty>,
 	/// <https://schema.org/legislationDate>
 	pub r#legislation_date: Vec<LegislationDateProperty>,
+	/// <https://schema.org/legislationDateOfApplicability>
+	pub r#legislation_date_of_applicability: Vec<LegislationDateOfApplicabilityProperty>,
 	/// <https://schema.org/legislationDateVersion>
 	pub r#legislation_date_version: Vec<LegislationDateVersionProperty>,
+	/// <https://schema.org/legislationEnsuresImplementationOf>
+	pub r#legislation_ensures_implementation_of: Vec<LegislationEnsuresImplementationOfProperty>,
 	/// <https://schema.org/legislationIdentifier>
 	pub r#legislation_identifier: Vec<LegislationIdentifierProperty>,
 	/// <https://schema.org/legislationJurisdiction>
@@ -23,6 +35,8 @@ pub struct Legislation {
 	pub r#legislation_legal_force: Vec<LegislationLegalForceProperty>,
 	/// <https://schema.org/legislationPassedBy>
 	pub r#legislation_passed_by: Vec<LegislationPassedByProperty>,
+	/// <https://schema.org/legislationRepeals>
+	pub r#legislation_repeals: Vec<LegislationRepealsProperty>,
 	/// <https://schema.org/legislationResponsible>
 	pub r#legislation_responsible: Vec<LegislationResponsibleProperty>,
 	/// <https://schema.org/legislationTransposes>
@@ -112,8 +126,12 @@ pub struct Legislation {
 	pub r#date_modified: Vec<DateModifiedProperty>,
 	/// <https://schema.org/datePublished>
 	pub r#date_published: Vec<DatePublishedProperty>,
+	/// <https://schema.org/digitalSourceType>
+	pub r#digital_source_type: Vec<DigitalSourceTypeProperty>,
 	/// <https://schema.org/discussionUrl>
 	pub r#discussion_url: Vec<DiscussionUrlProperty>,
+	/// <https://schema.org/displayLocation>
+	pub r#display_location: Vec<DisplayLocationProperty>,
 	/// <https://schema.org/editEIDR>
 	pub r#edit_eidr: Vec<EditEidrProperty>,
 	/// <https://schema.org/editor>
@@ -256,6 +274,8 @@ pub struct Legislation {
 	pub r#version: Vec<VersionProperty>,
 	/// <https://schema.org/video>
 	pub r#video: Vec<VideoProperty>,
+	/// <https://schema.org/wordCount>
+	pub r#word_count: Vec<WordCountProperty>,
 	/// <https://schema.org/workExample>
 	pub r#work_example: Vec<WorkExampleProperty>,
 	/// <https://schema.org/workTranslation>
@@ -276,6 +296,8 @@ pub struct Legislation {
 	pub r#main_entity_of_page: Vec<MainEntityOfPageProperty>,
 	/// <https://schema.org/name>
 	pub r#name: Vec<NameProperty>,
+	/// <https://schema.org/owner>
+	pub r#owner: Vec<OwnerProperty>,
 	/// <https://schema.org/potentialAction>
 	pub r#potential_action: Vec<PotentialActionProperty>,
 	/// <https://schema.org/sameAs>
@@ -291,6 +313,10 @@ pub trait LegislationTrait {
 	fn get_jurisdiction(&self) -> &[JurisdictionProperty];
 	/// Take <https://schema.org/jurisdiction> from [`Self`] as owned vector.
 	fn take_jurisdiction(&mut self) -> Vec<JurisdictionProperty>;
+	/// Get <https://schema.org/legislationAmends> from [`Self`] as borrowed slice.
+	fn get_legislation_amends(&self) -> &[LegislationAmendsProperty];
+	/// Take <https://schema.org/legislationAmends> from [`Self`] as owned vector.
+	fn take_legislation_amends(&mut self) -> Vec<LegislationAmendsProperty>;
 	/// Get <https://schema.org/legislationApplies> from [`Self`] as borrowed slice.
 	fn get_legislation_applies(&self) -> &[LegislationAppliesProperty];
 	/// Take <https://schema.org/legislationApplies> from [`Self`] as owned vector.
@@ -299,18 +325,44 @@ pub trait LegislationTrait {
 	fn get_legislation_changes(&self) -> &[LegislationChangesProperty];
 	/// Take <https://schema.org/legislationChanges> from [`Self`] as owned vector.
 	fn take_legislation_changes(&mut self) -> Vec<LegislationChangesProperty>;
+	/// Get <https://schema.org/legislationCommences> from [`Self`] as borrowed slice.
+	fn get_legislation_commences(&self) -> &[LegislationCommencesProperty];
+	/// Take <https://schema.org/legislationCommences> from [`Self`] as owned vector.
+	fn take_legislation_commences(&mut self) -> Vec<LegislationCommencesProperty>;
 	/// Get <https://schema.org/legislationConsolidates> from [`Self`] as borrowed slice.
 	fn get_legislation_consolidates(&self) -> &[LegislationConsolidatesProperty];
 	/// Take <https://schema.org/legislationConsolidates> from [`Self`] as owned vector.
 	fn take_legislation_consolidates(&mut self) -> Vec<LegislationConsolidatesProperty>;
+	/// Get <https://schema.org/legislationCorrects> from [`Self`] as borrowed slice.
+	fn get_legislation_corrects(&self) -> &[LegislationCorrectsProperty];
+	/// Take <https://schema.org/legislationCorrects> from [`Self`] as owned vector.
+	fn take_legislation_corrects(&mut self) -> Vec<LegislationCorrectsProperty>;
+	/// Get <https://schema.org/legislationCountersignedBy> from [`Self`] as borrowed slice.
+	fn get_legislation_countersigned_by(&self) -> &[LegislationCountersignedByProperty];
+	/// Take <https://schema.org/legislationCountersignedBy> from [`Self`] as owned vector.
+	fn take_legislation_countersigned_by(&mut self) -> Vec<LegislationCountersignedByProperty>;
 	/// Get <https://schema.org/legislationDate> from [`Self`] as borrowed slice.
 	fn get_legislation_date(&self) -> &[LegislationDateProperty];
 	/// Take <https://schema.org/legislationDate> from [`Self`] as owned vector.
 	fn take_legislation_date(&mut self) -> Vec<LegislationDateProperty>;
+	/// Get <https://schema.org/legislationDateOfApplicability> from [`Self`] as borrowed slice.
+	fn get_legislation_date_of_applicability(&self) -> &[LegislationDateOfApplicabilityProperty];
+	/// Take <https://schema.org/legislationDateOfApplicability> from [`Self`] as owned vector.
+	fn take_legislation_date_of_applicability(
+		&mut self,
+	) -> Vec<LegislationDateOfApplicabilityProperty>;
 	/// Get <https://schema.org/legislationDateVersion> from [`Self`] as borrowed slice.
 	fn get_legislation_date_version(&self) -> &[LegislationDateVersionProperty];
 	/// Take <https://schema.org/legislationDateVersion> from [`Self`] as owned vector.
 	fn take_legislation_date_version(&mut self) -> Vec<LegislationDateVersionProperty>;
+	/// Get <https://schema.org/legislationEnsuresImplementationOf> from [`Self`] as borrowed slice.
+	fn get_legislation_ensures_implementation_of(
+		&self,
+	) -> &[LegislationEnsuresImplementationOfProperty];
+	/// Take <https://schema.org/legislationEnsuresImplementationOf> from [`Self`] as owned vector.
+	fn take_legislation_ensures_implementation_of(
+		&mut self,
+	) -> Vec<LegislationEnsuresImplementationOfProperty>;
 	/// Get <https://schema.org/legislationIdentifier> from [`Self`] as borrowed slice.
 	fn get_legislation_identifier(&self) -> &[LegislationIdentifierProperty];
 	/// Take <https://schema.org/legislationIdentifier> from [`Self`] as owned vector.
@@ -327,6 +379,10 @@ pub trait LegislationTrait {
 	fn get_legislation_passed_by(&self) -> &[LegislationPassedByProperty];
 	/// Take <https://schema.org/legislationPassedBy> from [`Self`] as owned vector.
 	fn take_legislation_passed_by(&mut self) -> Vec<LegislationPassedByProperty>;
+	/// Get <https://schema.org/legislationRepeals> from [`Self`] as borrowed slice.
+	fn get_legislation_repeals(&self) -> &[LegislationRepealsProperty];
+	/// Take <https://schema.org/legislationRepeals> from [`Self`] as owned vector.
+	fn take_legislation_repeals(&mut self) -> Vec<LegislationRepealsProperty>;
 	/// Get <https://schema.org/legislationResponsible> from [`Self`] as borrowed slice.
 	fn get_legislation_responsible(&self) -> &[LegislationResponsibleProperty];
 	/// Take <https://schema.org/legislationResponsible> from [`Self`] as owned vector.
@@ -347,6 +403,12 @@ impl LegislationTrait for Legislation {
 	fn take_jurisdiction(&mut self) -> Vec<JurisdictionProperty> {
 		std::mem::take(&mut self.r#jurisdiction)
 	}
+	fn get_legislation_amends(&self) -> &[LegislationAmendsProperty] {
+		self.r#legislation_amends.as_slice()
+	}
+	fn take_legislation_amends(&mut self) -> Vec<LegislationAmendsProperty> {
+		std::mem::take(&mut self.r#legislation_amends)
+	}
 	fn get_legislation_applies(&self) -> &[LegislationAppliesProperty] {
 		self.r#legislation_applies.as_slice()
 	}
@@ -359,11 +421,29 @@ impl LegislationTrait for Legislation {
 	fn take_legislation_changes(&mut self) -> Vec<LegislationChangesProperty> {
 		std::mem::take(&mut self.r#legislation_changes)
 	}
+	fn get_legislation_commences(&self) -> &[LegislationCommencesProperty] {
+		self.r#legislation_commences.as_slice()
+	}
+	fn take_legislation_commences(&mut self) -> Vec<LegislationCommencesProperty> {
+		std::mem::take(&mut self.r#legislation_commences)
+	}
 	fn get_legislation_consolidates(&self) -> &[LegislationConsolidatesProperty] {
 		self.r#legislation_consolidates.as_slice()
 	}
 	fn take_legislation_consolidates(&mut self) -> Vec<LegislationConsolidatesProperty> {
 		std::mem::take(&mut self.r#legislation_consolidates)
+	}
+	fn get_legislation_corrects(&self) -> &[LegislationCorrectsProperty] {
+		self.r#legislation_corrects.as_slice()
+	}
+	fn take_legislation_corrects(&mut self) -> Vec<LegislationCorrectsProperty> {
+		std::mem::take(&mut self.r#legislation_corrects)
+	}
+	fn get_legislation_countersigned_by(&self) -> &[LegislationCountersignedByProperty] {
+		self.r#legislation_countersigned_by.as_slice()
+	}
+	fn take_legislation_countersigned_by(&mut self) -> Vec<LegislationCountersignedByProperty> {
+		std::mem::take(&mut self.r#legislation_countersigned_by)
 	}
 	fn get_legislation_date(&self) -> &[LegislationDateProperty] {
 		self.r#legislation_date.as_slice()
@@ -371,11 +451,29 @@ impl LegislationTrait for Legislation {
 	fn take_legislation_date(&mut self) -> Vec<LegislationDateProperty> {
 		std::mem::take(&mut self.r#legislation_date)
 	}
+	fn get_legislation_date_of_applicability(&self) -> &[LegislationDateOfApplicabilityProperty] {
+		self.r#legislation_date_of_applicability.as_slice()
+	}
+	fn take_legislation_date_of_applicability(
+		&mut self,
+	) -> Vec<LegislationDateOfApplicabilityProperty> {
+		std::mem::take(&mut self.r#legislation_date_of_applicability)
+	}
 	fn get_legislation_date_version(&self) -> &[LegislationDateVersionProperty] {
 		self.r#legislation_date_version.as_slice()
 	}
 	fn take_legislation_date_version(&mut self) -> Vec<LegislationDateVersionProperty> {
 		std::mem::take(&mut self.r#legislation_date_version)
+	}
+	fn get_legislation_ensures_implementation_of(
+		&self,
+	) -> &[LegislationEnsuresImplementationOfProperty] {
+		self.r#legislation_ensures_implementation_of.as_slice()
+	}
+	fn take_legislation_ensures_implementation_of(
+		&mut self,
+	) -> Vec<LegislationEnsuresImplementationOfProperty> {
+		std::mem::take(&mut self.r#legislation_ensures_implementation_of)
 	}
 	fn get_legislation_identifier(&self) -> &[LegislationIdentifierProperty] {
 		self.r#legislation_identifier.as_slice()
@@ -400,6 +498,12 @@ impl LegislationTrait for Legislation {
 	}
 	fn take_legislation_passed_by(&mut self) -> Vec<LegislationPassedByProperty> {
 		std::mem::take(&mut self.r#legislation_passed_by)
+	}
+	fn get_legislation_repeals(&self) -> &[LegislationRepealsProperty] {
+		self.r#legislation_repeals.as_slice()
+	}
+	fn take_legislation_repeals(&mut self) -> Vec<LegislationRepealsProperty> {
+		std::mem::take(&mut self.r#legislation_repeals)
 	}
 	fn get_legislation_responsible(&self) -> &[LegislationResponsibleProperty] {
 		self.r#legislation_responsible.as_slice()
@@ -667,11 +771,23 @@ impl CreativeWorkTrait for Legislation {
 	fn take_date_published(&mut self) -> Vec<DatePublishedProperty> {
 		std::mem::take(&mut self.r#date_published)
 	}
+	fn get_digital_source_type(&self) -> &[DigitalSourceTypeProperty] {
+		self.r#digital_source_type.as_slice()
+	}
+	fn take_digital_source_type(&mut self) -> Vec<DigitalSourceTypeProperty> {
+		std::mem::take(&mut self.r#digital_source_type)
+	}
 	fn get_discussion_url(&self) -> &[DiscussionUrlProperty] {
 		self.r#discussion_url.as_slice()
 	}
 	fn take_discussion_url(&mut self) -> Vec<DiscussionUrlProperty> {
 		std::mem::take(&mut self.r#discussion_url)
+	}
+	fn get_display_location(&self) -> &[DisplayLocationProperty] {
+		self.r#display_location.as_slice()
+	}
+	fn take_display_location(&mut self) -> Vec<DisplayLocationProperty> {
+		std::mem::take(&mut self.r#display_location)
 	}
 	fn get_edit_eidr(&self) -> &[EditEidrProperty] {
 		self.r#edit_eidr.as_slice()
@@ -1087,6 +1203,12 @@ impl CreativeWorkTrait for Legislation {
 	fn take_video(&mut self) -> Vec<VideoProperty> {
 		std::mem::take(&mut self.r#video)
 	}
+	fn get_word_count(&self) -> &[WordCountProperty] {
+		self.r#word_count.as_slice()
+	}
+	fn take_word_count(&mut self) -> Vec<WordCountProperty> {
+		std::mem::take(&mut self.r#word_count)
+	}
 	fn get_work_example(&self) -> &[WorkExampleProperty] {
 		self.r#work_example.as_slice()
 	}
@@ -1149,6 +1271,12 @@ impl ThingTrait for Legislation {
 	fn take_name(&mut self) -> Vec<NameProperty> {
 		std::mem::take(&mut self.r#name)
 	}
+	fn get_owner(&self) -> &[OwnerProperty] {
+		self.r#owner.as_slice()
+	}
+	fn take_owner(&mut self) -> Vec<OwnerProperty> {
+		std::mem::take(&mut self.r#owner)
+	}
 	fn get_potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
 	}
@@ -1190,15 +1318,22 @@ mod serde {
 		{
 			let len: usize = [
 				!Vec::is_empty(&self.r#jurisdiction) as usize,
+				!Vec::is_empty(&self.r#legislation_amends) as usize,
 				!Vec::is_empty(&self.r#legislation_applies) as usize,
 				!Vec::is_empty(&self.r#legislation_changes) as usize,
+				!Vec::is_empty(&self.r#legislation_commences) as usize,
 				!Vec::is_empty(&self.r#legislation_consolidates) as usize,
+				!Vec::is_empty(&self.r#legislation_corrects) as usize,
+				!Vec::is_empty(&self.r#legislation_countersigned_by) as usize,
 				!Vec::is_empty(&self.r#legislation_date) as usize,
+				!Vec::is_empty(&self.r#legislation_date_of_applicability) as usize,
 				!Vec::is_empty(&self.r#legislation_date_version) as usize,
+				!Vec::is_empty(&self.r#legislation_ensures_implementation_of) as usize,
 				!Vec::is_empty(&self.r#legislation_identifier) as usize,
 				!Vec::is_empty(&self.r#legislation_jurisdiction) as usize,
 				!Vec::is_empty(&self.r#legislation_legal_force) as usize,
 				!Vec::is_empty(&self.r#legislation_passed_by) as usize,
+				!Vec::is_empty(&self.r#legislation_repeals) as usize,
 				!Vec::is_empty(&self.r#legislation_responsible) as usize,
 				!Vec::is_empty(&self.r#legislation_transposes) as usize,
 				!Vec::is_empty(&self.r#legislation_type) as usize,
@@ -1243,7 +1378,9 @@ mod serde {
 				!Vec::is_empty(&self.r#date_created) as usize,
 				!Vec::is_empty(&self.r#date_modified) as usize,
 				!Vec::is_empty(&self.r#date_published) as usize,
+				!Vec::is_empty(&self.r#digital_source_type) as usize,
 				!Vec::is_empty(&self.r#discussion_url) as usize,
+				!Vec::is_empty(&self.r#display_location) as usize,
 				!Vec::is_empty(&self.r#edit_eidr) as usize,
 				!Vec::is_empty(&self.r#editor) as usize,
 				!Vec::is_empty(&self.r#educational_alignment) as usize,
@@ -1313,6 +1450,7 @@ mod serde {
 				!Vec::is_empty(&self.r#usage_info) as usize,
 				!Vec::is_empty(&self.r#version) as usize,
 				!Vec::is_empty(&self.r#video) as usize,
+				!Vec::is_empty(&self.r#word_count) as usize,
 				!Vec::is_empty(&self.r#work_example) as usize,
 				!Vec::is_empty(&self.r#work_translation) as usize,
 				!Vec::is_empty(&self.r#additional_type) as usize,
@@ -1323,6 +1461,7 @@ mod serde {
 				!Vec::is_empty(&self.r#image) as usize,
 				!Vec::is_empty(&self.r#main_entity_of_page) as usize,
 				!Vec::is_empty(&self.r#name) as usize,
+				!Vec::is_empty(&self.r#owner) as usize,
 				!Vec::is_empty(&self.r#potential_action) as usize,
 				!Vec::is_empty(&self.r#same_as) as usize,
 				!Vec::is_empty(&self.r#subject_of) as usize,
@@ -1349,6 +1488,24 @@ mod serde {
 				})?;
 			} else {
 				serialize_struct.skip_field("jurisdiction")?;
+			}
+			if !Vec::is_empty(&self.r#legislation_amends) {
+				serialize_struct.serialize_field("legislationAmends", {
+					struct SerializeWith<'a>(&'a Vec<LegislationAmendsProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#legislation_amends)
+				})?;
+			} else {
+				serialize_struct.skip_field("legislationAmends")?;
 			}
 			if !Vec::is_empty(&self.r#legislation_applies) {
 				serialize_struct.serialize_field("legislationApplies", {
@@ -1386,6 +1543,24 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("legislationChanges")?;
 			}
+			if !Vec::is_empty(&self.r#legislation_commences) {
+				serialize_struct.serialize_field("legislationCommences", {
+					struct SerializeWith<'a>(&'a Vec<LegislationCommencesProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#legislation_commences)
+				})?;
+			} else {
+				serialize_struct.skip_field("legislationCommences")?;
+			}
 			if !Vec::is_empty(&self.r#legislation_consolidates) {
 				serialize_struct.serialize_field("legislationConsolidates", {
 					struct SerializeWith<'a>(&'a Vec<LegislationConsolidatesProperty>);
@@ -1403,6 +1578,42 @@ mod serde {
 				})?;
 			} else {
 				serialize_struct.skip_field("legislationConsolidates")?;
+			}
+			if !Vec::is_empty(&self.r#legislation_corrects) {
+				serialize_struct.serialize_field("legislationCorrects", {
+					struct SerializeWith<'a>(&'a Vec<LegislationCorrectsProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#legislation_corrects)
+				})?;
+			} else {
+				serialize_struct.skip_field("legislationCorrects")?;
+			}
+			if !Vec::is_empty(&self.r#legislation_countersigned_by) {
+				serialize_struct.serialize_field("legislationCountersignedBy", {
+					struct SerializeWith<'a>(&'a Vec<LegislationCountersignedByProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#legislation_countersigned_by)
+				})?;
+			} else {
+				serialize_struct.skip_field("legislationCountersignedBy")?;
 			}
 			if !Vec::is_empty(&self.r#legislation_date) {
 				serialize_struct.serialize_field("legislationDate", {
@@ -1422,6 +1633,24 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("legislationDate")?;
 			}
+			if !Vec::is_empty(&self.r#legislation_date_of_applicability) {
+				serialize_struct.serialize_field("legislationDateOfApplicability", {
+					struct SerializeWith<'a>(&'a Vec<LegislationDateOfApplicabilityProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#legislation_date_of_applicability)
+				})?;
+			} else {
+				serialize_struct.skip_field("legislationDateOfApplicability")?;
+			}
 			if !Vec::is_empty(&self.r#legislation_date_version) {
 				serialize_struct.serialize_field("legislationDateVersion", {
 					struct SerializeWith<'a>(&'a Vec<LegislationDateVersionProperty>);
@@ -1439,6 +1668,24 @@ mod serde {
 				})?;
 			} else {
 				serialize_struct.skip_field("legislationDateVersion")?;
+			}
+			if !Vec::is_empty(&self.r#legislation_ensures_implementation_of) {
+				serialize_struct.serialize_field("legislationEnsuresImplementationOf", {
+					struct SerializeWith<'a>(&'a Vec<LegislationEnsuresImplementationOfProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#legislation_ensures_implementation_of)
+				})?;
+			} else {
+				serialize_struct.skip_field("legislationEnsuresImplementationOf")?;
 			}
 			if !Vec::is_empty(&self.r#legislation_identifier) {
 				serialize_struct.serialize_field("legislationIdentifier", {
@@ -1511,6 +1758,24 @@ mod serde {
 				})?;
 			} else {
 				serialize_struct.skip_field("legislationPassedBy")?;
+			}
+			if !Vec::is_empty(&self.r#legislation_repeals) {
+				serialize_struct.serialize_field("legislationRepeals", {
+					struct SerializeWith<'a>(&'a Vec<LegislationRepealsProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#legislation_repeals)
+				})?;
+			} else {
+				serialize_struct.skip_field("legislationRepeals")?;
 			}
 			if !Vec::is_empty(&self.r#legislation_responsible) {
 				serialize_struct.serialize_field("legislationResponsible", {
@@ -2304,6 +2569,24 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("datePublished")?;
 			}
+			if !Vec::is_empty(&self.r#digital_source_type) {
+				serialize_struct.serialize_field("digitalSourceType", {
+					struct SerializeWith<'a>(&'a Vec<DigitalSourceTypeProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#digital_source_type)
+				})?;
+			} else {
+				serialize_struct.skip_field("digitalSourceType")?;
+			}
 			if !Vec::is_empty(&self.r#discussion_url) {
 				serialize_struct.serialize_field("discussionUrl", {
 					struct SerializeWith<'a>(&'a Vec<DiscussionUrlProperty>);
@@ -2321,6 +2604,24 @@ mod serde {
 				})?;
 			} else {
 				serialize_struct.skip_field("discussionUrl")?;
+			}
+			if !Vec::is_empty(&self.r#display_location) {
+				serialize_struct.serialize_field("displayLocation", {
+					struct SerializeWith<'a>(&'a Vec<DisplayLocationProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#display_location)
+				})?;
+			} else {
+				serialize_struct.skip_field("displayLocation")?;
 			}
 			if !Vec::is_empty(&self.r#edit_eidr) {
 				serialize_struct.serialize_field("editEIDR", {
@@ -3564,6 +3865,24 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("video")?;
 			}
+			if !Vec::is_empty(&self.r#word_count) {
+				serialize_struct.serialize_field("wordCount", {
+					struct SerializeWith<'a>(&'a Vec<WordCountProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#word_count)
+				})?;
+			} else {
+				serialize_struct.skip_field("wordCount")?;
+			}
 			if !Vec::is_empty(&self.r#work_example) {
 				serialize_struct.serialize_field("workExample", {
 					struct SerializeWith<'a>(&'a Vec<WorkExampleProperty>);
@@ -3744,6 +4063,24 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("name")?;
 			}
+			if !Vec::is_empty(&self.r#owner) {
+				serialize_struct.serialize_field("owner", {
+					struct SerializeWith<'a>(&'a Vec<OwnerProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#owner)
+				})?;
+			} else {
+				serialize_struct.skip_field("owner")?;
+			}
 			if !Vec::is_empty(&self.r#potential_action) {
 				serialize_struct.serialize_field("potentialAction", {
 					struct SerializeWith<'a>(&'a Vec<PotentialActionProperty>);
@@ -3826,15 +4163,22 @@ mod serde {
 		{
 			enum Field {
 				Jurisdiction,
+				LegislationAmends,
 				LegislationApplies,
 				LegislationChanges,
+				LegislationCommences,
 				LegislationConsolidates,
+				LegislationCorrects,
+				LegislationCountersignedBy,
 				LegislationDate,
+				LegislationDateOfApplicability,
 				LegislationDateVersion,
+				LegislationEnsuresImplementationOf,
 				LegislationIdentifier,
 				LegislationJurisdiction,
 				LegislationLegalForce,
 				LegislationPassedBy,
+				LegislationRepeals,
 				LegislationResponsible,
 				LegislationTransposes,
 				LegislationType,
@@ -3879,7 +4223,9 @@ mod serde {
 				DateCreated,
 				DateModified,
 				DatePublished,
+				DigitalSourceType,
 				DiscussionUrl,
+				DisplayLocation,
 				EditEidr,
 				Editor,
 				EducationalAlignment,
@@ -3949,6 +4295,7 @@ mod serde {
 				UsageInfo,
 				Version,
 				Video,
+				WordCount,
 				WorkExample,
 				WorkTranslation,
 				AdditionalType,
@@ -3959,6 +4306,7 @@ mod serde {
 				Image,
 				MainEntityOfPage,
 				Name,
+				Owner,
 				PotentialAction,
 				SameAs,
 				SubjectOf,
@@ -3977,15 +4325,26 @@ mod serde {
 				{
 					match value {
 						"jurisdiction" => Ok(Field::Jurisdiction),
+						"legislationAmends" => Ok(Field::LegislationAmends),
 						"legislationApplies" => Ok(Field::LegislationApplies),
 						"legislationChanges" => Ok(Field::LegislationChanges),
+						"legislationCommences" => Ok(Field::LegislationCommences),
 						"legislationConsolidates" => Ok(Field::LegislationConsolidates),
+						"legislationCorrects" => Ok(Field::LegislationCorrects),
+						"legislationCountersignedBy" => Ok(Field::LegislationCountersignedBy),
 						"legislationDate" => Ok(Field::LegislationDate),
+						"legislationDateOfApplicability" => {
+							Ok(Field::LegislationDateOfApplicability)
+						}
 						"legislationDateVersion" => Ok(Field::LegislationDateVersion),
+						"legislationEnsuresImplementationOf" => {
+							Ok(Field::LegislationEnsuresImplementationOf)
+						}
 						"legislationIdentifier" => Ok(Field::LegislationIdentifier),
 						"legislationJurisdiction" => Ok(Field::LegislationJurisdiction),
 						"legislationLegalForce" => Ok(Field::LegislationLegalForce),
 						"legislationPassedBy" => Ok(Field::LegislationPassedBy),
+						"legislationRepeals" => Ok(Field::LegislationRepeals),
 						"legislationResponsible" => Ok(Field::LegislationResponsible),
 						"legislationTransposes" => Ok(Field::LegislationTransposes),
 						"legislationType" => Ok(Field::LegislationType),
@@ -4030,7 +4389,9 @@ mod serde {
 						"dateCreated" => Ok(Field::DateCreated),
 						"dateModified" => Ok(Field::DateModified),
 						"datePublished" => Ok(Field::DatePublished),
+						"digitalSourceType" => Ok(Field::DigitalSourceType),
 						"discussionUrl" => Ok(Field::DiscussionUrl),
+						"displayLocation" => Ok(Field::DisplayLocation),
 						"editEIDR" => Ok(Field::EditEidr),
 						"editor" => Ok(Field::Editor),
 						"educationalAlignment" => Ok(Field::EducationalAlignment),
@@ -4100,6 +4461,7 @@ mod serde {
 						"usageInfo" => Ok(Field::UsageInfo),
 						"version" => Ok(Field::Version),
 						"video" => Ok(Field::Video),
+						"wordCount" => Ok(Field::WordCount),
 						"workExample" => Ok(Field::WorkExample),
 						"workTranslation" => Ok(Field::WorkTranslation),
 						"additionalType" => Ok(Field::AdditionalType),
@@ -4110,6 +4472,7 @@ mod serde {
 						"image" => Ok(Field::Image),
 						"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
 						"name" => Ok(Field::Name),
+						"owner" => Ok(Field::Owner),
 						"potentialAction" => Ok(Field::PotentialAction),
 						"sameAs" => Ok(Field::SameAs),
 						"subjectOf" => Ok(Field::SubjectOf),
@@ -4124,15 +4487,26 @@ mod serde {
 				{
 					match value {
 						b"jurisdiction" => Ok(Field::Jurisdiction),
+						b"legislationAmends" => Ok(Field::LegislationAmends),
 						b"legislationApplies" => Ok(Field::LegislationApplies),
 						b"legislationChanges" => Ok(Field::LegislationChanges),
+						b"legislationCommences" => Ok(Field::LegislationCommences),
 						b"legislationConsolidates" => Ok(Field::LegislationConsolidates),
+						b"legislationCorrects" => Ok(Field::LegislationCorrects),
+						b"legislationCountersignedBy" => Ok(Field::LegislationCountersignedBy),
 						b"legislationDate" => Ok(Field::LegislationDate),
+						b"legislationDateOfApplicability" => {
+							Ok(Field::LegislationDateOfApplicability)
+						}
 						b"legislationDateVersion" => Ok(Field::LegislationDateVersion),
+						b"legislationEnsuresImplementationOf" => {
+							Ok(Field::LegislationEnsuresImplementationOf)
+						}
 						b"legislationIdentifier" => Ok(Field::LegislationIdentifier),
 						b"legislationJurisdiction" => Ok(Field::LegislationJurisdiction),
 						b"legislationLegalForce" => Ok(Field::LegislationLegalForce),
 						b"legislationPassedBy" => Ok(Field::LegislationPassedBy),
+						b"legislationRepeals" => Ok(Field::LegislationRepeals),
 						b"legislationResponsible" => Ok(Field::LegislationResponsible),
 						b"legislationTransposes" => Ok(Field::LegislationTransposes),
 						b"legislationType" => Ok(Field::LegislationType),
@@ -4177,7 +4551,9 @@ mod serde {
 						b"dateCreated" => Ok(Field::DateCreated),
 						b"dateModified" => Ok(Field::DateModified),
 						b"datePublished" => Ok(Field::DatePublished),
+						b"digitalSourceType" => Ok(Field::DigitalSourceType),
 						b"discussionUrl" => Ok(Field::DiscussionUrl),
+						b"displayLocation" => Ok(Field::DisplayLocation),
 						b"editEIDR" => Ok(Field::EditEidr),
 						b"editor" => Ok(Field::Editor),
 						b"educationalAlignment" => Ok(Field::EducationalAlignment),
@@ -4247,6 +4623,7 @@ mod serde {
 						b"usageInfo" => Ok(Field::UsageInfo),
 						b"version" => Ok(Field::Version),
 						b"video" => Ok(Field::Video),
+						b"wordCount" => Ok(Field::WordCount),
 						b"workExample" => Ok(Field::WorkExample),
 						b"workTranslation" => Ok(Field::WorkTranslation),
 						b"additionalType" => Ok(Field::AdditionalType),
@@ -4257,6 +4634,7 @@ mod serde {
 						b"image" => Ok(Field::Image),
 						b"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
 						b"name" => Ok(Field::Name),
+						b"owner" => Ok(Field::Owner),
 						b"potentialAction" => Ok(Field::PotentialAction),
 						b"sameAs" => Ok(Field::SameAs),
 						b"subjectOf" => Ok(Field::SubjectOf),
@@ -4288,15 +4666,22 @@ mod serde {
 					A: de::MapAccess<'de>,
 				{
 					let mut r#jurisdiction_property = None;
+					let mut r#legislation_amends_property = None;
 					let mut r#legislation_applies_property = None;
 					let mut r#legislation_changes_property = None;
+					let mut r#legislation_commences_property = None;
 					let mut r#legislation_consolidates_property = None;
+					let mut r#legislation_corrects_property = None;
+					let mut r#legislation_countersigned_by_property = None;
 					let mut r#legislation_date_property = None;
+					let mut r#legislation_date_of_applicability_property = None;
 					let mut r#legislation_date_version_property = None;
+					let mut r#legislation_ensures_implementation_of_property = None;
 					let mut r#legislation_identifier_property = None;
 					let mut r#legislation_jurisdiction_property = None;
 					let mut r#legislation_legal_force_property = None;
 					let mut r#legislation_passed_by_property = None;
+					let mut r#legislation_repeals_property = None;
 					let mut r#legislation_responsible_property = None;
 					let mut r#legislation_transposes_property = None;
 					let mut r#legislation_type_property = None;
@@ -4341,7 +4726,9 @@ mod serde {
 					let mut r#date_created_property = None;
 					let mut r#date_modified_property = None;
 					let mut r#date_published_property = None;
+					let mut r#digital_source_type_property = None;
 					let mut r#discussion_url_property = None;
+					let mut r#display_location_property = None;
 					let mut r#edit_eidr_property = None;
 					let mut r#editor_property = None;
 					let mut r#educational_alignment_property = None;
@@ -4411,6 +4798,7 @@ mod serde {
 					let mut r#usage_info_property = None;
 					let mut r#version_property = None;
 					let mut r#video_property = None;
+					let mut r#word_count_property = None;
 					let mut r#work_example_property = None;
 					let mut r#work_translation_property = None;
 					let mut r#additional_type_property = None;
@@ -4421,6 +4809,7 @@ mod serde {
 					let mut r#image_property = None;
 					let mut r#main_entity_of_page_property = None;
 					let mut r#name_property = None;
+					let mut r#owner_property = None;
 					let mut r#potential_action_property = None;
 					let mut r#same_as_property = None;
 					let mut r#subject_of_property = None;
@@ -4435,6 +4824,34 @@ mod serde {
 								}
 								r#jurisdiction_property = Some({
 									struct DeserializeWith(Vec<JurisdictionProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::LegislationAmends => {
+								if r#legislation_amends_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"legislationAmends",
+									));
+								}
+								r#legislation_amends_property = Some({
+									struct DeserializeWith(Vec<LegislationAmendsProperty>);
 									impl<'de> Deserialize<'de> for DeserializeWith {
 										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
 										where
@@ -4511,6 +4928,34 @@ mod serde {
 									}
 								});
 							}
+							Field::LegislationCommences => {
+								if r#legislation_commences_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"legislationCommences",
+									));
+								}
+								r#legislation_commences_property = Some({
+									struct DeserializeWith(Vec<LegislationCommencesProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::LegislationConsolidates => {
 								if r#legislation_consolidates_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -4519,6 +4964,62 @@ mod serde {
 								}
 								r#legislation_consolidates_property = Some({
 									struct DeserializeWith(Vec<LegislationConsolidatesProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::LegislationCorrects => {
+								if r#legislation_corrects_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"legislationCorrects",
+									));
+								}
+								r#legislation_corrects_property = Some({
+									struct DeserializeWith(Vec<LegislationCorrectsProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::LegislationCountersignedBy => {
+								if r#legislation_countersigned_by_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"legislationCountersignedBy",
+									));
+								}
+								r#legislation_countersigned_by_property = Some({
+									struct DeserializeWith(Vec<LegislationCountersignedByProperty>);
 									impl<'de> Deserialize<'de> for DeserializeWith {
 										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
 										where
@@ -4567,6 +5068,36 @@ mod serde {
 									}
 								});
 							}
+							Field::LegislationDateOfApplicability => {
+								if r#legislation_date_of_applicability_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"legislationDateOfApplicability",
+									));
+								}
+								r#legislation_date_of_applicability_property = Some({
+									struct DeserializeWith(
+										Vec<LegislationDateOfApplicabilityProperty>,
+									);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::LegislationDateVersion => {
 								if r#legislation_date_version_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -4575,6 +5106,36 @@ mod serde {
 								}
 								r#legislation_date_version_property = Some({
 									struct DeserializeWith(Vec<LegislationDateVersionProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::LegislationEnsuresImplementationOf => {
+								if r#legislation_ensures_implementation_of_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"legislationEnsuresImplementationOf",
+									));
+								}
+								r#legislation_ensures_implementation_of_property = Some({
+									struct DeserializeWith(
+										Vec<LegislationEnsuresImplementationOfProperty>,
+									);
 									impl<'de> Deserialize<'de> for DeserializeWith {
 										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
 										where
@@ -4687,6 +5248,34 @@ mod serde {
 								}
 								r#legislation_passed_by_property = Some({
 									struct DeserializeWith(Vec<LegislationPassedByProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::LegislationRepeals => {
+								if r#legislation_repeals_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"legislationRepeals",
+									));
+								}
+								r#legislation_repeals_property = Some({
+									struct DeserializeWith(Vec<LegislationRepealsProperty>);
 									impl<'de> Deserialize<'de> for DeserializeWith {
 										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
 										where
@@ -5929,6 +6518,34 @@ mod serde {
 									}
 								});
 							}
+							Field::DigitalSourceType => {
+								if r#digital_source_type_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"digitalSourceType",
+									));
+								}
+								r#digital_source_type_property = Some({
+									struct DeserializeWith(Vec<DigitalSourceTypeProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::DiscussionUrl => {
 								if r#discussion_url_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -5937,6 +6554,34 @@ mod serde {
 								}
 								r#discussion_url_property = Some({
 									struct DeserializeWith(Vec<DiscussionUrlProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::DisplayLocation => {
+								if r#display_location_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"displayLocation",
+									));
+								}
+								r#display_location_property = Some({
+									struct DeserializeWith(Vec<DisplayLocationProperty>);
 									impl<'de> Deserialize<'de> for DeserializeWith {
 										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
 										where
@@ -7873,6 +8518,34 @@ mod serde {
 									}
 								});
 							}
+							Field::WordCount => {
+								if r#word_count_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"wordCount",
+									));
+								}
+								r#word_count_property = Some({
+									struct DeserializeWith(Vec<WordCountProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::WorkExample => {
 								if r#work_example_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -8149,6 +8822,32 @@ mod serde {
 									}
 								});
 							}
+							Field::Owner => {
+								if r#owner_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field("owner"));
+								}
+								r#owner_property = Some({
+									struct DeserializeWith(Vec<OwnerProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::PotentialAction => {
 								if r#potential_action_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -8264,13 +8963,23 @@ mod serde {
 					}
 					Ok(Legislation {
 						r#jurisdiction: r#jurisdiction_property.unwrap_or_default(),
+						r#legislation_amends: r#legislation_amends_property.unwrap_or_default(),
 						r#legislation_applies: r#legislation_applies_property.unwrap_or_default(),
 						r#legislation_changes: r#legislation_changes_property.unwrap_or_default(),
+						r#legislation_commences: r#legislation_commences_property
+							.unwrap_or_default(),
 						r#legislation_consolidates: r#legislation_consolidates_property
 							.unwrap_or_default(),
+						r#legislation_corrects: r#legislation_corrects_property.unwrap_or_default(),
+						r#legislation_countersigned_by: r#legislation_countersigned_by_property
+							.unwrap_or_default(),
 						r#legislation_date: r#legislation_date_property.unwrap_or_default(),
+						r#legislation_date_of_applicability:
+							r#legislation_date_of_applicability_property.unwrap_or_default(),
 						r#legislation_date_version: r#legislation_date_version_property
 							.unwrap_or_default(),
+						r#legislation_ensures_implementation_of:
+							r#legislation_ensures_implementation_of_property.unwrap_or_default(),
 						r#legislation_identifier: r#legislation_identifier_property
 							.unwrap_or_default(),
 						r#legislation_jurisdiction: r#legislation_jurisdiction_property
@@ -8279,6 +8988,7 @@ mod serde {
 							.unwrap_or_default(),
 						r#legislation_passed_by: r#legislation_passed_by_property
 							.unwrap_or_default(),
+						r#legislation_repeals: r#legislation_repeals_property.unwrap_or_default(),
 						r#legislation_responsible: r#legislation_responsible_property
 							.unwrap_or_default(),
 						r#legislation_transposes: r#legislation_transposes_property
@@ -8330,7 +9040,9 @@ mod serde {
 						r#date_created: r#date_created_property.unwrap_or_default(),
 						r#date_modified: r#date_modified_property.unwrap_or_default(),
 						r#date_published: r#date_published_property.unwrap_or_default(),
+						r#digital_source_type: r#digital_source_type_property.unwrap_or_default(),
 						r#discussion_url: r#discussion_url_property.unwrap_or_default(),
+						r#display_location: r#display_location_property.unwrap_or_default(),
 						r#edit_eidr: r#edit_eidr_property.unwrap_or_default(),
 						r#editor: r#editor_property.unwrap_or_default(),
 						r#educational_alignment: r#educational_alignment_property
@@ -8405,6 +9117,7 @@ mod serde {
 						r#usage_info: r#usage_info_property.unwrap_or_default(),
 						r#version: r#version_property.unwrap_or_default(),
 						r#video: r#video_property.unwrap_or_default(),
+						r#word_count: r#word_count_property.unwrap_or_default(),
 						r#work_example: r#work_example_property.unwrap_or_default(),
 						r#work_translation: r#work_translation_property.unwrap_or_default(),
 						r#additional_type: r#additional_type_property.unwrap_or_default(),
@@ -8416,6 +9129,7 @@ mod serde {
 						r#image: r#image_property.unwrap_or_default(),
 						r#main_entity_of_page: r#main_entity_of_page_property.unwrap_or_default(),
 						r#name: r#name_property.unwrap_or_default(),
+						r#owner: r#owner_property.unwrap_or_default(),
 						r#potential_action: r#potential_action_property.unwrap_or_default(),
 						r#same_as: r#same_as_property.unwrap_or_default(),
 						r#subject_of: r#subject_of_property.unwrap_or_default(),
@@ -8425,15 +9139,22 @@ mod serde {
 			}
 			const FIELDS: &[&str] = &[
 				"jurisdiction",
+				"legislationAmends",
 				"legislationApplies",
 				"legislationChanges",
+				"legislationCommences",
 				"legislationConsolidates",
+				"legislationCorrects",
+				"legislationCountersignedBy",
 				"legislationDate",
+				"legislationDateOfApplicability",
 				"legislationDateVersion",
+				"legislationEnsuresImplementationOf",
 				"legislationIdentifier",
 				"legislationJurisdiction",
 				"legislationLegalForce",
 				"legislationPassedBy",
+				"legislationRepeals",
 				"legislationResponsible",
 				"legislationTransposes",
 				"legislationType",
@@ -8478,7 +9199,9 @@ mod serde {
 				"dateCreated",
 				"dateModified",
 				"datePublished",
+				"digitalSourceType",
 				"discussionUrl",
+				"displayLocation",
 				"editEIDR",
 				"editor",
 				"educationalAlignment",
@@ -8548,6 +9271,7 @@ mod serde {
 				"usageInfo",
 				"version",
 				"video",
+				"wordCount",
 				"workExample",
 				"workTranslation",
 				"additionalType",
@@ -8558,6 +9282,7 @@ mod serde {
 				"image",
 				"mainEntityOfPage",
 				"name",
+				"owner",
 				"potentialAction",
 				"sameAs",
 				"subjectOf",

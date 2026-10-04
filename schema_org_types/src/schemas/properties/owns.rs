@@ -3,10 +3,8 @@ use super::*;
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 pub enum OwnsProperty {
-	/// <https://schema.org/OwnershipInfo>
-	OwnershipInfo(OwnershipInfo),
-	/// <https://schema.org/Product>
-	Product(Product),
+	/// <https://schema.org/Thing>
+	Thing(Thing),
 	#[cfg(any(all(feature = "fallible", feature = "serde"), doc))]
 	SerdeFail(crate::fallible::FailValue),
 }
@@ -25,8 +23,7 @@ mod serde {
 			S: Serializer,
 		{
 			match *self {
-				OwnsProperty::OwnershipInfo(ref inner) => inner.serialize(serializer),
-				OwnsProperty::Product(ref inner) => inner.serialize(serializer),
+				OwnsProperty::Thing(ref inner) => inner.serialize(serializer),
 				#[cfg(all(feature = "fallible", feature = "serde"))]
 				OwnsProperty::SerdeFail(ref inner) => inner.serialize(serializer),
 			}
@@ -42,14 +39,8 @@ mod serde {
 			let deserializer =
 				::serde::__private::de::ContentRefDeserializer::<D::Error>::new(&content);
 			if let Ok(ok) = Result::map(
-				<OwnershipInfo as Deserialize>::deserialize(deserializer),
-				OwnsProperty::OwnershipInfo,
-			) {
-				return Ok(ok);
-			}
-			if let Ok(ok) = Result::map(
-				<Product as Deserialize>::deserialize(deserializer),
-				OwnsProperty::Product,
+				<Thing as Deserialize>::deserialize(deserializer),
+				OwnsProperty::Thing,
 			) {
 				return Ok(ok);
 			}

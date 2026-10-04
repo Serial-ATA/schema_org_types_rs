@@ -5,6 +5,8 @@ use super::*;
 pub enum WeightProperty {
 	/// <https://schema.org/QuantitativeValue>
 	QuantitativeValue(QuantitativeValue),
+	/// <https://schema.org/Mass>
+	Mass(Mass),
 	#[cfg(any(all(feature = "fallible", feature = "serde"), doc))]
 	SerdeFail(crate::fallible::FailValue),
 }
@@ -24,6 +26,7 @@ mod serde {
 		{
 			match *self {
 				WeightProperty::QuantitativeValue(ref inner) => inner.serialize(serializer),
+				WeightProperty::Mass(ref inner) => inner.serialize(serializer),
 				#[cfg(all(feature = "fallible", feature = "serde"))]
 				WeightProperty::SerdeFail(ref inner) => inner.serialize(serializer),
 			}
@@ -41,6 +44,12 @@ mod serde {
 			if let Ok(ok) = Result::map(
 				<QuantitativeValue as Deserialize>::deserialize(deserializer),
 				WeightProperty::QuantitativeValue,
+			) {
+				return Ok(ok);
+			}
+			if let Ok(ok) = Result::map(
+				<Mass as Deserialize>::deserialize(deserializer),
+				WeightProperty::Mass,
 			) {
 				return Ok(ok);
 			}

@@ -80,8 +80,16 @@ impl Schema for Property {
 			match variant_type.cmp(&other_type) {
 				Ordering::Less => Ordering::Less,
 				Ordering::Equal => match variant_type {
-					VariantType::DataType => RustType::from(variant.name.as_str())
-						.cmp(&RustType::from(other.name.as_str())),
+					VariantType::DataType => RustType::from(
+						store
+							.get_transformable_data_type_label_of_data_type(&variant.iri)
+							.as_str(),
+					)
+					.cmp(&RustType::from(
+						store
+							.get_transformable_data_type_label_of_data_type(&other.iri)
+							.as_str(),
+					)),
 					_ => variant.cmp(other),
 				},
 				Ordering::Greater => Ordering::Greater,

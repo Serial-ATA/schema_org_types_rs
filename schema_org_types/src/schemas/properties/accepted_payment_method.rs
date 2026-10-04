@@ -7,6 +7,8 @@ pub enum AcceptedPaymentMethodProperty {
 	LoanOrCredit(LoanOrCredit),
 	/// <https://schema.org/PaymentMethod>
 	PaymentMethod(PaymentMethod),
+	/// <https://schema.org/Text>
+	Text(Text),
 	#[cfg(any(all(feature = "fallible", feature = "serde"), doc))]
 	SerdeFail(crate::fallible::FailValue),
 }
@@ -31,6 +33,7 @@ mod serde {
 				AcceptedPaymentMethodProperty::PaymentMethod(ref inner) => {
 					inner.serialize(serializer)
 				}
+				AcceptedPaymentMethodProperty::Text(ref inner) => inner.serialize(serializer),
 				#[cfg(all(feature = "fallible", feature = "serde"))]
 				AcceptedPaymentMethodProperty::SerdeFail(ref inner) => inner.serialize(serializer),
 			}
@@ -54,6 +57,12 @@ mod serde {
 			if let Ok(ok) = Result::map(
 				<PaymentMethod as Deserialize>::deserialize(deserializer),
 				AcceptedPaymentMethodProperty::PaymentMethod,
+			) {
+				return Ok(ok);
+			}
+			if let Ok(ok) = Result::map(
+				<Text as Deserialize>::deserialize(deserializer),
+				AcceptedPaymentMethodProperty::Text,
 			) {
 				return Ok(ok);
 			}

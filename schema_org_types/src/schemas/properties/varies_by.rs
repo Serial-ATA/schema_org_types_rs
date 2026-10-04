@@ -5,6 +5,8 @@ use super::*;
 pub enum VariesByProperty {
 	/// <https://schema.org/DefinedTerm>
 	DefinedTerm(DefinedTerm),
+	/// <https://schema.org/PropertyValue>
+	PropertyValue(PropertyValue),
 	/// <https://schema.org/Text>
 	Text(Text),
 	#[cfg(any(all(feature = "fallible", feature = "serde"), doc))]
@@ -26,6 +28,7 @@ mod serde {
 		{
 			match *self {
 				VariesByProperty::DefinedTerm(ref inner) => inner.serialize(serializer),
+				VariesByProperty::PropertyValue(ref inner) => inner.serialize(serializer),
 				VariesByProperty::Text(ref inner) => inner.serialize(serializer),
 				#[cfg(all(feature = "fallible", feature = "serde"))]
 				VariesByProperty::SerdeFail(ref inner) => inner.serialize(serializer),
@@ -44,6 +47,12 @@ mod serde {
 			if let Ok(ok) = Result::map(
 				<DefinedTerm as Deserialize>::deserialize(deserializer),
 				VariesByProperty::DefinedTerm,
+			) {
+				return Ok(ok);
+			}
+			if let Ok(ok) = Result::map(
+				<PropertyValue as Deserialize>::deserialize(deserializer),
+				VariesByProperty::PropertyValue,
 			) {
 				return Ok(ok);
 			}

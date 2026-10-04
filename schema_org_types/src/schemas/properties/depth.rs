@@ -3,10 +3,10 @@ use super::*;
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 pub enum DepthProperty {
-	/// <https://schema.org/Distance>
-	Distance(Distance),
 	/// <https://schema.org/QuantitativeValue>
 	QuantitativeValue(QuantitativeValue),
+	/// <https://schema.org/Distance>
+	Distance(Distance),
 	#[cfg(any(all(feature = "fallible", feature = "serde"), doc))]
 	SerdeFail(crate::fallible::FailValue),
 }
@@ -25,8 +25,8 @@ mod serde {
 			S: Serializer,
 		{
 			match *self {
-				DepthProperty::Distance(ref inner) => inner.serialize(serializer),
 				DepthProperty::QuantitativeValue(ref inner) => inner.serialize(serializer),
+				DepthProperty::Distance(ref inner) => inner.serialize(serializer),
 				#[cfg(all(feature = "fallible", feature = "serde"))]
 				DepthProperty::SerdeFail(ref inner) => inner.serialize(serializer),
 			}
@@ -42,14 +42,14 @@ mod serde {
 			let deserializer =
 				::serde::__private::de::ContentRefDeserializer::<D::Error>::new(&content);
 			if let Ok(ok) = Result::map(
-				<Distance as Deserialize>::deserialize(deserializer),
-				DepthProperty::Distance,
+				<QuantitativeValue as Deserialize>::deserialize(deserializer),
+				DepthProperty::QuantitativeValue,
 			) {
 				return Ok(ok);
 			}
 			if let Ok(ok) = Result::map(
-				<QuantitativeValue as Deserialize>::deserialize(deserializer),
-				DepthProperty::QuantitativeValue,
+				<Distance as Deserialize>::deserialize(deserializer),
+				DepthProperty::Distance,
 			) {
 				return Ok(ok);
 			}

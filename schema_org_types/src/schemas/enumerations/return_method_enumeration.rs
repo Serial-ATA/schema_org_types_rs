@@ -2,6 +2,8 @@
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 pub enum ReturnMethodEnumeration {
+	/// <https://schema.org/KeepProduct>
+	KeepProduct,
 	/// <https://schema.org/ReturnAtKiosk>
 	ReturnAtKiosk,
 	/// <https://schema.org/ReturnByMail>
@@ -24,19 +26,24 @@ mod serde {
 			S: Serializer,
 		{
 			match *self {
-				ReturnMethodEnumeration::ReturnAtKiosk => serializer.serialize_unit_variant(
+				ReturnMethodEnumeration::KeepProduct => serializer.serialize_unit_variant(
 					"ReturnMethodEnumeration",
 					0u32,
+					"KeepProduct",
+				),
+				ReturnMethodEnumeration::ReturnAtKiosk => serializer.serialize_unit_variant(
+					"ReturnMethodEnumeration",
+					1u32,
 					"ReturnAtKiosk",
 				),
 				ReturnMethodEnumeration::ReturnByMail => serializer.serialize_unit_variant(
 					"ReturnMethodEnumeration",
-					1u32,
+					2u32,
 					"ReturnByMail",
 				),
 				ReturnMethodEnumeration::ReturnInStore => serializer.serialize_unit_variant(
 					"ReturnMethodEnumeration",
-					2u32,
+					3u32,
 					"ReturnInStore",
 				),
 			}
@@ -48,6 +55,7 @@ mod serde {
 			D: Deserializer<'de>,
 		{
 			enum Field {
+				KeepProduct,
 				ReturnAtKiosk,
 				ReturnByMail,
 				ReturnInStore,
@@ -63,6 +71,7 @@ mod serde {
 					E: de::Error,
 				{
 					match value {
+						"KeepProduct" => Ok(Field::KeepProduct),
 						"ReturnAtKiosk" => Ok(Field::ReturnAtKiosk),
 						"ReturnByMail" => Ok(Field::ReturnByMail),
 						"ReturnInStore" => Ok(Field::ReturnInStore),
@@ -74,6 +83,7 @@ mod serde {
 					E: de::Error,
 				{
 					match value {
+						b"KeepProduct" => Ok(Field::KeepProduct),
 						b"ReturnAtKiosk" => Ok(Field::ReturnAtKiosk),
 						b"ReturnByMail" => Ok(Field::ReturnByMail),
 						b"ReturnInStore" => Ok(Field::ReturnInStore),
@@ -103,6 +113,10 @@ mod serde {
 					A: de::EnumAccess<'de>,
 				{
 					match de::EnumAccess::variant::<Field>(data)? {
+						(Field::KeepProduct, variant) => {
+							de::VariantAccess::unit_variant(variant)?;
+							Ok(ReturnMethodEnumeration::KeepProduct)
+						}
 						(Field::ReturnAtKiosk, variant) => {
 							de::VariantAccess::unit_variant(variant)?;
 							Ok(ReturnMethodEnumeration::ReturnAtKiosk)
@@ -118,7 +132,12 @@ mod serde {
 					}
 				}
 			}
-			const VARIANTS: &[&str] = &["ReturnAtKiosk", "ReturnByMail", "ReturnInStore"];
+			const VARIANTS: &[&str] = &[
+				"KeepProduct",
+				"ReturnAtKiosk",
+				"ReturnByMail",
+				"ReturnInStore",
+			];
 			deserializer.deserialize_enum("ReturnMethodEnumeration", VARIANTS, EnumerationVisitor)
 		}
 	}

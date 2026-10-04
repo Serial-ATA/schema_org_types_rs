@@ -9,8 +9,12 @@ pub struct OfferShippingDetails {
 	pub r#depth: Vec<DepthProperty>,
 	/// <https://schema.org/doesNotShip>
 	pub r#does_not_ship: Vec<DoesNotShipProperty>,
+	/// <https://schema.org/hasShippingService>
+	pub r#has_shipping_service: Vec<HasShippingServiceProperty>,
 	/// <https://schema.org/height>
 	pub r#height: Vec<HeightProperty>,
+	/// <https://schema.org/provider>
+	pub r#provider: Vec<ProviderProperty>,
 	/// <https://schema.org/shippingDestination>
 	pub r#shipping_destination: Vec<ShippingDestinationProperty>,
 	/// <https://schema.org/shippingLabel>
@@ -23,6 +27,8 @@ pub struct OfferShippingDetails {
 	pub r#shipping_settings_link: Vec<ShippingSettingsLinkProperty>,
 	/// <https://schema.org/transitTimeLabel>
 	pub r#transit_time_label: Vec<TransitTimeLabelProperty>,
+	/// <https://schema.org/validForMemberTier>
+	pub r#valid_for_member_tier: Vec<ValidForMemberTierProperty>,
 	/// <https://schema.org/weight>
 	pub r#weight: Vec<WeightProperty>,
 	/// <https://schema.org/width>
@@ -43,6 +49,8 @@ pub struct OfferShippingDetails {
 	pub r#main_entity_of_page: Vec<MainEntityOfPageProperty>,
 	/// <https://schema.org/name>
 	pub r#name: Vec<NameProperty>,
+	/// <https://schema.org/owner>
+	pub r#owner: Vec<OwnerProperty>,
 	/// <https://schema.org/potentialAction>
 	pub r#potential_action: Vec<PotentialActionProperty>,
 	/// <https://schema.org/sameAs>
@@ -66,10 +74,18 @@ pub trait OfferShippingDetailsTrait {
 	fn get_does_not_ship(&self) -> &[DoesNotShipProperty];
 	/// Take <https://schema.org/doesNotShip> from [`Self`] as owned vector.
 	fn take_does_not_ship(&mut self) -> Vec<DoesNotShipProperty>;
+	/// Get <https://schema.org/hasShippingService> from [`Self`] as borrowed slice.
+	fn get_has_shipping_service(&self) -> &[HasShippingServiceProperty];
+	/// Take <https://schema.org/hasShippingService> from [`Self`] as owned vector.
+	fn take_has_shipping_service(&mut self) -> Vec<HasShippingServiceProperty>;
 	/// Get <https://schema.org/height> from [`Self`] as borrowed slice.
 	fn get_height(&self) -> &[HeightProperty];
 	/// Take <https://schema.org/height> from [`Self`] as owned vector.
 	fn take_height(&mut self) -> Vec<HeightProperty>;
+	/// Get <https://schema.org/provider> from [`Self`] as borrowed slice.
+	fn get_provider(&self) -> &[ProviderProperty];
+	/// Take <https://schema.org/provider> from [`Self`] as owned vector.
+	fn take_provider(&mut self) -> Vec<ProviderProperty>;
 	/// Get <https://schema.org/shippingDestination> from [`Self`] as borrowed slice.
 	fn get_shipping_destination(&self) -> &[ShippingDestinationProperty];
 	/// Take <https://schema.org/shippingDestination> from [`Self`] as owned vector.
@@ -94,6 +110,10 @@ pub trait OfferShippingDetailsTrait {
 	fn get_transit_time_label(&self) -> &[TransitTimeLabelProperty];
 	/// Take <https://schema.org/transitTimeLabel> from [`Self`] as owned vector.
 	fn take_transit_time_label(&mut self) -> Vec<TransitTimeLabelProperty>;
+	/// Get <https://schema.org/validForMemberTier> from [`Self`] as borrowed slice.
+	fn get_valid_for_member_tier(&self) -> &[ValidForMemberTierProperty];
+	/// Take <https://schema.org/validForMemberTier> from [`Self`] as owned vector.
+	fn take_valid_for_member_tier(&mut self) -> Vec<ValidForMemberTierProperty>;
 	/// Get <https://schema.org/weight> from [`Self`] as borrowed slice.
 	fn get_weight(&self) -> &[WeightProperty];
 	/// Take <https://schema.org/weight> from [`Self`] as owned vector.
@@ -122,11 +142,23 @@ impl OfferShippingDetailsTrait for OfferShippingDetails {
 	fn take_does_not_ship(&mut self) -> Vec<DoesNotShipProperty> {
 		std::mem::take(&mut self.r#does_not_ship)
 	}
+	fn get_has_shipping_service(&self) -> &[HasShippingServiceProperty] {
+		self.r#has_shipping_service.as_slice()
+	}
+	fn take_has_shipping_service(&mut self) -> Vec<HasShippingServiceProperty> {
+		std::mem::take(&mut self.r#has_shipping_service)
+	}
 	fn get_height(&self) -> &[HeightProperty] {
 		self.r#height.as_slice()
 	}
 	fn take_height(&mut self) -> Vec<HeightProperty> {
 		std::mem::take(&mut self.r#height)
+	}
+	fn get_provider(&self) -> &[ProviderProperty] {
+		self.r#provider.as_slice()
+	}
+	fn take_provider(&mut self) -> Vec<ProviderProperty> {
+		std::mem::take(&mut self.r#provider)
 	}
 	fn get_shipping_destination(&self) -> &[ShippingDestinationProperty] {
 		self.r#shipping_destination.as_slice()
@@ -163,6 +195,12 @@ impl OfferShippingDetailsTrait for OfferShippingDetails {
 	}
 	fn take_transit_time_label(&mut self) -> Vec<TransitTimeLabelProperty> {
 		std::mem::take(&mut self.r#transit_time_label)
+	}
+	fn get_valid_for_member_tier(&self) -> &[ValidForMemberTierProperty] {
+		self.r#valid_for_member_tier.as_slice()
+	}
+	fn take_valid_for_member_tier(&mut self) -> Vec<ValidForMemberTierProperty> {
+		std::mem::take(&mut self.r#valid_for_member_tier)
 	}
 	fn get_weight(&self) -> &[WeightProperty] {
 		self.r#weight.as_slice()
@@ -227,6 +265,12 @@ impl ThingTrait for OfferShippingDetails {
 	fn take_name(&mut self) -> Vec<NameProperty> {
 		std::mem::take(&mut self.r#name)
 	}
+	fn get_owner(&self) -> &[OwnerProperty] {
+		self.r#owner.as_slice()
+	}
+	fn take_owner(&mut self) -> Vec<OwnerProperty> {
+		std::mem::take(&mut self.r#owner)
+	}
 	fn get_potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
 	}
@@ -270,13 +314,16 @@ mod serde {
 				!Vec::is_empty(&self.r#delivery_time) as usize,
 				!Vec::is_empty(&self.r#depth) as usize,
 				!Vec::is_empty(&self.r#does_not_ship) as usize,
+				!Vec::is_empty(&self.r#has_shipping_service) as usize,
 				!Vec::is_empty(&self.r#height) as usize,
+				!Vec::is_empty(&self.r#provider) as usize,
 				!Vec::is_empty(&self.r#shipping_destination) as usize,
 				!Vec::is_empty(&self.r#shipping_label) as usize,
 				!Vec::is_empty(&self.r#shipping_origin) as usize,
 				!Vec::is_empty(&self.r#shipping_rate) as usize,
 				!Vec::is_empty(&self.r#shipping_settings_link) as usize,
 				!Vec::is_empty(&self.r#transit_time_label) as usize,
+				!Vec::is_empty(&self.r#valid_for_member_tier) as usize,
 				!Vec::is_empty(&self.r#weight) as usize,
 				!Vec::is_empty(&self.r#width) as usize,
 				!Vec::is_empty(&self.r#additional_type) as usize,
@@ -287,6 +334,7 @@ mod serde {
 				!Vec::is_empty(&self.r#image) as usize,
 				!Vec::is_empty(&self.r#main_entity_of_page) as usize,
 				!Vec::is_empty(&self.r#name) as usize,
+				!Vec::is_empty(&self.r#owner) as usize,
 				!Vec::is_empty(&self.r#potential_action) as usize,
 				!Vec::is_empty(&self.r#same_as) as usize,
 				!Vec::is_empty(&self.r#subject_of) as usize,
@@ -350,6 +398,24 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("doesNotShip")?;
 			}
+			if !Vec::is_empty(&self.r#has_shipping_service) {
+				serialize_struct.serialize_field("hasShippingService", {
+					struct SerializeWith<'a>(&'a Vec<HasShippingServiceProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#has_shipping_service)
+				})?;
+			} else {
+				serialize_struct.skip_field("hasShippingService")?;
+			}
 			if !Vec::is_empty(&self.r#height) {
 				serialize_struct.serialize_field("height", {
 					struct SerializeWith<'a>(&'a Vec<HeightProperty>);
@@ -367,6 +433,24 @@ mod serde {
 				})?;
 			} else {
 				serialize_struct.skip_field("height")?;
+			}
+			if !Vec::is_empty(&self.r#provider) {
+				serialize_struct.serialize_field("provider", {
+					struct SerializeWith<'a>(&'a Vec<ProviderProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#provider)
+				})?;
+			} else {
+				serialize_struct.skip_field("provider")?;
 			}
 			if !Vec::is_empty(&self.r#shipping_destination) {
 				serialize_struct.serialize_field("shippingDestination", {
@@ -475,6 +559,24 @@ mod serde {
 				})?;
 			} else {
 				serialize_struct.skip_field("transitTimeLabel")?;
+			}
+			if !Vec::is_empty(&self.r#valid_for_member_tier) {
+				serialize_struct.serialize_field("validForMemberTier", {
+					struct SerializeWith<'a>(&'a Vec<ValidForMemberTierProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#valid_for_member_tier)
+				})?;
+			} else {
+				serialize_struct.skip_field("validForMemberTier")?;
 			}
 			if !Vec::is_empty(&self.r#weight) {
 				serialize_struct.serialize_field("weight", {
@@ -656,6 +758,24 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("name")?;
 			}
+			if !Vec::is_empty(&self.r#owner) {
+				serialize_struct.serialize_field("owner", {
+					struct SerializeWith<'a>(&'a Vec<OwnerProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#owner)
+				})?;
+			} else {
+				serialize_struct.skip_field("owner")?;
+			}
 			if !Vec::is_empty(&self.r#potential_action) {
 				serialize_struct.serialize_field("potentialAction", {
 					struct SerializeWith<'a>(&'a Vec<PotentialActionProperty>);
@@ -740,13 +860,16 @@ mod serde {
 				DeliveryTime,
 				Depth,
 				DoesNotShip,
+				HasShippingService,
 				Height,
+				Provider,
 				ShippingDestination,
 				ShippingLabel,
 				ShippingOrigin,
 				ShippingRate,
 				ShippingSettingsLink,
 				TransitTimeLabel,
+				ValidForMemberTier,
 				Weight,
 				Width,
 				AdditionalType,
@@ -757,6 +880,7 @@ mod serde {
 				Image,
 				MainEntityOfPage,
 				Name,
+				Owner,
 				PotentialAction,
 				SameAs,
 				SubjectOf,
@@ -777,13 +901,16 @@ mod serde {
 						"deliveryTime" => Ok(Field::DeliveryTime),
 						"depth" => Ok(Field::Depth),
 						"doesNotShip" => Ok(Field::DoesNotShip),
+						"hasShippingService" => Ok(Field::HasShippingService),
 						"height" => Ok(Field::Height),
+						"provider" => Ok(Field::Provider),
 						"shippingDestination" => Ok(Field::ShippingDestination),
 						"shippingLabel" => Ok(Field::ShippingLabel),
 						"shippingOrigin" => Ok(Field::ShippingOrigin),
 						"shippingRate" => Ok(Field::ShippingRate),
 						"shippingSettingsLink" => Ok(Field::ShippingSettingsLink),
 						"transitTimeLabel" => Ok(Field::TransitTimeLabel),
+						"validForMemberTier" => Ok(Field::ValidForMemberTier),
 						"weight" => Ok(Field::Weight),
 						"width" => Ok(Field::Width),
 						"additionalType" => Ok(Field::AdditionalType),
@@ -794,6 +921,7 @@ mod serde {
 						"image" => Ok(Field::Image),
 						"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
 						"name" => Ok(Field::Name),
+						"owner" => Ok(Field::Owner),
 						"potentialAction" => Ok(Field::PotentialAction),
 						"sameAs" => Ok(Field::SameAs),
 						"subjectOf" => Ok(Field::SubjectOf),
@@ -810,13 +938,16 @@ mod serde {
 						b"deliveryTime" => Ok(Field::DeliveryTime),
 						b"depth" => Ok(Field::Depth),
 						b"doesNotShip" => Ok(Field::DoesNotShip),
+						b"hasShippingService" => Ok(Field::HasShippingService),
 						b"height" => Ok(Field::Height),
+						b"provider" => Ok(Field::Provider),
 						b"shippingDestination" => Ok(Field::ShippingDestination),
 						b"shippingLabel" => Ok(Field::ShippingLabel),
 						b"shippingOrigin" => Ok(Field::ShippingOrigin),
 						b"shippingRate" => Ok(Field::ShippingRate),
 						b"shippingSettingsLink" => Ok(Field::ShippingSettingsLink),
 						b"transitTimeLabel" => Ok(Field::TransitTimeLabel),
+						b"validForMemberTier" => Ok(Field::ValidForMemberTier),
 						b"weight" => Ok(Field::Weight),
 						b"width" => Ok(Field::Width),
 						b"additionalType" => Ok(Field::AdditionalType),
@@ -827,6 +958,7 @@ mod serde {
 						b"image" => Ok(Field::Image),
 						b"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
 						b"name" => Ok(Field::Name),
+						b"owner" => Ok(Field::Owner),
 						b"potentialAction" => Ok(Field::PotentialAction),
 						b"sameAs" => Ok(Field::SameAs),
 						b"subjectOf" => Ok(Field::SubjectOf),
@@ -860,13 +992,16 @@ mod serde {
 					let mut r#delivery_time_property = None;
 					let mut r#depth_property = None;
 					let mut r#does_not_ship_property = None;
+					let mut r#has_shipping_service_property = None;
 					let mut r#height_property = None;
+					let mut r#provider_property = None;
 					let mut r#shipping_destination_property = None;
 					let mut r#shipping_label_property = None;
 					let mut r#shipping_origin_property = None;
 					let mut r#shipping_rate_property = None;
 					let mut r#shipping_settings_link_property = None;
 					let mut r#transit_time_label_property = None;
+					let mut r#valid_for_member_tier_property = None;
 					let mut r#weight_property = None;
 					let mut r#width_property = None;
 					let mut r#additional_type_property = None;
@@ -877,6 +1012,7 @@ mod serde {
 					let mut r#image_property = None;
 					let mut r#main_entity_of_page_property = None;
 					let mut r#name_property = None;
+					let mut r#owner_property = None;
 					let mut r#potential_action_property = None;
 					let mut r#same_as_property = None;
 					let mut r#subject_of_property = None;
@@ -965,12 +1101,68 @@ mod serde {
 									}
 								});
 							}
+							Field::HasShippingService => {
+								if r#has_shipping_service_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"hasShippingService",
+									));
+								}
+								r#has_shipping_service_property = Some({
+									struct DeserializeWith(Vec<HasShippingServiceProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::Height => {
 								if r#height_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field("height"));
 								}
 								r#height_property = Some({
 									struct DeserializeWith(Vec<HeightProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::Provider => {
+								if r#provider_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"provider",
+									));
+								}
+								r#provider_property = Some({
+									struct DeserializeWith(Vec<ProviderProperty>);
 									impl<'de> Deserialize<'de> for DeserializeWith {
 										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
 										where
@@ -1139,6 +1331,34 @@ mod serde {
 								}
 								r#transit_time_label_property = Some({
 									struct DeserializeWith(Vec<TransitTimeLabelProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::ValidForMemberTier => {
+								if r#valid_for_member_tier_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"validForMemberTier",
+									));
+								}
+								r#valid_for_member_tier_property = Some({
+									struct DeserializeWith(Vec<ValidForMemberTierProperty>);
 									impl<'de> Deserialize<'de> for DeserializeWith {
 										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
 										where
@@ -1431,6 +1651,32 @@ mod serde {
 									}
 								});
 							}
+							Field::Owner => {
+								if r#owner_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field("owner"));
+								}
+								r#owner_property = Some({
+									struct DeserializeWith(Vec<OwnerProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::PotentialAction => {
 								if r#potential_action_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -1548,7 +1794,9 @@ mod serde {
 						r#delivery_time: r#delivery_time_property.unwrap_or_default(),
 						r#depth: r#depth_property.unwrap_or_default(),
 						r#does_not_ship: r#does_not_ship_property.unwrap_or_default(),
+						r#has_shipping_service: r#has_shipping_service_property.unwrap_or_default(),
 						r#height: r#height_property.unwrap_or_default(),
+						r#provider: r#provider_property.unwrap_or_default(),
 						r#shipping_destination: r#shipping_destination_property.unwrap_or_default(),
 						r#shipping_label: r#shipping_label_property.unwrap_or_default(),
 						r#shipping_origin: r#shipping_origin_property.unwrap_or_default(),
@@ -1556,6 +1804,8 @@ mod serde {
 						r#shipping_settings_link: r#shipping_settings_link_property
 							.unwrap_or_default(),
 						r#transit_time_label: r#transit_time_label_property.unwrap_or_default(),
+						r#valid_for_member_tier: r#valid_for_member_tier_property
+							.unwrap_or_default(),
 						r#weight: r#weight_property.unwrap_or_default(),
 						r#width: r#width_property.unwrap_or_default(),
 						r#additional_type: r#additional_type_property.unwrap_or_default(),
@@ -1567,6 +1817,7 @@ mod serde {
 						r#image: r#image_property.unwrap_or_default(),
 						r#main_entity_of_page: r#main_entity_of_page_property.unwrap_or_default(),
 						r#name: r#name_property.unwrap_or_default(),
+						r#owner: r#owner_property.unwrap_or_default(),
 						r#potential_action: r#potential_action_property.unwrap_or_default(),
 						r#same_as: r#same_as_property.unwrap_or_default(),
 						r#subject_of: r#subject_of_property.unwrap_or_default(),
@@ -1578,13 +1829,16 @@ mod serde {
 				"deliveryTime",
 				"depth",
 				"doesNotShip",
+				"hasShippingService",
 				"height",
+				"provider",
 				"shippingDestination",
 				"shippingLabel",
 				"shippingOrigin",
 				"shippingRate",
 				"shippingSettingsLink",
 				"transitTimeLabel",
+				"validForMemberTier",
 				"weight",
 				"width",
 				"additionalType",
@@ -1595,6 +1849,7 @@ mod serde {
 				"image",
 				"mainEntityOfPage",
 				"name",
+				"owner",
 				"potentialAction",
 				"sameAs",
 				"subjectOf",

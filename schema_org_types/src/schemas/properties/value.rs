@@ -3,6 +3,8 @@ use super::*;
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 pub enum ValueProperty {
+	/// <https://schema.org/QualitativeValue>
+	QualitativeValue(QualitativeValue),
 	/// <https://schema.org/StructuredValue>
 	StructuredValue(StructuredValue),
 	/// <https://schema.org/Boolean>
@@ -29,6 +31,7 @@ mod serde {
 			S: Serializer,
 		{
 			match *self {
+				ValueProperty::QualitativeValue(ref inner) => inner.serialize(serializer),
 				ValueProperty::StructuredValue(ref inner) => inner.serialize(serializer),
 				ValueProperty::Boolean(ref inner) => inner.serialize(serializer),
 				ValueProperty::Number(ref inner) => inner.serialize(serializer),
@@ -47,6 +50,12 @@ mod serde {
 				<::serde::__private::de::Content as Deserialize>::deserialize(deserializer)?;
 			let deserializer =
 				::serde::__private::de::ContentRefDeserializer::<D::Error>::new(&content);
+			if let Ok(ok) = Result::map(
+				<QualitativeValue as Deserialize>::deserialize(deserializer),
+				ValueProperty::QualitativeValue,
+			) {
+				return Ok(ok);
+			}
 			if let Ok(ok) = Result::map(
 				<StructuredValue as Deserialize>::deserialize(deserializer),
 				ValueProperty::StructuredValue,

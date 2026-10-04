@@ -1,7 +1,7 @@
-/// <https://schema.org/PaymentMethod>
+/// <https://schema.org/MediaEnumeration>
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
-pub enum PaymentMethod {}
+pub enum MediaEnumeration {}
 #[cfg(feature = "serde")]
 mod serde {
 	use std::{fmt, fmt::Formatter};
@@ -11,7 +11,7 @@ mod serde {
 	};
 
 	use super::*;
-	impl Serialize for PaymentMethod {
+	impl Serialize for MediaEnumeration {
 		fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
 		where
 			S: Serializer,
@@ -19,7 +19,7 @@ mod serde {
 			match *self {}
 		}
 	}
-	impl<'de> Deserialize<'de> for PaymentMethod {
+	impl<'de> Deserialize<'de> for MediaEnumeration {
 		fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
 		where
 			D: Deserializer<'de>,
@@ -55,9 +55,9 @@ mod serde {
 			}
 			struct EnumerationVisitor;
 			impl<'de> Visitor<'de> for EnumerationVisitor {
-				type Value = PaymentMethod;
+				type Value = MediaEnumeration;
 				fn expecting(&self, formatter: &mut Formatter) -> fmt::Result {
-					formatter.write_str("schema.org schema PaymentMethod")
+					formatter.write_str("schema.org schema MediaEnumeration")
 				}
 				fn visit_enum<A>(self, data: A) -> Result<Self::Value, A::Error>
 				where
@@ -68,7 +68,7 @@ mod serde {
 				}
 			}
 			const VARIANTS: &[&str] = &[];
-			deserializer.deserialize_enum("PaymentMethod", VARIANTS, EnumerationVisitor)
+			deserializer.deserialize_enum("MediaEnumeration", VARIANTS, EnumerationVisitor)
 		}
 	}
 }

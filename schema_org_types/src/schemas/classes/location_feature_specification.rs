@@ -25,6 +25,8 @@ pub struct LocationFeatureSpecification {
 	pub r#unit_text: Vec<UnitTextProperty>,
 	/// <https://schema.org/value>
 	pub r#value: Vec<ValueProperty>,
+	/// <https://schema.org/valueGroup>
+	pub r#value_group: Vec<ValueGroupProperty>,
 	/// <https://schema.org/valueReference>
 	pub r#value_reference: Vec<ValueReferenceProperty>,
 	/// <https://schema.org/additionalType>
@@ -43,6 +45,8 @@ pub struct LocationFeatureSpecification {
 	pub r#main_entity_of_page: Vec<MainEntityOfPageProperty>,
 	/// <https://schema.org/name>
 	pub r#name: Vec<NameProperty>,
+	/// <https://schema.org/owner>
+	pub r#owner: Vec<OwnerProperty>,
 	/// <https://schema.org/potentialAction>
 	pub r#potential_action: Vec<PotentialActionProperty>,
 	/// <https://schema.org/sameAs>
@@ -136,6 +140,12 @@ impl PropertyValueTrait for LocationFeatureSpecification {
 	fn take_value(&mut self) -> Vec<ValueProperty> {
 		std::mem::take(&mut self.r#value)
 	}
+	fn get_value_group(&self) -> &[ValueGroupProperty] {
+		self.r#value_group.as_slice()
+	}
+	fn take_value_group(&mut self) -> Vec<ValueGroupProperty> {
+		std::mem::take(&mut self.r#value_group)
+	}
 	fn get_value_reference(&self) -> &[ValueReferenceProperty] {
 		self.r#value_reference.as_slice()
 	}
@@ -193,6 +203,12 @@ impl ThingTrait for LocationFeatureSpecification {
 	fn take_name(&mut self) -> Vec<NameProperty> {
 		std::mem::take(&mut self.r#name)
 	}
+	fn get_owner(&self) -> &[OwnerProperty] {
+		self.r#owner.as_slice()
+	}
+	fn take_owner(&mut self) -> Vec<OwnerProperty> {
+		std::mem::take(&mut self.r#owner)
+	}
 	fn get_potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
 	}
@@ -244,6 +260,7 @@ mod serde {
 				!Vec::is_empty(&self.r#unit_code) as usize,
 				!Vec::is_empty(&self.r#unit_text) as usize,
 				!Vec::is_empty(&self.r#value) as usize,
+				!Vec::is_empty(&self.r#value_group) as usize,
 				!Vec::is_empty(&self.r#value_reference) as usize,
 				!Vec::is_empty(&self.r#additional_type) as usize,
 				!Vec::is_empty(&self.r#alternate_name) as usize,
@@ -253,6 +270,7 @@ mod serde {
 				!Vec::is_empty(&self.r#image) as usize,
 				!Vec::is_empty(&self.r#main_entity_of_page) as usize,
 				!Vec::is_empty(&self.r#name) as usize,
+				!Vec::is_empty(&self.r#owner) as usize,
 				!Vec::is_empty(&self.r#potential_action) as usize,
 				!Vec::is_empty(&self.r#same_as) as usize,
 				!Vec::is_empty(&self.r#subject_of) as usize,
@@ -460,6 +478,24 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("value")?;
 			}
+			if !Vec::is_empty(&self.r#value_group) {
+				serialize_struct.serialize_field("valueGroup", {
+					struct SerializeWith<'a>(&'a Vec<ValueGroupProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#value_group)
+				})?;
+			} else {
+				serialize_struct.skip_field("valueGroup")?;
+			}
 			if !Vec::is_empty(&self.r#value_reference) {
 				serialize_struct.serialize_field("valueReference", {
 					struct SerializeWith<'a>(&'a Vec<ValueReferenceProperty>);
@@ -622,6 +658,24 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("name")?;
 			}
+			if !Vec::is_empty(&self.r#owner) {
+				serialize_struct.serialize_field("owner", {
+					struct SerializeWith<'a>(&'a Vec<OwnerProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#owner)
+				})?;
+			} else {
+				serialize_struct.skip_field("owner")?;
+			}
 			if !Vec::is_empty(&self.r#potential_action) {
 				serialize_struct.serialize_field("potentialAction", {
 					struct SerializeWith<'a>(&'a Vec<PotentialActionProperty>);
@@ -714,6 +768,7 @@ mod serde {
 				UnitCode,
 				UnitText,
 				Value,
+				ValueGroup,
 				ValueReference,
 				AdditionalType,
 				AlternateName,
@@ -723,6 +778,7 @@ mod serde {
 				Image,
 				MainEntityOfPage,
 				Name,
+				Owner,
 				PotentialAction,
 				SameAs,
 				SubjectOf,
@@ -751,6 +807,7 @@ mod serde {
 						"unitCode" => Ok(Field::UnitCode),
 						"unitText" => Ok(Field::UnitText),
 						"value" => Ok(Field::Value),
+						"valueGroup" => Ok(Field::ValueGroup),
 						"valueReference" => Ok(Field::ValueReference),
 						"additionalType" => Ok(Field::AdditionalType),
 						"alternateName" => Ok(Field::AlternateName),
@@ -760,6 +817,7 @@ mod serde {
 						"image" => Ok(Field::Image),
 						"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
 						"name" => Ok(Field::Name),
+						"owner" => Ok(Field::Owner),
 						"potentialAction" => Ok(Field::PotentialAction),
 						"sameAs" => Ok(Field::SameAs),
 						"subjectOf" => Ok(Field::SubjectOf),
@@ -784,6 +842,7 @@ mod serde {
 						b"unitCode" => Ok(Field::UnitCode),
 						b"unitText" => Ok(Field::UnitText),
 						b"value" => Ok(Field::Value),
+						b"valueGroup" => Ok(Field::ValueGroup),
 						b"valueReference" => Ok(Field::ValueReference),
 						b"additionalType" => Ok(Field::AdditionalType),
 						b"alternateName" => Ok(Field::AlternateName),
@@ -793,6 +852,7 @@ mod serde {
 						b"image" => Ok(Field::Image),
 						b"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
 						b"name" => Ok(Field::Name),
+						b"owner" => Ok(Field::Owner),
 						b"potentialAction" => Ok(Field::PotentialAction),
 						b"sameAs" => Ok(Field::SameAs),
 						b"subjectOf" => Ok(Field::SubjectOf),
@@ -834,6 +894,7 @@ mod serde {
 					let mut r#unit_code_property = None;
 					let mut r#unit_text_property = None;
 					let mut r#value_property = None;
+					let mut r#value_group_property = None;
 					let mut r#value_reference_property = None;
 					let mut r#additional_type_property = None;
 					let mut r#alternate_name_property = None;
@@ -843,6 +904,7 @@ mod serde {
 					let mut r#image_property = None;
 					let mut r#main_entity_of_page_property = None;
 					let mut r#name_property = None;
+					let mut r#owner_property = None;
 					let mut r#potential_action_property = None;
 					let mut r#same_as_property = None;
 					let mut r#subject_of_property = None;
@@ -1155,6 +1217,34 @@ mod serde {
 									}
 								});
 							}
+							Field::ValueGroup => {
+								if r#value_group_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"valueGroup",
+									));
+								}
+								r#value_group_property = Some({
+									struct DeserializeWith(Vec<ValueGroupProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::ValueReference => {
 								if r#value_reference_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -1403,6 +1493,32 @@ mod serde {
 									}
 								});
 							}
+							Field::Owner => {
+								if r#owner_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field("owner"));
+								}
+								r#owner_property = Some({
+									struct DeserializeWith(Vec<OwnerProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::PotentialAction => {
 								if r#potential_action_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -1529,6 +1645,7 @@ mod serde {
 						r#unit_code: r#unit_code_property.unwrap_or_default(),
 						r#unit_text: r#unit_text_property.unwrap_or_default(),
 						r#value: r#value_property.unwrap_or_default(),
+						r#value_group: r#value_group_property.unwrap_or_default(),
 						r#value_reference: r#value_reference_property.unwrap_or_default(),
 						r#additional_type: r#additional_type_property.unwrap_or_default(),
 						r#alternate_name: r#alternate_name_property.unwrap_or_default(),
@@ -1539,6 +1656,7 @@ mod serde {
 						r#image: r#image_property.unwrap_or_default(),
 						r#main_entity_of_page: r#main_entity_of_page_property.unwrap_or_default(),
 						r#name: r#name_property.unwrap_or_default(),
+						r#owner: r#owner_property.unwrap_or_default(),
 						r#potential_action: r#potential_action_property.unwrap_or_default(),
 						r#same_as: r#same_as_property.unwrap_or_default(),
 						r#subject_of: r#subject_of_property.unwrap_or_default(),
@@ -1558,6 +1676,7 @@ mod serde {
 				"unitCode",
 				"unitText",
 				"value",
+				"valueGroup",
 				"valueReference",
 				"additionalType",
 				"alternateName",
@@ -1567,6 +1686,7 @@ mod serde {
 				"image",
 				"mainEntityOfPage",
 				"name",
+				"owner",
 				"potentialAction",
 				"sameAs",
 				"subjectOf",

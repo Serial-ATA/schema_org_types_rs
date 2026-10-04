@@ -3,12 +3,12 @@ use super::*;
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 pub enum BillingDurationProperty {
-	/// <https://schema.org/Duration>
-	Duration(Duration),
 	/// <https://schema.org/QuantitativeValue>
 	QuantitativeValue(QuantitativeValue),
 	/// <https://schema.org/Number>
 	Number(Number),
+	/// <https://schema.org/Duration>
+	Duration(Duration),
 	#[cfg(any(all(feature = "fallible", feature = "serde"), doc))]
 	SerdeFail(crate::fallible::FailValue),
 }
@@ -27,11 +27,11 @@ mod serde {
 			S: Serializer,
 		{
 			match *self {
-				BillingDurationProperty::Duration(ref inner) => inner.serialize(serializer),
 				BillingDurationProperty::QuantitativeValue(ref inner) => {
 					inner.serialize(serializer)
 				}
 				BillingDurationProperty::Number(ref inner) => inner.serialize(serializer),
+				BillingDurationProperty::Duration(ref inner) => inner.serialize(serializer),
 				#[cfg(all(feature = "fallible", feature = "serde"))]
 				BillingDurationProperty::SerdeFail(ref inner) => inner.serialize(serializer),
 			}
@@ -47,12 +47,6 @@ mod serde {
 			let deserializer =
 				::serde::__private::de::ContentRefDeserializer::<D::Error>::new(&content);
 			if let Ok(ok) = Result::map(
-				<Duration as Deserialize>::deserialize(deserializer),
-				BillingDurationProperty::Duration,
-			) {
-				return Ok(ok);
-			}
-			if let Ok(ok) = Result::map(
 				<QuantitativeValue as Deserialize>::deserialize(deserializer),
 				BillingDurationProperty::QuantitativeValue,
 			) {
@@ -61,6 +55,12 @@ mod serde {
 			if let Ok(ok) = Result::map(
 				<Number as Deserialize>::deserialize(deserializer),
 				BillingDurationProperty::Number,
+			) {
+				return Ok(ok);
+			}
+			if let Ok(ok) = Result::map(
+				<Duration as Deserialize>::deserialize(deserializer),
+				BillingDurationProperty::Duration,
 			) {
 				return Ok(ok);
 			}

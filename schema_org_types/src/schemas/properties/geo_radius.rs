@@ -3,12 +3,12 @@ use super::*;
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 pub enum GeoRadiusProperty {
-	/// <https://schema.org/Distance>
-	Distance(Distance),
 	/// <https://schema.org/Number>
 	Number(Number),
 	/// <https://schema.org/Text>
 	Text(Text),
+	/// <https://schema.org/Distance>
+	Distance(Distance),
 	#[cfg(any(all(feature = "fallible", feature = "serde"), doc))]
 	SerdeFail(crate::fallible::FailValue),
 }
@@ -27,9 +27,9 @@ mod serde {
 			S: Serializer,
 		{
 			match *self {
-				GeoRadiusProperty::Distance(ref inner) => inner.serialize(serializer),
 				GeoRadiusProperty::Number(ref inner) => inner.serialize(serializer),
 				GeoRadiusProperty::Text(ref inner) => inner.serialize(serializer),
+				GeoRadiusProperty::Distance(ref inner) => inner.serialize(serializer),
 				#[cfg(all(feature = "fallible", feature = "serde"))]
 				GeoRadiusProperty::SerdeFail(ref inner) => inner.serialize(serializer),
 			}
@@ -45,12 +45,6 @@ mod serde {
 			let deserializer =
 				::serde::__private::de::ContentRefDeserializer::<D::Error>::new(&content);
 			if let Ok(ok) = Result::map(
-				<Distance as Deserialize>::deserialize(deserializer),
-				GeoRadiusProperty::Distance,
-			) {
-				return Ok(ok);
-			}
-			if let Ok(ok) = Result::map(
 				<Number as Deserialize>::deserialize(deserializer),
 				GeoRadiusProperty::Number,
 			) {
@@ -59,6 +53,12 @@ mod serde {
 			if let Ok(ok) = Result::map(
 				<Text as Deserialize>::deserialize(deserializer),
 				GeoRadiusProperty::Text,
+			) {
+				return Ok(ok);
+			}
+			if let Ok(ok) = Result::map(
+				<Distance as Deserialize>::deserialize(deserializer),
+				GeoRadiusProperty::Distance,
 			) {
 				return Ok(ok);
 			}

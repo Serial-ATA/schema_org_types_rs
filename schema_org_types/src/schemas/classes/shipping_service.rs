@@ -1,8 +1,16 @@
 use super::*;
-/// <https://schema.org/Quantity>
+/// <https://schema.org/ShippingService>
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
-pub struct Quantity {
+pub struct ShippingService {
+	/// <https://schema.org/fulfillmentType>
+	pub r#fulfillment_type: Vec<FulfillmentTypeProperty>,
+	/// <https://schema.org/handlingTime>
+	pub r#handling_time: Vec<HandlingTimeProperty>,
+	/// <https://schema.org/shippingConditions>
+	pub r#shipping_conditions: Vec<ShippingConditionsProperty>,
+	/// <https://schema.org/validForMemberTier>
+	pub r#valid_for_member_tier: Vec<ValidForMemberTierProperty>,
 	/// <https://schema.org/additionalType>
 	pub r#additional_type: Vec<AdditionalTypeProperty>,
 	/// <https://schema.org/alternateName>
@@ -19,6 +27,8 @@ pub struct Quantity {
 	pub r#main_entity_of_page: Vec<MainEntityOfPageProperty>,
 	/// <https://schema.org/name>
 	pub r#name: Vec<NameProperty>,
+	/// <https://schema.org/owner>
+	pub r#owner: Vec<OwnerProperty>,
 	/// <https://schema.org/potentialAction>
 	pub r#potential_action: Vec<PotentialActionProperty>,
 	/// <https://schema.org/sameAs>
@@ -28,10 +38,53 @@ pub struct Quantity {
 	/// <https://schema.org/url>
 	pub r#url: Vec<UrlProperty>,
 }
-/// This trait is for properties from <https://schema.org/Quantity>.
-pub trait QuantityTrait {}
-impl QuantityTrait for Quantity {}
-impl ThingTrait for Quantity {
+/// This trait is for properties from <https://schema.org/ShippingService>.
+pub trait ShippingServiceTrait {
+	/// Get <https://schema.org/fulfillmentType> from [`Self`] as borrowed slice.
+	fn get_fulfillment_type(&self) -> &[FulfillmentTypeProperty];
+	/// Take <https://schema.org/fulfillmentType> from [`Self`] as owned vector.
+	fn take_fulfillment_type(&mut self) -> Vec<FulfillmentTypeProperty>;
+	/// Get <https://schema.org/handlingTime> from [`Self`] as borrowed slice.
+	fn get_handling_time(&self) -> &[HandlingTimeProperty];
+	/// Take <https://schema.org/handlingTime> from [`Self`] as owned vector.
+	fn take_handling_time(&mut self) -> Vec<HandlingTimeProperty>;
+	/// Get <https://schema.org/shippingConditions> from [`Self`] as borrowed slice.
+	fn get_shipping_conditions(&self) -> &[ShippingConditionsProperty];
+	/// Take <https://schema.org/shippingConditions> from [`Self`] as owned vector.
+	fn take_shipping_conditions(&mut self) -> Vec<ShippingConditionsProperty>;
+	/// Get <https://schema.org/validForMemberTier> from [`Self`] as borrowed slice.
+	fn get_valid_for_member_tier(&self) -> &[ValidForMemberTierProperty];
+	/// Take <https://schema.org/validForMemberTier> from [`Self`] as owned vector.
+	fn take_valid_for_member_tier(&mut self) -> Vec<ValidForMemberTierProperty>;
+}
+impl ShippingServiceTrait for ShippingService {
+	fn get_fulfillment_type(&self) -> &[FulfillmentTypeProperty] {
+		self.r#fulfillment_type.as_slice()
+	}
+	fn take_fulfillment_type(&mut self) -> Vec<FulfillmentTypeProperty> {
+		std::mem::take(&mut self.r#fulfillment_type)
+	}
+	fn get_handling_time(&self) -> &[HandlingTimeProperty] {
+		self.r#handling_time.as_slice()
+	}
+	fn take_handling_time(&mut self) -> Vec<HandlingTimeProperty> {
+		std::mem::take(&mut self.r#handling_time)
+	}
+	fn get_shipping_conditions(&self) -> &[ShippingConditionsProperty] {
+		self.r#shipping_conditions.as_slice()
+	}
+	fn take_shipping_conditions(&mut self) -> Vec<ShippingConditionsProperty> {
+		std::mem::take(&mut self.r#shipping_conditions)
+	}
+	fn get_valid_for_member_tier(&self) -> &[ValidForMemberTierProperty] {
+		self.r#valid_for_member_tier.as_slice()
+	}
+	fn take_valid_for_member_tier(&mut self) -> Vec<ValidForMemberTierProperty> {
+		std::mem::take(&mut self.r#valid_for_member_tier)
+	}
+}
+impl StructuredValueTrait for ShippingService {}
+impl ThingTrait for ShippingService {
 	fn get_additional_type(&self) -> &[AdditionalTypeProperty] {
 		self.r#additional_type.as_slice()
 	}
@@ -80,6 +133,12 @@ impl ThingTrait for Quantity {
 	fn take_name(&mut self) -> Vec<NameProperty> {
 		std::mem::take(&mut self.r#name)
 	}
+	fn get_owner(&self) -> &[OwnerProperty] {
+		self.r#owner.as_slice()
+	}
+	fn take_owner(&mut self) -> Vec<OwnerProperty> {
+		std::mem::take(&mut self.r#owner)
+	}
 	fn get_potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
 	}
@@ -114,12 +173,16 @@ mod serde {
 	};
 
 	use super::*;
-	impl Serialize for Quantity {
+	impl Serialize for ShippingService {
 		fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
 		where
 			S: Serializer,
 		{
 			let len: usize = [
+				!Vec::is_empty(&self.r#fulfillment_type) as usize,
+				!Vec::is_empty(&self.r#handling_time) as usize,
+				!Vec::is_empty(&self.r#shipping_conditions) as usize,
+				!Vec::is_empty(&self.r#valid_for_member_tier) as usize,
 				!Vec::is_empty(&self.r#additional_type) as usize,
 				!Vec::is_empty(&self.r#alternate_name) as usize,
 				!Vec::is_empty(&self.r#description) as usize,
@@ -128,6 +191,7 @@ mod serde {
 				!Vec::is_empty(&self.r#image) as usize,
 				!Vec::is_empty(&self.r#main_entity_of_page) as usize,
 				!Vec::is_empty(&self.r#name) as usize,
+				!Vec::is_empty(&self.r#owner) as usize,
 				!Vec::is_empty(&self.r#potential_action) as usize,
 				!Vec::is_empty(&self.r#same_as) as usize,
 				!Vec::is_empty(&self.r#subject_of) as usize,
@@ -135,7 +199,80 @@ mod serde {
 			]
 			.iter()
 			.sum();
-			let mut serialize_struct = Serializer::serialize_struct(serializer, "Quantity", len)?;
+			let mut serialize_struct =
+				Serializer::serialize_struct(serializer, "ShippingService", len)?;
+			if !Vec::is_empty(&self.r#fulfillment_type) {
+				serialize_struct.serialize_field("fulfillmentType", {
+					struct SerializeWith<'a>(&'a Vec<FulfillmentTypeProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#fulfillment_type)
+				})?;
+			} else {
+				serialize_struct.skip_field("fulfillmentType")?;
+			}
+			if !Vec::is_empty(&self.r#handling_time) {
+				serialize_struct.serialize_field("handlingTime", {
+					struct SerializeWith<'a>(&'a Vec<HandlingTimeProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#handling_time)
+				})?;
+			} else {
+				serialize_struct.skip_field("handlingTime")?;
+			}
+			if !Vec::is_empty(&self.r#shipping_conditions) {
+				serialize_struct.serialize_field("shippingConditions", {
+					struct SerializeWith<'a>(&'a Vec<ShippingConditionsProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#shipping_conditions)
+				})?;
+			} else {
+				serialize_struct.skip_field("shippingConditions")?;
+			}
+			if !Vec::is_empty(&self.r#valid_for_member_tier) {
+				serialize_struct.serialize_field("validForMemberTier", {
+					struct SerializeWith<'a>(&'a Vec<ValidForMemberTierProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#valid_for_member_tier)
+				})?;
+			} else {
+				serialize_struct.skip_field("validForMemberTier")?;
+			}
 			if !Vec::is_empty(&self.r#additional_type) {
 				serialize_struct.serialize_field("additionalType", {
 					struct SerializeWith<'a>(&'a Vec<AdditionalTypeProperty>);
@@ -280,6 +417,24 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("name")?;
 			}
+			if !Vec::is_empty(&self.r#owner) {
+				serialize_struct.serialize_field("owner", {
+					struct SerializeWith<'a>(&'a Vec<OwnerProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#owner)
+				})?;
+			} else {
+				serialize_struct.skip_field("owner")?;
+			}
 			if !Vec::is_empty(&self.r#potential_action) {
 				serialize_struct.serialize_field("potentialAction", {
 					struct SerializeWith<'a>(&'a Vec<PotentialActionProperty>);
@@ -355,12 +510,16 @@ mod serde {
 			serialize_struct.end()
 		}
 	}
-	impl<'de> Deserialize<'de> for Quantity {
+	impl<'de> Deserialize<'de> for ShippingService {
 		fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
 		where
 			D: Deserializer<'de>,
 		{
 			enum Field {
+				FulfillmentType,
+				HandlingTime,
+				ShippingConditions,
+				ValidForMemberTier,
 				AdditionalType,
 				AlternateName,
 				Description,
@@ -369,6 +528,7 @@ mod serde {
 				Image,
 				MainEntityOfPage,
 				Name,
+				Owner,
 				PotentialAction,
 				SameAs,
 				SubjectOf,
@@ -386,6 +546,10 @@ mod serde {
 					E: de::Error,
 				{
 					match value {
+						"fulfillmentType" => Ok(Field::FulfillmentType),
+						"handlingTime" => Ok(Field::HandlingTime),
+						"shippingConditions" => Ok(Field::ShippingConditions),
+						"validForMemberTier" => Ok(Field::ValidForMemberTier),
 						"additionalType" => Ok(Field::AdditionalType),
 						"alternateName" => Ok(Field::AlternateName),
 						"description" => Ok(Field::Description),
@@ -394,6 +558,7 @@ mod serde {
 						"image" => Ok(Field::Image),
 						"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
 						"name" => Ok(Field::Name),
+						"owner" => Ok(Field::Owner),
 						"potentialAction" => Ok(Field::PotentialAction),
 						"sameAs" => Ok(Field::SameAs),
 						"subjectOf" => Ok(Field::SubjectOf),
@@ -407,6 +572,10 @@ mod serde {
 					E: de::Error,
 				{
 					match value {
+						b"fulfillmentType" => Ok(Field::FulfillmentType),
+						b"handlingTime" => Ok(Field::HandlingTime),
+						b"shippingConditions" => Ok(Field::ShippingConditions),
+						b"validForMemberTier" => Ok(Field::ValidForMemberTier),
 						b"additionalType" => Ok(Field::AdditionalType),
 						b"alternateName" => Ok(Field::AlternateName),
 						b"description" => Ok(Field::Description),
@@ -415,6 +584,7 @@ mod serde {
 						b"image" => Ok(Field::Image),
 						b"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
 						b"name" => Ok(Field::Name),
+						b"owner" => Ok(Field::Owner),
 						b"potentialAction" => Ok(Field::PotentialAction),
 						b"sameAs" => Ok(Field::SameAs),
 						b"subjectOf" => Ok(Field::SubjectOf),
@@ -437,14 +607,18 @@ mod serde {
 			}
 			struct ClassVisitor;
 			impl<'de> Visitor<'de> for ClassVisitor {
-				type Value = Quantity;
+				type Value = ShippingService;
 				fn expecting(&self, formatter: &mut Formatter) -> fmt::Result {
-					formatter.write_str("schema.org schema Quantity")
+					formatter.write_str("schema.org schema ShippingService")
 				}
 				fn visit_map<A>(self, mut map: A) -> Result<Self::Value, A::Error>
 				where
 					A: de::MapAccess<'de>,
 				{
+					let mut r#fulfillment_type_property = None;
+					let mut r#handling_time_property = None;
+					let mut r#shipping_conditions_property = None;
+					let mut r#valid_for_member_tier_property = None;
 					let mut r#additional_type_property = None;
 					let mut r#alternate_name_property = None;
 					let mut r#description_property = None;
@@ -453,12 +627,125 @@ mod serde {
 					let mut r#image_property = None;
 					let mut r#main_entity_of_page_property = None;
 					let mut r#name_property = None;
+					let mut r#owner_property = None;
 					let mut r#potential_action_property = None;
 					let mut r#same_as_property = None;
 					let mut r#subject_of_property = None;
 					let mut r#url_property = None;
 					while let Some(key) = map.next_key::<Field>()? {
 						match key {
+							Field::FulfillmentType => {
+								if r#fulfillment_type_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"fulfillmentType",
+									));
+								}
+								r#fulfillment_type_property = Some({
+									struct DeserializeWith(Vec<FulfillmentTypeProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::HandlingTime => {
+								if r#handling_time_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"handlingTime",
+									));
+								}
+								r#handling_time_property = Some({
+									struct DeserializeWith(Vec<HandlingTimeProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::ShippingConditions => {
+								if r#shipping_conditions_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"shippingConditions",
+									));
+								}
+								r#shipping_conditions_property = Some({
+									struct DeserializeWith(Vec<ShippingConditionsProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::ValidForMemberTier => {
+								if r#valid_for_member_tier_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"validForMemberTier",
+									));
+								}
+								r#valid_for_member_tier_property = Some({
+									struct DeserializeWith(Vec<ValidForMemberTierProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::AdditionalType => {
 								if r#additional_type_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -679,6 +966,32 @@ mod serde {
 									}
 								});
 							}
+							Field::Owner => {
+								if r#owner_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field("owner"));
+								}
+								r#owner_property = Some({
+									struct DeserializeWith(Vec<OwnerProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::PotentialAction => {
 								if r#potential_action_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -792,7 +1105,12 @@ mod serde {
 							}
 						}
 					}
-					Ok(Quantity {
+					Ok(ShippingService {
+						r#fulfillment_type: r#fulfillment_type_property.unwrap_or_default(),
+						r#handling_time: r#handling_time_property.unwrap_or_default(),
+						r#shipping_conditions: r#shipping_conditions_property.unwrap_or_default(),
+						r#valid_for_member_tier: r#valid_for_member_tier_property
+							.unwrap_or_default(),
 						r#additional_type: r#additional_type_property.unwrap_or_default(),
 						r#alternate_name: r#alternate_name_property.unwrap_or_default(),
 						r#description: r#description_property.unwrap_or_default(),
@@ -802,6 +1120,7 @@ mod serde {
 						r#image: r#image_property.unwrap_or_default(),
 						r#main_entity_of_page: r#main_entity_of_page_property.unwrap_or_default(),
 						r#name: r#name_property.unwrap_or_default(),
+						r#owner: r#owner_property.unwrap_or_default(),
 						r#potential_action: r#potential_action_property.unwrap_or_default(),
 						r#same_as: r#same_as_property.unwrap_or_default(),
 						r#subject_of: r#subject_of_property.unwrap_or_default(),
@@ -810,6 +1129,10 @@ mod serde {
 				}
 			}
 			const FIELDS: &[&str] = &[
+				"fulfillmentType",
+				"handlingTime",
+				"shippingConditions",
+				"validForMemberTier",
 				"additionalType",
 				"alternateName",
 				"description",
@@ -818,12 +1141,13 @@ mod serde {
 				"image",
 				"mainEntityOfPage",
 				"name",
+				"owner",
 				"potentialAction",
 				"sameAs",
 				"subjectOf",
 				"url",
 			];
-			deserializer.deserialize_struct("Quantity", FIELDS, ClassVisitor)
+			deserializer.deserialize_struct("ShippingService", FIELDS, ClassVisitor)
 		}
 	}
 }

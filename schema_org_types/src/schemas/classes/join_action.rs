@@ -5,6 +5,8 @@ use super::*;
 pub struct JoinAction {
 	/// <https://schema.org/event>
 	pub r#event: Vec<EventProperty>,
+	/// <https://schema.org/actionProcess>
+	pub r#action_process: Vec<ActionProcessProperty>,
 	/// <https://schema.org/actionStatus>
 	pub r#action_status: Vec<ActionStatusProperty>,
 	/// <https://schema.org/agent>
@@ -45,6 +47,8 @@ pub struct JoinAction {
 	pub r#main_entity_of_page: Vec<MainEntityOfPageProperty>,
 	/// <https://schema.org/name>
 	pub r#name: Vec<NameProperty>,
+	/// <https://schema.org/owner>
+	pub r#owner: Vec<OwnerProperty>,
 	/// <https://schema.org/potentialAction>
 	pub r#potential_action: Vec<PotentialActionProperty>,
 	/// <https://schema.org/sameAs>
@@ -70,6 +74,12 @@ impl JoinActionTrait for JoinAction {
 	}
 }
 impl ActionTrait for JoinAction {
+	fn get_action_process(&self) -> &[ActionProcessProperty] {
+		self.r#action_process.as_slice()
+	}
+	fn take_action_process(&mut self) -> Vec<ActionProcessProperty> {
+		std::mem::take(&mut self.r#action_process)
+	}
 	fn get_action_status(&self) -> &[ActionStatusProperty] {
 		self.r#action_status.as_slice()
 	}
@@ -193,6 +203,12 @@ impl ThingTrait for JoinAction {
 	fn take_name(&mut self) -> Vec<NameProperty> {
 		std::mem::take(&mut self.r#name)
 	}
+	fn get_owner(&self) -> &[OwnerProperty] {
+		self.r#owner.as_slice()
+	}
+	fn take_owner(&mut self) -> Vec<OwnerProperty> {
+		std::mem::take(&mut self.r#owner)
+	}
 	fn get_potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
 	}
@@ -234,6 +250,7 @@ mod serde {
 		{
 			let len: usize = [
 				!Vec::is_empty(&self.r#event) as usize,
+				!Vec::is_empty(&self.r#action_process) as usize,
 				!Vec::is_empty(&self.r#action_status) as usize,
 				!Vec::is_empty(&self.r#agent) as usize,
 				!Vec::is_empty(&self.r#end_time) as usize,
@@ -254,6 +271,7 @@ mod serde {
 				!Vec::is_empty(&self.r#image) as usize,
 				!Vec::is_empty(&self.r#main_entity_of_page) as usize,
 				!Vec::is_empty(&self.r#name) as usize,
+				!Vec::is_empty(&self.r#owner) as usize,
 				!Vec::is_empty(&self.r#potential_action) as usize,
 				!Vec::is_empty(&self.r#same_as) as usize,
 				!Vec::is_empty(&self.r#subject_of) as usize,
@@ -279,6 +297,24 @@ mod serde {
 				})?;
 			} else {
 				serialize_struct.skip_field("event")?;
+			}
+			if !Vec::is_empty(&self.r#action_process) {
+				serialize_struct.serialize_field("actionProcess", {
+					struct SerializeWith<'a>(&'a Vec<ActionProcessProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#action_process)
+				})?;
+			} else {
+				serialize_struct.skip_field("actionProcess")?;
 			}
 			if !Vec::is_empty(&self.r#action_status) {
 				serialize_struct.serialize_field("actionStatus", {
@@ -640,6 +676,24 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("name")?;
 			}
+			if !Vec::is_empty(&self.r#owner) {
+				serialize_struct.serialize_field("owner", {
+					struct SerializeWith<'a>(&'a Vec<OwnerProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#owner)
+				})?;
+			} else {
+				serialize_struct.skip_field("owner")?;
+			}
 			if !Vec::is_empty(&self.r#potential_action) {
 				serialize_struct.serialize_field("potentialAction", {
 					struct SerializeWith<'a>(&'a Vec<PotentialActionProperty>);
@@ -722,6 +776,7 @@ mod serde {
 		{
 			enum Field {
 				Event,
+				ActionProcess,
 				ActionStatus,
 				Agent,
 				EndTime,
@@ -742,6 +797,7 @@ mod serde {
 				Image,
 				MainEntityOfPage,
 				Name,
+				Owner,
 				PotentialAction,
 				SameAs,
 				SubjectOf,
@@ -760,6 +816,7 @@ mod serde {
 				{
 					match value {
 						"event" => Ok(Field::Event),
+						"actionProcess" => Ok(Field::ActionProcess),
 						"actionStatus" => Ok(Field::ActionStatus),
 						"agent" => Ok(Field::Agent),
 						"endTime" => Ok(Field::EndTime),
@@ -780,6 +837,7 @@ mod serde {
 						"image" => Ok(Field::Image),
 						"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
 						"name" => Ok(Field::Name),
+						"owner" => Ok(Field::Owner),
 						"potentialAction" => Ok(Field::PotentialAction),
 						"sameAs" => Ok(Field::SameAs),
 						"subjectOf" => Ok(Field::SubjectOf),
@@ -794,6 +852,7 @@ mod serde {
 				{
 					match value {
 						b"event" => Ok(Field::Event),
+						b"actionProcess" => Ok(Field::ActionProcess),
 						b"actionStatus" => Ok(Field::ActionStatus),
 						b"agent" => Ok(Field::Agent),
 						b"endTime" => Ok(Field::EndTime),
@@ -814,6 +873,7 @@ mod serde {
 						b"image" => Ok(Field::Image),
 						b"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
 						b"name" => Ok(Field::Name),
+						b"owner" => Ok(Field::Owner),
 						b"potentialAction" => Ok(Field::PotentialAction),
 						b"sameAs" => Ok(Field::SameAs),
 						b"subjectOf" => Ok(Field::SubjectOf),
@@ -845,6 +905,7 @@ mod serde {
 					A: de::MapAccess<'de>,
 				{
 					let mut r#event_property = None;
+					let mut r#action_process_property = None;
 					let mut r#action_status_property = None;
 					let mut r#agent_property = None;
 					let mut r#end_time_property = None;
@@ -865,6 +926,7 @@ mod serde {
 					let mut r#image_property = None;
 					let mut r#main_entity_of_page_property = None;
 					let mut r#name_property = None;
+					let mut r#owner_property = None;
 					let mut r#potential_action_property = None;
 					let mut r#same_as_property = None;
 					let mut r#subject_of_property = None;
@@ -877,6 +939,34 @@ mod serde {
 								}
 								r#event_property = Some({
 									struct DeserializeWith(Vec<EventProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::ActionProcess => {
+								if r#action_process_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"actionProcess",
+									));
+								}
+								r#action_process_property = Some({
+									struct DeserializeWith(Vec<ActionProcessProperty>);
 									impl<'de> Deserialize<'de> for DeserializeWith {
 										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
 										where
@@ -1443,6 +1533,32 @@ mod serde {
 									}
 								});
 							}
+							Field::Owner => {
+								if r#owner_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field("owner"));
+								}
+								r#owner_property = Some({
+									struct DeserializeWith(Vec<OwnerProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::PotentialAction => {
 								if r#potential_action_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -1558,6 +1674,7 @@ mod serde {
 					}
 					Ok(JoinAction {
 						r#event: r#event_property.unwrap_or_default(),
+						r#action_process: r#action_process_property.unwrap_or_default(),
 						r#action_status: r#action_status_property.unwrap_or_default(),
 						r#agent: r#agent_property.unwrap_or_default(),
 						r#end_time: r#end_time_property.unwrap_or_default(),
@@ -1579,6 +1696,7 @@ mod serde {
 						r#image: r#image_property.unwrap_or_default(),
 						r#main_entity_of_page: r#main_entity_of_page_property.unwrap_or_default(),
 						r#name: r#name_property.unwrap_or_default(),
+						r#owner: r#owner_property.unwrap_or_default(),
 						r#potential_action: r#potential_action_property.unwrap_or_default(),
 						r#same_as: r#same_as_property.unwrap_or_default(),
 						r#subject_of: r#subject_of_property.unwrap_or_default(),
@@ -1588,6 +1706,7 @@ mod serde {
 			}
 			const FIELDS: &[&str] = &[
 				"event",
+				"actionProcess",
 				"actionStatus",
 				"agent",
 				"endTime",
@@ -1608,6 +1727,7 @@ mod serde {
 				"image",
 				"mainEntityOfPage",
 				"name",
+				"owner",
 				"potentialAction",
 				"sameAs",
 				"subjectOf",

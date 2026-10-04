@@ -362,6 +362,7 @@ WHERE {{
 		schema:Integer
 		schema:Number
 		schema:Boolean
+		schema:Quantity
 	}}
 	?transformable rdfs:label ?label .
 }}

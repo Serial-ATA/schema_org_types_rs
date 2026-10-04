@@ -5,6 +5,8 @@ use super::*;
 pub enum PreviousStartDateProperty {
 	/// <https://schema.org/Date>
 	Date(Date),
+	/// <https://schema.org/DateTime>
+	DateTime(DateTime),
 	#[cfg(any(all(feature = "fallible", feature = "serde"), doc))]
 	SerdeFail(crate::fallible::FailValue),
 }
@@ -24,6 +26,7 @@ mod serde {
 		{
 			match *self {
 				PreviousStartDateProperty::Date(ref inner) => inner.serialize(serializer),
+				PreviousStartDateProperty::DateTime(ref inner) => inner.serialize(serializer),
 				#[cfg(all(feature = "fallible", feature = "serde"))]
 				PreviousStartDateProperty::SerdeFail(ref inner) => inner.serialize(serializer),
 			}
@@ -41,6 +44,12 @@ mod serde {
 			if let Ok(ok) = Result::map(
 				<Date as Deserialize>::deserialize(deserializer),
 				PreviousStartDateProperty::Date,
+			) {
+				return Ok(ok);
+			}
+			if let Ok(ok) = Result::map(
+				<DateTime as Deserialize>::deserialize(deserializer),
+				PreviousStartDateProperty::DateTime,
 			) {
 				return Ok(ok);
 			}

@@ -8,12 +8,18 @@ pub enum PriceTypeEnumeration {
 	ListPrice,
 	/// <https://schema.org/MSRP>
 	Msrp,
+	/// <https://schema.org/MaximumRetailPrice>
+	MaximumRetailPrice,
 	/// <https://schema.org/MinimumAdvertisedPrice>
 	MinimumAdvertisedPrice,
+	/// <https://schema.org/RegularPrice>
+	RegularPrice,
 	/// <https://schema.org/SRP>
 	Srp,
 	/// <https://schema.org/SalePrice>
 	SalePrice,
+	/// <https://schema.org/StrikethroughPrice>
+	StrikethroughPrice,
 }
 #[cfg(feature = "serde")]
 mod serde {
@@ -39,17 +45,30 @@ mod serde {
 				PriceTypeEnumeration::Msrp => {
 					serializer.serialize_unit_variant("PriceTypeEnumeration", 2u32, "Msrp")
 				}
-				PriceTypeEnumeration::MinimumAdvertisedPrice => serializer.serialize_unit_variant(
+				PriceTypeEnumeration::MaximumRetailPrice => serializer.serialize_unit_variant(
 					"PriceTypeEnumeration",
 					3u32,
+					"MaximumRetailPrice",
+				),
+				PriceTypeEnumeration::MinimumAdvertisedPrice => serializer.serialize_unit_variant(
+					"PriceTypeEnumeration",
+					4u32,
 					"MinimumAdvertisedPrice",
 				),
+				PriceTypeEnumeration::RegularPrice => {
+					serializer.serialize_unit_variant("PriceTypeEnumeration", 5u32, "RegularPrice")
+				}
 				PriceTypeEnumeration::Srp => {
-					serializer.serialize_unit_variant("PriceTypeEnumeration", 4u32, "Srp")
+					serializer.serialize_unit_variant("PriceTypeEnumeration", 6u32, "Srp")
 				}
 				PriceTypeEnumeration::SalePrice => {
-					serializer.serialize_unit_variant("PriceTypeEnumeration", 5u32, "SalePrice")
+					serializer.serialize_unit_variant("PriceTypeEnumeration", 7u32, "SalePrice")
 				}
+				PriceTypeEnumeration::StrikethroughPrice => serializer.serialize_unit_variant(
+					"PriceTypeEnumeration",
+					8u32,
+					"StrikethroughPrice",
+				),
 			}
 		}
 	}
@@ -62,9 +81,12 @@ mod serde {
 				InvoicePrice,
 				ListPrice,
 				Msrp,
+				MaximumRetailPrice,
 				MinimumAdvertisedPrice,
+				RegularPrice,
 				Srp,
 				SalePrice,
+				StrikethroughPrice,
 			}
 			struct FieldVisitor;
 			impl<'de> de::Visitor<'de> for FieldVisitor {
@@ -80,9 +102,12 @@ mod serde {
 						"InvoicePrice" => Ok(Field::InvoicePrice),
 						"ListPrice" => Ok(Field::ListPrice),
 						"Msrp" => Ok(Field::Msrp),
+						"MaximumRetailPrice" => Ok(Field::MaximumRetailPrice),
 						"MinimumAdvertisedPrice" => Ok(Field::MinimumAdvertisedPrice),
+						"RegularPrice" => Ok(Field::RegularPrice),
 						"Srp" => Ok(Field::Srp),
 						"SalePrice" => Ok(Field::SalePrice),
+						"StrikethroughPrice" => Ok(Field::StrikethroughPrice),
 						_ => Err(de::Error::unknown_variant(value, VARIANTS)),
 					}
 				}
@@ -94,9 +119,12 @@ mod serde {
 						b"InvoicePrice" => Ok(Field::InvoicePrice),
 						b"ListPrice" => Ok(Field::ListPrice),
 						b"Msrp" => Ok(Field::Msrp),
+						b"MaximumRetailPrice" => Ok(Field::MaximumRetailPrice),
 						b"MinimumAdvertisedPrice" => Ok(Field::MinimumAdvertisedPrice),
+						b"RegularPrice" => Ok(Field::RegularPrice),
 						b"Srp" => Ok(Field::Srp),
 						b"SalePrice" => Ok(Field::SalePrice),
+						b"StrikethroughPrice" => Ok(Field::StrikethroughPrice),
 						_ => {
 							let value = &String::from_utf8_lossy(value);
 							Err(de::Error::unknown_variant(value, VARIANTS))
@@ -135,9 +163,17 @@ mod serde {
 							de::VariantAccess::unit_variant(variant)?;
 							Ok(PriceTypeEnumeration::Msrp)
 						}
+						(Field::MaximumRetailPrice, variant) => {
+							de::VariantAccess::unit_variant(variant)?;
+							Ok(PriceTypeEnumeration::MaximumRetailPrice)
+						}
 						(Field::MinimumAdvertisedPrice, variant) => {
 							de::VariantAccess::unit_variant(variant)?;
 							Ok(PriceTypeEnumeration::MinimumAdvertisedPrice)
+						}
+						(Field::RegularPrice, variant) => {
+							de::VariantAccess::unit_variant(variant)?;
+							Ok(PriceTypeEnumeration::RegularPrice)
 						}
 						(Field::Srp, variant) => {
 							de::VariantAccess::unit_variant(variant)?;
@@ -147,6 +183,10 @@ mod serde {
 							de::VariantAccess::unit_variant(variant)?;
 							Ok(PriceTypeEnumeration::SalePrice)
 						}
+						(Field::StrikethroughPrice, variant) => {
+							de::VariantAccess::unit_variant(variant)?;
+							Ok(PriceTypeEnumeration::StrikethroughPrice)
+						}
 					}
 				}
 			}
@@ -154,9 +194,12 @@ mod serde {
 				"InvoicePrice",
 				"ListPrice",
 				"Msrp",
+				"MaximumRetailPrice",
 				"MinimumAdvertisedPrice",
+				"RegularPrice",
 				"Srp",
 				"SalePrice",
+				"StrikethroughPrice",
 			];
 			deserializer.deserialize_enum("PriceTypeEnumeration", VARIANTS, EnumerationVisitor)
 		}

@@ -43,6 +43,8 @@ pub struct JobPosting {
 	pub r#industry: Vec<IndustryProperty>,
 	/// <https://schema.org/jobBenefits>
 	pub r#job_benefits: Vec<JobBenefitsProperty>,
+	/// <https://schema.org/jobDuration>
+	pub r#job_duration: Vec<JobDurationProperty>,
 	/// <https://schema.org/jobImmediateStart>
 	pub r#job_immediate_start: Vec<JobImmediateStartProperty>,
 	/// <https://schema.org/jobLocation>
@@ -95,6 +97,8 @@ pub struct JobPosting {
 	pub r#main_entity_of_page: Vec<MainEntityOfPageProperty>,
 	/// <https://schema.org/name>
 	pub r#name: Vec<NameProperty>,
+	/// <https://schema.org/owner>
+	pub r#owner: Vec<OwnerProperty>,
 	/// <https://schema.org/potentialAction>
 	pub r#potential_action: Vec<PotentialActionProperty>,
 	/// <https://schema.org/sameAs>
@@ -191,6 +195,10 @@ pub trait JobPostingTrait {
 	fn get_job_benefits(&self) -> &[JobBenefitsProperty];
 	/// Take <https://schema.org/jobBenefits> from [`Self`] as owned vector.
 	fn take_job_benefits(&mut self) -> Vec<JobBenefitsProperty>;
+	/// Get <https://schema.org/jobDuration> from [`Self`] as borrowed slice.
+	fn get_job_duration(&self) -> &[JobDurationProperty];
+	/// Take <https://schema.org/jobDuration> from [`Self`] as owned vector.
+	fn take_job_duration(&mut self) -> Vec<JobDurationProperty>;
 	/// Get <https://schema.org/jobImmediateStart> from [`Self`] as borrowed slice.
 	fn get_job_immediate_start(&self) -> &[JobImmediateStartProperty];
 	/// Take <https://schema.org/jobImmediateStart> from [`Self`] as owned vector.
@@ -385,6 +393,12 @@ impl JobPostingTrait for JobPosting {
 	fn take_job_benefits(&mut self) -> Vec<JobBenefitsProperty> {
 		std::mem::take(&mut self.r#job_benefits)
 	}
+	fn get_job_duration(&self) -> &[JobDurationProperty] {
+		self.r#job_duration.as_slice()
+	}
+	fn take_job_duration(&mut self) -> Vec<JobDurationProperty> {
+		std::mem::take(&mut self.r#job_duration)
+	}
 	fn get_job_immediate_start(&self) -> &[JobImmediateStartProperty] {
 		self.r#job_immediate_start.as_slice()
 	}
@@ -543,6 +557,12 @@ impl ThingTrait for JobPosting {
 	fn take_name(&mut self) -> Vec<NameProperty> {
 		std::mem::take(&mut self.r#name)
 	}
+	fn get_owner(&self) -> &[OwnerProperty] {
+		self.r#owner.as_slice()
+	}
+	fn take_owner(&mut self) -> Vec<OwnerProperty> {
+		std::mem::take(&mut self.r#owner)
+	}
 	fn get_potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
 	}
@@ -602,6 +622,7 @@ mod serde {
 				!Vec::is_empty(&self.r#incentives) as usize,
 				!Vec::is_empty(&self.r#industry) as usize,
 				!Vec::is_empty(&self.r#job_benefits) as usize,
+				!Vec::is_empty(&self.r#job_duration) as usize,
 				!Vec::is_empty(&self.r#job_immediate_start) as usize,
 				!Vec::is_empty(&self.r#job_location) as usize,
 				!Vec::is_empty(&self.r#job_location_type) as usize,
@@ -628,6 +649,7 @@ mod serde {
 				!Vec::is_empty(&self.r#image) as usize,
 				!Vec::is_empty(&self.r#main_entity_of_page) as usize,
 				!Vec::is_empty(&self.r#name) as usize,
+				!Vec::is_empty(&self.r#owner) as usize,
 				!Vec::is_empty(&self.r#potential_action) as usize,
 				!Vec::is_empty(&self.r#same_as) as usize,
 				!Vec::is_empty(&self.r#subject_of) as usize,
@@ -977,6 +999,24 @@ mod serde {
 				})?;
 			} else {
 				serialize_struct.skip_field("jobBenefits")?;
+			}
+			if !Vec::is_empty(&self.r#job_duration) {
+				serialize_struct.serialize_field("jobDuration", {
+					struct SerializeWith<'a>(&'a Vec<JobDurationProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#job_duration)
+				})?;
+			} else {
+				serialize_struct.skip_field("jobDuration")?;
 			}
 			if !Vec::is_empty(&self.r#job_immediate_start) {
 				serialize_struct.serialize_field("jobImmediateStart", {
@@ -1446,6 +1486,24 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("name")?;
 			}
+			if !Vec::is_empty(&self.r#owner) {
+				serialize_struct.serialize_field("owner", {
+					struct SerializeWith<'a>(&'a Vec<OwnerProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#owner)
+				})?;
+			} else {
+				serialize_struct.skip_field("owner")?;
+			}
 			if !Vec::is_empty(&self.r#potential_action) {
 				serialize_struct.serialize_field("potentialAction", {
 					struct SerializeWith<'a>(&'a Vec<PotentialActionProperty>);
@@ -1546,6 +1604,7 @@ mod serde {
 				Incentives,
 				Industry,
 				JobBenefits,
+				JobDuration,
 				JobImmediateStart,
 				JobLocation,
 				JobLocationType,
@@ -1572,6 +1631,7 @@ mod serde {
 				Image,
 				MainEntityOfPage,
 				Name,
+				Owner,
 				PotentialAction,
 				SameAs,
 				SubjectOf,
@@ -1608,6 +1668,7 @@ mod serde {
 						"incentives" => Ok(Field::Incentives),
 						"industry" => Ok(Field::Industry),
 						"jobBenefits" => Ok(Field::JobBenefits),
+						"jobDuration" => Ok(Field::JobDuration),
 						"jobImmediateStart" => Ok(Field::JobImmediateStart),
 						"jobLocation" => Ok(Field::JobLocation),
 						"jobLocationType" => Ok(Field::JobLocationType),
@@ -1634,6 +1695,7 @@ mod serde {
 						"image" => Ok(Field::Image),
 						"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
 						"name" => Ok(Field::Name),
+						"owner" => Ok(Field::Owner),
 						"potentialAction" => Ok(Field::PotentialAction),
 						"sameAs" => Ok(Field::SameAs),
 						"subjectOf" => Ok(Field::SubjectOf),
@@ -1668,6 +1730,7 @@ mod serde {
 						b"incentives" => Ok(Field::Incentives),
 						b"industry" => Ok(Field::Industry),
 						b"jobBenefits" => Ok(Field::JobBenefits),
+						b"jobDuration" => Ok(Field::JobDuration),
 						b"jobImmediateStart" => Ok(Field::JobImmediateStart),
 						b"jobLocation" => Ok(Field::JobLocation),
 						b"jobLocationType" => Ok(Field::JobLocationType),
@@ -1694,6 +1757,7 @@ mod serde {
 						b"image" => Ok(Field::Image),
 						b"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
 						b"name" => Ok(Field::Name),
+						b"owner" => Ok(Field::Owner),
 						b"potentialAction" => Ok(Field::PotentialAction),
 						b"sameAs" => Ok(Field::SameAs),
 						b"subjectOf" => Ok(Field::SubjectOf),
@@ -1743,6 +1807,7 @@ mod serde {
 					let mut r#incentives_property = None;
 					let mut r#industry_property = None;
 					let mut r#job_benefits_property = None;
+					let mut r#job_duration_property = None;
 					let mut r#job_immediate_start_property = None;
 					let mut r#job_location_property = None;
 					let mut r#job_location_type_property = None;
@@ -1769,6 +1834,7 @@ mod serde {
 					let mut r#image_property = None;
 					let mut r#main_entity_of_page_property = None;
 					let mut r#name_property = None;
+					let mut r#owner_property = None;
 					let mut r#potential_action_property = None;
 					let mut r#same_as_property = None;
 					let mut r#subject_of_property = None;
@@ -2293,6 +2359,34 @@ mod serde {
 								}
 								r#job_benefits_property = Some({
 									struct DeserializeWith(Vec<JobBenefitsProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::JobDuration => {
+								if r#job_duration_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"jobDuration",
+									));
+								}
+								r#job_duration_property = Some({
+									struct DeserializeWith(Vec<JobDurationProperty>);
 									impl<'de> Deserialize<'de> for DeserializeWith {
 										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
 										where
@@ -3035,6 +3129,32 @@ mod serde {
 									}
 								});
 							}
+							Field::Owner => {
+								if r#owner_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field("owner"));
+								}
+								r#owner_property = Some({
+									struct DeserializeWith(Vec<OwnerProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::PotentialAction => {
 								if r#potential_action_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -3174,6 +3294,7 @@ mod serde {
 						r#incentives: r#incentives_property.unwrap_or_default(),
 						r#industry: r#industry_property.unwrap_or_default(),
 						r#job_benefits: r#job_benefits_property.unwrap_or_default(),
+						r#job_duration: r#job_duration_property.unwrap_or_default(),
 						r#job_immediate_start: r#job_immediate_start_property.unwrap_or_default(),
 						r#job_location: r#job_location_property.unwrap_or_default(),
 						r#job_location_type: r#job_location_type_property.unwrap_or_default(),
@@ -3203,6 +3324,7 @@ mod serde {
 						r#image: r#image_property.unwrap_or_default(),
 						r#main_entity_of_page: r#main_entity_of_page_property.unwrap_or_default(),
 						r#name: r#name_property.unwrap_or_default(),
+						r#owner: r#owner_property.unwrap_or_default(),
 						r#potential_action: r#potential_action_property.unwrap_or_default(),
 						r#same_as: r#same_as_property.unwrap_or_default(),
 						r#subject_of: r#subject_of_property.unwrap_or_default(),
@@ -3230,6 +3352,7 @@ mod serde {
 				"incentives",
 				"industry",
 				"jobBenefits",
+				"jobDuration",
 				"jobImmediateStart",
 				"jobLocation",
 				"jobLocationType",
@@ -3256,6 +3379,7 @@ mod serde {
 				"image",
 				"mainEntityOfPage",
 				"name",
+				"owner",
 				"potentialAction",
 				"sameAs",
 				"subjectOf",

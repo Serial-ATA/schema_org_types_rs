@@ -3,6 +3,12 @@ use super::*;
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 pub enum SecondaryPreventionProperty {
+	/// <https://schema.org/Drug>
+	Drug(Drug),
+	/// <https://schema.org/DrugClass>
+	DrugClass(DrugClass),
+	/// <https://schema.org/LifestyleModification>
+	LifestyleModification(LifestyleModification),
 	/// <https://schema.org/MedicalTherapy>
 	MedicalTherapy(MedicalTherapy),
 	#[cfg(any(all(feature = "fallible", feature = "serde"), doc))]
@@ -23,6 +29,11 @@ mod serde {
 			S: Serializer,
 		{
 			match *self {
+				SecondaryPreventionProperty::Drug(ref inner) => inner.serialize(serializer),
+				SecondaryPreventionProperty::DrugClass(ref inner) => inner.serialize(serializer),
+				SecondaryPreventionProperty::LifestyleModification(ref inner) => {
+					inner.serialize(serializer)
+				}
 				SecondaryPreventionProperty::MedicalTherapy(ref inner) => {
 					inner.serialize(serializer)
 				}
@@ -40,6 +51,24 @@ mod serde {
 				<::serde::__private::de::Content as Deserialize>::deserialize(deserializer)?;
 			let deserializer =
 				::serde::__private::de::ContentRefDeserializer::<D::Error>::new(&content);
+			if let Ok(ok) = Result::map(
+				<Drug as Deserialize>::deserialize(deserializer),
+				SecondaryPreventionProperty::Drug,
+			) {
+				return Ok(ok);
+			}
+			if let Ok(ok) = Result::map(
+				<DrugClass as Deserialize>::deserialize(deserializer),
+				SecondaryPreventionProperty::DrugClass,
+			) {
+				return Ok(ok);
+			}
+			if let Ok(ok) = Result::map(
+				<LifestyleModification as Deserialize>::deserialize(deserializer),
+				SecondaryPreventionProperty::LifestyleModification,
+			) {
+				return Ok(ok);
+			}
 			if let Ok(ok) = Result::map(
 				<MedicalTherapy as Deserialize>::deserialize(deserializer),
 				SecondaryPreventionProperty::MedicalTherapy,

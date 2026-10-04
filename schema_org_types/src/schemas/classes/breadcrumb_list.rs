@@ -3,6 +3,8 @@ use super::*;
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 pub struct BreadcrumbList {
+	/// <https://schema.org/aggregateElement>
+	pub r#aggregate_element: Vec<AggregateElementProperty>,
 	/// <https://schema.org/itemListElement>
 	pub r#item_list_element: Vec<ItemListElementProperty>,
 	/// <https://schema.org/itemListOrder>
@@ -25,6 +27,8 @@ pub struct BreadcrumbList {
 	pub r#main_entity_of_page: Vec<MainEntityOfPageProperty>,
 	/// <https://schema.org/name>
 	pub r#name: Vec<NameProperty>,
+	/// <https://schema.org/owner>
+	pub r#owner: Vec<OwnerProperty>,
 	/// <https://schema.org/potentialAction>
 	pub r#potential_action: Vec<PotentialActionProperty>,
 	/// <https://schema.org/sameAs>
@@ -38,6 +42,12 @@ pub struct BreadcrumbList {
 pub trait BreadcrumbListTrait {}
 impl BreadcrumbListTrait for BreadcrumbList {}
 impl ItemListTrait for BreadcrumbList {
+	fn get_aggregate_element(&self) -> &[AggregateElementProperty] {
+		self.r#aggregate_element.as_slice()
+	}
+	fn take_aggregate_element(&mut self) -> Vec<AggregateElementProperty> {
+		std::mem::take(&mut self.r#aggregate_element)
+	}
 	fn get_item_list_element(&self) -> &[ItemListElementProperty] {
 		self.r#item_list_element.as_slice()
 	}
@@ -106,6 +116,12 @@ impl ThingTrait for BreadcrumbList {
 	fn take_name(&mut self) -> Vec<NameProperty> {
 		std::mem::take(&mut self.r#name)
 	}
+	fn get_owner(&self) -> &[OwnerProperty] {
+		self.r#owner.as_slice()
+	}
+	fn take_owner(&mut self) -> Vec<OwnerProperty> {
+		std::mem::take(&mut self.r#owner)
+	}
 	fn get_potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
 	}
@@ -146,6 +162,7 @@ mod serde {
 			S: Serializer,
 		{
 			let len: usize = [
+				!Vec::is_empty(&self.r#aggregate_element) as usize,
 				!Vec::is_empty(&self.r#item_list_element) as usize,
 				!Vec::is_empty(&self.r#item_list_order) as usize,
 				!Vec::is_empty(&self.r#number_of_items) as usize,
@@ -157,6 +174,7 @@ mod serde {
 				!Vec::is_empty(&self.r#image) as usize,
 				!Vec::is_empty(&self.r#main_entity_of_page) as usize,
 				!Vec::is_empty(&self.r#name) as usize,
+				!Vec::is_empty(&self.r#owner) as usize,
 				!Vec::is_empty(&self.r#potential_action) as usize,
 				!Vec::is_empty(&self.r#same_as) as usize,
 				!Vec::is_empty(&self.r#subject_of) as usize,
@@ -166,6 +184,24 @@ mod serde {
 			.sum();
 			let mut serialize_struct =
 				Serializer::serialize_struct(serializer, "BreadcrumbList", len)?;
+			if !Vec::is_empty(&self.r#aggregate_element) {
+				serialize_struct.serialize_field("aggregateElement", {
+					struct SerializeWith<'a>(&'a Vec<AggregateElementProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#aggregate_element)
+				})?;
+			} else {
+				serialize_struct.skip_field("aggregateElement")?;
+			}
 			if !Vec::is_empty(&self.r#item_list_element) {
 				serialize_struct.serialize_field("itemListElement", {
 					struct SerializeWith<'a>(&'a Vec<ItemListElementProperty>);
@@ -364,6 +400,24 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("name")?;
 			}
+			if !Vec::is_empty(&self.r#owner) {
+				serialize_struct.serialize_field("owner", {
+					struct SerializeWith<'a>(&'a Vec<OwnerProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#owner)
+				})?;
+			} else {
+				serialize_struct.skip_field("owner")?;
+			}
 			if !Vec::is_empty(&self.r#potential_action) {
 				serialize_struct.serialize_field("potentialAction", {
 					struct SerializeWith<'a>(&'a Vec<PotentialActionProperty>);
@@ -445,6 +499,7 @@ mod serde {
 			D: Deserializer<'de>,
 		{
 			enum Field {
+				AggregateElement,
 				ItemListElement,
 				ItemListOrder,
 				NumberOfItems,
@@ -456,6 +511,7 @@ mod serde {
 				Image,
 				MainEntityOfPage,
 				Name,
+				Owner,
 				PotentialAction,
 				SameAs,
 				SubjectOf,
@@ -473,6 +529,7 @@ mod serde {
 					E: de::Error,
 				{
 					match value {
+						"aggregateElement" => Ok(Field::AggregateElement),
 						"itemListElement" => Ok(Field::ItemListElement),
 						"itemListOrder" => Ok(Field::ItemListOrder),
 						"numberOfItems" => Ok(Field::NumberOfItems),
@@ -484,6 +541,7 @@ mod serde {
 						"image" => Ok(Field::Image),
 						"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
 						"name" => Ok(Field::Name),
+						"owner" => Ok(Field::Owner),
 						"potentialAction" => Ok(Field::PotentialAction),
 						"sameAs" => Ok(Field::SameAs),
 						"subjectOf" => Ok(Field::SubjectOf),
@@ -497,6 +555,7 @@ mod serde {
 					E: de::Error,
 				{
 					match value {
+						b"aggregateElement" => Ok(Field::AggregateElement),
 						b"itemListElement" => Ok(Field::ItemListElement),
 						b"itemListOrder" => Ok(Field::ItemListOrder),
 						b"numberOfItems" => Ok(Field::NumberOfItems),
@@ -508,6 +567,7 @@ mod serde {
 						b"image" => Ok(Field::Image),
 						b"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
 						b"name" => Ok(Field::Name),
+						b"owner" => Ok(Field::Owner),
 						b"potentialAction" => Ok(Field::PotentialAction),
 						b"sameAs" => Ok(Field::SameAs),
 						b"subjectOf" => Ok(Field::SubjectOf),
@@ -538,6 +598,7 @@ mod serde {
 				where
 					A: de::MapAccess<'de>,
 				{
+					let mut r#aggregate_element_property = None;
 					let mut r#item_list_element_property = None;
 					let mut r#item_list_order_property = None;
 					let mut r#number_of_items_property = None;
@@ -549,12 +610,41 @@ mod serde {
 					let mut r#image_property = None;
 					let mut r#main_entity_of_page_property = None;
 					let mut r#name_property = None;
+					let mut r#owner_property = None;
 					let mut r#potential_action_property = None;
 					let mut r#same_as_property = None;
 					let mut r#subject_of_property = None;
 					let mut r#url_property = None;
 					while let Some(key) = map.next_key::<Field>()? {
 						match key {
+							Field::AggregateElement => {
+								if r#aggregate_element_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"aggregateElement",
+									));
+								}
+								r#aggregate_element_property = Some({
+									struct DeserializeWith(Vec<AggregateElementProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::ItemListElement => {
 								if r#item_list_element_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -859,6 +949,32 @@ mod serde {
 									}
 								});
 							}
+							Field::Owner => {
+								if r#owner_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field("owner"));
+								}
+								r#owner_property = Some({
+									struct DeserializeWith(Vec<OwnerProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::PotentialAction => {
 								if r#potential_action_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -973,6 +1089,7 @@ mod serde {
 						}
 					}
 					Ok(BreadcrumbList {
+						r#aggregate_element: r#aggregate_element_property.unwrap_or_default(),
 						r#item_list_element: r#item_list_element_property.unwrap_or_default(),
 						r#item_list_order: r#item_list_order_property.unwrap_or_default(),
 						r#number_of_items: r#number_of_items_property.unwrap_or_default(),
@@ -985,6 +1102,7 @@ mod serde {
 						r#image: r#image_property.unwrap_or_default(),
 						r#main_entity_of_page: r#main_entity_of_page_property.unwrap_or_default(),
 						r#name: r#name_property.unwrap_or_default(),
+						r#owner: r#owner_property.unwrap_or_default(),
 						r#potential_action: r#potential_action_property.unwrap_or_default(),
 						r#same_as: r#same_as_property.unwrap_or_default(),
 						r#subject_of: r#subject_of_property.unwrap_or_default(),
@@ -993,6 +1111,7 @@ mod serde {
 				}
 			}
 			const FIELDS: &[&str] = &[
+				"aggregateElement",
 				"itemListElement",
 				"itemListOrder",
 				"numberOfItems",
@@ -1004,6 +1123,7 @@ mod serde {
 				"image",
 				"mainEntityOfPage",
 				"name",
+				"owner",
 				"potentialAction",
 				"sameAs",
 				"subjectOf",

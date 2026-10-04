@@ -3,6 +3,8 @@ use super::*;
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 pub struct DefinedTerm {
+	/// <https://schema.org/about>
+	pub r#about: Vec<AboutProperty>,
 	/// <https://schema.org/inDefinedTermSet>
 	pub r#in_defined_term_set: Vec<InDefinedTermSetProperty>,
 	/// <https://schema.org/termCode>
@@ -23,6 +25,8 @@ pub struct DefinedTerm {
 	pub r#main_entity_of_page: Vec<MainEntityOfPageProperty>,
 	/// <https://schema.org/name>
 	pub r#name: Vec<NameProperty>,
+	/// <https://schema.org/owner>
+	pub r#owner: Vec<OwnerProperty>,
 	/// <https://schema.org/potentialAction>
 	pub r#potential_action: Vec<PotentialActionProperty>,
 	/// <https://schema.org/sameAs>
@@ -34,6 +38,10 @@ pub struct DefinedTerm {
 }
 /// This trait is for properties from <https://schema.org/DefinedTerm>.
 pub trait DefinedTermTrait {
+	/// Get <https://schema.org/about> from [`Self`] as borrowed slice.
+	fn get_about(&self) -> &[AboutProperty];
+	/// Take <https://schema.org/about> from [`Self`] as owned vector.
+	fn take_about(&mut self) -> Vec<AboutProperty>;
 	/// Get <https://schema.org/inDefinedTermSet> from [`Self`] as borrowed slice.
 	fn get_in_defined_term_set(&self) -> &[InDefinedTermSetProperty];
 	/// Take <https://schema.org/inDefinedTermSet> from [`Self`] as owned vector.
@@ -44,6 +52,12 @@ pub trait DefinedTermTrait {
 	fn take_term_code(&mut self) -> Vec<TermCodeProperty>;
 }
 impl DefinedTermTrait for DefinedTerm {
+	fn get_about(&self) -> &[AboutProperty] {
+		self.r#about.as_slice()
+	}
+	fn take_about(&mut self) -> Vec<AboutProperty> {
+		std::mem::take(&mut self.r#about)
+	}
 	fn get_in_defined_term_set(&self) -> &[InDefinedTermSetProperty] {
 		self.r#in_defined_term_set.as_slice()
 	}
@@ -106,6 +120,12 @@ impl ThingTrait for DefinedTerm {
 	fn take_name(&mut self) -> Vec<NameProperty> {
 		std::mem::take(&mut self.r#name)
 	}
+	fn get_owner(&self) -> &[OwnerProperty] {
+		self.r#owner.as_slice()
+	}
+	fn take_owner(&mut self) -> Vec<OwnerProperty> {
+		std::mem::take(&mut self.r#owner)
+	}
 	fn get_potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
 	}
@@ -146,6 +166,7 @@ mod serde {
 			S: Serializer,
 		{
 			let len: usize = [
+				!Vec::is_empty(&self.r#about) as usize,
 				!Vec::is_empty(&self.r#in_defined_term_set) as usize,
 				!Vec::is_empty(&self.r#term_code) as usize,
 				!Vec::is_empty(&self.r#additional_type) as usize,
@@ -156,6 +177,7 @@ mod serde {
 				!Vec::is_empty(&self.r#image) as usize,
 				!Vec::is_empty(&self.r#main_entity_of_page) as usize,
 				!Vec::is_empty(&self.r#name) as usize,
+				!Vec::is_empty(&self.r#owner) as usize,
 				!Vec::is_empty(&self.r#potential_action) as usize,
 				!Vec::is_empty(&self.r#same_as) as usize,
 				!Vec::is_empty(&self.r#subject_of) as usize,
@@ -165,6 +187,24 @@ mod serde {
 			.sum();
 			let mut serialize_struct =
 				Serializer::serialize_struct(serializer, "DefinedTerm", len)?;
+			if !Vec::is_empty(&self.r#about) {
+				serialize_struct.serialize_field("about", {
+					struct SerializeWith<'a>(&'a Vec<AboutProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#about)
+				})?;
+			} else {
+				serialize_struct.skip_field("about")?;
+			}
 			if !Vec::is_empty(&self.r#in_defined_term_set) {
 				serialize_struct.serialize_field("inDefinedTermSet", {
 					struct SerializeWith<'a>(&'a Vec<InDefinedTermSetProperty>);
@@ -345,6 +385,24 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("name")?;
 			}
+			if !Vec::is_empty(&self.r#owner) {
+				serialize_struct.serialize_field("owner", {
+					struct SerializeWith<'a>(&'a Vec<OwnerProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#owner)
+				})?;
+			} else {
+				serialize_struct.skip_field("owner")?;
+			}
 			if !Vec::is_empty(&self.r#potential_action) {
 				serialize_struct.serialize_field("potentialAction", {
 					struct SerializeWith<'a>(&'a Vec<PotentialActionProperty>);
@@ -426,6 +484,7 @@ mod serde {
 			D: Deserializer<'de>,
 		{
 			enum Field {
+				About,
 				InDefinedTermSet,
 				TermCode,
 				AdditionalType,
@@ -436,6 +495,7 @@ mod serde {
 				Image,
 				MainEntityOfPage,
 				Name,
+				Owner,
 				PotentialAction,
 				SameAs,
 				SubjectOf,
@@ -453,6 +513,7 @@ mod serde {
 					E: de::Error,
 				{
 					match value {
+						"about" => Ok(Field::About),
 						"inDefinedTermSet" => Ok(Field::InDefinedTermSet),
 						"termCode" => Ok(Field::TermCode),
 						"additionalType" => Ok(Field::AdditionalType),
@@ -463,6 +524,7 @@ mod serde {
 						"image" => Ok(Field::Image),
 						"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
 						"name" => Ok(Field::Name),
+						"owner" => Ok(Field::Owner),
 						"potentialAction" => Ok(Field::PotentialAction),
 						"sameAs" => Ok(Field::SameAs),
 						"subjectOf" => Ok(Field::SubjectOf),
@@ -476,6 +538,7 @@ mod serde {
 					E: de::Error,
 				{
 					match value {
+						b"about" => Ok(Field::About),
 						b"inDefinedTermSet" => Ok(Field::InDefinedTermSet),
 						b"termCode" => Ok(Field::TermCode),
 						b"additionalType" => Ok(Field::AdditionalType),
@@ -486,6 +549,7 @@ mod serde {
 						b"image" => Ok(Field::Image),
 						b"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
 						b"name" => Ok(Field::Name),
+						b"owner" => Ok(Field::Owner),
 						b"potentialAction" => Ok(Field::PotentialAction),
 						b"sameAs" => Ok(Field::SameAs),
 						b"subjectOf" => Ok(Field::SubjectOf),
@@ -516,6 +580,7 @@ mod serde {
 				where
 					A: de::MapAccess<'de>,
 				{
+					let mut r#about_property = None;
 					let mut r#in_defined_term_set_property = None;
 					let mut r#term_code_property = None;
 					let mut r#additional_type_property = None;
@@ -526,12 +591,39 @@ mod serde {
 					let mut r#image_property = None;
 					let mut r#main_entity_of_page_property = None;
 					let mut r#name_property = None;
+					let mut r#owner_property = None;
 					let mut r#potential_action_property = None;
 					let mut r#same_as_property = None;
 					let mut r#subject_of_property = None;
 					let mut r#url_property = None;
 					while let Some(key) = map.next_key::<Field>()? {
 						match key {
+							Field::About => {
+								if r#about_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field("about"));
+								}
+								r#about_property = Some({
+									struct DeserializeWith(Vec<AboutProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::InDefinedTermSet => {
 								if r#in_defined_term_set_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -808,6 +900,32 @@ mod serde {
 									}
 								});
 							}
+							Field::Owner => {
+								if r#owner_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field("owner"));
+								}
+								r#owner_property = Some({
+									struct DeserializeWith(Vec<OwnerProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::PotentialAction => {
 								if r#potential_action_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -922,6 +1040,7 @@ mod serde {
 						}
 					}
 					Ok(DefinedTerm {
+						r#about: r#about_property.unwrap_or_default(),
 						r#in_defined_term_set: r#in_defined_term_set_property.unwrap_or_default(),
 						r#term_code: r#term_code_property.unwrap_or_default(),
 						r#additional_type: r#additional_type_property.unwrap_or_default(),
@@ -933,6 +1052,7 @@ mod serde {
 						r#image: r#image_property.unwrap_or_default(),
 						r#main_entity_of_page: r#main_entity_of_page_property.unwrap_or_default(),
 						r#name: r#name_property.unwrap_or_default(),
+						r#owner: r#owner_property.unwrap_or_default(),
 						r#potential_action: r#potential_action_property.unwrap_or_default(),
 						r#same_as: r#same_as_property.unwrap_or_default(),
 						r#subject_of: r#subject_of_property.unwrap_or_default(),
@@ -941,6 +1061,7 @@ mod serde {
 				}
 			}
 			const FIELDS: &[&str] = &[
+				"about",
 				"inDefinedTermSet",
 				"termCode",
 				"additionalType",
@@ -951,6 +1072,7 @@ mod serde {
 				"image",
 				"mainEntityOfPage",
 				"name",
+				"owner",
 				"potentialAction",
 				"sameAs",
 				"subjectOf",

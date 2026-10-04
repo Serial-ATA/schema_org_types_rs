@@ -5,6 +5,8 @@ use super::*;
 pub enum BusinessDaysProperty {
 	/// <https://schema.org/OpeningHoursSpecification>
 	OpeningHoursSpecification(OpeningHoursSpecification),
+	/// <https://schema.org/DayOfWeek>
+	DayOfWeek(DayOfWeek),
 	#[cfg(any(all(feature = "fallible", feature = "serde"), doc))]
 	SerdeFail(crate::fallible::FailValue),
 }
@@ -26,6 +28,7 @@ mod serde {
 				BusinessDaysProperty::OpeningHoursSpecification(ref inner) => {
 					inner.serialize(serializer)
 				}
+				BusinessDaysProperty::DayOfWeek(ref inner) => inner.serialize(serializer),
 				#[cfg(all(feature = "fallible", feature = "serde"))]
 				BusinessDaysProperty::SerdeFail(ref inner) => inner.serialize(serializer),
 			}
@@ -43,6 +46,12 @@ mod serde {
 			if let Ok(ok) = Result::map(
 				<OpeningHoursSpecification as Deserialize>::deserialize(deserializer),
 				BusinessDaysProperty::OpeningHoursSpecification,
+			) {
+				return Ok(ok);
+			}
+			if let Ok(ok) = Result::map(
+				<DayOfWeek as Deserialize>::deserialize(deserializer),
+				BusinessDaysProperty::DayOfWeek,
 			) {
 				return Ok(ok);
 			}

@@ -2,7 +2,7 @@ use super::*;
 /// <https://schema.org/productReturnDays>
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
-#[deprecated = "This schema is archived, see <https://schema.org/docs/attic.home.html>. This schema is superseded by <https://schema.org/merchantReturnDays>."]
+#[deprecated = "This schema is superseded by <https://schema.org/merchantReturnDays>."]
 pub enum ProductReturnDaysProperty {
 	/// <https://schema.org/Integer>
 	Integer(Integer),

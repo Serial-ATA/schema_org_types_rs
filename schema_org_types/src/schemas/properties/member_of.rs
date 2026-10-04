@@ -3,6 +3,8 @@ use super::*;
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 pub enum MemberOfProperty {
+	/// <https://schema.org/MemberProgramTier>
+	MemberProgramTier(MemberProgramTier),
 	/// <https://schema.org/Organization>
 	Organization(Organization),
 	/// <https://schema.org/ProgramMembership>
@@ -25,6 +27,7 @@ mod serde {
 			S: Serializer,
 		{
 			match *self {
+				MemberOfProperty::MemberProgramTier(ref inner) => inner.serialize(serializer),
 				MemberOfProperty::Organization(ref inner) => inner.serialize(serializer),
 				MemberOfProperty::ProgramMembership(ref inner) => inner.serialize(serializer),
 				#[cfg(all(feature = "fallible", feature = "serde"))]
@@ -41,6 +44,12 @@ mod serde {
 				<::serde::__private::de::Content as Deserialize>::deserialize(deserializer)?;
 			let deserializer =
 				::serde::__private::de::ContentRefDeserializer::<D::Error>::new(&content);
+			if let Ok(ok) = Result::map(
+				<MemberProgramTier as Deserialize>::deserialize(deserializer),
+				MemberOfProperty::MemberProgramTier,
+			) {
+				return Ok(ok);
+			}
 			if let Ok(ok) = Result::map(
 				<Organization as Deserialize>::deserialize(deserializer),
 				MemberOfProperty::Organization,

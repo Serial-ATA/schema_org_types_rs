@@ -3,8 +3,16 @@ use super::*;
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 pub struct DonateAction {
+	/// <https://schema.org/price>
+	pub r#price: Vec<PriceProperty>,
+	/// <https://schema.org/priceCurrency>
+	pub r#price_currency: Vec<PriceCurrencyProperty>,
+	/// <https://schema.org/priceSpecification>
+	pub r#price_specification: Vec<PriceSpecificationProperty>,
 	/// <https://schema.org/recipient>
 	pub r#recipient: Vec<RecipientProperty>,
+	/// <https://schema.org/actionProcess>
+	pub r#action_process: Vec<ActionProcessProperty>,
 	/// <https://schema.org/actionStatus>
 	pub r#action_status: Vec<ActionStatusProperty>,
 	/// <https://schema.org/agent>
@@ -45,6 +53,8 @@ pub struct DonateAction {
 	pub r#main_entity_of_page: Vec<MainEntityOfPageProperty>,
 	/// <https://schema.org/name>
 	pub r#name: Vec<NameProperty>,
+	/// <https://schema.org/owner>
+	pub r#owner: Vec<OwnerProperty>,
 	/// <https://schema.org/potentialAction>
 	pub r#potential_action: Vec<PotentialActionProperty>,
 	/// <https://schema.org/sameAs>
@@ -53,21 +63,49 @@ pub struct DonateAction {
 	pub r#subject_of: Vec<SubjectOfProperty>,
 	/// <https://schema.org/url>
 	pub r#url: Vec<UrlProperty>,
-	/// <https://schema.org/price>
-	pub r#price: Vec<PriceProperty>,
-	/// <https://schema.org/priceCurrency>
-	pub r#price_currency: Vec<PriceCurrencyProperty>,
-	/// <https://schema.org/priceSpecification>
-	pub r#price_specification: Vec<PriceSpecificationProperty>,
+	/// <https://schema.org/fromLocation>
+	pub r#from_location: Vec<FromLocationProperty>,
+	/// <https://schema.org/toLocation>
+	pub r#to_location: Vec<ToLocationProperty>,
 }
 /// This trait is for properties from <https://schema.org/DonateAction>.
 pub trait DonateActionTrait {
+	/// Get <https://schema.org/price> from [`Self`] as borrowed slice.
+	fn get_price(&self) -> &[PriceProperty];
+	/// Take <https://schema.org/price> from [`Self`] as owned vector.
+	fn take_price(&mut self) -> Vec<PriceProperty>;
+	/// Get <https://schema.org/priceCurrency> from [`Self`] as borrowed slice.
+	fn get_price_currency(&self) -> &[PriceCurrencyProperty];
+	/// Take <https://schema.org/priceCurrency> from [`Self`] as owned vector.
+	fn take_price_currency(&mut self) -> Vec<PriceCurrencyProperty>;
+	/// Get <https://schema.org/priceSpecification> from [`Self`] as borrowed slice.
+	fn get_price_specification(&self) -> &[PriceSpecificationProperty];
+	/// Take <https://schema.org/priceSpecification> from [`Self`] as owned vector.
+	fn take_price_specification(&mut self) -> Vec<PriceSpecificationProperty>;
 	/// Get <https://schema.org/recipient> from [`Self`] as borrowed slice.
 	fn get_recipient(&self) -> &[RecipientProperty];
 	/// Take <https://schema.org/recipient> from [`Self`] as owned vector.
 	fn take_recipient(&mut self) -> Vec<RecipientProperty>;
 }
 impl DonateActionTrait for DonateAction {
+	fn get_price(&self) -> &[PriceProperty] {
+		self.r#price.as_slice()
+	}
+	fn take_price(&mut self) -> Vec<PriceProperty> {
+		std::mem::take(&mut self.r#price)
+	}
+	fn get_price_currency(&self) -> &[PriceCurrencyProperty] {
+		self.r#price_currency.as_slice()
+	}
+	fn take_price_currency(&mut self) -> Vec<PriceCurrencyProperty> {
+		std::mem::take(&mut self.r#price_currency)
+	}
+	fn get_price_specification(&self) -> &[PriceSpecificationProperty] {
+		self.r#price_specification.as_slice()
+	}
+	fn take_price_specification(&mut self) -> Vec<PriceSpecificationProperty> {
+		std::mem::take(&mut self.r#price_specification)
+	}
 	fn get_recipient(&self) -> &[RecipientProperty] {
 		self.r#recipient.as_slice()
 	}
@@ -76,6 +114,12 @@ impl DonateActionTrait for DonateAction {
 	}
 }
 impl ActionTrait for DonateAction {
+	fn get_action_process(&self) -> &[ActionProcessProperty] {
+		self.r#action_process.as_slice()
+	}
+	fn take_action_process(&mut self) -> Vec<ActionProcessProperty> {
+		std::mem::take(&mut self.r#action_process)
+	}
 	fn get_action_status(&self) -> &[ActionStatusProperty] {
 		self.r#action_status.as_slice()
 	}
@@ -198,6 +242,12 @@ impl ThingTrait for DonateAction {
 	fn take_name(&mut self) -> Vec<NameProperty> {
 		std::mem::take(&mut self.r#name)
 	}
+	fn get_owner(&self) -> &[OwnerProperty] {
+		self.r#owner.as_slice()
+	}
+	fn take_owner(&mut self) -> Vec<OwnerProperty> {
+		std::mem::take(&mut self.r#owner)
+	}
 	fn get_potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
 	}
@@ -223,24 +273,18 @@ impl ThingTrait for DonateAction {
 		std::mem::take(&mut self.r#url)
 	}
 }
-impl TradeActionTrait for DonateAction {
-	fn get_price(&self) -> &[PriceProperty] {
-		self.r#price.as_slice()
+impl TransferActionTrait for DonateAction {
+	fn get_from_location(&self) -> &[FromLocationProperty] {
+		self.r#from_location.as_slice()
 	}
-	fn take_price(&mut self) -> Vec<PriceProperty> {
-		std::mem::take(&mut self.r#price)
+	fn take_from_location(&mut self) -> Vec<FromLocationProperty> {
+		std::mem::take(&mut self.r#from_location)
 	}
-	fn get_price_currency(&self) -> &[PriceCurrencyProperty] {
-		self.r#price_currency.as_slice()
+	fn get_to_location(&self) -> &[ToLocationProperty] {
+		self.r#to_location.as_slice()
 	}
-	fn take_price_currency(&mut self) -> Vec<PriceCurrencyProperty> {
-		std::mem::take(&mut self.r#price_currency)
-	}
-	fn get_price_specification(&self) -> &[PriceSpecificationProperty] {
-		self.r#price_specification.as_slice()
-	}
-	fn take_price_specification(&mut self) -> Vec<PriceSpecificationProperty> {
-		std::mem::take(&mut self.r#price_specification)
+	fn take_to_location(&mut self) -> Vec<ToLocationProperty> {
+		std::mem::take(&mut self.r#to_location)
 	}
 }
 #[cfg(feature = "serde")]
@@ -258,7 +302,11 @@ mod serde {
 			S: Serializer,
 		{
 			let len: usize = [
+				!Vec::is_empty(&self.r#price) as usize,
+				!Vec::is_empty(&self.r#price_currency) as usize,
+				!Vec::is_empty(&self.r#price_specification) as usize,
 				!Vec::is_empty(&self.r#recipient) as usize,
+				!Vec::is_empty(&self.r#action_process) as usize,
 				!Vec::is_empty(&self.r#action_status) as usize,
 				!Vec::is_empty(&self.r#agent) as usize,
 				!Vec::is_empty(&self.r#end_time) as usize,
@@ -279,18 +327,72 @@ mod serde {
 				!Vec::is_empty(&self.r#image) as usize,
 				!Vec::is_empty(&self.r#main_entity_of_page) as usize,
 				!Vec::is_empty(&self.r#name) as usize,
+				!Vec::is_empty(&self.r#owner) as usize,
 				!Vec::is_empty(&self.r#potential_action) as usize,
 				!Vec::is_empty(&self.r#same_as) as usize,
 				!Vec::is_empty(&self.r#subject_of) as usize,
 				!Vec::is_empty(&self.r#url) as usize,
-				!Vec::is_empty(&self.r#price) as usize,
-				!Vec::is_empty(&self.r#price_currency) as usize,
-				!Vec::is_empty(&self.r#price_specification) as usize,
+				!Vec::is_empty(&self.r#from_location) as usize,
+				!Vec::is_empty(&self.r#to_location) as usize,
 			]
 			.iter()
 			.sum();
 			let mut serialize_struct =
 				Serializer::serialize_struct(serializer, "DonateAction", len)?;
+			if !Vec::is_empty(&self.r#price) {
+				serialize_struct.serialize_field("price", {
+					struct SerializeWith<'a>(&'a Vec<PriceProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#price)
+				})?;
+			} else {
+				serialize_struct.skip_field("price")?;
+			}
+			if !Vec::is_empty(&self.r#price_currency) {
+				serialize_struct.serialize_field("priceCurrency", {
+					struct SerializeWith<'a>(&'a Vec<PriceCurrencyProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#price_currency)
+				})?;
+			} else {
+				serialize_struct.skip_field("priceCurrency")?;
+			}
+			if !Vec::is_empty(&self.r#price_specification) {
+				serialize_struct.serialize_field("priceSpecification", {
+					struct SerializeWith<'a>(&'a Vec<PriceSpecificationProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#price_specification)
+				})?;
+			} else {
+				serialize_struct.skip_field("priceSpecification")?;
+			}
 			if !Vec::is_empty(&self.r#recipient) {
 				serialize_struct.serialize_field("recipient", {
 					struct SerializeWith<'a>(&'a Vec<RecipientProperty>);
@@ -308,6 +410,24 @@ mod serde {
 				})?;
 			} else {
 				serialize_struct.skip_field("recipient")?;
+			}
+			if !Vec::is_empty(&self.r#action_process) {
+				serialize_struct.serialize_field("actionProcess", {
+					struct SerializeWith<'a>(&'a Vec<ActionProcessProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#action_process)
+				})?;
+			} else {
+				serialize_struct.skip_field("actionProcess")?;
 			}
 			if !Vec::is_empty(&self.r#action_status) {
 				serialize_struct.serialize_field("actionStatus", {
@@ -669,6 +789,24 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("name")?;
 			}
+			if !Vec::is_empty(&self.r#owner) {
+				serialize_struct.serialize_field("owner", {
+					struct SerializeWith<'a>(&'a Vec<OwnerProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#owner)
+				})?;
+			} else {
+				serialize_struct.skip_field("owner")?;
+			}
 			if !Vec::is_empty(&self.r#potential_action) {
 				serialize_struct.serialize_field("potentialAction", {
 					struct SerializeWith<'a>(&'a Vec<PotentialActionProperty>);
@@ -741,9 +879,9 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("url")?;
 			}
-			if !Vec::is_empty(&self.r#price) {
-				serialize_struct.serialize_field("price", {
-					struct SerializeWith<'a>(&'a Vec<PriceProperty>);
+			if !Vec::is_empty(&self.r#from_location) {
+				serialize_struct.serialize_field("fromLocation", {
+					struct SerializeWith<'a>(&'a Vec<FromLocationProperty>);
 					impl<'a> Serialize for SerializeWith<'a> {
 						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
 						where
@@ -754,14 +892,14 @@ mod serde {
 							)
 						}
 					}
-					&SerializeWith(&self.r#price)
+					&SerializeWith(&self.r#from_location)
 				})?;
 			} else {
-				serialize_struct.skip_field("price")?;
+				serialize_struct.skip_field("fromLocation")?;
 			}
-			if !Vec::is_empty(&self.r#price_currency) {
-				serialize_struct.serialize_field("priceCurrency", {
-					struct SerializeWith<'a>(&'a Vec<PriceCurrencyProperty>);
+			if !Vec::is_empty(&self.r#to_location) {
+				serialize_struct.serialize_field("toLocation", {
+					struct SerializeWith<'a>(&'a Vec<ToLocationProperty>);
 					impl<'a> Serialize for SerializeWith<'a> {
 						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
 						where
@@ -772,28 +910,10 @@ mod serde {
 							)
 						}
 					}
-					&SerializeWith(&self.r#price_currency)
+					&SerializeWith(&self.r#to_location)
 				})?;
 			} else {
-				serialize_struct.skip_field("priceCurrency")?;
-			}
-			if !Vec::is_empty(&self.r#price_specification) {
-				serialize_struct.serialize_field("priceSpecification", {
-					struct SerializeWith<'a>(&'a Vec<PriceSpecificationProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#price_specification)
-				})?;
-			} else {
-				serialize_struct.skip_field("priceSpecification")?;
+				serialize_struct.skip_field("toLocation")?;
 			}
 			serialize_struct.end()
 		}
@@ -804,7 +924,11 @@ mod serde {
 			D: Deserializer<'de>,
 		{
 			enum Field {
+				Price,
+				PriceCurrency,
+				PriceSpecification,
 				Recipient,
+				ActionProcess,
 				ActionStatus,
 				Agent,
 				EndTime,
@@ -825,13 +949,13 @@ mod serde {
 				Image,
 				MainEntityOfPage,
 				Name,
+				Owner,
 				PotentialAction,
 				SameAs,
 				SubjectOf,
 				Url,
-				Price,
-				PriceCurrency,
-				PriceSpecification,
+				FromLocation,
+				ToLocation,
 				Ignore,
 			}
 			struct FieldVisitor;
@@ -845,7 +969,11 @@ mod serde {
 					E: de::Error,
 				{
 					match value {
+						"price" => Ok(Field::Price),
+						"priceCurrency" => Ok(Field::PriceCurrency),
+						"priceSpecification" => Ok(Field::PriceSpecification),
 						"recipient" => Ok(Field::Recipient),
+						"actionProcess" => Ok(Field::ActionProcess),
 						"actionStatus" => Ok(Field::ActionStatus),
 						"agent" => Ok(Field::Agent),
 						"endTime" => Ok(Field::EndTime),
@@ -866,13 +994,13 @@ mod serde {
 						"image" => Ok(Field::Image),
 						"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
 						"name" => Ok(Field::Name),
+						"owner" => Ok(Field::Owner),
 						"potentialAction" => Ok(Field::PotentialAction),
 						"sameAs" => Ok(Field::SameAs),
 						"subjectOf" => Ok(Field::SubjectOf),
 						"url" => Ok(Field::Url),
-						"price" => Ok(Field::Price),
-						"priceCurrency" => Ok(Field::PriceCurrency),
-						"priceSpecification" => Ok(Field::PriceSpecification),
+						"fromLocation" => Ok(Field::FromLocation),
+						"toLocation" => Ok(Field::ToLocation),
 						"id" | "type" => Ok(Field::Ignore),
 						_ => Err(de::Error::unknown_field(value, FIELDS)),
 					}
@@ -882,7 +1010,11 @@ mod serde {
 					E: de::Error,
 				{
 					match value {
+						b"price" => Ok(Field::Price),
+						b"priceCurrency" => Ok(Field::PriceCurrency),
+						b"priceSpecification" => Ok(Field::PriceSpecification),
 						b"recipient" => Ok(Field::Recipient),
+						b"actionProcess" => Ok(Field::ActionProcess),
 						b"actionStatus" => Ok(Field::ActionStatus),
 						b"agent" => Ok(Field::Agent),
 						b"endTime" => Ok(Field::EndTime),
@@ -903,13 +1035,13 @@ mod serde {
 						b"image" => Ok(Field::Image),
 						b"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
 						b"name" => Ok(Field::Name),
+						b"owner" => Ok(Field::Owner),
 						b"potentialAction" => Ok(Field::PotentialAction),
 						b"sameAs" => Ok(Field::SameAs),
 						b"subjectOf" => Ok(Field::SubjectOf),
 						b"url" => Ok(Field::Url),
-						b"price" => Ok(Field::Price),
-						b"priceCurrency" => Ok(Field::PriceCurrency),
-						b"priceSpecification" => Ok(Field::PriceSpecification),
+						b"fromLocation" => Ok(Field::FromLocation),
+						b"toLocation" => Ok(Field::ToLocation),
 						b"id" | b"type" => Ok(Field::Ignore),
 						_ => {
 							let value = &String::from_utf8_lossy(value);
@@ -936,7 +1068,11 @@ mod serde {
 				where
 					A: de::MapAccess<'de>,
 				{
+					let mut r#price_property = None;
+					let mut r#price_currency_property = None;
+					let mut r#price_specification_property = None;
 					let mut r#recipient_property = None;
+					let mut r#action_process_property = None;
 					let mut r#action_status_property = None;
 					let mut r#agent_property = None;
 					let mut r#end_time_property = None;
@@ -957,15 +1093,97 @@ mod serde {
 					let mut r#image_property = None;
 					let mut r#main_entity_of_page_property = None;
 					let mut r#name_property = None;
+					let mut r#owner_property = None;
 					let mut r#potential_action_property = None;
 					let mut r#same_as_property = None;
 					let mut r#subject_of_property = None;
 					let mut r#url_property = None;
-					let mut r#price_property = None;
-					let mut r#price_currency_property = None;
-					let mut r#price_specification_property = None;
+					let mut r#from_location_property = None;
+					let mut r#to_location_property = None;
 					while let Some(key) = map.next_key::<Field>()? {
 						match key {
+							Field::Price => {
+								if r#price_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field("price"));
+								}
+								r#price_property = Some({
+									struct DeserializeWith(Vec<PriceProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::PriceCurrency => {
+								if r#price_currency_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"priceCurrency",
+									));
+								}
+								r#price_currency_property = Some({
+									struct DeserializeWith(Vec<PriceCurrencyProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::PriceSpecification => {
+								if r#price_specification_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"priceSpecification",
+									));
+								}
+								r#price_specification_property = Some({
+									struct DeserializeWith(Vec<PriceSpecificationProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::Recipient => {
 								if r#recipient_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -974,6 +1192,34 @@ mod serde {
 								}
 								r#recipient_property = Some({
 									struct DeserializeWith(Vec<RecipientProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::ActionProcess => {
+								if r#action_process_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"actionProcess",
+									));
+								}
+								r#action_process_property = Some({
+									struct DeserializeWith(Vec<ActionProcessProperty>);
 									impl<'de> Deserialize<'de> for DeserializeWith {
 										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
 										where
@@ -1540,6 +1786,32 @@ mod serde {
 									}
 								});
 							}
+							Field::Owner => {
+								if r#owner_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field("owner"));
+								}
+								r#owner_property = Some({
+									struct DeserializeWith(Vec<OwnerProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::PotentialAction => {
 								if r#potential_action_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -1648,12 +1920,14 @@ mod serde {
 									}
 								});
 							}
-							Field::Price => {
-								if r#price_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field("price"));
+							Field::FromLocation => {
+								if r#from_location_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"fromLocation",
+									));
 								}
-								r#price_property = Some({
-									struct DeserializeWith(Vec<PriceProperty>);
+								r#from_location_property = Some({
+									struct DeserializeWith(Vec<FromLocationProperty>);
 									impl<'de> Deserialize<'de> for DeserializeWith {
 										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
 										where
@@ -1674,42 +1948,14 @@ mod serde {
 									}
 								});
 							}
-							Field::PriceCurrency => {
-								if r#price_currency_property.is_some() {
+							Field::ToLocation => {
+								if r#to_location_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
-										"priceCurrency",
+										"toLocation",
 									));
 								}
-								r#price_currency_property = Some({
-									struct DeserializeWith(Vec<PriceCurrencyProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
-							Field::PriceSpecification => {
-								if r#price_specification_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"priceSpecification",
-									));
-								}
-								r#price_specification_property = Some({
-									struct DeserializeWith(Vec<PriceSpecificationProperty>);
+								r#to_location_property = Some({
+									struct DeserializeWith(Vec<ToLocationProperty>);
 									impl<'de> Deserialize<'de> for DeserializeWith {
 										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
 										where
@@ -1736,7 +1982,11 @@ mod serde {
 						}
 					}
 					Ok(DonateAction {
+						r#price: r#price_property.unwrap_or_default(),
+						r#price_currency: r#price_currency_property.unwrap_or_default(),
+						r#price_specification: r#price_specification_property.unwrap_or_default(),
 						r#recipient: r#recipient_property.unwrap_or_default(),
+						r#action_process: r#action_process_property.unwrap_or_default(),
 						r#action_status: r#action_status_property.unwrap_or_default(),
 						r#agent: r#agent_property.unwrap_or_default(),
 						r#end_time: r#end_time_property.unwrap_or_default(),
@@ -1758,18 +2008,22 @@ mod serde {
 						r#image: r#image_property.unwrap_or_default(),
 						r#main_entity_of_page: r#main_entity_of_page_property.unwrap_or_default(),
 						r#name: r#name_property.unwrap_or_default(),
+						r#owner: r#owner_property.unwrap_or_default(),
 						r#potential_action: r#potential_action_property.unwrap_or_default(),
 						r#same_as: r#same_as_property.unwrap_or_default(),
 						r#subject_of: r#subject_of_property.unwrap_or_default(),
 						r#url: r#url_property.unwrap_or_default(),
-						r#price: r#price_property.unwrap_or_default(),
-						r#price_currency: r#price_currency_property.unwrap_or_default(),
-						r#price_specification: r#price_specification_property.unwrap_or_default(),
+						r#from_location: r#from_location_property.unwrap_or_default(),
+						r#to_location: r#to_location_property.unwrap_or_default(),
 					})
 				}
 			}
 			const FIELDS: &[&str] = &[
+				"price",
+				"priceCurrency",
+				"priceSpecification",
 				"recipient",
+				"actionProcess",
 				"actionStatus",
 				"agent",
 				"endTime",
@@ -1790,13 +2044,13 @@ mod serde {
 				"image",
 				"mainEntityOfPage",
 				"name",
+				"owner",
 				"potentialAction",
 				"sameAs",
 				"subjectOf",
 				"url",
-				"price",
-				"priceCurrency",
-				"priceSpecification",
+				"fromLocation",
+				"toLocation",
 			];
 			deserializer.deserialize_struct("DonateAction", FIELDS, ClassVisitor)
 		}

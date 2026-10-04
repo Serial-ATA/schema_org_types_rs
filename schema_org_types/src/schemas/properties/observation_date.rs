@@ -3,6 +3,8 @@ use super::*;
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 pub enum ObservationDateProperty {
+	/// <https://schema.org/Date>
+	Date(Date),
 	/// <https://schema.org/DateTime>
 	DateTime(DateTime),
 	#[cfg(any(all(feature = "fallible", feature = "serde"), doc))]
@@ -23,6 +25,7 @@ mod serde {
 			S: Serializer,
 		{
 			match *self {
+				ObservationDateProperty::Date(ref inner) => inner.serialize(serializer),
 				ObservationDateProperty::DateTime(ref inner) => inner.serialize(serializer),
 				#[cfg(all(feature = "fallible", feature = "serde"))]
 				ObservationDateProperty::SerdeFail(ref inner) => inner.serialize(serializer),
@@ -38,6 +41,12 @@ mod serde {
 				<::serde::__private::de::Content as Deserialize>::deserialize(deserializer)?;
 			let deserializer =
 				::serde::__private::de::ContentRefDeserializer::<D::Error>::new(&content);
+			if let Ok(ok) = Result::map(
+				<Date as Deserialize>::deserialize(deserializer),
+				ObservationDateProperty::Date,
+			) {
+				return Ok(ok);
+			}
 			if let Ok(ok) = Result::map(
 				<DateTime as Deserialize>::deserialize(deserializer),
 				ObservationDateProperty::DateTime,

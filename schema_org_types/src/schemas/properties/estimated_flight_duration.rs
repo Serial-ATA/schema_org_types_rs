@@ -3,10 +3,10 @@ use super::*;
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 pub enum EstimatedFlightDurationProperty {
-	/// <https://schema.org/Duration>
-	Duration(Duration),
 	/// <https://schema.org/Text>
 	Text(Text),
+	/// <https://schema.org/Duration>
+	Duration(Duration),
 	#[cfg(any(all(feature = "fallible", feature = "serde"), doc))]
 	SerdeFail(crate::fallible::FailValue),
 }
@@ -25,8 +25,8 @@ mod serde {
 			S: Serializer,
 		{
 			match *self {
-				EstimatedFlightDurationProperty::Duration(ref inner) => inner.serialize(serializer),
 				EstimatedFlightDurationProperty::Text(ref inner) => inner.serialize(serializer),
+				EstimatedFlightDurationProperty::Duration(ref inner) => inner.serialize(serializer),
 				#[cfg(all(feature = "fallible", feature = "serde"))]
 				EstimatedFlightDurationProperty::SerdeFail(ref inner) => inner.serialize(serializer),
 			}
@@ -42,14 +42,14 @@ mod serde {
 			let deserializer =
 				::serde::__private::de::ContentRefDeserializer::<D::Error>::new(&content);
 			if let Ok(ok) = Result::map(
-				<Duration as Deserialize>::deserialize(deserializer),
-				EstimatedFlightDurationProperty::Duration,
+				<Text as Deserialize>::deserialize(deserializer),
+				EstimatedFlightDurationProperty::Text,
 			) {
 				return Ok(ok);
 			}
 			if let Ok(ok) = Result::map(
-				<Text as Deserialize>::deserialize(deserializer),
-				EstimatedFlightDurationProperty::Text,
+				<Duration as Deserialize>::deserialize(deserializer),
+				EstimatedFlightDurationProperty::Duration,
 			) {
 				return Ok(ok);
 			}

@@ -11,6 +11,8 @@ pub struct Motorcycle {
 	pub r#asin: Vec<AsinProperty>,
 	/// <https://schema.org/audience>
 	pub r#audience: Vec<AudienceProperty>,
+	/// <https://schema.org/authorizedRepresentative>
+	pub r#authorized_representative: Vec<AuthorizedRepresentativeProperty>,
 	/// <https://schema.org/award>
 	pub r#award: Vec<AwardProperty>,
 	/// <https://schema.org/awards>
@@ -22,6 +24,10 @@ pub struct Motorcycle {
 	pub r#category: Vec<CategoryProperty>,
 	/// <https://schema.org/color>
 	pub r#color: Vec<ColorProperty>,
+	/// <https://schema.org/colorSwatch>
+	pub r#color_swatch: Vec<ColorSwatchProperty>,
+	/// <https://schema.org/consumerNotice>
+	pub r#consumer_notice: Vec<ConsumerNoticeProperty>,
 	/// <https://schema.org/countryOfAssembly>
 	pub r#country_of_assembly: Vec<CountryOfAssemblyProperty>,
 	/// <https://schema.org/countryOfLastProcessing>
@@ -30,6 +36,8 @@ pub struct Motorcycle {
 	pub r#country_of_origin: Vec<CountryOfOriginProperty>,
 	/// <https://schema.org/depth>
 	pub r#depth: Vec<DepthProperty>,
+	/// <https://schema.org/displayLocation>
+	pub r#display_location: Vec<DisplayLocationProperty>,
 	/// <https://schema.org/funding>
 	pub r#funding: Vec<FundingProperty>,
 	/// <https://schema.org/gtin>
@@ -44,17 +52,25 @@ pub struct Motorcycle {
 	pub r#gtin_8: Vec<Gtin8Property>,
 	/// <https://schema.org/hasAdultConsideration>
 	pub r#has_adult_consideration: Vec<HasAdultConsiderationProperty>,
+	/// <https://schema.org/hasCertification>
+	pub r#has_certification: Vec<HasCertificationProperty>,
+	/// <https://schema.org/hasDigitalProductPassport>
+	pub r#has_digital_product_passport: Vec<HasDigitalProductPassportProperty>,
 	/// <https://schema.org/hasEnergyConsumptionDetails>
 	pub r#has_energy_consumption_details: Vec<HasEnergyConsumptionDetailsProperty>,
+	/// <https://schema.org/hasGS1DigitalLink>
+	pub r#has_gs_1_digital_link: Vec<HasGs1DigitalLinkProperty>,
 	/// <https://schema.org/hasMeasurement>
 	pub r#has_measurement: Vec<HasMeasurementProperty>,
 	/// <https://schema.org/hasMerchantReturnPolicy>
 	pub r#has_merchant_return_policy: Vec<HasMerchantReturnPolicyProperty>,
 	/// <https://schema.org/hasProductReturnPolicy>
-	#[deprecated = "This schema is archived, see <https://schema.org/docs/attic.home.html>. This schema is superseded by <https://schema.org/hasMerchantReturnPolicy>."]
+	#[deprecated = "This schema is superseded by <https://schema.org/hasMerchantReturnPolicy>."]
 	pub r#has_product_return_policy: Vec<HasProductReturnPolicyProperty>,
 	/// <https://schema.org/height>
 	pub r#height: Vec<HeightProperty>,
+	/// <https://schema.org/importer>
+	pub r#importer: Vec<ImporterProperty>,
 	/// <https://schema.org/inProductGroupWithID>
 	pub r#in_product_group_with_id: Vec<InProductGroupWithIdProperty>,
 	/// <https://schema.org/isAccessoryOrSparePartFor>
@@ -63,6 +79,8 @@ pub struct Motorcycle {
 	pub r#is_consumable_for: Vec<IsConsumableForProperty>,
 	/// <https://schema.org/isFamilyFriendly>
 	pub r#is_family_friendly: Vec<IsFamilyFriendlyProperty>,
+	/// <https://schema.org/isOftenBoughtWith>
+	pub r#is_often_bought_with: Vec<IsOftenBoughtWithProperty>,
 	/// <https://schema.org/isRelatedTo>
 	pub r#is_related_to: Vec<IsRelatedToProperty>,
 	/// <https://schema.org/isSimilarTo>
@@ -101,6 +119,8 @@ pub struct Motorcycle {
 	pub r#production_date: Vec<ProductionDateProperty>,
 	/// <https://schema.org/purchaseDate>
 	pub r#purchase_date: Vec<PurchaseDateProperty>,
+	/// <https://schema.org/recycledContentPercentage>
+	pub r#recycled_content_percentage: Vec<RecycledContentPercentageProperty>,
 	/// <https://schema.org/releaseDate>
 	pub r#release_date: Vec<ReleaseDateProperty>,
 	/// <https://schema.org/review>
@@ -114,6 +134,10 @@ pub struct Motorcycle {
 	pub r#sku: Vec<SkuProperty>,
 	/// <https://schema.org/slogan>
 	pub r#slogan: Vec<SloganProperty>,
+	/// <https://schema.org/specification>
+	pub r#specification: Vec<SpecificationProperty>,
+	/// <https://schema.org/substanceOfConcern>
+	pub r#substance_of_concern: Vec<SubstanceOfConcernProperty>,
 	/// <https://schema.org/weight>
 	pub r#weight: Vec<WeightProperty>,
 	/// <https://schema.org/width>
@@ -134,6 +158,8 @@ pub struct Motorcycle {
 	pub r#main_entity_of_page: Vec<MainEntityOfPageProperty>,
 	/// <https://schema.org/name>
 	pub r#name: Vec<NameProperty>,
+	/// <https://schema.org/owner>
+	pub r#owner: Vec<OwnerProperty>,
 	/// <https://schema.org/potentialAction>
 	pub r#potential_action: Vec<PotentialActionProperty>,
 	/// <https://schema.org/sameAs>
@@ -248,6 +274,12 @@ impl ProductTrait for Motorcycle {
 	fn take_audience(&mut self) -> Vec<AudienceProperty> {
 		std::mem::take(&mut self.r#audience)
 	}
+	fn get_authorized_representative(&self) -> &[AuthorizedRepresentativeProperty] {
+		self.r#authorized_representative.as_slice()
+	}
+	fn take_authorized_representative(&mut self) -> Vec<AuthorizedRepresentativeProperty> {
+		std::mem::take(&mut self.r#authorized_representative)
+	}
 	fn get_award(&self) -> &[AwardProperty] {
 		self.r#award.as_slice()
 	}
@@ -278,6 +310,18 @@ impl ProductTrait for Motorcycle {
 	fn take_color(&mut self) -> Vec<ColorProperty> {
 		std::mem::take(&mut self.r#color)
 	}
+	fn get_color_swatch(&self) -> &[ColorSwatchProperty] {
+		self.r#color_swatch.as_slice()
+	}
+	fn take_color_swatch(&mut self) -> Vec<ColorSwatchProperty> {
+		std::mem::take(&mut self.r#color_swatch)
+	}
+	fn get_consumer_notice(&self) -> &[ConsumerNoticeProperty] {
+		self.r#consumer_notice.as_slice()
+	}
+	fn take_consumer_notice(&mut self) -> Vec<ConsumerNoticeProperty> {
+		std::mem::take(&mut self.r#consumer_notice)
+	}
 	fn get_country_of_assembly(&self) -> &[CountryOfAssemblyProperty] {
 		self.r#country_of_assembly.as_slice()
 	}
@@ -301,6 +345,12 @@ impl ProductTrait for Motorcycle {
 	}
 	fn take_depth(&mut self) -> Vec<DepthProperty> {
 		std::mem::take(&mut self.r#depth)
+	}
+	fn get_display_location(&self) -> &[DisplayLocationProperty] {
+		self.r#display_location.as_slice()
+	}
+	fn take_display_location(&mut self) -> Vec<DisplayLocationProperty> {
+		std::mem::take(&mut self.r#display_location)
 	}
 	fn get_funding(&self) -> &[FundingProperty] {
 		self.r#funding.as_slice()
@@ -344,11 +394,29 @@ impl ProductTrait for Motorcycle {
 	fn take_has_adult_consideration(&mut self) -> Vec<HasAdultConsiderationProperty> {
 		std::mem::take(&mut self.r#has_adult_consideration)
 	}
+	fn get_has_certification(&self) -> &[HasCertificationProperty] {
+		self.r#has_certification.as_slice()
+	}
+	fn take_has_certification(&mut self) -> Vec<HasCertificationProperty> {
+		std::mem::take(&mut self.r#has_certification)
+	}
+	fn get_has_digital_product_passport(&self) -> &[HasDigitalProductPassportProperty] {
+		self.r#has_digital_product_passport.as_slice()
+	}
+	fn take_has_digital_product_passport(&mut self) -> Vec<HasDigitalProductPassportProperty> {
+		std::mem::take(&mut self.r#has_digital_product_passport)
+	}
 	fn get_has_energy_consumption_details(&self) -> &[HasEnergyConsumptionDetailsProperty] {
 		self.r#has_energy_consumption_details.as_slice()
 	}
 	fn take_has_energy_consumption_details(&mut self) -> Vec<HasEnergyConsumptionDetailsProperty> {
 		std::mem::take(&mut self.r#has_energy_consumption_details)
+	}
+	fn get_has_gs_1_digital_link(&self) -> &[HasGs1DigitalLinkProperty] {
+		self.r#has_gs_1_digital_link.as_slice()
+	}
+	fn take_has_gs_1_digital_link(&mut self) -> Vec<HasGs1DigitalLinkProperty> {
+		std::mem::take(&mut self.r#has_gs_1_digital_link)
 	}
 	fn get_has_measurement(&self) -> &[HasMeasurementProperty] {
 		self.r#has_measurement.as_slice()
@@ -374,6 +442,12 @@ impl ProductTrait for Motorcycle {
 	fn take_height(&mut self) -> Vec<HeightProperty> {
 		std::mem::take(&mut self.r#height)
 	}
+	fn get_importer(&self) -> &[ImporterProperty] {
+		self.r#importer.as_slice()
+	}
+	fn take_importer(&mut self) -> Vec<ImporterProperty> {
+		std::mem::take(&mut self.r#importer)
+	}
 	fn get_in_product_group_with_id(&self) -> &[InProductGroupWithIdProperty] {
 		self.r#in_product_group_with_id.as_slice()
 	}
@@ -397,6 +471,12 @@ impl ProductTrait for Motorcycle {
 	}
 	fn take_is_family_friendly(&mut self) -> Vec<IsFamilyFriendlyProperty> {
 		std::mem::take(&mut self.r#is_family_friendly)
+	}
+	fn get_is_often_bought_with(&self) -> &[IsOftenBoughtWithProperty] {
+		self.r#is_often_bought_with.as_slice()
+	}
+	fn take_is_often_bought_with(&mut self) -> Vec<IsOftenBoughtWithProperty> {
+		std::mem::take(&mut self.r#is_often_bought_with)
 	}
 	fn get_is_related_to(&self) -> &[IsRelatedToProperty] {
 		self.r#is_related_to.as_slice()
@@ -512,6 +592,12 @@ impl ProductTrait for Motorcycle {
 	fn take_purchase_date(&mut self) -> Vec<PurchaseDateProperty> {
 		std::mem::take(&mut self.r#purchase_date)
 	}
+	fn get_recycled_content_percentage(&self) -> &[RecycledContentPercentageProperty] {
+		self.r#recycled_content_percentage.as_slice()
+	}
+	fn take_recycled_content_percentage(&mut self) -> Vec<RecycledContentPercentageProperty> {
+		std::mem::take(&mut self.r#recycled_content_percentage)
+	}
 	fn get_release_date(&self) -> &[ReleaseDateProperty] {
 		self.r#release_date.as_slice()
 	}
@@ -547,6 +633,18 @@ impl ProductTrait for Motorcycle {
 	}
 	fn take_slogan(&mut self) -> Vec<SloganProperty> {
 		std::mem::take(&mut self.r#slogan)
+	}
+	fn get_specification(&self) -> &[SpecificationProperty] {
+		self.r#specification.as_slice()
+	}
+	fn take_specification(&mut self) -> Vec<SpecificationProperty> {
+		std::mem::take(&mut self.r#specification)
+	}
+	fn get_substance_of_concern(&self) -> &[SubstanceOfConcernProperty] {
+		self.r#substance_of_concern.as_slice()
+	}
+	fn take_substance_of_concern(&mut self) -> Vec<SubstanceOfConcernProperty> {
+		std::mem::take(&mut self.r#substance_of_concern)
 	}
 	fn get_weight(&self) -> &[WeightProperty] {
 		self.r#weight.as_slice()
@@ -609,6 +707,12 @@ impl ThingTrait for Motorcycle {
 	}
 	fn take_name(&mut self) -> Vec<NameProperty> {
 		std::mem::take(&mut self.r#name)
+	}
+	fn get_owner(&self) -> &[OwnerProperty] {
+		self.r#owner.as_slice()
+	}
+	fn take_owner(&mut self) -> Vec<OwnerProperty> {
+		std::mem::take(&mut self.r#owner)
 	}
 	fn get_potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
@@ -896,15 +1000,19 @@ mod serde {
 				!Vec::is_empty(&self.r#aggregate_rating) as usize,
 				!Vec::is_empty(&self.r#asin) as usize,
 				!Vec::is_empty(&self.r#audience) as usize,
+				!Vec::is_empty(&self.r#authorized_representative) as usize,
 				!Vec::is_empty(&self.r#award) as usize,
 				!Vec::is_empty(&self.r#awards) as usize,
 				!Vec::is_empty(&self.r#brand) as usize,
 				!Vec::is_empty(&self.r#category) as usize,
 				!Vec::is_empty(&self.r#color) as usize,
+				!Vec::is_empty(&self.r#color_swatch) as usize,
+				!Vec::is_empty(&self.r#consumer_notice) as usize,
 				!Vec::is_empty(&self.r#country_of_assembly) as usize,
 				!Vec::is_empty(&self.r#country_of_last_processing) as usize,
 				!Vec::is_empty(&self.r#country_of_origin) as usize,
 				!Vec::is_empty(&self.r#depth) as usize,
+				!Vec::is_empty(&self.r#display_location) as usize,
 				!Vec::is_empty(&self.r#funding) as usize,
 				!Vec::is_empty(&self.r#gtin) as usize,
 				!Vec::is_empty(&self.r#gtin_12) as usize,
@@ -912,15 +1020,20 @@ mod serde {
 				!Vec::is_empty(&self.r#gtin_14) as usize,
 				!Vec::is_empty(&self.r#gtin_8) as usize,
 				!Vec::is_empty(&self.r#has_adult_consideration) as usize,
+				!Vec::is_empty(&self.r#has_certification) as usize,
+				!Vec::is_empty(&self.r#has_digital_product_passport) as usize,
 				!Vec::is_empty(&self.r#has_energy_consumption_details) as usize,
+				!Vec::is_empty(&self.r#has_gs_1_digital_link) as usize,
 				!Vec::is_empty(&self.r#has_measurement) as usize,
 				!Vec::is_empty(&self.r#has_merchant_return_policy) as usize,
 				!Vec::is_empty(&self.r#has_product_return_policy) as usize,
 				!Vec::is_empty(&self.r#height) as usize,
+				!Vec::is_empty(&self.r#importer) as usize,
 				!Vec::is_empty(&self.r#in_product_group_with_id) as usize,
 				!Vec::is_empty(&self.r#is_accessory_or_spare_part_for) as usize,
 				!Vec::is_empty(&self.r#is_consumable_for) as usize,
 				!Vec::is_empty(&self.r#is_family_friendly) as usize,
+				!Vec::is_empty(&self.r#is_often_bought_with) as usize,
 				!Vec::is_empty(&self.r#is_related_to) as usize,
 				!Vec::is_empty(&self.r#is_similar_to) as usize,
 				!Vec::is_empty(&self.r#is_variant_of) as usize,
@@ -940,12 +1053,15 @@ mod serde {
 				!Vec::is_empty(&self.r#product_id) as usize,
 				!Vec::is_empty(&self.r#production_date) as usize,
 				!Vec::is_empty(&self.r#purchase_date) as usize,
+				!Vec::is_empty(&self.r#recycled_content_percentage) as usize,
 				!Vec::is_empty(&self.r#release_date) as usize,
 				!Vec::is_empty(&self.r#review) as usize,
 				!Vec::is_empty(&self.r#reviews) as usize,
 				!Vec::is_empty(&self.r#size) as usize,
 				!Vec::is_empty(&self.r#sku) as usize,
 				!Vec::is_empty(&self.r#slogan) as usize,
+				!Vec::is_empty(&self.r#specification) as usize,
+				!Vec::is_empty(&self.r#substance_of_concern) as usize,
 				!Vec::is_empty(&self.r#weight) as usize,
 				!Vec::is_empty(&self.r#width) as usize,
 				!Vec::is_empty(&self.r#additional_type) as usize,
@@ -956,6 +1072,7 @@ mod serde {
 				!Vec::is_empty(&self.r#image) as usize,
 				!Vec::is_empty(&self.r#main_entity_of_page) as usize,
 				!Vec::is_empty(&self.r#name) as usize,
+				!Vec::is_empty(&self.r#owner) as usize,
 				!Vec::is_empty(&self.r#potential_action) as usize,
 				!Vec::is_empty(&self.r#same_as) as usize,
 				!Vec::is_empty(&self.r#subject_of) as usize,
@@ -1074,6 +1191,24 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("audience")?;
 			}
+			if !Vec::is_empty(&self.r#authorized_representative) {
+				serialize_struct.serialize_field("authorizedRepresentative", {
+					struct SerializeWith<'a>(&'a Vec<AuthorizedRepresentativeProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#authorized_representative)
+				})?;
+			} else {
+				serialize_struct.skip_field("authorizedRepresentative")?;
+			}
 			if !Vec::is_empty(&self.r#award) {
 				serialize_struct.serialize_field("award", {
 					struct SerializeWith<'a>(&'a Vec<AwardProperty>);
@@ -1164,6 +1299,42 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("color")?;
 			}
+			if !Vec::is_empty(&self.r#color_swatch) {
+				serialize_struct.serialize_field("colorSwatch", {
+					struct SerializeWith<'a>(&'a Vec<ColorSwatchProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#color_swatch)
+				})?;
+			} else {
+				serialize_struct.skip_field("colorSwatch")?;
+			}
+			if !Vec::is_empty(&self.r#consumer_notice) {
+				serialize_struct.serialize_field("consumerNotice", {
+					struct SerializeWith<'a>(&'a Vec<ConsumerNoticeProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#consumer_notice)
+				})?;
+			} else {
+				serialize_struct.skip_field("consumerNotice")?;
+			}
 			if !Vec::is_empty(&self.r#country_of_assembly) {
 				serialize_struct.serialize_field("countryOfAssembly", {
 					struct SerializeWith<'a>(&'a Vec<CountryOfAssemblyProperty>);
@@ -1235,6 +1406,24 @@ mod serde {
 				})?;
 			} else {
 				serialize_struct.skip_field("depth")?;
+			}
+			if !Vec::is_empty(&self.r#display_location) {
+				serialize_struct.serialize_field("displayLocation", {
+					struct SerializeWith<'a>(&'a Vec<DisplayLocationProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#display_location)
+				})?;
+			} else {
+				serialize_struct.skip_field("displayLocation")?;
 			}
 			if !Vec::is_empty(&self.r#funding) {
 				serialize_struct.serialize_field("funding", {
@@ -1362,6 +1551,42 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("hasAdultConsideration")?;
 			}
+			if !Vec::is_empty(&self.r#has_certification) {
+				serialize_struct.serialize_field("hasCertification", {
+					struct SerializeWith<'a>(&'a Vec<HasCertificationProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#has_certification)
+				})?;
+			} else {
+				serialize_struct.skip_field("hasCertification")?;
+			}
+			if !Vec::is_empty(&self.r#has_digital_product_passport) {
+				serialize_struct.serialize_field("hasDigitalProductPassport", {
+					struct SerializeWith<'a>(&'a Vec<HasDigitalProductPassportProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#has_digital_product_passport)
+				})?;
+			} else {
+				serialize_struct.skip_field("hasDigitalProductPassport")?;
+			}
 			if !Vec::is_empty(&self.r#has_energy_consumption_details) {
 				serialize_struct.serialize_field("hasEnergyConsumptionDetails", {
 					struct SerializeWith<'a>(&'a Vec<HasEnergyConsumptionDetailsProperty>);
@@ -1379,6 +1604,24 @@ mod serde {
 				})?;
 			} else {
 				serialize_struct.skip_field("hasEnergyConsumptionDetails")?;
+			}
+			if !Vec::is_empty(&self.r#has_gs_1_digital_link) {
+				serialize_struct.serialize_field("hasGS1DigitalLink", {
+					struct SerializeWith<'a>(&'a Vec<HasGs1DigitalLinkProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#has_gs_1_digital_link)
+				})?;
+			} else {
+				serialize_struct.skip_field("hasGS1DigitalLink")?;
 			}
 			if !Vec::is_empty(&self.r#has_measurement) {
 				serialize_struct.serialize_field("hasMeasurement", {
@@ -1452,6 +1695,24 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("height")?;
 			}
+			if !Vec::is_empty(&self.r#importer) {
+				serialize_struct.serialize_field("importer", {
+					struct SerializeWith<'a>(&'a Vec<ImporterProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#importer)
+				})?;
+			} else {
+				serialize_struct.skip_field("importer")?;
+			}
 			if !Vec::is_empty(&self.r#in_product_group_with_id) {
 				serialize_struct.serialize_field("inProductGroupWithID", {
 					struct SerializeWith<'a>(&'a Vec<InProductGroupWithIdProperty>);
@@ -1523,6 +1784,24 @@ mod serde {
 				})?;
 			} else {
 				serialize_struct.skip_field("isFamilyFriendly")?;
+			}
+			if !Vec::is_empty(&self.r#is_often_bought_with) {
+				serialize_struct.serialize_field("isOftenBoughtWith", {
+					struct SerializeWith<'a>(&'a Vec<IsOftenBoughtWithProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#is_often_bought_with)
+				})?;
+			} else {
+				serialize_struct.skip_field("isOftenBoughtWith")?;
 			}
 			if !Vec::is_empty(&self.r#is_related_to) {
 				serialize_struct.serialize_field("isRelatedTo", {
@@ -1866,6 +2145,24 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("purchaseDate")?;
 			}
+			if !Vec::is_empty(&self.r#recycled_content_percentage) {
+				serialize_struct.serialize_field("recycledContentPercentage", {
+					struct SerializeWith<'a>(&'a Vec<RecycledContentPercentageProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#recycled_content_percentage)
+				})?;
+			} else {
+				serialize_struct.skip_field("recycledContentPercentage")?;
+			}
 			if !Vec::is_empty(&self.r#release_date) {
 				serialize_struct.serialize_field("releaseDate", {
 					struct SerializeWith<'a>(&'a Vec<ReleaseDateProperty>);
@@ -1973,6 +2270,42 @@ mod serde {
 				})?;
 			} else {
 				serialize_struct.skip_field("slogan")?;
+			}
+			if !Vec::is_empty(&self.r#specification) {
+				serialize_struct.serialize_field("specification", {
+					struct SerializeWith<'a>(&'a Vec<SpecificationProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#specification)
+				})?;
+			} else {
+				serialize_struct.skip_field("specification")?;
+			}
+			if !Vec::is_empty(&self.r#substance_of_concern) {
+				serialize_struct.serialize_field("substanceOfConcern", {
+					struct SerializeWith<'a>(&'a Vec<SubstanceOfConcernProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#substance_of_concern)
+				})?;
+			} else {
+				serialize_struct.skip_field("substanceOfConcern")?;
 			}
 			if !Vec::is_empty(&self.r#weight) {
 				serialize_struct.serialize_field("weight", {
@@ -2153,6 +2486,24 @@ mod serde {
 				})?;
 			} else {
 				serialize_struct.skip_field("name")?;
+			}
+			if !Vec::is_empty(&self.r#owner) {
+				serialize_struct.serialize_field("owner", {
+					struct SerializeWith<'a>(&'a Vec<OwnerProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#owner)
+				})?;
+			} else {
+				serialize_struct.skip_field("owner")?;
 			}
 			if !Vec::is_empty(&self.r#potential_action) {
 				serialize_struct.serialize_field("potentialAction", {
@@ -2923,15 +3274,19 @@ mod serde {
 				AggregateRating,
 				Asin,
 				Audience,
+				AuthorizedRepresentative,
 				Award,
 				Awards,
 				Brand,
 				Category,
 				Color,
+				ColorSwatch,
+				ConsumerNotice,
 				CountryOfAssembly,
 				CountryOfLastProcessing,
 				CountryOfOrigin,
 				Depth,
+				DisplayLocation,
 				Funding,
 				Gtin,
 				Gtin12,
@@ -2939,15 +3294,20 @@ mod serde {
 				Gtin14,
 				Gtin8,
 				HasAdultConsideration,
+				HasCertification,
+				HasDigitalProductPassport,
 				HasEnergyConsumptionDetails,
+				HasGs1DigitalLink,
 				HasMeasurement,
 				HasMerchantReturnPolicy,
 				HasProductReturnPolicy,
 				Height,
+				Importer,
 				InProductGroupWithId,
 				IsAccessoryOrSparePartFor,
 				IsConsumableFor,
 				IsFamilyFriendly,
+				IsOftenBoughtWith,
 				IsRelatedTo,
 				IsSimilarTo,
 				IsVariantOf,
@@ -2967,12 +3327,15 @@ mod serde {
 				ProductId,
 				ProductionDate,
 				PurchaseDate,
+				RecycledContentPercentage,
 				ReleaseDate,
 				Review,
 				Reviews,
 				Size,
 				Sku,
 				Slogan,
+				Specification,
+				SubstanceOfConcern,
 				Weight,
 				Width,
 				AdditionalType,
@@ -2983,6 +3346,7 @@ mod serde {
 				Image,
 				MainEntityOfPage,
 				Name,
+				Owner,
 				PotentialAction,
 				SameAs,
 				SubjectOf,
@@ -3042,15 +3406,19 @@ mod serde {
 						"aggregateRating" => Ok(Field::AggregateRating),
 						"asin" => Ok(Field::Asin),
 						"audience" => Ok(Field::Audience),
+						"authorizedRepresentative" => Ok(Field::AuthorizedRepresentative),
 						"award" => Ok(Field::Award),
 						"awards" => Ok(Field::Awards),
 						"brand" => Ok(Field::Brand),
 						"category" => Ok(Field::Category),
 						"color" => Ok(Field::Color),
+						"colorSwatch" => Ok(Field::ColorSwatch),
+						"consumerNotice" => Ok(Field::ConsumerNotice),
 						"countryOfAssembly" => Ok(Field::CountryOfAssembly),
 						"countryOfLastProcessing" => Ok(Field::CountryOfLastProcessing),
 						"countryOfOrigin" => Ok(Field::CountryOfOrigin),
 						"depth" => Ok(Field::Depth),
+						"displayLocation" => Ok(Field::DisplayLocation),
 						"funding" => Ok(Field::Funding),
 						"gtin" => Ok(Field::Gtin),
 						"gtin12" => Ok(Field::Gtin12),
@@ -3058,15 +3426,20 @@ mod serde {
 						"gtin14" => Ok(Field::Gtin14),
 						"gtin8" => Ok(Field::Gtin8),
 						"hasAdultConsideration" => Ok(Field::HasAdultConsideration),
+						"hasCertification" => Ok(Field::HasCertification),
+						"hasDigitalProductPassport" => Ok(Field::HasDigitalProductPassport),
 						"hasEnergyConsumptionDetails" => Ok(Field::HasEnergyConsumptionDetails),
+						"hasGS1DigitalLink" => Ok(Field::HasGs1DigitalLink),
 						"hasMeasurement" => Ok(Field::HasMeasurement),
 						"hasMerchantReturnPolicy" => Ok(Field::HasMerchantReturnPolicy),
 						"hasProductReturnPolicy" => Ok(Field::HasProductReturnPolicy),
 						"height" => Ok(Field::Height),
+						"importer" => Ok(Field::Importer),
 						"inProductGroupWithID" => Ok(Field::InProductGroupWithId),
 						"isAccessoryOrSparePartFor" => Ok(Field::IsAccessoryOrSparePartFor),
 						"isConsumableFor" => Ok(Field::IsConsumableFor),
 						"isFamilyFriendly" => Ok(Field::IsFamilyFriendly),
+						"isOftenBoughtWith" => Ok(Field::IsOftenBoughtWith),
 						"isRelatedTo" => Ok(Field::IsRelatedTo),
 						"isSimilarTo" => Ok(Field::IsSimilarTo),
 						"isVariantOf" => Ok(Field::IsVariantOf),
@@ -3086,12 +3459,15 @@ mod serde {
 						"productID" => Ok(Field::ProductId),
 						"productionDate" => Ok(Field::ProductionDate),
 						"purchaseDate" => Ok(Field::PurchaseDate),
+						"recycledContentPercentage" => Ok(Field::RecycledContentPercentage),
 						"releaseDate" => Ok(Field::ReleaseDate),
 						"review" => Ok(Field::Review),
 						"reviews" => Ok(Field::Reviews),
 						"size" => Ok(Field::Size),
 						"sku" => Ok(Field::Sku),
 						"slogan" => Ok(Field::Slogan),
+						"specification" => Ok(Field::Specification),
+						"substanceOfConcern" => Ok(Field::SubstanceOfConcern),
 						"weight" => Ok(Field::Weight),
 						"width" => Ok(Field::Width),
 						"additionalType" => Ok(Field::AdditionalType),
@@ -3102,6 +3478,7 @@ mod serde {
 						"image" => Ok(Field::Image),
 						"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
 						"name" => Ok(Field::Name),
+						"owner" => Ok(Field::Owner),
 						"potentialAction" => Ok(Field::PotentialAction),
 						"sameAs" => Ok(Field::SameAs),
 						"subjectOf" => Ok(Field::SubjectOf),
@@ -3157,15 +3534,19 @@ mod serde {
 						b"aggregateRating" => Ok(Field::AggregateRating),
 						b"asin" => Ok(Field::Asin),
 						b"audience" => Ok(Field::Audience),
+						b"authorizedRepresentative" => Ok(Field::AuthorizedRepresentative),
 						b"award" => Ok(Field::Award),
 						b"awards" => Ok(Field::Awards),
 						b"brand" => Ok(Field::Brand),
 						b"category" => Ok(Field::Category),
 						b"color" => Ok(Field::Color),
+						b"colorSwatch" => Ok(Field::ColorSwatch),
+						b"consumerNotice" => Ok(Field::ConsumerNotice),
 						b"countryOfAssembly" => Ok(Field::CountryOfAssembly),
 						b"countryOfLastProcessing" => Ok(Field::CountryOfLastProcessing),
 						b"countryOfOrigin" => Ok(Field::CountryOfOrigin),
 						b"depth" => Ok(Field::Depth),
+						b"displayLocation" => Ok(Field::DisplayLocation),
 						b"funding" => Ok(Field::Funding),
 						b"gtin" => Ok(Field::Gtin),
 						b"gtin12" => Ok(Field::Gtin12),
@@ -3173,15 +3554,20 @@ mod serde {
 						b"gtin14" => Ok(Field::Gtin14),
 						b"gtin8" => Ok(Field::Gtin8),
 						b"hasAdultConsideration" => Ok(Field::HasAdultConsideration),
+						b"hasCertification" => Ok(Field::HasCertification),
+						b"hasDigitalProductPassport" => Ok(Field::HasDigitalProductPassport),
 						b"hasEnergyConsumptionDetails" => Ok(Field::HasEnergyConsumptionDetails),
+						b"hasGS1DigitalLink" => Ok(Field::HasGs1DigitalLink),
 						b"hasMeasurement" => Ok(Field::HasMeasurement),
 						b"hasMerchantReturnPolicy" => Ok(Field::HasMerchantReturnPolicy),
 						b"hasProductReturnPolicy" => Ok(Field::HasProductReturnPolicy),
 						b"height" => Ok(Field::Height),
+						b"importer" => Ok(Field::Importer),
 						b"inProductGroupWithID" => Ok(Field::InProductGroupWithId),
 						b"isAccessoryOrSparePartFor" => Ok(Field::IsAccessoryOrSparePartFor),
 						b"isConsumableFor" => Ok(Field::IsConsumableFor),
 						b"isFamilyFriendly" => Ok(Field::IsFamilyFriendly),
+						b"isOftenBoughtWith" => Ok(Field::IsOftenBoughtWith),
 						b"isRelatedTo" => Ok(Field::IsRelatedTo),
 						b"isSimilarTo" => Ok(Field::IsSimilarTo),
 						b"isVariantOf" => Ok(Field::IsVariantOf),
@@ -3201,12 +3587,15 @@ mod serde {
 						b"productID" => Ok(Field::ProductId),
 						b"productionDate" => Ok(Field::ProductionDate),
 						b"purchaseDate" => Ok(Field::PurchaseDate),
+						b"recycledContentPercentage" => Ok(Field::RecycledContentPercentage),
 						b"releaseDate" => Ok(Field::ReleaseDate),
 						b"review" => Ok(Field::Review),
 						b"reviews" => Ok(Field::Reviews),
 						b"size" => Ok(Field::Size),
 						b"sku" => Ok(Field::Sku),
 						b"slogan" => Ok(Field::Slogan),
+						b"specification" => Ok(Field::Specification),
+						b"substanceOfConcern" => Ok(Field::SubstanceOfConcern),
 						b"weight" => Ok(Field::Weight),
 						b"width" => Ok(Field::Width),
 						b"additionalType" => Ok(Field::AdditionalType),
@@ -3217,6 +3606,7 @@ mod serde {
 						b"image" => Ok(Field::Image),
 						b"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
 						b"name" => Ok(Field::Name),
+						b"owner" => Ok(Field::Owner),
 						b"potentialAction" => Ok(Field::PotentialAction),
 						b"sameAs" => Ok(Field::SameAs),
 						b"subjectOf" => Ok(Field::SubjectOf),
@@ -3289,15 +3679,19 @@ mod serde {
 					let mut r#aggregate_rating_property = None;
 					let mut r#asin_property = None;
 					let mut r#audience_property = None;
+					let mut r#authorized_representative_property = None;
 					let mut r#award_property = None;
 					let mut r#awards_property = None;
 					let mut r#brand_property = None;
 					let mut r#category_property = None;
 					let mut r#color_property = None;
+					let mut r#color_swatch_property = None;
+					let mut r#consumer_notice_property = None;
 					let mut r#country_of_assembly_property = None;
 					let mut r#country_of_last_processing_property = None;
 					let mut r#country_of_origin_property = None;
 					let mut r#depth_property = None;
+					let mut r#display_location_property = None;
 					let mut r#funding_property = None;
 					let mut r#gtin_property = None;
 					let mut r#gtin_12_property = None;
@@ -3305,15 +3699,20 @@ mod serde {
 					let mut r#gtin_14_property = None;
 					let mut r#gtin_8_property = None;
 					let mut r#has_adult_consideration_property = None;
+					let mut r#has_certification_property = None;
+					let mut r#has_digital_product_passport_property = None;
 					let mut r#has_energy_consumption_details_property = None;
+					let mut r#has_gs_1_digital_link_property = None;
 					let mut r#has_measurement_property = None;
 					let mut r#has_merchant_return_policy_property = None;
 					let mut r#has_product_return_policy_property = None;
 					let mut r#height_property = None;
+					let mut r#importer_property = None;
 					let mut r#in_product_group_with_id_property = None;
 					let mut r#is_accessory_or_spare_part_for_property = None;
 					let mut r#is_consumable_for_property = None;
 					let mut r#is_family_friendly_property = None;
+					let mut r#is_often_bought_with_property = None;
 					let mut r#is_related_to_property = None;
 					let mut r#is_similar_to_property = None;
 					let mut r#is_variant_of_property = None;
@@ -3333,12 +3732,15 @@ mod serde {
 					let mut r#product_id_property = None;
 					let mut r#production_date_property = None;
 					let mut r#purchase_date_property = None;
+					let mut r#recycled_content_percentage_property = None;
 					let mut r#release_date_property = None;
 					let mut r#review_property = None;
 					let mut r#reviews_property = None;
 					let mut r#size_property = None;
 					let mut r#sku_property = None;
 					let mut r#slogan_property = None;
+					let mut r#specification_property = None;
+					let mut r#substance_of_concern_property = None;
 					let mut r#weight_property = None;
 					let mut r#width_property = None;
 					let mut r#additional_type_property = None;
@@ -3349,6 +3751,7 @@ mod serde {
 					let mut r#image_property = None;
 					let mut r#main_entity_of_page_property = None;
 					let mut r#name_property = None;
+					let mut r#owner_property = None;
 					let mut r#potential_action_property = None;
 					let mut r#same_as_property = None;
 					let mut r#subject_of_property = None;
@@ -3503,6 +3906,34 @@ mod serde {
 									}
 								});
 							}
+							Field::AuthorizedRepresentative => {
+								if r#authorized_representative_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"authorizedRepresentative",
+									));
+								}
+								r#authorized_representative_property = Some({
+									struct DeserializeWith(Vec<AuthorizedRepresentativeProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::Award => {
 								if r#award_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field("award"));
@@ -3635,6 +4066,62 @@ mod serde {
 									}
 								});
 							}
+							Field::ColorSwatch => {
+								if r#color_swatch_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"colorSwatch",
+									));
+								}
+								r#color_swatch_property = Some({
+									struct DeserializeWith(Vec<ColorSwatchProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::ConsumerNotice => {
+								if r#consumer_notice_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"consumerNotice",
+									));
+								}
+								r#consumer_notice_property = Some({
+									struct DeserializeWith(Vec<ConsumerNoticeProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::CountryOfAssembly => {
 								if r#country_of_assembly_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -3725,6 +4212,34 @@ mod serde {
 								}
 								r#depth_property = Some({
 									struct DeserializeWith(Vec<DepthProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::DisplayLocation => {
+								if r#display_location_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"displayLocation",
+									));
+								}
+								r#display_location_property = Some({
+									struct DeserializeWith(Vec<DisplayLocationProperty>);
 									impl<'de> Deserialize<'de> for DeserializeWith {
 										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
 										where
@@ -3931,6 +4446,62 @@ mod serde {
 									}
 								});
 							}
+							Field::HasCertification => {
+								if r#has_certification_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"hasCertification",
+									));
+								}
+								r#has_certification_property = Some({
+									struct DeserializeWith(Vec<HasCertificationProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::HasDigitalProductPassport => {
+								if r#has_digital_product_passport_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"hasDigitalProductPassport",
+									));
+								}
+								r#has_digital_product_passport_property = Some({
+									struct DeserializeWith(Vec<HasDigitalProductPassportProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::HasEnergyConsumptionDetails => {
 								if r#has_energy_consumption_details_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -3941,6 +4512,34 @@ mod serde {
 									struct DeserializeWith(
 										Vec<HasEnergyConsumptionDetailsProperty>,
 									);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::HasGs1DigitalLink => {
+								if r#has_gs_1_digital_link_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"hasGS1DigitalLink",
+									));
+								}
+								r#has_gs_1_digital_link_property = Some({
+									struct DeserializeWith(Vec<HasGs1DigitalLinkProperty>);
 									impl<'de> Deserialize<'de> for DeserializeWith {
 										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
 										where
@@ -4071,6 +4670,34 @@ mod serde {
 									}
 								});
 							}
+							Field::Importer => {
+								if r#importer_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"importer",
+									));
+								}
+								r#importer_property = Some({
+									struct DeserializeWith(Vec<ImporterProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::InProductGroupWithId => {
 								if r#in_product_group_with_id_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -4163,6 +4790,34 @@ mod serde {
 								}
 								r#is_family_friendly_property = Some({
 									struct DeserializeWith(Vec<IsFamilyFriendlyProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::IsOftenBoughtWith => {
+								if r#is_often_bought_with_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"isOftenBoughtWith",
+									));
+								}
+								r#is_often_bought_with_property = Some({
+									struct DeserializeWith(Vec<IsOftenBoughtWithProperty>);
 									impl<'de> Deserialize<'de> for DeserializeWith {
 										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
 										where
@@ -4705,6 +5360,34 @@ mod serde {
 									}
 								});
 							}
+							Field::RecycledContentPercentage => {
+								if r#recycled_content_percentage_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"recycledContentPercentage",
+									));
+								}
+								r#recycled_content_percentage_property = Some({
+									struct DeserializeWith(Vec<RecycledContentPercentageProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::ReleaseDate => {
 								if r#release_date_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -4845,6 +5528,62 @@ mod serde {
 								}
 								r#slogan_property = Some({
 									struct DeserializeWith(Vec<SloganProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::Specification => {
+								if r#specification_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"specification",
+									));
+								}
+								r#specification_property = Some({
+									struct DeserializeWith(Vec<SpecificationProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::SubstanceOfConcern => {
+								if r#substance_of_concern_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"substanceOfConcern",
+									));
+								}
+								r#substance_of_concern_property = Some({
+									struct DeserializeWith(Vec<SubstanceOfConcernProperty>);
 									impl<'de> Deserialize<'de> for DeserializeWith {
 										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
 										where
@@ -5117,6 +5856,32 @@ mod serde {
 								}
 								r#name_property = Some({
 									struct DeserializeWith(Vec<NameProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::Owner => {
+								if r#owner_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field("owner"));
+								}
+								r#owner_property = Some({
+									struct DeserializeWith(Vec<OwnerProperty>);
 									impl<'de> Deserialize<'de> for DeserializeWith {
 										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
 										where
@@ -6319,16 +7084,21 @@ mod serde {
 						r#aggregate_rating: r#aggregate_rating_property.unwrap_or_default(),
 						r#asin: r#asin_property.unwrap_or_default(),
 						r#audience: r#audience_property.unwrap_or_default(),
+						r#authorized_representative: r#authorized_representative_property
+							.unwrap_or_default(),
 						r#award: r#award_property.unwrap_or_default(),
 						r#awards: r#awards_property.unwrap_or_default(),
 						r#brand: r#brand_property.unwrap_or_default(),
 						r#category: r#category_property.unwrap_or_default(),
 						r#color: r#color_property.unwrap_or_default(),
+						r#color_swatch: r#color_swatch_property.unwrap_or_default(),
+						r#consumer_notice: r#consumer_notice_property.unwrap_or_default(),
 						r#country_of_assembly: r#country_of_assembly_property.unwrap_or_default(),
 						r#country_of_last_processing: r#country_of_last_processing_property
 							.unwrap_or_default(),
 						r#country_of_origin: r#country_of_origin_property.unwrap_or_default(),
 						r#depth: r#depth_property.unwrap_or_default(),
+						r#display_location: r#display_location_property.unwrap_or_default(),
 						r#funding: r#funding_property.unwrap_or_default(),
 						r#gtin: r#gtin_property.unwrap_or_default(),
 						r#gtin_12: r#gtin_12_property.unwrap_or_default(),
@@ -6337,7 +7107,12 @@ mod serde {
 						r#gtin_8: r#gtin_8_property.unwrap_or_default(),
 						r#has_adult_consideration: r#has_adult_consideration_property
 							.unwrap_or_default(),
+						r#has_certification: r#has_certification_property.unwrap_or_default(),
+						r#has_digital_product_passport: r#has_digital_product_passport_property
+							.unwrap_or_default(),
 						r#has_energy_consumption_details: r#has_energy_consumption_details_property
+							.unwrap_or_default(),
+						r#has_gs_1_digital_link: r#has_gs_1_digital_link_property
 							.unwrap_or_default(),
 						r#has_measurement: r#has_measurement_property.unwrap_or_default(),
 						r#has_merchant_return_policy: r#has_merchant_return_policy_property
@@ -6345,12 +7120,14 @@ mod serde {
 						r#has_product_return_policy: r#has_product_return_policy_property
 							.unwrap_or_default(),
 						r#height: r#height_property.unwrap_or_default(),
+						r#importer: r#importer_property.unwrap_or_default(),
 						r#in_product_group_with_id: r#in_product_group_with_id_property
 							.unwrap_or_default(),
 						r#is_accessory_or_spare_part_for: r#is_accessory_or_spare_part_for_property
 							.unwrap_or_default(),
 						r#is_consumable_for: r#is_consumable_for_property.unwrap_or_default(),
 						r#is_family_friendly: r#is_family_friendly_property.unwrap_or_default(),
+						r#is_often_bought_with: r#is_often_bought_with_property.unwrap_or_default(),
 						r#is_related_to: r#is_related_to_property.unwrap_or_default(),
 						r#is_similar_to: r#is_similar_to_property.unwrap_or_default(),
 						r#is_variant_of: r#is_variant_of_property.unwrap_or_default(),
@@ -6370,12 +7147,16 @@ mod serde {
 						r#product_id: r#product_id_property.unwrap_or_default(),
 						r#production_date: r#production_date_property.unwrap_or_default(),
 						r#purchase_date: r#purchase_date_property.unwrap_or_default(),
+						r#recycled_content_percentage: r#recycled_content_percentage_property
+							.unwrap_or_default(),
 						r#release_date: r#release_date_property.unwrap_or_default(),
 						r#review: r#review_property.unwrap_or_default(),
 						r#reviews: r#reviews_property.unwrap_or_default(),
 						r#size: r#size_property.unwrap_or_default(),
 						r#sku: r#sku_property.unwrap_or_default(),
 						r#slogan: r#slogan_property.unwrap_or_default(),
+						r#specification: r#specification_property.unwrap_or_default(),
+						r#substance_of_concern: r#substance_of_concern_property.unwrap_or_default(),
 						r#weight: r#weight_property.unwrap_or_default(),
 						r#width: r#width_property.unwrap_or_default(),
 						r#additional_type: r#additional_type_property.unwrap_or_default(),
@@ -6387,6 +7168,7 @@ mod serde {
 						r#image: r#image_property.unwrap_or_default(),
 						r#main_entity_of_page: r#main_entity_of_page_property.unwrap_or_default(),
 						r#name: r#name_property.unwrap_or_default(),
+						r#owner: r#owner_property.unwrap_or_default(),
 						r#potential_action: r#potential_action_property.unwrap_or_default(),
 						r#same_as: r#same_as_property.unwrap_or_default(),
 						r#subject_of: r#subject_of_property.unwrap_or_default(),
@@ -6450,15 +7232,19 @@ mod serde {
 				"aggregateRating",
 				"asin",
 				"audience",
+				"authorizedRepresentative",
 				"award",
 				"awards",
 				"brand",
 				"category",
 				"color",
+				"colorSwatch",
+				"consumerNotice",
 				"countryOfAssembly",
 				"countryOfLastProcessing",
 				"countryOfOrigin",
 				"depth",
+				"displayLocation",
 				"funding",
 				"gtin",
 				"gtin12",
@@ -6466,15 +7252,20 @@ mod serde {
 				"gtin14",
 				"gtin8",
 				"hasAdultConsideration",
+				"hasCertification",
+				"hasDigitalProductPassport",
 				"hasEnergyConsumptionDetails",
+				"hasGS1DigitalLink",
 				"hasMeasurement",
 				"hasMerchantReturnPolicy",
 				"hasProductReturnPolicy",
 				"height",
+				"importer",
 				"inProductGroupWithID",
 				"isAccessoryOrSparePartFor",
 				"isConsumableFor",
 				"isFamilyFriendly",
+				"isOftenBoughtWith",
 				"isRelatedTo",
 				"isSimilarTo",
 				"isVariantOf",
@@ -6494,12 +7285,15 @@ mod serde {
 				"productID",
 				"productionDate",
 				"purchaseDate",
+				"recycledContentPercentage",
 				"releaseDate",
 				"review",
 				"reviews",
 				"size",
 				"sku",
 				"slogan",
+				"specification",
+				"substanceOfConcern",
 				"weight",
 				"width",
 				"additionalType",
@@ -6510,6 +7304,7 @@ mod serde {
 				"image",
 				"mainEntityOfPage",
 				"name",
+				"owner",
 				"potentialAction",
 				"sameAs",
 				"subjectOf",

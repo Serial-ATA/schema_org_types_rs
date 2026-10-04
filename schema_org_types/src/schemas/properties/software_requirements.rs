@@ -3,6 +3,8 @@ use super::*;
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 pub enum SoftwareRequirementsProperty {
+	/// <https://schema.org/SoftwareApplication>
+	SoftwareApplication(SoftwareApplication),
 	/// <https://schema.org/URL>
 	Url(Url),
 	/// <https://schema.org/Text>
@@ -25,6 +27,9 @@ mod serde {
 			S: Serializer,
 		{
 			match *self {
+				SoftwareRequirementsProperty::SoftwareApplication(ref inner) => {
+					inner.serialize(serializer)
+				}
 				SoftwareRequirementsProperty::Url(ref inner) => inner.serialize(serializer),
 				SoftwareRequirementsProperty::Text(ref inner) => inner.serialize(serializer),
 				#[cfg(all(feature = "fallible", feature = "serde"))]
@@ -41,6 +46,12 @@ mod serde {
 				<::serde::__private::de::Content as Deserialize>::deserialize(deserializer)?;
 			let deserializer =
 				::serde::__private::de::ContentRefDeserializer::<D::Error>::new(&content);
+			if let Ok(ok) = Result::map(
+				<SoftwareApplication as Deserialize>::deserialize(deserializer),
+				SoftwareRequirementsProperty::SoftwareApplication,
+			) {
+				return Ok(ok);
+			}
 			if let Ok(ok) = Result::map(
 				<Url as Deserialize>::deserialize(deserializer),
 				SoftwareRequirementsProperty::Url,

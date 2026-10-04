@@ -5,6 +5,8 @@ use super::*;
 pub enum PaymentMethodProperty {
 	/// <https://schema.org/PaymentMethod>
 	PaymentMethod(PaymentMethod),
+	/// <https://schema.org/Text>
+	Text(Text),
 	#[cfg(any(all(feature = "fallible", feature = "serde"), doc))]
 	SerdeFail(crate::fallible::FailValue),
 }
@@ -24,6 +26,7 @@ mod serde {
 		{
 			match *self {
 				PaymentMethodProperty::PaymentMethod(ref inner) => inner.serialize(serializer),
+				PaymentMethodProperty::Text(ref inner) => inner.serialize(serializer),
 				#[cfg(all(feature = "fallible", feature = "serde"))]
 				PaymentMethodProperty::SerdeFail(ref inner) => inner.serialize(serializer),
 			}
@@ -41,6 +44,12 @@ mod serde {
 			if let Ok(ok) = Result::map(
 				<PaymentMethod as Deserialize>::deserialize(deserializer),
 				PaymentMethodProperty::PaymentMethod,
+			) {
+				return Ok(ok);
+			}
+			if let Ok(ok) = Result::map(
+				<Text as Deserialize>::deserialize(deserializer),
+				PaymentMethodProperty::Text,
 			) {
 				return Ok(ok);
 			}

@@ -11,14 +11,14 @@ pub struct PaymentCard {
 	pub r#floor_limit: Vec<FloorLimitProperty>,
 	/// <https://schema.org/monthlyMinimumRepaymentAmount>
 	pub r#monthly_minimum_repayment_amount: Vec<MonthlyMinimumRepaymentAmountProperty>,
-	/// <https://schema.org/supersededBy>
-	pub r#superseded_by: Vec<SupersededByProperty>,
 	/// <https://schema.org/annualPercentageRate>
 	pub r#annual_percentage_rate: Vec<AnnualPercentageRateProperty>,
 	/// <https://schema.org/feesAndCommissionsSpecification>
 	pub r#fees_and_commissions_specification: Vec<FeesAndCommissionsSpecificationProperty>,
 	/// <https://schema.org/interestRate>
 	pub r#interest_rate: Vec<InterestRateProperty>,
+	/// <https://schema.org/paymentMethodType>
+	pub r#payment_method_type: Vec<PaymentMethodTypeProperty>,
 	/// <https://schema.org/aggregateRating>
 	pub r#aggregate_rating: Vec<AggregateRatingProperty>,
 	/// <https://schema.org/areaServed>
@@ -35,6 +35,8 @@ pub struct PaymentCard {
 	pub r#broker: Vec<BrokerProperty>,
 	/// <https://schema.org/category>
 	pub r#category: Vec<CategoryProperty>,
+	/// <https://schema.org/hasCertification>
+	pub r#has_certification: Vec<HasCertificationProperty>,
 	/// <https://schema.org/hasOfferCatalog>
 	pub r#has_offer_catalog: Vec<HasOfferCatalogProperty>,
 	/// <https://schema.org/hoursAvailable>
@@ -86,6 +88,8 @@ pub struct PaymentCard {
 	pub r#main_entity_of_page: Vec<MainEntityOfPageProperty>,
 	/// <https://schema.org/name>
 	pub r#name: Vec<NameProperty>,
+	/// <https://schema.org/owner>
+	pub r#owner: Vec<OwnerProperty>,
 	/// <https://schema.org/potentialAction>
 	pub r#potential_action: Vec<PotentialActionProperty>,
 	/// <https://schema.org/sameAs>
@@ -144,14 +148,6 @@ impl PaymentCardTrait for PaymentCard {
 		std::mem::take(&mut self.r#monthly_minimum_repayment_amount)
 	}
 }
-impl EnumerationTrait for PaymentCard {
-	fn get_superseded_by(&self) -> &[SupersededByProperty] {
-		self.r#superseded_by.as_slice()
-	}
-	fn take_superseded_by(&mut self) -> Vec<SupersededByProperty> {
-		std::mem::take(&mut self.r#superseded_by)
-	}
-}
 impl FinancialProductTrait for PaymentCard {
 	fn get_annual_percentage_rate(&self) -> &[AnnualPercentageRateProperty] {
 		self.r#annual_percentage_rate.as_slice()
@@ -172,6 +168,14 @@ impl FinancialProductTrait for PaymentCard {
 	}
 	fn take_interest_rate(&mut self) -> Vec<InterestRateProperty> {
 		std::mem::take(&mut self.r#interest_rate)
+	}
+}
+impl PaymentMethodTrait for PaymentCard {
+	fn get_payment_method_type(&self) -> &[PaymentMethodTypeProperty] {
+		self.r#payment_method_type.as_slice()
+	}
+	fn take_payment_method_type(&mut self) -> Vec<PaymentMethodTypeProperty> {
+		std::mem::take(&mut self.r#payment_method_type)
 	}
 }
 impl ServiceTrait for PaymentCard {
@@ -222,6 +226,12 @@ impl ServiceTrait for PaymentCard {
 	}
 	fn take_category(&mut self) -> Vec<CategoryProperty> {
 		std::mem::take(&mut self.r#category)
+	}
+	fn get_has_certification(&self) -> &[HasCertificationProperty] {
+		self.r#has_certification.as_slice()
+	}
+	fn take_has_certification(&mut self) -> Vec<HasCertificationProperty> {
+		std::mem::take(&mut self.r#has_certification)
 	}
 	fn get_has_offer_catalog(&self) -> &[HasOfferCatalogProperty] {
 		self.r#has_offer_catalog.as_slice()
@@ -369,6 +379,12 @@ impl ThingTrait for PaymentCard {
 	fn take_name(&mut self) -> Vec<NameProperty> {
 		std::mem::take(&mut self.r#name)
 	}
+	fn get_owner(&self) -> &[OwnerProperty] {
+		self.r#owner.as_slice()
+	}
+	fn take_owner(&mut self) -> Vec<OwnerProperty> {
+		std::mem::take(&mut self.r#owner)
+	}
 	fn get_potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
 	}
@@ -413,10 +429,10 @@ mod serde {
 				!Vec::is_empty(&self.r#contactless_payment) as usize,
 				!Vec::is_empty(&self.r#floor_limit) as usize,
 				!Vec::is_empty(&self.r#monthly_minimum_repayment_amount) as usize,
-				!Vec::is_empty(&self.r#superseded_by) as usize,
 				!Vec::is_empty(&self.r#annual_percentage_rate) as usize,
 				!Vec::is_empty(&self.r#fees_and_commissions_specification) as usize,
 				!Vec::is_empty(&self.r#interest_rate) as usize,
+				!Vec::is_empty(&self.r#payment_method_type) as usize,
 				!Vec::is_empty(&self.r#aggregate_rating) as usize,
 				!Vec::is_empty(&self.r#area_served) as usize,
 				!Vec::is_empty(&self.r#audience) as usize,
@@ -425,6 +441,7 @@ mod serde {
 				!Vec::is_empty(&self.r#brand) as usize,
 				!Vec::is_empty(&self.r#broker) as usize,
 				!Vec::is_empty(&self.r#category) as usize,
+				!Vec::is_empty(&self.r#has_certification) as usize,
 				!Vec::is_empty(&self.r#has_offer_catalog) as usize,
 				!Vec::is_empty(&self.r#hours_available) as usize,
 				!Vec::is_empty(&self.r#is_related_to) as usize,
@@ -449,6 +466,7 @@ mod serde {
 				!Vec::is_empty(&self.r#image) as usize,
 				!Vec::is_empty(&self.r#main_entity_of_page) as usize,
 				!Vec::is_empty(&self.r#name) as usize,
+				!Vec::is_empty(&self.r#owner) as usize,
 				!Vec::is_empty(&self.r#potential_action) as usize,
 				!Vec::is_empty(&self.r#same_as) as usize,
 				!Vec::is_empty(&self.r#subject_of) as usize,
@@ -530,24 +548,6 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("monthlyMinimumRepaymentAmount")?;
 			}
-			if !Vec::is_empty(&self.r#superseded_by) {
-				serialize_struct.serialize_field("supersededBy", {
-					struct SerializeWith<'a>(&'a Vec<SupersededByProperty>);
-					impl<'a> Serialize for SerializeWith<'a> {
-						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
-						where
-							S: Serializer,
-						{
-							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
-								self.0, serializer,
-							)
-						}
-					}
-					&SerializeWith(&self.r#superseded_by)
-				})?;
-			} else {
-				serialize_struct.skip_field("supersededBy")?;
-			}
 			if !Vec::is_empty(&self.r#annual_percentage_rate) {
 				serialize_struct.serialize_field("annualPercentageRate", {
 					struct SerializeWith<'a>(&'a Vec<AnnualPercentageRateProperty>);
@@ -601,6 +601,24 @@ mod serde {
 				})?;
 			} else {
 				serialize_struct.skip_field("interestRate")?;
+			}
+			if !Vec::is_empty(&self.r#payment_method_type) {
+				serialize_struct.serialize_field("paymentMethodType", {
+					struct SerializeWith<'a>(&'a Vec<PaymentMethodTypeProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#payment_method_type)
+				})?;
+			} else {
+				serialize_struct.skip_field("paymentMethodType")?;
 			}
 			if !Vec::is_empty(&self.r#aggregate_rating) {
 				serialize_struct.serialize_field("aggregateRating", {
@@ -745,6 +763,24 @@ mod serde {
 				})?;
 			} else {
 				serialize_struct.skip_field("category")?;
+			}
+			if !Vec::is_empty(&self.r#has_certification) {
+				serialize_struct.serialize_field("hasCertification", {
+					struct SerializeWith<'a>(&'a Vec<HasCertificationProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#has_certification)
+				})?;
+			} else {
+				serialize_struct.skip_field("hasCertification")?;
 			}
 			if !Vec::is_empty(&self.r#has_offer_catalog) {
 				serialize_struct.serialize_field("hasOfferCatalog", {
@@ -1178,6 +1214,24 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("name")?;
 			}
+			if !Vec::is_empty(&self.r#owner) {
+				serialize_struct.serialize_field("owner", {
+					struct SerializeWith<'a>(&'a Vec<OwnerProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#owner)
+				})?;
+			} else {
+				serialize_struct.skip_field("owner")?;
+			}
 			if !Vec::is_empty(&self.r#potential_action) {
 				serialize_struct.serialize_field("potentialAction", {
 					struct SerializeWith<'a>(&'a Vec<PotentialActionProperty>);
@@ -1263,10 +1317,10 @@ mod serde {
 				ContactlessPayment,
 				FloorLimit,
 				MonthlyMinimumRepaymentAmount,
-				SupersededBy,
 				AnnualPercentageRate,
 				FeesAndCommissionsSpecification,
 				InterestRate,
+				PaymentMethodType,
 				AggregateRating,
 				AreaServed,
 				Audience,
@@ -1275,6 +1329,7 @@ mod serde {
 				Brand,
 				Broker,
 				Category,
+				HasCertification,
 				HasOfferCatalog,
 				HoursAvailable,
 				IsRelatedTo,
@@ -1299,6 +1354,7 @@ mod serde {
 				Image,
 				MainEntityOfPage,
 				Name,
+				Owner,
 				PotentialAction,
 				SameAs,
 				SubjectOf,
@@ -1320,12 +1376,12 @@ mod serde {
 						"contactlessPayment" => Ok(Field::ContactlessPayment),
 						"floorLimit" => Ok(Field::FloorLimit),
 						"monthlyMinimumRepaymentAmount" => Ok(Field::MonthlyMinimumRepaymentAmount),
-						"supersededBy" => Ok(Field::SupersededBy),
 						"annualPercentageRate" => Ok(Field::AnnualPercentageRate),
 						"feesAndCommissionsSpecification" => {
 							Ok(Field::FeesAndCommissionsSpecification)
 						}
 						"interestRate" => Ok(Field::InterestRate),
+						"paymentMethodType" => Ok(Field::PaymentMethodType),
 						"aggregateRating" => Ok(Field::AggregateRating),
 						"areaServed" => Ok(Field::AreaServed),
 						"audience" => Ok(Field::Audience),
@@ -1334,6 +1390,7 @@ mod serde {
 						"brand" => Ok(Field::Brand),
 						"broker" => Ok(Field::Broker),
 						"category" => Ok(Field::Category),
+						"hasCertification" => Ok(Field::HasCertification),
 						"hasOfferCatalog" => Ok(Field::HasOfferCatalog),
 						"hoursAvailable" => Ok(Field::HoursAvailable),
 						"isRelatedTo" => Ok(Field::IsRelatedTo),
@@ -1358,6 +1415,7 @@ mod serde {
 						"image" => Ok(Field::Image),
 						"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
 						"name" => Ok(Field::Name),
+						"owner" => Ok(Field::Owner),
 						"potentialAction" => Ok(Field::PotentialAction),
 						"sameAs" => Ok(Field::SameAs),
 						"subjectOf" => Ok(Field::SubjectOf),
@@ -1377,12 +1435,12 @@ mod serde {
 						b"monthlyMinimumRepaymentAmount" => {
 							Ok(Field::MonthlyMinimumRepaymentAmount)
 						}
-						b"supersededBy" => Ok(Field::SupersededBy),
 						b"annualPercentageRate" => Ok(Field::AnnualPercentageRate),
 						b"feesAndCommissionsSpecification" => {
 							Ok(Field::FeesAndCommissionsSpecification)
 						}
 						b"interestRate" => Ok(Field::InterestRate),
+						b"paymentMethodType" => Ok(Field::PaymentMethodType),
 						b"aggregateRating" => Ok(Field::AggregateRating),
 						b"areaServed" => Ok(Field::AreaServed),
 						b"audience" => Ok(Field::Audience),
@@ -1391,6 +1449,7 @@ mod serde {
 						b"brand" => Ok(Field::Brand),
 						b"broker" => Ok(Field::Broker),
 						b"category" => Ok(Field::Category),
+						b"hasCertification" => Ok(Field::HasCertification),
 						b"hasOfferCatalog" => Ok(Field::HasOfferCatalog),
 						b"hoursAvailable" => Ok(Field::HoursAvailable),
 						b"isRelatedTo" => Ok(Field::IsRelatedTo),
@@ -1415,6 +1474,7 @@ mod serde {
 						b"image" => Ok(Field::Image),
 						b"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
 						b"name" => Ok(Field::Name),
+						b"owner" => Ok(Field::Owner),
 						b"potentialAction" => Ok(Field::PotentialAction),
 						b"sameAs" => Ok(Field::SameAs),
 						b"subjectOf" => Ok(Field::SubjectOf),
@@ -1449,10 +1509,10 @@ mod serde {
 					let mut r#contactless_payment_property = None;
 					let mut r#floor_limit_property = None;
 					let mut r#monthly_minimum_repayment_amount_property = None;
-					let mut r#superseded_by_property = None;
 					let mut r#annual_percentage_rate_property = None;
 					let mut r#fees_and_commissions_specification_property = None;
 					let mut r#interest_rate_property = None;
+					let mut r#payment_method_type_property = None;
 					let mut r#aggregate_rating_property = None;
 					let mut r#area_served_property = None;
 					let mut r#audience_property = None;
@@ -1461,6 +1521,7 @@ mod serde {
 					let mut r#brand_property = None;
 					let mut r#broker_property = None;
 					let mut r#category_property = None;
+					let mut r#has_certification_property = None;
 					let mut r#has_offer_catalog_property = None;
 					let mut r#hours_available_property = None;
 					let mut r#is_related_to_property = None;
@@ -1485,6 +1546,7 @@ mod serde {
 					let mut r#image_property = None;
 					let mut r#main_entity_of_page_property = None;
 					let mut r#name_property = None;
+					let mut r#owner_property = None;
 					let mut r#potential_action_property = None;
 					let mut r#same_as_property = None;
 					let mut r#subject_of_property = None;
@@ -1605,34 +1667,6 @@ mod serde {
 									}
 								});
 							}
-							Field::SupersededBy => {
-								if r#superseded_by_property.is_some() {
-									return Err(<A::Error as de::Error>::duplicate_field(
-										"supersededBy",
-									));
-								}
-								r#superseded_by_property = Some({
-									struct DeserializeWith(Vec<SupersededByProperty>);
-									impl<'de> Deserialize<'de> for DeserializeWith {
-										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
-										where
-											D: Deserializer<'de>,
-										{
-											Ok(DeserializeWith(serde_with::As::<
-												serde_with::OneOrMany<serde_with::Same>,
-											>::deserialize(
-												deserializer
-											)?))
-										}
-									}
-									match map.next_value::<DeserializeWith>() {
-										Ok(deserialize_with) => deserialize_with.0,
-										Err(err) => {
-											return Err(err);
-										}
-									}
-								});
-							}
 							Field::AnnualPercentageRate => {
 								if r#annual_percentage_rate_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -1699,6 +1733,34 @@ mod serde {
 								}
 								r#interest_rate_property = Some({
 									struct DeserializeWith(Vec<InterestRateProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::PaymentMethodType => {
+								if r#payment_method_type_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"paymentMethodType",
+									));
+								}
+								r#payment_method_type_property = Some({
+									struct DeserializeWith(Vec<PaymentMethodTypeProperty>);
 									impl<'de> Deserialize<'de> for DeserializeWith {
 										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
 										where
@@ -1917,6 +1979,34 @@ mod serde {
 								}
 								r#category_property = Some({
 									struct DeserializeWith(Vec<CategoryProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::HasCertification => {
+								if r#has_certification_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"hasCertification",
+									));
+								}
+								r#has_certification_property = Some({
+									struct DeserializeWith(Vec<HasCertificationProperty>);
 									impl<'de> Deserialize<'de> for DeserializeWith {
 										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
 										where
@@ -2597,6 +2687,32 @@ mod serde {
 									}
 								});
 							}
+							Field::Owner => {
+								if r#owner_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field("owner"));
+								}
+								r#owner_property = Some({
+									struct DeserializeWith(Vec<OwnerProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::PotentialAction => {
 								if r#potential_action_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -2716,12 +2832,12 @@ mod serde {
 						r#floor_limit: r#floor_limit_property.unwrap_or_default(),
 						r#monthly_minimum_repayment_amount:
 							r#monthly_minimum_repayment_amount_property.unwrap_or_default(),
-						r#superseded_by: r#superseded_by_property.unwrap_or_default(),
 						r#annual_percentage_rate: r#annual_percentage_rate_property
 							.unwrap_or_default(),
 						r#fees_and_commissions_specification:
 							r#fees_and_commissions_specification_property.unwrap_or_default(),
 						r#interest_rate: r#interest_rate_property.unwrap_or_default(),
+						r#payment_method_type: r#payment_method_type_property.unwrap_or_default(),
 						r#aggregate_rating: r#aggregate_rating_property.unwrap_or_default(),
 						r#area_served: r#area_served_property.unwrap_or_default(),
 						r#audience: r#audience_property.unwrap_or_default(),
@@ -2730,6 +2846,7 @@ mod serde {
 						r#brand: r#brand_property.unwrap_or_default(),
 						r#broker: r#broker_property.unwrap_or_default(),
 						r#category: r#category_property.unwrap_or_default(),
+						r#has_certification: r#has_certification_property.unwrap_or_default(),
 						r#has_offer_catalog: r#has_offer_catalog_property.unwrap_or_default(),
 						r#hours_available: r#hours_available_property.unwrap_or_default(),
 						r#is_related_to: r#is_related_to_property.unwrap_or_default(),
@@ -2755,6 +2872,7 @@ mod serde {
 						r#image: r#image_property.unwrap_or_default(),
 						r#main_entity_of_page: r#main_entity_of_page_property.unwrap_or_default(),
 						r#name: r#name_property.unwrap_or_default(),
+						r#owner: r#owner_property.unwrap_or_default(),
 						r#potential_action: r#potential_action_property.unwrap_or_default(),
 						r#same_as: r#same_as_property.unwrap_or_default(),
 						r#subject_of: r#subject_of_property.unwrap_or_default(),
@@ -2767,10 +2885,10 @@ mod serde {
 				"contactlessPayment",
 				"floorLimit",
 				"monthlyMinimumRepaymentAmount",
-				"supersededBy",
 				"annualPercentageRate",
 				"feesAndCommissionsSpecification",
 				"interestRate",
+				"paymentMethodType",
 				"aggregateRating",
 				"areaServed",
 				"audience",
@@ -2779,6 +2897,7 @@ mod serde {
 				"brand",
 				"broker",
 				"category",
+				"hasCertification",
 				"hasOfferCatalog",
 				"hoursAvailable",
 				"isRelatedTo",
@@ -2803,6 +2922,7 @@ mod serde {
 				"image",
 				"mainEntityOfPage",
 				"name",
+				"owner",
 				"potentialAction",
 				"sameAs",
 				"subjectOf",

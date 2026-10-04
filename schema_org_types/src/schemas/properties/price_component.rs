@@ -3,8 +3,8 @@ use super::*;
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 pub enum PriceComponentProperty {
-	/// <https://schema.org/UnitPriceSpecification>
-	UnitPriceSpecification(UnitPriceSpecification),
+	/// <https://schema.org/PriceSpecification>
+	PriceSpecification(PriceSpecification),
 	#[cfg(any(all(feature = "fallible", feature = "serde"), doc))]
 	SerdeFail(crate::fallible::FailValue),
 }
@@ -23,7 +23,7 @@ mod serde {
 			S: Serializer,
 		{
 			match *self {
-				PriceComponentProperty::UnitPriceSpecification(ref inner) => {
+				PriceComponentProperty::PriceSpecification(ref inner) => {
 					inner.serialize(serializer)
 				}
 				#[cfg(all(feature = "fallible", feature = "serde"))]
@@ -41,8 +41,8 @@ mod serde {
 			let deserializer =
 				::serde::__private::de::ContentRefDeserializer::<D::Error>::new(&content);
 			if let Ok(ok) = Result::map(
-				<UnitPriceSpecification as Deserialize>::deserialize(deserializer),
-				PriceComponentProperty::UnitPriceSpecification,
+				<PriceSpecification as Deserialize>::deserialize(deserializer),
+				PriceComponentProperty::PriceSpecification,
 			) {
 				return Ok(ok);
 			}

@@ -3,8 +3,8 @@ use super::*;
 #[cfg_attr(feature = "derive-debug", derive(Debug))]
 #[cfg_attr(feature = "derive-clone", derive(Clone))]
 pub enum QualificationsProperty {
-	/// <https://schema.org/EducationalOccupationalCredential>
-	EducationalOccupationalCredential(EducationalOccupationalCredential),
+	/// <https://schema.org/Credential>
+	Credential(Credential),
 	/// <https://schema.org/Text>
 	Text(Text),
 	#[cfg(any(all(feature = "fallible", feature = "serde"), doc))]
@@ -25,9 +25,7 @@ mod serde {
 			S: Serializer,
 		{
 			match *self {
-				QualificationsProperty::EducationalOccupationalCredential(ref inner) => {
-					inner.serialize(serializer)
-				}
+				QualificationsProperty::Credential(ref inner) => inner.serialize(serializer),
 				QualificationsProperty::Text(ref inner) => inner.serialize(serializer),
 				#[cfg(all(feature = "fallible", feature = "serde"))]
 				QualificationsProperty::SerdeFail(ref inner) => inner.serialize(serializer),
@@ -44,8 +42,8 @@ mod serde {
 			let deserializer =
 				::serde::__private::de::ContentRefDeserializer::<D::Error>::new(&content);
 			if let Ok(ok) = Result::map(
-				<EducationalOccupationalCredential as Deserialize>::deserialize(deserializer),
-				QualificationsProperty::EducationalOccupationalCredential,
+				<Credential as Deserialize>::deserialize(deserializer),
+				QualificationsProperty::Credential,
 			) {
 				return Ok(ok);
 			}

@@ -10,6 +10,8 @@ pub enum BookFormatType {
 	GraphicNovel,
 	/// <https://schema.org/Hardcover>
 	Hardcover,
+	/// <https://schema.org/Pamphlet>
+	Pamphlet,
 	/// <https://schema.org/Paperback>
 	Paperback,
 }
@@ -40,8 +42,11 @@ mod serde {
 				BookFormatType::Hardcover => {
 					serializer.serialize_unit_variant("BookFormatType", 3u32, "Hardcover")
 				}
+				BookFormatType::Pamphlet => {
+					serializer.serialize_unit_variant("BookFormatType", 4u32, "Pamphlet")
+				}
 				BookFormatType::Paperback => {
-					serializer.serialize_unit_variant("BookFormatType", 4u32, "Paperback")
+					serializer.serialize_unit_variant("BookFormatType", 5u32, "Paperback")
 				}
 			}
 		}
@@ -56,6 +61,7 @@ mod serde {
 				EBook,
 				GraphicNovel,
 				Hardcover,
+				Pamphlet,
 				Paperback,
 			}
 			struct FieldVisitor;
@@ -73,6 +79,7 @@ mod serde {
 						"EBook" => Ok(Field::EBook),
 						"GraphicNovel" => Ok(Field::GraphicNovel),
 						"Hardcover" => Ok(Field::Hardcover),
+						"Pamphlet" => Ok(Field::Pamphlet),
 						"Paperback" => Ok(Field::Paperback),
 						_ => Err(de::Error::unknown_variant(value, VARIANTS)),
 					}
@@ -86,6 +93,7 @@ mod serde {
 						b"EBook" => Ok(Field::EBook),
 						b"GraphicNovel" => Ok(Field::GraphicNovel),
 						b"Hardcover" => Ok(Field::Hardcover),
+						b"Pamphlet" => Ok(Field::Pamphlet),
 						b"Paperback" => Ok(Field::Paperback),
 						_ => {
 							let value = &String::from_utf8_lossy(value);
@@ -129,6 +137,10 @@ mod serde {
 							de::VariantAccess::unit_variant(variant)?;
 							Ok(BookFormatType::Hardcover)
 						}
+						(Field::Pamphlet, variant) => {
+							de::VariantAccess::unit_variant(variant)?;
+							Ok(BookFormatType::Pamphlet)
+						}
 						(Field::Paperback, variant) => {
 							de::VariantAccess::unit_variant(variant)?;
 							Ok(BookFormatType::Paperback)
@@ -141,6 +153,7 @@ mod serde {
 				"EBook",
 				"GraphicNovel",
 				"Hardcover",
+				"Pamphlet",
 				"Paperback",
 			];
 			deserializer.deserialize_enum("BookFormatType", VARIANTS, EnumerationVisitor)

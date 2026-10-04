@@ -97,6 +97,7 @@ impl From<&str> for RustType {
 			"DateTime" => Self::DateTime,
 			"Text" => Self::String,
 			"URL" => Self::Url,
+			"Quantity" => Self::String,
 			value => {
 				panic!(
 					"Tried to convert from the inconvertible schema.org data type \"{}\" to a rust type.",

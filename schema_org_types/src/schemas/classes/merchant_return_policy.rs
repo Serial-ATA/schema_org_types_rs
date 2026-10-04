@@ -46,6 +46,8 @@ pub struct MerchantReturnPolicy {
 	pub r#return_policy_seasonal_override: Vec<ReturnPolicySeasonalOverrideProperty>,
 	/// <https://schema.org/returnShippingFeesAmount>
 	pub r#return_shipping_fees_amount: Vec<ReturnShippingFeesAmountProperty>,
+	/// <https://schema.org/validForMemberTier>
+	pub r#valid_for_member_tier: Vec<ValidForMemberTierProperty>,
 	/// <https://schema.org/additionalType>
 	pub r#additional_type: Vec<AdditionalTypeProperty>,
 	/// <https://schema.org/alternateName>
@@ -62,6 +64,8 @@ pub struct MerchantReturnPolicy {
 	pub r#main_entity_of_page: Vec<MainEntityOfPageProperty>,
 	/// <https://schema.org/name>
 	pub r#name: Vec<NameProperty>,
+	/// <https://schema.org/owner>
+	pub r#owner: Vec<OwnerProperty>,
 	/// <https://schema.org/potentialAction>
 	pub r#potential_action: Vec<PotentialActionProperty>,
 	/// <https://schema.org/sameAs>
@@ -170,6 +174,10 @@ pub trait MerchantReturnPolicyTrait {
 	fn get_return_shipping_fees_amount(&self) -> &[ReturnShippingFeesAmountProperty];
 	/// Take <https://schema.org/returnShippingFeesAmount> from [`Self`] as owned vector.
 	fn take_return_shipping_fees_amount(&mut self) -> Vec<ReturnShippingFeesAmountProperty>;
+	/// Get <https://schema.org/validForMemberTier> from [`Self`] as borrowed slice.
+	fn get_valid_for_member_tier(&self) -> &[ValidForMemberTierProperty];
+	/// Take <https://schema.org/validForMemberTier> from [`Self`] as owned vector.
+	fn take_valid_for_member_tier(&mut self) -> Vec<ValidForMemberTierProperty>;
 }
 impl MerchantReturnPolicyTrait for MerchantReturnPolicy {
 	fn get_additional_property(&self) -> &[AdditionalPropertyProperty] {
@@ -313,6 +321,12 @@ impl MerchantReturnPolicyTrait for MerchantReturnPolicy {
 	fn take_return_shipping_fees_amount(&mut self) -> Vec<ReturnShippingFeesAmountProperty> {
 		std::mem::take(&mut self.r#return_shipping_fees_amount)
 	}
+	fn get_valid_for_member_tier(&self) -> &[ValidForMemberTierProperty] {
+		self.r#valid_for_member_tier.as_slice()
+	}
+	fn take_valid_for_member_tier(&mut self) -> Vec<ValidForMemberTierProperty> {
+		std::mem::take(&mut self.r#valid_for_member_tier)
+	}
 }
 impl ThingTrait for MerchantReturnPolicy {
 	fn get_additional_type(&self) -> &[AdditionalTypeProperty] {
@@ -362,6 +376,12 @@ impl ThingTrait for MerchantReturnPolicy {
 	}
 	fn take_name(&mut self) -> Vec<NameProperty> {
 		std::mem::take(&mut self.r#name)
+	}
+	fn get_owner(&self) -> &[OwnerProperty] {
+		self.r#owner.as_slice()
+	}
+	fn take_owner(&mut self) -> Vec<OwnerProperty> {
+		std::mem::take(&mut self.r#owner)
 	}
 	fn get_potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
@@ -424,6 +444,7 @@ mod serde {
 				!Vec::is_empty(&self.r#return_policy_country) as usize,
 				!Vec::is_empty(&self.r#return_policy_seasonal_override) as usize,
 				!Vec::is_empty(&self.r#return_shipping_fees_amount) as usize,
+				!Vec::is_empty(&self.r#valid_for_member_tier) as usize,
 				!Vec::is_empty(&self.r#additional_type) as usize,
 				!Vec::is_empty(&self.r#alternate_name) as usize,
 				!Vec::is_empty(&self.r#description) as usize,
@@ -432,6 +453,7 @@ mod serde {
 				!Vec::is_empty(&self.r#image) as usize,
 				!Vec::is_empty(&self.r#main_entity_of_page) as usize,
 				!Vec::is_empty(&self.r#name) as usize,
+				!Vec::is_empty(&self.r#owner) as usize,
 				!Vec::is_empty(&self.r#potential_action) as usize,
 				!Vec::is_empty(&self.r#same_as) as usize,
 				!Vec::is_empty(&self.r#subject_of) as usize,
@@ -821,6 +843,24 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("returnShippingFeesAmount")?;
 			}
+			if !Vec::is_empty(&self.r#valid_for_member_tier) {
+				serialize_struct.serialize_field("validForMemberTier", {
+					struct SerializeWith<'a>(&'a Vec<ValidForMemberTierProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#valid_for_member_tier)
+				})?;
+			} else {
+				serialize_struct.skip_field("validForMemberTier")?;
+			}
 			if !Vec::is_empty(&self.r#additional_type) {
 				serialize_struct.serialize_field("additionalType", {
 					struct SerializeWith<'a>(&'a Vec<AdditionalTypeProperty>);
@@ -965,6 +1005,24 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("name")?;
 			}
+			if !Vec::is_empty(&self.r#owner) {
+				serialize_struct.serialize_field("owner", {
+					struct SerializeWith<'a>(&'a Vec<OwnerProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#owner)
+				})?;
+			} else {
+				serialize_struct.skip_field("owner")?;
+			}
 			if !Vec::is_empty(&self.r#potential_action) {
 				serialize_struct.serialize_field("potentialAction", {
 					struct SerializeWith<'a>(&'a Vec<PotentialActionProperty>);
@@ -1067,6 +1125,7 @@ mod serde {
 				ReturnPolicyCountry,
 				ReturnPolicySeasonalOverride,
 				ReturnShippingFeesAmount,
+				ValidForMemberTier,
 				AdditionalType,
 				AlternateName,
 				Description,
@@ -1075,6 +1134,7 @@ mod serde {
 				Image,
 				MainEntityOfPage,
 				Name,
+				Owner,
 				PotentialAction,
 				SameAs,
 				SubjectOf,
@@ -1119,6 +1179,7 @@ mod serde {
 						"returnPolicyCountry" => Ok(Field::ReturnPolicyCountry),
 						"returnPolicySeasonalOverride" => Ok(Field::ReturnPolicySeasonalOverride),
 						"returnShippingFeesAmount" => Ok(Field::ReturnShippingFeesAmount),
+						"validForMemberTier" => Ok(Field::ValidForMemberTier),
 						"additionalType" => Ok(Field::AdditionalType),
 						"alternateName" => Ok(Field::AlternateName),
 						"description" => Ok(Field::Description),
@@ -1127,6 +1188,7 @@ mod serde {
 						"image" => Ok(Field::Image),
 						"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
 						"name" => Ok(Field::Name),
+						"owner" => Ok(Field::Owner),
 						"potentialAction" => Ok(Field::PotentialAction),
 						"sameAs" => Ok(Field::SameAs),
 						"subjectOf" => Ok(Field::SubjectOf),
@@ -1167,6 +1229,7 @@ mod serde {
 						b"returnPolicyCountry" => Ok(Field::ReturnPolicyCountry),
 						b"returnPolicySeasonalOverride" => Ok(Field::ReturnPolicySeasonalOverride),
 						b"returnShippingFeesAmount" => Ok(Field::ReturnShippingFeesAmount),
+						b"validForMemberTier" => Ok(Field::ValidForMemberTier),
 						b"additionalType" => Ok(Field::AdditionalType),
 						b"alternateName" => Ok(Field::AlternateName),
 						b"description" => Ok(Field::Description),
@@ -1175,6 +1238,7 @@ mod serde {
 						b"image" => Ok(Field::Image),
 						b"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
 						b"name" => Ok(Field::Name),
+						b"owner" => Ok(Field::Owner),
 						b"potentialAction" => Ok(Field::PotentialAction),
 						b"sameAs" => Ok(Field::SameAs),
 						b"subjectOf" => Ok(Field::SubjectOf),
@@ -1226,6 +1290,7 @@ mod serde {
 					let mut r#return_policy_country_property = None;
 					let mut r#return_policy_seasonal_override_property = None;
 					let mut r#return_shipping_fees_amount_property = None;
+					let mut r#valid_for_member_tier_property = None;
 					let mut r#additional_type_property = None;
 					let mut r#alternate_name_property = None;
 					let mut r#description_property = None;
@@ -1234,6 +1299,7 @@ mod serde {
 					let mut r#image_property = None;
 					let mut r#main_entity_of_page_property = None;
 					let mut r#name_property = None;
+					let mut r#owner_property = None;
 					let mut r#potential_action_property = None;
 					let mut r#same_as_property = None;
 					let mut r#subject_of_property = None;
@@ -1839,6 +1905,34 @@ mod serde {
 									}
 								});
 							}
+							Field::ValidForMemberTier => {
+								if r#valid_for_member_tier_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"validForMemberTier",
+									));
+								}
+								r#valid_for_member_tier_property = Some({
+									struct DeserializeWith(Vec<ValidForMemberTierProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::AdditionalType => {
 								if r#additional_type_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -2059,6 +2153,32 @@ mod serde {
 									}
 								});
 							}
+							Field::Owner => {
+								if r#owner_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field("owner"));
+								}
+								r#owner_property = Some({
+									struct DeserializeWith(Vec<OwnerProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::PotentialAction => {
 								if r#potential_action_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -2206,6 +2326,8 @@ mod serde {
 							r#return_policy_seasonal_override_property.unwrap_or_default(),
 						r#return_shipping_fees_amount: r#return_shipping_fees_amount_property
 							.unwrap_or_default(),
+						r#valid_for_member_tier: r#valid_for_member_tier_property
+							.unwrap_or_default(),
 						r#additional_type: r#additional_type_property.unwrap_or_default(),
 						r#alternate_name: r#alternate_name_property.unwrap_or_default(),
 						r#description: r#description_property.unwrap_or_default(),
@@ -2215,6 +2337,7 @@ mod serde {
 						r#image: r#image_property.unwrap_or_default(),
 						r#main_entity_of_page: r#main_entity_of_page_property.unwrap_or_default(),
 						r#name: r#name_property.unwrap_or_default(),
+						r#owner: r#owner_property.unwrap_or_default(),
 						r#potential_action: r#potential_action_property.unwrap_or_default(),
 						r#same_as: r#same_as_property.unwrap_or_default(),
 						r#subject_of: r#subject_of_property.unwrap_or_default(),
@@ -2244,6 +2367,7 @@ mod serde {
 				"returnPolicyCountry",
 				"returnPolicySeasonalOverride",
 				"returnShippingFeesAmount",
+				"validForMemberTier",
 				"additionalType",
 				"alternateName",
 				"description",
@@ -2252,6 +2376,7 @@ mod serde {
 				"image",
 				"mainEntityOfPage",
 				"name",
+				"owner",
 				"potentialAction",
 				"sameAs",
 				"subjectOf",

@@ -27,6 +27,8 @@ pub struct InvestmentFund {
 	pub r#broker: Vec<BrokerProperty>,
 	/// <https://schema.org/category>
 	pub r#category: Vec<CategoryProperty>,
+	/// <https://schema.org/hasCertification>
+	pub r#has_certification: Vec<HasCertificationProperty>,
 	/// <https://schema.org/hasOfferCatalog>
 	pub r#has_offer_catalog: Vec<HasOfferCatalogProperty>,
 	/// <https://schema.org/hoursAvailable>
@@ -78,6 +80,8 @@ pub struct InvestmentFund {
 	pub r#main_entity_of_page: Vec<MainEntityOfPageProperty>,
 	/// <https://schema.org/name>
 	pub r#name: Vec<NameProperty>,
+	/// <https://schema.org/owner>
+	pub r#owner: Vec<OwnerProperty>,
 	/// <https://schema.org/potentialAction>
 	pub r#potential_action: Vec<PotentialActionProperty>,
 	/// <https://schema.org/sameAs>
@@ -168,6 +172,12 @@ impl ServiceTrait for InvestmentFund {
 	}
 	fn take_category(&mut self) -> Vec<CategoryProperty> {
 		std::mem::take(&mut self.r#category)
+	}
+	fn get_has_certification(&self) -> &[HasCertificationProperty] {
+		self.r#has_certification.as_slice()
+	}
+	fn take_has_certification(&mut self) -> Vec<HasCertificationProperty> {
+		std::mem::take(&mut self.r#has_certification)
 	}
 	fn get_has_offer_catalog(&self) -> &[HasOfferCatalogProperty] {
 		self.r#has_offer_catalog.as_slice()
@@ -315,6 +325,12 @@ impl ThingTrait for InvestmentFund {
 	fn take_name(&mut self) -> Vec<NameProperty> {
 		std::mem::take(&mut self.r#name)
 	}
+	fn get_owner(&self) -> &[OwnerProperty] {
+		self.r#owner.as_slice()
+	}
+	fn take_owner(&mut self) -> Vec<OwnerProperty> {
+		std::mem::take(&mut self.r#owner)
+	}
 	fn get_potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
 	}
@@ -367,6 +383,7 @@ mod serde {
 				!Vec::is_empty(&self.r#brand) as usize,
 				!Vec::is_empty(&self.r#broker) as usize,
 				!Vec::is_empty(&self.r#category) as usize,
+				!Vec::is_empty(&self.r#has_certification) as usize,
 				!Vec::is_empty(&self.r#has_offer_catalog) as usize,
 				!Vec::is_empty(&self.r#hours_available) as usize,
 				!Vec::is_empty(&self.r#is_related_to) as usize,
@@ -391,6 +408,7 @@ mod serde {
 				!Vec::is_empty(&self.r#image) as usize,
 				!Vec::is_empty(&self.r#main_entity_of_page) as usize,
 				!Vec::is_empty(&self.r#name) as usize,
+				!Vec::is_empty(&self.r#owner) as usize,
 				!Vec::is_empty(&self.r#potential_action) as usize,
 				!Vec::is_empty(&self.r#same_as) as usize,
 				!Vec::is_empty(&self.r#subject_of) as usize,
@@ -615,6 +633,24 @@ mod serde {
 				})?;
 			} else {
 				serialize_struct.skip_field("category")?;
+			}
+			if !Vec::is_empty(&self.r#has_certification) {
+				serialize_struct.serialize_field("hasCertification", {
+					struct SerializeWith<'a>(&'a Vec<HasCertificationProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#has_certification)
+				})?;
+			} else {
+				serialize_struct.skip_field("hasCertification")?;
 			}
 			if !Vec::is_empty(&self.r#has_offer_catalog) {
 				serialize_struct.serialize_field("hasOfferCatalog", {
@@ -1048,6 +1084,24 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("name")?;
 			}
+			if !Vec::is_empty(&self.r#owner) {
+				serialize_struct.serialize_field("owner", {
+					struct SerializeWith<'a>(&'a Vec<OwnerProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#owner)
+				})?;
+			} else {
+				serialize_struct.skip_field("owner")?;
+			}
 			if !Vec::is_empty(&self.r#potential_action) {
 				serialize_struct.serialize_field("potentialAction", {
 					struct SerializeWith<'a>(&'a Vec<PotentialActionProperty>);
@@ -1141,6 +1195,7 @@ mod serde {
 				Brand,
 				Broker,
 				Category,
+				HasCertification,
 				HasOfferCatalog,
 				HoursAvailable,
 				IsRelatedTo,
@@ -1165,6 +1220,7 @@ mod serde {
 				Image,
 				MainEntityOfPage,
 				Name,
+				Owner,
 				PotentialAction,
 				SameAs,
 				SubjectOf,
@@ -1196,6 +1252,7 @@ mod serde {
 						"brand" => Ok(Field::Brand),
 						"broker" => Ok(Field::Broker),
 						"category" => Ok(Field::Category),
+						"hasCertification" => Ok(Field::HasCertification),
 						"hasOfferCatalog" => Ok(Field::HasOfferCatalog),
 						"hoursAvailable" => Ok(Field::HoursAvailable),
 						"isRelatedTo" => Ok(Field::IsRelatedTo),
@@ -1220,6 +1277,7 @@ mod serde {
 						"image" => Ok(Field::Image),
 						"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
 						"name" => Ok(Field::Name),
+						"owner" => Ok(Field::Owner),
 						"potentialAction" => Ok(Field::PotentialAction),
 						"sameAs" => Ok(Field::SameAs),
 						"subjectOf" => Ok(Field::SubjectOf),
@@ -1247,6 +1305,7 @@ mod serde {
 						b"brand" => Ok(Field::Brand),
 						b"broker" => Ok(Field::Broker),
 						b"category" => Ok(Field::Category),
+						b"hasCertification" => Ok(Field::HasCertification),
 						b"hasOfferCatalog" => Ok(Field::HasOfferCatalog),
 						b"hoursAvailable" => Ok(Field::HoursAvailable),
 						b"isRelatedTo" => Ok(Field::IsRelatedTo),
@@ -1271,6 +1330,7 @@ mod serde {
 						b"image" => Ok(Field::Image),
 						b"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
 						b"name" => Ok(Field::Name),
+						b"owner" => Ok(Field::Owner),
 						b"potentialAction" => Ok(Field::PotentialAction),
 						b"sameAs" => Ok(Field::SameAs),
 						b"subjectOf" => Ok(Field::SubjectOf),
@@ -1313,6 +1373,7 @@ mod serde {
 					let mut r#brand_property = None;
 					let mut r#broker_property = None;
 					let mut r#category_property = None;
+					let mut r#has_certification_property = None;
 					let mut r#has_offer_catalog_property = None;
 					let mut r#hours_available_property = None;
 					let mut r#is_related_to_property = None;
@@ -1337,6 +1398,7 @@ mod serde {
 					let mut r#image_property = None;
 					let mut r#main_entity_of_page_property = None;
 					let mut r#name_property = None;
+					let mut r#owner_property = None;
 					let mut r#potential_action_property = None;
 					let mut r#same_as_property = None;
 					let mut r#subject_of_property = None;
@@ -1653,6 +1715,34 @@ mod serde {
 								}
 								r#category_property = Some({
 									struct DeserializeWith(Vec<CategoryProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::HasCertification => {
+								if r#has_certification_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"hasCertification",
+									));
+								}
+								r#has_certification_property = Some({
+									struct DeserializeWith(Vec<HasCertificationProperty>);
 									impl<'de> Deserialize<'de> for DeserializeWith {
 										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
 										where
@@ -2333,6 +2423,32 @@ mod serde {
 									}
 								});
 							}
+							Field::Owner => {
+								if r#owner_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field("owner"));
+								}
+								r#owner_property = Some({
+									struct DeserializeWith(Vec<OwnerProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::PotentialAction => {
 								if r#potential_action_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -2461,6 +2577,7 @@ mod serde {
 						r#brand: r#brand_property.unwrap_or_default(),
 						r#broker: r#broker_property.unwrap_or_default(),
 						r#category: r#category_property.unwrap_or_default(),
+						r#has_certification: r#has_certification_property.unwrap_or_default(),
 						r#has_offer_catalog: r#has_offer_catalog_property.unwrap_or_default(),
 						r#hours_available: r#hours_available_property.unwrap_or_default(),
 						r#is_related_to: r#is_related_to_property.unwrap_or_default(),
@@ -2486,6 +2603,7 @@ mod serde {
 						r#image: r#image_property.unwrap_or_default(),
 						r#main_entity_of_page: r#main_entity_of_page_property.unwrap_or_default(),
 						r#name: r#name_property.unwrap_or_default(),
+						r#owner: r#owner_property.unwrap_or_default(),
 						r#potential_action: r#potential_action_property.unwrap_or_default(),
 						r#same_as: r#same_as_property.unwrap_or_default(),
 						r#subject_of: r#subject_of_property.unwrap_or_default(),
@@ -2506,6 +2624,7 @@ mod serde {
 				"brand",
 				"broker",
 				"category",
+				"hasCertification",
 				"hasOfferCatalog",
 				"hoursAvailable",
 				"isRelatedTo",
@@ -2530,6 +2649,7 @@ mod serde {
 				"image",
 				"mainEntityOfPage",
 				"name",
+				"owner",
 				"potentialAction",
 				"sameAs",
 				"subjectOf",

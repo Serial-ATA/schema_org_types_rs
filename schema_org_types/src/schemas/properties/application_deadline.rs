@@ -5,6 +5,8 @@ use super::*;
 pub enum ApplicationDeadlineProperty {
 	/// <https://schema.org/Date>
 	Date(Date),
+	/// <https://schema.org/Text>
+	Text(Text),
 	#[cfg(any(all(feature = "fallible", feature = "serde"), doc))]
 	SerdeFail(crate::fallible::FailValue),
 }
@@ -24,6 +26,7 @@ mod serde {
 		{
 			match *self {
 				ApplicationDeadlineProperty::Date(ref inner) => inner.serialize(serializer),
+				ApplicationDeadlineProperty::Text(ref inner) => inner.serialize(serializer),
 				#[cfg(all(feature = "fallible", feature = "serde"))]
 				ApplicationDeadlineProperty::SerdeFail(ref inner) => inner.serialize(serializer),
 			}
@@ -41,6 +44,12 @@ mod serde {
 			if let Ok(ok) = Result::map(
 				<Date as Deserialize>::deserialize(deserializer),
 				ApplicationDeadlineProperty::Date,
+			) {
+				return Ok(ok);
+			}
+			if let Ok(ok) = Result::map(
+				<Text as Deserialize>::deserialize(deserializer),
+				ApplicationDeadlineProperty::Text,
 			) {
 				return Ok(ok);
 			}

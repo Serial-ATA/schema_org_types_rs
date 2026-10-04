@@ -7,8 +7,18 @@ pub struct MerchantReturnPolicySeasonalOverride {
 	pub r#end_date: Vec<EndDateProperty>,
 	/// <https://schema.org/merchantReturnDays>
 	pub r#merchant_return_days: Vec<MerchantReturnDaysProperty>,
+	/// <https://schema.org/refundType>
+	pub r#refund_type: Vec<RefundTypeProperty>,
+	/// <https://schema.org/restockingFee>
+	pub r#restocking_fee: Vec<RestockingFeeProperty>,
+	/// <https://schema.org/returnFees>
+	pub r#return_fees: Vec<ReturnFeesProperty>,
+	/// <https://schema.org/returnMethod>
+	pub r#return_method: Vec<ReturnMethodProperty>,
 	/// <https://schema.org/returnPolicyCategory>
 	pub r#return_policy_category: Vec<ReturnPolicyCategoryProperty>,
+	/// <https://schema.org/returnShippingFeesAmount>
+	pub r#return_shipping_fees_amount: Vec<ReturnShippingFeesAmountProperty>,
 	/// <https://schema.org/startDate>
 	pub r#start_date: Vec<StartDateProperty>,
 	/// <https://schema.org/additionalType>
@@ -27,6 +37,8 @@ pub struct MerchantReturnPolicySeasonalOverride {
 	pub r#main_entity_of_page: Vec<MainEntityOfPageProperty>,
 	/// <https://schema.org/name>
 	pub r#name: Vec<NameProperty>,
+	/// <https://schema.org/owner>
+	pub r#owner: Vec<OwnerProperty>,
 	/// <https://schema.org/potentialAction>
 	pub r#potential_action: Vec<PotentialActionProperty>,
 	/// <https://schema.org/sameAs>
@@ -46,10 +58,30 @@ pub trait MerchantReturnPolicySeasonalOverrideTrait {
 	fn get_merchant_return_days(&self) -> &[MerchantReturnDaysProperty];
 	/// Take <https://schema.org/merchantReturnDays> from [`Self`] as owned vector.
 	fn take_merchant_return_days(&mut self) -> Vec<MerchantReturnDaysProperty>;
+	/// Get <https://schema.org/refundType> from [`Self`] as borrowed slice.
+	fn get_refund_type(&self) -> &[RefundTypeProperty];
+	/// Take <https://schema.org/refundType> from [`Self`] as owned vector.
+	fn take_refund_type(&mut self) -> Vec<RefundTypeProperty>;
+	/// Get <https://schema.org/restockingFee> from [`Self`] as borrowed slice.
+	fn get_restocking_fee(&self) -> &[RestockingFeeProperty];
+	/// Take <https://schema.org/restockingFee> from [`Self`] as owned vector.
+	fn take_restocking_fee(&mut self) -> Vec<RestockingFeeProperty>;
+	/// Get <https://schema.org/returnFees> from [`Self`] as borrowed slice.
+	fn get_return_fees(&self) -> &[ReturnFeesProperty];
+	/// Take <https://schema.org/returnFees> from [`Self`] as owned vector.
+	fn take_return_fees(&mut self) -> Vec<ReturnFeesProperty>;
+	/// Get <https://schema.org/returnMethod> from [`Self`] as borrowed slice.
+	fn get_return_method(&self) -> &[ReturnMethodProperty];
+	/// Take <https://schema.org/returnMethod> from [`Self`] as owned vector.
+	fn take_return_method(&mut self) -> Vec<ReturnMethodProperty>;
 	/// Get <https://schema.org/returnPolicyCategory> from [`Self`] as borrowed slice.
 	fn get_return_policy_category(&self) -> &[ReturnPolicyCategoryProperty];
 	/// Take <https://schema.org/returnPolicyCategory> from [`Self`] as owned vector.
 	fn take_return_policy_category(&mut self) -> Vec<ReturnPolicyCategoryProperty>;
+	/// Get <https://schema.org/returnShippingFeesAmount> from [`Self`] as borrowed slice.
+	fn get_return_shipping_fees_amount(&self) -> &[ReturnShippingFeesAmountProperty];
+	/// Take <https://schema.org/returnShippingFeesAmount> from [`Self`] as owned vector.
+	fn take_return_shipping_fees_amount(&mut self) -> Vec<ReturnShippingFeesAmountProperty>;
 	/// Get <https://schema.org/startDate> from [`Self`] as borrowed slice.
 	fn get_start_date(&self) -> &[StartDateProperty];
 	/// Take <https://schema.org/startDate> from [`Self`] as owned vector.
@@ -68,11 +100,41 @@ impl MerchantReturnPolicySeasonalOverrideTrait for MerchantReturnPolicySeasonalO
 	fn take_merchant_return_days(&mut self) -> Vec<MerchantReturnDaysProperty> {
 		std::mem::take(&mut self.r#merchant_return_days)
 	}
+	fn get_refund_type(&self) -> &[RefundTypeProperty] {
+		self.r#refund_type.as_slice()
+	}
+	fn take_refund_type(&mut self) -> Vec<RefundTypeProperty> {
+		std::mem::take(&mut self.r#refund_type)
+	}
+	fn get_restocking_fee(&self) -> &[RestockingFeeProperty] {
+		self.r#restocking_fee.as_slice()
+	}
+	fn take_restocking_fee(&mut self) -> Vec<RestockingFeeProperty> {
+		std::mem::take(&mut self.r#restocking_fee)
+	}
+	fn get_return_fees(&self) -> &[ReturnFeesProperty] {
+		self.r#return_fees.as_slice()
+	}
+	fn take_return_fees(&mut self) -> Vec<ReturnFeesProperty> {
+		std::mem::take(&mut self.r#return_fees)
+	}
+	fn get_return_method(&self) -> &[ReturnMethodProperty] {
+		self.r#return_method.as_slice()
+	}
+	fn take_return_method(&mut self) -> Vec<ReturnMethodProperty> {
+		std::mem::take(&mut self.r#return_method)
+	}
 	fn get_return_policy_category(&self) -> &[ReturnPolicyCategoryProperty] {
 		self.r#return_policy_category.as_slice()
 	}
 	fn take_return_policy_category(&mut self) -> Vec<ReturnPolicyCategoryProperty> {
 		std::mem::take(&mut self.r#return_policy_category)
+	}
+	fn get_return_shipping_fees_amount(&self) -> &[ReturnShippingFeesAmountProperty] {
+		self.r#return_shipping_fees_amount.as_slice()
+	}
+	fn take_return_shipping_fees_amount(&mut self) -> Vec<ReturnShippingFeesAmountProperty> {
+		std::mem::take(&mut self.r#return_shipping_fees_amount)
 	}
 	fn get_start_date(&self) -> &[StartDateProperty] {
 		self.r#start_date.as_slice()
@@ -130,6 +192,12 @@ impl ThingTrait for MerchantReturnPolicySeasonalOverride {
 	fn take_name(&mut self) -> Vec<NameProperty> {
 		std::mem::take(&mut self.r#name)
 	}
+	fn get_owner(&self) -> &[OwnerProperty] {
+		self.r#owner.as_slice()
+	}
+	fn take_owner(&mut self) -> Vec<OwnerProperty> {
+		std::mem::take(&mut self.r#owner)
+	}
 	fn get_potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
 	}
@@ -172,7 +240,12 @@ mod serde {
 			let len: usize = [
 				!Vec::is_empty(&self.r#end_date) as usize,
 				!Vec::is_empty(&self.r#merchant_return_days) as usize,
+				!Vec::is_empty(&self.r#refund_type) as usize,
+				!Vec::is_empty(&self.r#restocking_fee) as usize,
+				!Vec::is_empty(&self.r#return_fees) as usize,
+				!Vec::is_empty(&self.r#return_method) as usize,
 				!Vec::is_empty(&self.r#return_policy_category) as usize,
+				!Vec::is_empty(&self.r#return_shipping_fees_amount) as usize,
 				!Vec::is_empty(&self.r#start_date) as usize,
 				!Vec::is_empty(&self.r#additional_type) as usize,
 				!Vec::is_empty(&self.r#alternate_name) as usize,
@@ -182,6 +255,7 @@ mod serde {
 				!Vec::is_empty(&self.r#image) as usize,
 				!Vec::is_empty(&self.r#main_entity_of_page) as usize,
 				!Vec::is_empty(&self.r#name) as usize,
+				!Vec::is_empty(&self.r#owner) as usize,
 				!Vec::is_empty(&self.r#potential_action) as usize,
 				!Vec::is_empty(&self.r#same_as) as usize,
 				!Vec::is_empty(&self.r#subject_of) as usize,
@@ -230,6 +304,78 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("merchantReturnDays")?;
 			}
+			if !Vec::is_empty(&self.r#refund_type) {
+				serialize_struct.serialize_field("refundType", {
+					struct SerializeWith<'a>(&'a Vec<RefundTypeProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#refund_type)
+				})?;
+			} else {
+				serialize_struct.skip_field("refundType")?;
+			}
+			if !Vec::is_empty(&self.r#restocking_fee) {
+				serialize_struct.serialize_field("restockingFee", {
+					struct SerializeWith<'a>(&'a Vec<RestockingFeeProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#restocking_fee)
+				})?;
+			} else {
+				serialize_struct.skip_field("restockingFee")?;
+			}
+			if !Vec::is_empty(&self.r#return_fees) {
+				serialize_struct.serialize_field("returnFees", {
+					struct SerializeWith<'a>(&'a Vec<ReturnFeesProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#return_fees)
+				})?;
+			} else {
+				serialize_struct.skip_field("returnFees")?;
+			}
+			if !Vec::is_empty(&self.r#return_method) {
+				serialize_struct.serialize_field("returnMethod", {
+					struct SerializeWith<'a>(&'a Vec<ReturnMethodProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#return_method)
+				})?;
+			} else {
+				serialize_struct.skip_field("returnMethod")?;
+			}
 			if !Vec::is_empty(&self.r#return_policy_category) {
 				serialize_struct.serialize_field("returnPolicyCategory", {
 					struct SerializeWith<'a>(&'a Vec<ReturnPolicyCategoryProperty>);
@@ -247,6 +393,24 @@ mod serde {
 				})?;
 			} else {
 				serialize_struct.skip_field("returnPolicyCategory")?;
+			}
+			if !Vec::is_empty(&self.r#return_shipping_fees_amount) {
+				serialize_struct.serialize_field("returnShippingFeesAmount", {
+					struct SerializeWith<'a>(&'a Vec<ReturnShippingFeesAmountProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#return_shipping_fees_amount)
+				})?;
+			} else {
+				serialize_struct.skip_field("returnShippingFeesAmount")?;
 			}
 			if !Vec::is_empty(&self.r#start_date) {
 				serialize_struct.serialize_field("startDate", {
@@ -410,6 +574,24 @@ mod serde {
 			} else {
 				serialize_struct.skip_field("name")?;
 			}
+			if !Vec::is_empty(&self.r#owner) {
+				serialize_struct.serialize_field("owner", {
+					struct SerializeWith<'a>(&'a Vec<OwnerProperty>);
+					impl<'a> Serialize for SerializeWith<'a> {
+						fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+						where
+							S: Serializer,
+						{
+							serde_with::As::<serde_with::OneOrMany<serde_with::Same>>::serialize(
+								self.0, serializer,
+							)
+						}
+					}
+					&SerializeWith(&self.r#owner)
+				})?;
+			} else {
+				serialize_struct.skip_field("owner")?;
+			}
 			if !Vec::is_empty(&self.r#potential_action) {
 				serialize_struct.serialize_field("potentialAction", {
 					struct SerializeWith<'a>(&'a Vec<PotentialActionProperty>);
@@ -493,7 +675,12 @@ mod serde {
 			enum Field {
 				EndDate,
 				MerchantReturnDays,
+				RefundType,
+				RestockingFee,
+				ReturnFees,
+				ReturnMethod,
 				ReturnPolicyCategory,
+				ReturnShippingFeesAmount,
 				StartDate,
 				AdditionalType,
 				AlternateName,
@@ -503,6 +690,7 @@ mod serde {
 				Image,
 				MainEntityOfPage,
 				Name,
+				Owner,
 				PotentialAction,
 				SameAs,
 				SubjectOf,
@@ -522,7 +710,12 @@ mod serde {
 					match value {
 						"endDate" => Ok(Field::EndDate),
 						"merchantReturnDays" => Ok(Field::MerchantReturnDays),
+						"refundType" => Ok(Field::RefundType),
+						"restockingFee" => Ok(Field::RestockingFee),
+						"returnFees" => Ok(Field::ReturnFees),
+						"returnMethod" => Ok(Field::ReturnMethod),
 						"returnPolicyCategory" => Ok(Field::ReturnPolicyCategory),
+						"returnShippingFeesAmount" => Ok(Field::ReturnShippingFeesAmount),
 						"startDate" => Ok(Field::StartDate),
 						"additionalType" => Ok(Field::AdditionalType),
 						"alternateName" => Ok(Field::AlternateName),
@@ -532,6 +725,7 @@ mod serde {
 						"image" => Ok(Field::Image),
 						"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
 						"name" => Ok(Field::Name),
+						"owner" => Ok(Field::Owner),
 						"potentialAction" => Ok(Field::PotentialAction),
 						"sameAs" => Ok(Field::SameAs),
 						"subjectOf" => Ok(Field::SubjectOf),
@@ -547,7 +741,12 @@ mod serde {
 					match value {
 						b"endDate" => Ok(Field::EndDate),
 						b"merchantReturnDays" => Ok(Field::MerchantReturnDays),
+						b"refundType" => Ok(Field::RefundType),
+						b"restockingFee" => Ok(Field::RestockingFee),
+						b"returnFees" => Ok(Field::ReturnFees),
+						b"returnMethod" => Ok(Field::ReturnMethod),
 						b"returnPolicyCategory" => Ok(Field::ReturnPolicyCategory),
+						b"returnShippingFeesAmount" => Ok(Field::ReturnShippingFeesAmount),
 						b"startDate" => Ok(Field::StartDate),
 						b"additionalType" => Ok(Field::AdditionalType),
 						b"alternateName" => Ok(Field::AlternateName),
@@ -557,6 +756,7 @@ mod serde {
 						b"image" => Ok(Field::Image),
 						b"mainEntityOfPage" => Ok(Field::MainEntityOfPage),
 						b"name" => Ok(Field::Name),
+						b"owner" => Ok(Field::Owner),
 						b"potentialAction" => Ok(Field::PotentialAction),
 						b"sameAs" => Ok(Field::SameAs),
 						b"subjectOf" => Ok(Field::SubjectOf),
@@ -589,7 +789,12 @@ mod serde {
 				{
 					let mut r#end_date_property = None;
 					let mut r#merchant_return_days_property = None;
+					let mut r#refund_type_property = None;
+					let mut r#restocking_fee_property = None;
+					let mut r#return_fees_property = None;
+					let mut r#return_method_property = None;
 					let mut r#return_policy_category_property = None;
+					let mut r#return_shipping_fees_amount_property = None;
 					let mut r#start_date_property = None;
 					let mut r#additional_type_property = None;
 					let mut r#alternate_name_property = None;
@@ -599,6 +804,7 @@ mod serde {
 					let mut r#image_property = None;
 					let mut r#main_entity_of_page_property = None;
 					let mut r#name_property = None;
+					let mut r#owner_property = None;
 					let mut r#potential_action_property = None;
 					let mut r#same_as_property = None;
 					let mut r#subject_of_property = None;
@@ -661,6 +867,118 @@ mod serde {
 									}
 								});
 							}
+							Field::RefundType => {
+								if r#refund_type_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"refundType",
+									));
+								}
+								r#refund_type_property = Some({
+									struct DeserializeWith(Vec<RefundTypeProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::RestockingFee => {
+								if r#restocking_fee_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"restockingFee",
+									));
+								}
+								r#restocking_fee_property = Some({
+									struct DeserializeWith(Vec<RestockingFeeProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::ReturnFees => {
+								if r#return_fees_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"returnFees",
+									));
+								}
+								r#return_fees_property = Some({
+									struct DeserializeWith(Vec<ReturnFeesProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::ReturnMethod => {
+								if r#return_method_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"returnMethod",
+									));
+								}
+								r#return_method_property = Some({
+									struct DeserializeWith(Vec<ReturnMethodProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::ReturnPolicyCategory => {
 								if r#return_policy_category_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -669,6 +987,34 @@ mod serde {
 								}
 								r#return_policy_category_property = Some({
 									struct DeserializeWith(Vec<ReturnPolicyCategoryProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
+							Field::ReturnShippingFeesAmount => {
+								if r#return_shipping_fees_amount_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field(
+										"returnShippingFeesAmount",
+									));
+								}
+								r#return_shipping_fees_amount_property = Some({
+									struct DeserializeWith(Vec<ReturnShippingFeesAmountProperty>);
 									impl<'de> Deserialize<'de> for DeserializeWith {
 										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
 										where
@@ -937,6 +1283,32 @@ mod serde {
 									}
 								});
 							}
+							Field::Owner => {
+								if r#owner_property.is_some() {
+									return Err(<A::Error as de::Error>::duplicate_field("owner"));
+								}
+								r#owner_property = Some({
+									struct DeserializeWith(Vec<OwnerProperty>);
+									impl<'de> Deserialize<'de> for DeserializeWith {
+										fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+										where
+											D: Deserializer<'de>,
+										{
+											Ok(DeserializeWith(serde_with::As::<
+												serde_with::OneOrMany<serde_with::Same>,
+											>::deserialize(
+												deserializer
+											)?))
+										}
+									}
+									match map.next_value::<DeserializeWith>() {
+										Ok(deserialize_with) => deserialize_with.0,
+										Err(err) => {
+											return Err(err);
+										}
+									}
+								});
+							}
 							Field::PotentialAction => {
 								if r#potential_action_property.is_some() {
 									return Err(<A::Error as de::Error>::duplicate_field(
@@ -1053,7 +1425,13 @@ mod serde {
 					Ok(MerchantReturnPolicySeasonalOverride {
 						r#end_date: r#end_date_property.unwrap_or_default(),
 						r#merchant_return_days: r#merchant_return_days_property.unwrap_or_default(),
+						r#refund_type: r#refund_type_property.unwrap_or_default(),
+						r#restocking_fee: r#restocking_fee_property.unwrap_or_default(),
+						r#return_fees: r#return_fees_property.unwrap_or_default(),
+						r#return_method: r#return_method_property.unwrap_or_default(),
 						r#return_policy_category: r#return_policy_category_property
+							.unwrap_or_default(),
+						r#return_shipping_fees_amount: r#return_shipping_fees_amount_property
 							.unwrap_or_default(),
 						r#start_date: r#start_date_property.unwrap_or_default(),
 						r#additional_type: r#additional_type_property.unwrap_or_default(),
@@ -1065,6 +1443,7 @@ mod serde {
 						r#image: r#image_property.unwrap_or_default(),
 						r#main_entity_of_page: r#main_entity_of_page_property.unwrap_or_default(),
 						r#name: r#name_property.unwrap_or_default(),
+						r#owner: r#owner_property.unwrap_or_default(),
 						r#potential_action: r#potential_action_property.unwrap_or_default(),
 						r#same_as: r#same_as_property.unwrap_or_default(),
 						r#subject_of: r#subject_of_property.unwrap_or_default(),
@@ -1075,7 +1454,12 @@ mod serde {
 			const FIELDS: &[&str] = &[
 				"endDate",
 				"merchantReturnDays",
+				"refundType",
+				"restockingFee",
+				"returnFees",
+				"returnMethod",
 				"returnPolicyCategory",
+				"returnShippingFeesAmount",
 				"startDate",
 				"additionalType",
 				"alternateName",
@@ -1085,6 +1469,7 @@ mod serde {
 				"image",
 				"mainEntityOfPage",
 				"name",
+				"owner",
 				"potentialAction",
 				"sameAs",
 				"subjectOf",

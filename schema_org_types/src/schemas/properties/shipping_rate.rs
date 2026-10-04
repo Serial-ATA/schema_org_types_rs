@@ -5,6 +5,8 @@ use super::*;
 pub enum ShippingRateProperty {
 	/// <https://schema.org/MonetaryAmount>
 	MonetaryAmount(MonetaryAmount),
+	/// <https://schema.org/ShippingRateSettings>
+	ShippingRateSettings(ShippingRateSettings),
 	#[cfg(any(all(feature = "fallible", feature = "serde"), doc))]
 	SerdeFail(crate::fallible::FailValue),
 }
@@ -24,6 +26,9 @@ mod serde {
 		{
 			match *self {
 				ShippingRateProperty::MonetaryAmount(ref inner) => inner.serialize(serializer),
+				ShippingRateProperty::ShippingRateSettings(ref inner) => {
+					inner.serialize(serializer)
+				}
 				#[cfg(all(feature = "fallible", feature = "serde"))]
 				ShippingRateProperty::SerdeFail(ref inner) => inner.serialize(serializer),
 			}
@@ -41,6 +46,12 @@ mod serde {
 			if let Ok(ok) = Result::map(
 				<MonetaryAmount as Deserialize>::deserialize(deserializer),
 				ShippingRateProperty::MonetaryAmount,
+			) {
+				return Ok(ok);
+			}
+			if let Ok(ok) = Result::map(
+				<ShippingRateSettings as Deserialize>::deserialize(deserializer),
+				ShippingRateProperty::ShippingRateSettings,
 			) {
 				return Ok(ok);
 			}
