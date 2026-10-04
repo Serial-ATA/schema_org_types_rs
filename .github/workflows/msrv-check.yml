@@ -20,7 +20,7 @@ jobs:
         id: toolchain
         with:
           # keep synchronized with Cargo.toml
-          toolchain: 1.66
+          toolchain: 1.89
       - run: cargo update --dry-run
       - uses: actions/cache@v3
         with:

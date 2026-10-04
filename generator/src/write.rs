@@ -8,14 +8,14 @@ use std::{
 use derivative::Derivative;
 use indicatif::{MultiProgress, ProgressBar};
 use oxigraph::store::Store;
-use quote::{__private::TokenStream, quote, ToTokens};
+use quote::{__private::TokenStream, ToTokens, quote};
 use rayon::prelude::*;
 
 use crate::{
 	schema::{
-		class::Class, data_type::DataType, enumeration::Enumeration, property::Property, Schema,
+		Schema, class::Class, data_type::DataType, enumeration::Enumeration, property::Property,
 	},
-	sparql::{node_type::NodeType, SchemaQueries, SchemaQuerySolution},
+	sparql::{SchemaQueries, SchemaQuerySolution, node_type::NodeType},
 };
 
 #[derive(Debug, Clone, Derivative)]
@@ -119,8 +119,17 @@ impl<T: Schema + ToTokens> WriteModules for T {
 	}
 }
 
+fn schemas_dir() -> PathBuf {
+	Path::new(env!("CARGO_MANIFEST_DIR"))
+		.parent()
+		.expect("should exist")
+		.join("schema_org_types")
+		.join("src")
+		.join("schemas")
+}
+
 pub fn write(store: &Store, multi_progress: &MultiProgress) {
-	let schemas_dir = PathBuf::from("../src/schemas");
+	let schemas_dir = schemas_dir();
 	std::fs::remove_dir_all(&schemas_dir).unwrap();
 	std::fs::create_dir(&schemas_dir).unwrap();
 

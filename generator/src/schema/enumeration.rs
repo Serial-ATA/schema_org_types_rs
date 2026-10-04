@@ -7,12 +7,12 @@ use convert_case::{Case, Casing};
 use derivative::Derivative;
 use enumeration_variant::EnumerationVariant;
 use oxigraph::store::Store;
-use quote::{__private::TokenStream, quote, ToTokens, TokenStreamExt};
+use quote::{__private::TokenStream, ToTokens, TokenStreamExt, quote};
 
 use crate::{
 	deprecated_attribute::DeprecatedAttribute,
 	doc_lines::DocLines,
-	schema::{enumeration::serde::serde_mod, map_schema_name, ReferencedSchema, Schema},
+	schema::{ReferencedSchema, Schema, enumeration::serde::serde_mod, map_schema_name},
 	sparql::{SchemaQueries, SchemaQuerySolution},
 };
 

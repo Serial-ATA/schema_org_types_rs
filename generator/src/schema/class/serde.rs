@@ -1,10 +1,10 @@
 use std::str::FromStr;
 
 use convert_case::{Case, Casing};
-use quote::{__private::TokenStream, quote, ToTokens};
+use quote::{__private::TokenStream, ToTokens, quote};
 
 use crate::{
-	schema::class::{get_property_name, get_property_type, Class},
+	schema::class::{Class, get_property_name, get_property_type},
 	serde_attributes::serde_as,
 };
 

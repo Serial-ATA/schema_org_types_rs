@@ -2,7 +2,7 @@ use std::str::FromStr;
 
 use convert_case::{Case, Casing};
 use derivative::Derivative;
-use quote::{quote, ToTokens, TokenStreamExt, __private::TokenStream};
+use quote::{__private::TokenStream, ToTokens, TokenStreamExt, quote};
 
 use crate::{
 	deprecated_attribute::DeprecatedAttribute, doc_lines::DocLines, schema::ReferencedSchema,

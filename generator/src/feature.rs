@@ -1,4 +1,4 @@
-use quote::{__private::TokenStream, quote, ToTokens, TokenStreamExt};
+use quote::{__private::TokenStream, ToTokens, TokenStreamExt, quote};
 
 #[derive(Debug, Clone)]
 pub enum Feature {

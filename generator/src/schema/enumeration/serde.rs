@@ -1,7 +1,7 @@
 use std::str::FromStr;
 
 use convert_case::{Case, Casing};
-use quote::{__private::TokenStream, quote, ToTokens};
+use quote::{__private::TokenStream, ToTokens, quote};
 
 use crate::schema::enumeration::Enumeration;
 

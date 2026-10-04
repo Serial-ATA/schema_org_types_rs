@@ -1,6 +1,6 @@
 use std::io::Cursor;
 
-use oxigraph::{model::GraphNameRef, store::Store};
+use oxigraph::store::Store;
 
 use crate::read::patches::insert_quads;
 
@@ -16,12 +16,7 @@ pub async fn read() -> Store {
 		.unwrap();
 	store
 		.bulk_loader()
-		.load_graph(
-			Cursor::new(rdf.as_bytes()),
-			oxigraph::io::GraphFormat::RdfXml,
-			GraphNameRef::DefaultGraph,
-			None,
-		)
+		.load_from_reader(oxigraph::io::RdfFormat::RdfXml, Cursor::new(rdf.as_bytes()))
 		.unwrap();
 	for insert_quad in insert_quads() {
 		store.insert(insert_quad).unwrap();

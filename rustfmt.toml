@@ -1,4 +1,4 @@
-version = "Two"
+edition="2024"
 hard_tabs = true
 newline_style = "Unix"
 imports_granularity = "Crate"

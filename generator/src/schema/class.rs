@@ -5,13 +5,13 @@ use std::{cell::RefCell, collections::HashSet, rc::Rc, str::FromStr};
 use convert_case::{Case, Casing};
 use derivative::Derivative;
 use oxigraph::store::Store;
-use quote::{__private::TokenStream, quote, ToTokens, TokenStreamExt};
+use quote::{__private::TokenStream, ToTokens, TokenStreamExt, quote};
 
 use crate::{
 	deprecated_attribute::DeprecatedAttribute,
-	doc_lines::{strings_as_doc_lines, DocLines},
-	schema::{class::serde::serde_mod, map_schema_name, ReferencedSchema, Schema},
-	sparql::{node_type::NodeType, SchemaQueries, SchemaQuerySolution},
+	doc_lines::{DocLines, strings_as_doc_lines},
+	schema::{ReferencedSchema, Schema, class::serde::serde_mod, map_schema_name},
+	sparql::{SchemaQueries, SchemaQuerySolution, node_type::NodeType},
 };
 
 /// A schema.org class: <https://schema.org/Class>

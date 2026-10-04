@@ -5,15 +5,15 @@ use std::{cmp::Ordering, str::FromStr};
 use convert_case::{Case, Casing};
 use derivative::Derivative;
 use oxigraph::store::Store;
-use quote::{__private::TokenStream, quote, ToTokens, TokenStreamExt};
+use quote::{__private::TokenStream, ToTokens, TokenStreamExt, quote};
 
 use crate::{
 	deprecated_attribute::DeprecatedAttribute,
-	doc_lines::{strings_as_doc_lines, DocLines},
+	doc_lines::{DocLines, strings_as_doc_lines},
 	feature::Feature,
 	schema::{
-		data_type::rust_type::RustType, map_schema_name, property::serde::serde_mod,
-		ReferencedSchema, Schema,
+		ReferencedSchema, Schema, data_type::rust_type::RustType, map_schema_name,
+		property::serde::serde_mod,
 	},
 	sparql::{SchemaQueries, SchemaQuerySolution},
 };

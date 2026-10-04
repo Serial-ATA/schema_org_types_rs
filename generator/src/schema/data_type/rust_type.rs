@@ -1,6 +1,6 @@
 use std::cmp::Ordering;
 
-use quote::{__private::TokenStream, quote, ToTokens, TokenStreamExt};
+use quote::{__private::TokenStream, ToTokens, TokenStreamExt, quote};
 
 /// Represents the underlying rust types used in Schema.org types.
 #[derive(Debug, Clone, PartialEq, Eq)]
