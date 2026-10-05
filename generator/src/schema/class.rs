@@ -190,22 +190,10 @@ impl ToTokens for Class {
 		let trait_name = get_trait_name(&self.name);
 
 		fn get_get_function_signature(property: &ReferencedSchema) -> TokenStream {
-			let property_name = get_property_name_unescaped(property);
-			let get_function_name =
-				TokenStream::from_str(&format!("get_{}", property_name)).unwrap();
+			let property_name = get_property_name(property);
 			let property_type_single = get_property_type_single(property);
 			quote!(
-				fn #get_function_name(&self) -> &[#property_type_single]
-			)
-		}
-
-		fn get_take_function_signature(property: &ReferencedSchema) -> TokenStream {
-			let property_name = get_property_name_unescaped(property);
-			let take_function_name =
-				TokenStream::from_str(&format!("take_{}", property_name)).unwrap();
-			let property_type = get_property_type(property);
-			quote!(
-				fn #take_function_name(&mut self) -> #property_type
+				fn #property_name(&self) -> &[#property_type_single]
 			)
 		}
 
@@ -215,33 +203,21 @@ impl ToTokens for Class {
 				referenced_schema.iri
 			)]);
 			let get_function_signature = get_get_function_signature(referenced_schema);
-			let take_function_doc_lines = strings_as_doc_lines(&[format!(
-				"Take <{}> from [`Self`] as owned vector.",
-				referenced_schema.iri
-			)]);
-			let take_function_signature = get_take_function_signature(referenced_schema);
 			let deprecated_attribute = referenced_schema.deprecated_attribute();
 			quote!(
 				#get_function_doc_lines
 				#deprecated_attribute
 				#get_function_signature;
-				#take_function_doc_lines
-				#deprecated_attribute
-				#take_function_signature;
 			)
 		});
 
 		fn get_trait_function_impls(properties: &[ReferencedSchema]) -> TokenStream {
 			let trait_impls = properties.iter().map(|referenced_schema| {
 				let get_function_signature = get_get_function_signature(referenced_schema);
-				let take_function_signature = get_take_function_signature(referenced_schema);
 				let property_name = get_property_name(referenced_schema);
 				quote!(
 					#get_function_signature {
 						self.#property_name.as_slice()
-					}
-					#take_function_signature {
-						std::mem::take(&mut self.#property_name)
 					}
 				)
 			});

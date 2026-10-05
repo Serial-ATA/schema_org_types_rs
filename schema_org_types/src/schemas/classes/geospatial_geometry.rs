@@ -262,185 +262,96 @@ pub struct GeospatialGeometry {
 /// This trait is for properties from <https://schema.org/GeospatialGeometry>.
 pub trait GeospatialGeometryTrait {
 	/// Get <https://schema.org/geoContains> from [`Self`] as borrowed slice.
-	fn get_geo_contains(&self) -> &[GeoContainsProperty];
-	/// Take <https://schema.org/geoContains> from [`Self`] as owned vector.
-	fn take_geo_contains(&mut self) -> Vec<GeoContainsProperty>;
+	fn r#geo_contains(&self) -> &[GeoContainsProperty];
 	/// Get <https://schema.org/geoCoveredBy> from [`Self`] as borrowed slice.
-	fn get_geo_covered_by(&self) -> &[GeoCoveredByProperty];
-	/// Take <https://schema.org/geoCoveredBy> from [`Self`] as owned vector.
-	fn take_geo_covered_by(&mut self) -> Vec<GeoCoveredByProperty>;
+	fn r#geo_covered_by(&self) -> &[GeoCoveredByProperty];
 	/// Get <https://schema.org/geoCovers> from [`Self`] as borrowed slice.
-	fn get_geo_covers(&self) -> &[GeoCoversProperty];
-	/// Take <https://schema.org/geoCovers> from [`Self`] as owned vector.
-	fn take_geo_covers(&mut self) -> Vec<GeoCoversProperty>;
+	fn r#geo_covers(&self) -> &[GeoCoversProperty];
 	/// Get <https://schema.org/geoCrosses> from [`Self`] as borrowed slice.
-	fn get_geo_crosses(&self) -> &[GeoCrossesProperty];
-	/// Take <https://schema.org/geoCrosses> from [`Self`] as owned vector.
-	fn take_geo_crosses(&mut self) -> Vec<GeoCrossesProperty>;
+	fn r#geo_crosses(&self) -> &[GeoCrossesProperty];
 	/// Get <https://schema.org/geoDisjoint> from [`Self`] as borrowed slice.
-	fn get_geo_disjoint(&self) -> &[GeoDisjointProperty];
-	/// Take <https://schema.org/geoDisjoint> from [`Self`] as owned vector.
-	fn take_geo_disjoint(&mut self) -> Vec<GeoDisjointProperty>;
+	fn r#geo_disjoint(&self) -> &[GeoDisjointProperty];
 	/// Get <https://schema.org/geoEquals> from [`Self`] as borrowed slice.
-	fn get_geo_equals(&self) -> &[GeoEqualsProperty];
-	/// Take <https://schema.org/geoEquals> from [`Self`] as owned vector.
-	fn take_geo_equals(&mut self) -> Vec<GeoEqualsProperty>;
+	fn r#geo_equals(&self) -> &[GeoEqualsProperty];
 	/// Get <https://schema.org/geoIntersects> from [`Self`] as borrowed slice.
-	fn get_geo_intersects(&self) -> &[GeoIntersectsProperty];
-	/// Take <https://schema.org/geoIntersects> from [`Self`] as owned vector.
-	fn take_geo_intersects(&mut self) -> Vec<GeoIntersectsProperty>;
+	fn r#geo_intersects(&self) -> &[GeoIntersectsProperty];
 	/// Get <https://schema.org/geoOverlaps> from [`Self`] as borrowed slice.
-	fn get_geo_overlaps(&self) -> &[GeoOverlapsProperty];
-	/// Take <https://schema.org/geoOverlaps> from [`Self`] as owned vector.
-	fn take_geo_overlaps(&mut self) -> Vec<GeoOverlapsProperty>;
+	fn r#geo_overlaps(&self) -> &[GeoOverlapsProperty];
 	/// Get <https://schema.org/geoTouches> from [`Self`] as borrowed slice.
-	fn get_geo_touches(&self) -> &[GeoTouchesProperty];
-	/// Take <https://schema.org/geoTouches> from [`Self`] as owned vector.
-	fn take_geo_touches(&mut self) -> Vec<GeoTouchesProperty>;
+	fn r#geo_touches(&self) -> &[GeoTouchesProperty];
 	/// Get <https://schema.org/geoWithin> from [`Self`] as borrowed slice.
-	fn get_geo_within(&self) -> &[GeoWithinProperty];
-	/// Take <https://schema.org/geoWithin> from [`Self`] as owned vector.
-	fn take_geo_within(&mut self) -> Vec<GeoWithinProperty>;
+	fn r#geo_within(&self) -> &[GeoWithinProperty];
 }
 impl GeospatialGeometryTrait for GeospatialGeometry {
-	fn get_geo_contains(&self) -> &[GeoContainsProperty] {
+	fn r#geo_contains(&self) -> &[GeoContainsProperty] {
 		self.r#geo_contains.as_slice()
 	}
-	fn take_geo_contains(&mut self) -> Vec<GeoContainsProperty> {
-		std::mem::take(&mut self.r#geo_contains)
-	}
-	fn get_geo_covered_by(&self) -> &[GeoCoveredByProperty] {
+	fn r#geo_covered_by(&self) -> &[GeoCoveredByProperty] {
 		self.r#geo_covered_by.as_slice()
 	}
-	fn take_geo_covered_by(&mut self) -> Vec<GeoCoveredByProperty> {
-		std::mem::take(&mut self.r#geo_covered_by)
-	}
-	fn get_geo_covers(&self) -> &[GeoCoversProperty] {
+	fn r#geo_covers(&self) -> &[GeoCoversProperty] {
 		self.r#geo_covers.as_slice()
 	}
-	fn take_geo_covers(&mut self) -> Vec<GeoCoversProperty> {
-		std::mem::take(&mut self.r#geo_covers)
-	}
-	fn get_geo_crosses(&self) -> &[GeoCrossesProperty] {
+	fn r#geo_crosses(&self) -> &[GeoCrossesProperty] {
 		self.r#geo_crosses.as_slice()
 	}
-	fn take_geo_crosses(&mut self) -> Vec<GeoCrossesProperty> {
-		std::mem::take(&mut self.r#geo_crosses)
-	}
-	fn get_geo_disjoint(&self) -> &[GeoDisjointProperty] {
+	fn r#geo_disjoint(&self) -> &[GeoDisjointProperty] {
 		self.r#geo_disjoint.as_slice()
 	}
-	fn take_geo_disjoint(&mut self) -> Vec<GeoDisjointProperty> {
-		std::mem::take(&mut self.r#geo_disjoint)
-	}
-	fn get_geo_equals(&self) -> &[GeoEqualsProperty] {
+	fn r#geo_equals(&self) -> &[GeoEqualsProperty] {
 		self.r#geo_equals.as_slice()
 	}
-	fn take_geo_equals(&mut self) -> Vec<GeoEqualsProperty> {
-		std::mem::take(&mut self.r#geo_equals)
-	}
-	fn get_geo_intersects(&self) -> &[GeoIntersectsProperty] {
+	fn r#geo_intersects(&self) -> &[GeoIntersectsProperty] {
 		self.r#geo_intersects.as_slice()
 	}
-	fn take_geo_intersects(&mut self) -> Vec<GeoIntersectsProperty> {
-		std::mem::take(&mut self.r#geo_intersects)
-	}
-	fn get_geo_overlaps(&self) -> &[GeoOverlapsProperty] {
+	fn r#geo_overlaps(&self) -> &[GeoOverlapsProperty] {
 		self.r#geo_overlaps.as_slice()
 	}
-	fn take_geo_overlaps(&mut self) -> Vec<GeoOverlapsProperty> {
-		std::mem::take(&mut self.r#geo_overlaps)
-	}
-	fn get_geo_touches(&self) -> &[GeoTouchesProperty] {
+	fn r#geo_touches(&self) -> &[GeoTouchesProperty] {
 		self.r#geo_touches.as_slice()
 	}
-	fn take_geo_touches(&mut self) -> Vec<GeoTouchesProperty> {
-		std::mem::take(&mut self.r#geo_touches)
-	}
-	fn get_geo_within(&self) -> &[GeoWithinProperty] {
+	fn r#geo_within(&self) -> &[GeoWithinProperty] {
 		self.r#geo_within.as_slice()
-	}
-	fn take_geo_within(&mut self) -> Vec<GeoWithinProperty> {
-		std::mem::take(&mut self.r#geo_within)
 	}
 }
 impl ThingTrait for GeospatialGeometry {
-	fn get_additional_type(&self) -> &[AdditionalTypeProperty] {
+	fn r#additional_type(&self) -> &[AdditionalTypeProperty] {
 		self.r#additional_type.as_slice()
 	}
-	fn take_additional_type(&mut self) -> Vec<AdditionalTypeProperty> {
-		std::mem::take(&mut self.r#additional_type)
-	}
-	fn get_alternate_name(&self) -> &[AlternateNameProperty] {
+	fn r#alternate_name(&self) -> &[AlternateNameProperty] {
 		self.r#alternate_name.as_slice()
 	}
-	fn take_alternate_name(&mut self) -> Vec<AlternateNameProperty> {
-		std::mem::take(&mut self.r#alternate_name)
-	}
-	fn get_description(&self) -> &[DescriptionProperty] {
+	fn r#description(&self) -> &[DescriptionProperty] {
 		self.r#description.as_slice()
 	}
-	fn take_description(&mut self) -> Vec<DescriptionProperty> {
-		std::mem::take(&mut self.r#description)
-	}
-	fn get_disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
+	fn r#disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
 		self.r#disambiguating_description.as_slice()
 	}
-	fn take_disambiguating_description(&mut self) -> Vec<DisambiguatingDescriptionProperty> {
-		std::mem::take(&mut self.r#disambiguating_description)
-	}
-	fn get_identifier(&self) -> &[IdentifierProperty] {
+	fn r#identifier(&self) -> &[IdentifierProperty] {
 		self.r#identifier.as_slice()
 	}
-	fn take_identifier(&mut self) -> Vec<IdentifierProperty> {
-		std::mem::take(&mut self.r#identifier)
-	}
-	fn get_image(&self) -> &[ImageProperty] {
+	fn r#image(&self) -> &[ImageProperty] {
 		self.r#image.as_slice()
 	}
-	fn take_image(&mut self) -> Vec<ImageProperty> {
-		std::mem::take(&mut self.r#image)
-	}
-	fn get_main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
+	fn r#main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
 		self.r#main_entity_of_page.as_slice()
 	}
-	fn take_main_entity_of_page(&mut self) -> Vec<MainEntityOfPageProperty> {
-		std::mem::take(&mut self.r#main_entity_of_page)
-	}
-	fn get_name(&self) -> &[NameProperty] {
+	fn r#name(&self) -> &[NameProperty] {
 		self.r#name.as_slice()
 	}
-	fn take_name(&mut self) -> Vec<NameProperty> {
-		std::mem::take(&mut self.r#name)
-	}
-	fn get_owner(&self) -> &[OwnerProperty] {
+	fn r#owner(&self) -> &[OwnerProperty] {
 		self.r#owner.as_slice()
 	}
-	fn take_owner(&mut self) -> Vec<OwnerProperty> {
-		std::mem::take(&mut self.r#owner)
-	}
-	fn get_potential_action(&self) -> &[PotentialActionProperty] {
+	fn r#potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
 	}
-	fn take_potential_action(&mut self) -> Vec<PotentialActionProperty> {
-		std::mem::take(&mut self.r#potential_action)
-	}
-	fn get_same_as(&self) -> &[SameAsProperty] {
+	fn r#same_as(&self) -> &[SameAsProperty] {
 		self.r#same_as.as_slice()
 	}
-	fn take_same_as(&mut self) -> Vec<SameAsProperty> {
-		std::mem::take(&mut self.r#same_as)
-	}
-	fn get_subject_of(&self) -> &[SubjectOfProperty] {
+	fn r#subject_of(&self) -> &[SubjectOfProperty] {
 		self.r#subject_of.as_slice()
 	}
-	fn take_subject_of(&mut self) -> Vec<SubjectOfProperty> {
-		std::mem::take(&mut self.r#subject_of)
-	}
-	fn get_url(&self) -> &[UrlProperty] {
+	fn r#url(&self) -> &[UrlProperty] {
 		self.r#url.as_slice()
-	}
-	fn take_url(&mut self) -> Vec<UrlProperty> {
-		std::mem::take(&mut self.r#url)
 	}
 }

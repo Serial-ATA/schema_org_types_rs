@@ -185,115 +185,61 @@ pub struct EnergyConsumptionDetails {
 /// This trait is for properties from <https://schema.org/EnergyConsumptionDetails>.
 pub trait EnergyConsumptionDetailsTrait {
 	/// Get <https://schema.org/energyEfficiencyScaleMax> from [`Self`] as borrowed slice.
-	fn get_energy_efficiency_scale_max(&self) -> &[EnergyEfficiencyScaleMaxProperty];
-	/// Take <https://schema.org/energyEfficiencyScaleMax> from [`Self`] as owned vector.
-	fn take_energy_efficiency_scale_max(&mut self) -> Vec<EnergyEfficiencyScaleMaxProperty>;
+	fn r#energy_efficiency_scale_max(&self) -> &[EnergyEfficiencyScaleMaxProperty];
 	/// Get <https://schema.org/energyEfficiencyScaleMin> from [`Self`] as borrowed slice.
-	fn get_energy_efficiency_scale_min(&self) -> &[EnergyEfficiencyScaleMinProperty];
-	/// Take <https://schema.org/energyEfficiencyScaleMin> from [`Self`] as owned vector.
-	fn take_energy_efficiency_scale_min(&mut self) -> Vec<EnergyEfficiencyScaleMinProperty>;
+	fn r#energy_efficiency_scale_min(&self) -> &[EnergyEfficiencyScaleMinProperty];
 	/// Get <https://schema.org/hasEnergyEfficiencyCategory> from [`Self`] as borrowed slice.
-	fn get_has_energy_efficiency_category(&self) -> &[HasEnergyEfficiencyCategoryProperty];
-	/// Take <https://schema.org/hasEnergyEfficiencyCategory> from [`Self`] as owned vector.
-	fn take_has_energy_efficiency_category(&mut self) -> Vec<HasEnergyEfficiencyCategoryProperty>;
+	fn r#has_energy_efficiency_category(&self) -> &[HasEnergyEfficiencyCategoryProperty];
 }
 impl EnergyConsumptionDetailsTrait for EnergyConsumptionDetails {
-	fn get_energy_efficiency_scale_max(&self) -> &[EnergyEfficiencyScaleMaxProperty] {
+	fn r#energy_efficiency_scale_max(&self) -> &[EnergyEfficiencyScaleMaxProperty] {
 		self.r#energy_efficiency_scale_max.as_slice()
 	}
-	fn take_energy_efficiency_scale_max(&mut self) -> Vec<EnergyEfficiencyScaleMaxProperty> {
-		std::mem::take(&mut self.r#energy_efficiency_scale_max)
-	}
-	fn get_energy_efficiency_scale_min(&self) -> &[EnergyEfficiencyScaleMinProperty] {
+	fn r#energy_efficiency_scale_min(&self) -> &[EnergyEfficiencyScaleMinProperty] {
 		self.r#energy_efficiency_scale_min.as_slice()
 	}
-	fn take_energy_efficiency_scale_min(&mut self) -> Vec<EnergyEfficiencyScaleMinProperty> {
-		std::mem::take(&mut self.r#energy_efficiency_scale_min)
-	}
-	fn get_has_energy_efficiency_category(&self) -> &[HasEnergyEfficiencyCategoryProperty] {
+	fn r#has_energy_efficiency_category(&self) -> &[HasEnergyEfficiencyCategoryProperty] {
 		self.r#has_energy_efficiency_category.as_slice()
-	}
-	fn take_has_energy_efficiency_category(&mut self) -> Vec<HasEnergyEfficiencyCategoryProperty> {
-		std::mem::take(&mut self.r#has_energy_efficiency_category)
 	}
 }
 impl ThingTrait for EnergyConsumptionDetails {
-	fn get_additional_type(&self) -> &[AdditionalTypeProperty] {
+	fn r#additional_type(&self) -> &[AdditionalTypeProperty] {
 		self.r#additional_type.as_slice()
 	}
-	fn take_additional_type(&mut self) -> Vec<AdditionalTypeProperty> {
-		std::mem::take(&mut self.r#additional_type)
-	}
-	fn get_alternate_name(&self) -> &[AlternateNameProperty] {
+	fn r#alternate_name(&self) -> &[AlternateNameProperty] {
 		self.r#alternate_name.as_slice()
 	}
-	fn take_alternate_name(&mut self) -> Vec<AlternateNameProperty> {
-		std::mem::take(&mut self.r#alternate_name)
-	}
-	fn get_description(&self) -> &[DescriptionProperty] {
+	fn r#description(&self) -> &[DescriptionProperty] {
 		self.r#description.as_slice()
 	}
-	fn take_description(&mut self) -> Vec<DescriptionProperty> {
-		std::mem::take(&mut self.r#description)
-	}
-	fn get_disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
+	fn r#disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
 		self.r#disambiguating_description.as_slice()
 	}
-	fn take_disambiguating_description(&mut self) -> Vec<DisambiguatingDescriptionProperty> {
-		std::mem::take(&mut self.r#disambiguating_description)
-	}
-	fn get_identifier(&self) -> &[IdentifierProperty] {
+	fn r#identifier(&self) -> &[IdentifierProperty] {
 		self.r#identifier.as_slice()
 	}
-	fn take_identifier(&mut self) -> Vec<IdentifierProperty> {
-		std::mem::take(&mut self.r#identifier)
-	}
-	fn get_image(&self) -> &[ImageProperty] {
+	fn r#image(&self) -> &[ImageProperty] {
 		self.r#image.as_slice()
 	}
-	fn take_image(&mut self) -> Vec<ImageProperty> {
-		std::mem::take(&mut self.r#image)
-	}
-	fn get_main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
+	fn r#main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
 		self.r#main_entity_of_page.as_slice()
 	}
-	fn take_main_entity_of_page(&mut self) -> Vec<MainEntityOfPageProperty> {
-		std::mem::take(&mut self.r#main_entity_of_page)
-	}
-	fn get_name(&self) -> &[NameProperty] {
+	fn r#name(&self) -> &[NameProperty] {
 		self.r#name.as_slice()
 	}
-	fn take_name(&mut self) -> Vec<NameProperty> {
-		std::mem::take(&mut self.r#name)
-	}
-	fn get_owner(&self) -> &[OwnerProperty] {
+	fn r#owner(&self) -> &[OwnerProperty] {
 		self.r#owner.as_slice()
 	}
-	fn take_owner(&mut self) -> Vec<OwnerProperty> {
-		std::mem::take(&mut self.r#owner)
-	}
-	fn get_potential_action(&self) -> &[PotentialActionProperty] {
+	fn r#potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
 	}
-	fn take_potential_action(&mut self) -> Vec<PotentialActionProperty> {
-		std::mem::take(&mut self.r#potential_action)
-	}
-	fn get_same_as(&self) -> &[SameAsProperty] {
+	fn r#same_as(&self) -> &[SameAsProperty] {
 		self.r#same_as.as_slice()
 	}
-	fn take_same_as(&mut self) -> Vec<SameAsProperty> {
-		std::mem::take(&mut self.r#same_as)
-	}
-	fn get_subject_of(&self) -> &[SubjectOfProperty] {
+	fn r#subject_of(&self) -> &[SubjectOfProperty] {
 		self.r#subject_of.as_slice()
 	}
-	fn take_subject_of(&mut self) -> Vec<SubjectOfProperty> {
-		std::mem::take(&mut self.r#subject_of)
-	}
-	fn get_url(&self) -> &[UrlProperty] {
+	fn r#url(&self) -> &[UrlProperty] {
 		self.r#url.as_slice()
-	}
-	fn take_url(&mut self) -> Vec<UrlProperty> {
-		std::mem::take(&mut self.r#url)
 	}
 }

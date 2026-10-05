@@ -229,155 +229,81 @@ pub struct Permit {
 /// This trait is for properties from <https://schema.org/Permit>.
 pub trait PermitTrait {
 	/// Get <https://schema.org/issuedBy> from [`Self`] as borrowed slice.
-	fn get_issued_by(&self) -> &[IssuedByProperty];
-	/// Take <https://schema.org/issuedBy> from [`Self`] as owned vector.
-	fn take_issued_by(&mut self) -> Vec<IssuedByProperty>;
+	fn r#issued_by(&self) -> &[IssuedByProperty];
 	/// Get <https://schema.org/issuedThrough> from [`Self`] as borrowed slice.
-	fn get_issued_through(&self) -> &[IssuedThroughProperty];
-	/// Take <https://schema.org/issuedThrough> from [`Self`] as owned vector.
-	fn take_issued_through(&mut self) -> Vec<IssuedThroughProperty>;
+	fn r#issued_through(&self) -> &[IssuedThroughProperty];
 	/// Get <https://schema.org/permitAudience> from [`Self`] as borrowed slice.
-	fn get_permit_audience(&self) -> &[PermitAudienceProperty];
-	/// Take <https://schema.org/permitAudience> from [`Self`] as owned vector.
-	fn take_permit_audience(&mut self) -> Vec<PermitAudienceProperty>;
+	fn r#permit_audience(&self) -> &[PermitAudienceProperty];
 	/// Get <https://schema.org/validFor> from [`Self`] as borrowed slice.
-	fn get_valid_for(&self) -> &[ValidForProperty];
-	/// Take <https://schema.org/validFor> from [`Self`] as owned vector.
-	fn take_valid_for(&mut self) -> Vec<ValidForProperty>;
+	fn r#valid_for(&self) -> &[ValidForProperty];
 	/// Get <https://schema.org/validFrom> from [`Self`] as borrowed slice.
-	fn get_valid_from(&self) -> &[ValidFromProperty];
-	/// Take <https://schema.org/validFrom> from [`Self`] as owned vector.
-	fn take_valid_from(&mut self) -> Vec<ValidFromProperty>;
+	fn r#valid_from(&self) -> &[ValidFromProperty];
 	/// Get <https://schema.org/validIn> from [`Self`] as borrowed slice.
-	fn get_valid_in(&self) -> &[ValidInProperty];
-	/// Take <https://schema.org/validIn> from [`Self`] as owned vector.
-	fn take_valid_in(&mut self) -> Vec<ValidInProperty>;
+	fn r#valid_in(&self) -> &[ValidInProperty];
 	/// Get <https://schema.org/validUntil> from [`Self`] as borrowed slice.
-	fn get_valid_until(&self) -> &[ValidUntilProperty];
-	/// Take <https://schema.org/validUntil> from [`Self`] as owned vector.
-	fn take_valid_until(&mut self) -> Vec<ValidUntilProperty>;
+	fn r#valid_until(&self) -> &[ValidUntilProperty];
 }
 impl PermitTrait for Permit {
-	fn get_issued_by(&self) -> &[IssuedByProperty] {
+	fn r#issued_by(&self) -> &[IssuedByProperty] {
 		self.r#issued_by.as_slice()
 	}
-	fn take_issued_by(&mut self) -> Vec<IssuedByProperty> {
-		std::mem::take(&mut self.r#issued_by)
-	}
-	fn get_issued_through(&self) -> &[IssuedThroughProperty] {
+	fn r#issued_through(&self) -> &[IssuedThroughProperty] {
 		self.r#issued_through.as_slice()
 	}
-	fn take_issued_through(&mut self) -> Vec<IssuedThroughProperty> {
-		std::mem::take(&mut self.r#issued_through)
-	}
-	fn get_permit_audience(&self) -> &[PermitAudienceProperty] {
+	fn r#permit_audience(&self) -> &[PermitAudienceProperty] {
 		self.r#permit_audience.as_slice()
 	}
-	fn take_permit_audience(&mut self) -> Vec<PermitAudienceProperty> {
-		std::mem::take(&mut self.r#permit_audience)
-	}
-	fn get_valid_for(&self) -> &[ValidForProperty] {
+	fn r#valid_for(&self) -> &[ValidForProperty] {
 		self.r#valid_for.as_slice()
 	}
-	fn take_valid_for(&mut self) -> Vec<ValidForProperty> {
-		std::mem::take(&mut self.r#valid_for)
-	}
-	fn get_valid_from(&self) -> &[ValidFromProperty] {
+	fn r#valid_from(&self) -> &[ValidFromProperty] {
 		self.r#valid_from.as_slice()
 	}
-	fn take_valid_from(&mut self) -> Vec<ValidFromProperty> {
-		std::mem::take(&mut self.r#valid_from)
-	}
-	fn get_valid_in(&self) -> &[ValidInProperty] {
+	fn r#valid_in(&self) -> &[ValidInProperty] {
 		self.r#valid_in.as_slice()
 	}
-	fn take_valid_in(&mut self) -> Vec<ValidInProperty> {
-		std::mem::take(&mut self.r#valid_in)
-	}
-	fn get_valid_until(&self) -> &[ValidUntilProperty] {
+	fn r#valid_until(&self) -> &[ValidUntilProperty] {
 		self.r#valid_until.as_slice()
-	}
-	fn take_valid_until(&mut self) -> Vec<ValidUntilProperty> {
-		std::mem::take(&mut self.r#valid_until)
 	}
 }
 impl ThingTrait for Permit {
-	fn get_additional_type(&self) -> &[AdditionalTypeProperty] {
+	fn r#additional_type(&self) -> &[AdditionalTypeProperty] {
 		self.r#additional_type.as_slice()
 	}
-	fn take_additional_type(&mut self) -> Vec<AdditionalTypeProperty> {
-		std::mem::take(&mut self.r#additional_type)
-	}
-	fn get_alternate_name(&self) -> &[AlternateNameProperty] {
+	fn r#alternate_name(&self) -> &[AlternateNameProperty] {
 		self.r#alternate_name.as_slice()
 	}
-	fn take_alternate_name(&mut self) -> Vec<AlternateNameProperty> {
-		std::mem::take(&mut self.r#alternate_name)
-	}
-	fn get_description(&self) -> &[DescriptionProperty] {
+	fn r#description(&self) -> &[DescriptionProperty] {
 		self.r#description.as_slice()
 	}
-	fn take_description(&mut self) -> Vec<DescriptionProperty> {
-		std::mem::take(&mut self.r#description)
-	}
-	fn get_disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
+	fn r#disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
 		self.r#disambiguating_description.as_slice()
 	}
-	fn take_disambiguating_description(&mut self) -> Vec<DisambiguatingDescriptionProperty> {
-		std::mem::take(&mut self.r#disambiguating_description)
-	}
-	fn get_identifier(&self) -> &[IdentifierProperty] {
+	fn r#identifier(&self) -> &[IdentifierProperty] {
 		self.r#identifier.as_slice()
 	}
-	fn take_identifier(&mut self) -> Vec<IdentifierProperty> {
-		std::mem::take(&mut self.r#identifier)
-	}
-	fn get_image(&self) -> &[ImageProperty] {
+	fn r#image(&self) -> &[ImageProperty] {
 		self.r#image.as_slice()
 	}
-	fn take_image(&mut self) -> Vec<ImageProperty> {
-		std::mem::take(&mut self.r#image)
-	}
-	fn get_main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
+	fn r#main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
 		self.r#main_entity_of_page.as_slice()
 	}
-	fn take_main_entity_of_page(&mut self) -> Vec<MainEntityOfPageProperty> {
-		std::mem::take(&mut self.r#main_entity_of_page)
-	}
-	fn get_name(&self) -> &[NameProperty] {
+	fn r#name(&self) -> &[NameProperty] {
 		self.r#name.as_slice()
 	}
-	fn take_name(&mut self) -> Vec<NameProperty> {
-		std::mem::take(&mut self.r#name)
-	}
-	fn get_owner(&self) -> &[OwnerProperty] {
+	fn r#owner(&self) -> &[OwnerProperty] {
 		self.r#owner.as_slice()
 	}
-	fn take_owner(&mut self) -> Vec<OwnerProperty> {
-		std::mem::take(&mut self.r#owner)
-	}
-	fn get_potential_action(&self) -> &[PotentialActionProperty] {
+	fn r#potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
 	}
-	fn take_potential_action(&mut self) -> Vec<PotentialActionProperty> {
-		std::mem::take(&mut self.r#potential_action)
-	}
-	fn get_same_as(&self) -> &[SameAsProperty] {
+	fn r#same_as(&self) -> &[SameAsProperty] {
 		self.r#same_as.as_slice()
 	}
-	fn take_same_as(&mut self) -> Vec<SameAsProperty> {
-		std::mem::take(&mut self.r#same_as)
-	}
-	fn get_subject_of(&self) -> &[SubjectOfProperty] {
+	fn r#subject_of(&self) -> &[SubjectOfProperty] {
 		self.r#subject_of.as_slice()
 	}
-	fn take_subject_of(&mut self) -> Vec<SubjectOfProperty> {
-		std::mem::take(&mut self.r#subject_of)
-	}
-	fn get_url(&self) -> &[UrlProperty] {
+	fn r#url(&self) -> &[UrlProperty] {
 		self.r#url.as_slice()
-	}
-	fn take_url(&mut self) -> Vec<UrlProperty> {
-		std::mem::take(&mut self.r#url)
 	}
 }

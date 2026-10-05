@@ -251,173 +251,91 @@ pub struct QualitativeValue {
 /// This trait is for properties from <https://schema.org/QualitativeValue>.
 pub trait QualitativeValueTrait {
 	/// Get <https://schema.org/additionalProperty> from [`Self`] as borrowed slice.
-	fn get_additional_property(&self) -> &[AdditionalPropertyProperty];
-	/// Take <https://schema.org/additionalProperty> from [`Self`] as owned vector.
-	fn take_additional_property(&mut self) -> Vec<AdditionalPropertyProperty>;
+	fn r#additional_property(&self) -> &[AdditionalPropertyProperty];
 	/// Get <https://schema.org/equal> from [`Self`] as borrowed slice.
-	fn get_equal(&self) -> &[EqualProperty];
-	/// Take <https://schema.org/equal> from [`Self`] as owned vector.
-	fn take_equal(&mut self) -> Vec<EqualProperty>;
+	fn r#equal(&self) -> &[EqualProperty];
 	/// Get <https://schema.org/greater> from [`Self`] as borrowed slice.
-	fn get_greater(&self) -> &[GreaterProperty];
-	/// Take <https://schema.org/greater> from [`Self`] as owned vector.
-	fn take_greater(&mut self) -> Vec<GreaterProperty>;
+	fn r#greater(&self) -> &[GreaterProperty];
 	/// Get <https://schema.org/greaterOrEqual> from [`Self`] as borrowed slice.
-	fn get_greater_or_equal(&self) -> &[GreaterOrEqualProperty];
-	/// Take <https://schema.org/greaterOrEqual> from [`Self`] as owned vector.
-	fn take_greater_or_equal(&mut self) -> Vec<GreaterOrEqualProperty>;
+	fn r#greater_or_equal(&self) -> &[GreaterOrEqualProperty];
 	/// Get <https://schema.org/lesser> from [`Self`] as borrowed slice.
-	fn get_lesser(&self) -> &[LesserProperty];
-	/// Take <https://schema.org/lesser> from [`Self`] as owned vector.
-	fn take_lesser(&mut self) -> Vec<LesserProperty>;
+	fn r#lesser(&self) -> &[LesserProperty];
 	/// Get <https://schema.org/lesserOrEqual> from [`Self`] as borrowed slice.
-	fn get_lesser_or_equal(&self) -> &[LesserOrEqualProperty];
-	/// Take <https://schema.org/lesserOrEqual> from [`Self`] as owned vector.
-	fn take_lesser_or_equal(&mut self) -> Vec<LesserOrEqualProperty>;
+	fn r#lesser_or_equal(&self) -> &[LesserOrEqualProperty];
 	/// Get <https://schema.org/nonEqual> from [`Self`] as borrowed slice.
-	fn get_non_equal(&self) -> &[NonEqualProperty];
-	/// Take <https://schema.org/nonEqual> from [`Self`] as owned vector.
-	fn take_non_equal(&mut self) -> Vec<NonEqualProperty>;
+	fn r#non_equal(&self) -> &[NonEqualProperty];
 	/// Get <https://schema.org/valueReference> from [`Self`] as borrowed slice.
-	fn get_value_reference(&self) -> &[ValueReferenceProperty];
-	/// Take <https://schema.org/valueReference> from [`Self`] as owned vector.
-	fn take_value_reference(&mut self) -> Vec<ValueReferenceProperty>;
+	fn r#value_reference(&self) -> &[ValueReferenceProperty];
 }
 impl QualitativeValueTrait for QualitativeValue {
-	fn get_additional_property(&self) -> &[AdditionalPropertyProperty] {
+	fn r#additional_property(&self) -> &[AdditionalPropertyProperty] {
 		self.r#additional_property.as_slice()
 	}
-	fn take_additional_property(&mut self) -> Vec<AdditionalPropertyProperty> {
-		std::mem::take(&mut self.r#additional_property)
-	}
-	fn get_equal(&self) -> &[EqualProperty] {
+	fn r#equal(&self) -> &[EqualProperty] {
 		self.r#equal.as_slice()
 	}
-	fn take_equal(&mut self) -> Vec<EqualProperty> {
-		std::mem::take(&mut self.r#equal)
-	}
-	fn get_greater(&self) -> &[GreaterProperty] {
+	fn r#greater(&self) -> &[GreaterProperty] {
 		self.r#greater.as_slice()
 	}
-	fn take_greater(&mut self) -> Vec<GreaterProperty> {
-		std::mem::take(&mut self.r#greater)
-	}
-	fn get_greater_or_equal(&self) -> &[GreaterOrEqualProperty] {
+	fn r#greater_or_equal(&self) -> &[GreaterOrEqualProperty] {
 		self.r#greater_or_equal.as_slice()
 	}
-	fn take_greater_or_equal(&mut self) -> Vec<GreaterOrEqualProperty> {
-		std::mem::take(&mut self.r#greater_or_equal)
-	}
-	fn get_lesser(&self) -> &[LesserProperty] {
+	fn r#lesser(&self) -> &[LesserProperty] {
 		self.r#lesser.as_slice()
 	}
-	fn take_lesser(&mut self) -> Vec<LesserProperty> {
-		std::mem::take(&mut self.r#lesser)
-	}
-	fn get_lesser_or_equal(&self) -> &[LesserOrEqualProperty] {
+	fn r#lesser_or_equal(&self) -> &[LesserOrEqualProperty] {
 		self.r#lesser_or_equal.as_slice()
 	}
-	fn take_lesser_or_equal(&mut self) -> Vec<LesserOrEqualProperty> {
-		std::mem::take(&mut self.r#lesser_or_equal)
-	}
-	fn get_non_equal(&self) -> &[NonEqualProperty] {
+	fn r#non_equal(&self) -> &[NonEqualProperty] {
 		self.r#non_equal.as_slice()
 	}
-	fn take_non_equal(&mut self) -> Vec<NonEqualProperty> {
-		std::mem::take(&mut self.r#non_equal)
-	}
-	fn get_value_reference(&self) -> &[ValueReferenceProperty] {
+	fn r#value_reference(&self) -> &[ValueReferenceProperty] {
 		self.r#value_reference.as_slice()
-	}
-	fn take_value_reference(&mut self) -> Vec<ValueReferenceProperty> {
-		std::mem::take(&mut self.r#value_reference)
 	}
 }
 impl EnumerationTrait for QualitativeValue {
-	fn get_superseded_by(&self) -> &[SupersededByProperty] {
+	fn r#superseded_by(&self) -> &[SupersededByProperty] {
 		self.r#superseded_by.as_slice()
-	}
-	fn take_superseded_by(&mut self) -> Vec<SupersededByProperty> {
-		std::mem::take(&mut self.r#superseded_by)
 	}
 }
 impl ThingTrait for QualitativeValue {
-	fn get_additional_type(&self) -> &[AdditionalTypeProperty] {
+	fn r#additional_type(&self) -> &[AdditionalTypeProperty] {
 		self.r#additional_type.as_slice()
 	}
-	fn take_additional_type(&mut self) -> Vec<AdditionalTypeProperty> {
-		std::mem::take(&mut self.r#additional_type)
-	}
-	fn get_alternate_name(&self) -> &[AlternateNameProperty] {
+	fn r#alternate_name(&self) -> &[AlternateNameProperty] {
 		self.r#alternate_name.as_slice()
 	}
-	fn take_alternate_name(&mut self) -> Vec<AlternateNameProperty> {
-		std::mem::take(&mut self.r#alternate_name)
-	}
-	fn get_description(&self) -> &[DescriptionProperty] {
+	fn r#description(&self) -> &[DescriptionProperty] {
 		self.r#description.as_slice()
 	}
-	fn take_description(&mut self) -> Vec<DescriptionProperty> {
-		std::mem::take(&mut self.r#description)
-	}
-	fn get_disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
+	fn r#disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
 		self.r#disambiguating_description.as_slice()
 	}
-	fn take_disambiguating_description(&mut self) -> Vec<DisambiguatingDescriptionProperty> {
-		std::mem::take(&mut self.r#disambiguating_description)
-	}
-	fn get_identifier(&self) -> &[IdentifierProperty] {
+	fn r#identifier(&self) -> &[IdentifierProperty] {
 		self.r#identifier.as_slice()
 	}
-	fn take_identifier(&mut self) -> Vec<IdentifierProperty> {
-		std::mem::take(&mut self.r#identifier)
-	}
-	fn get_image(&self) -> &[ImageProperty] {
+	fn r#image(&self) -> &[ImageProperty] {
 		self.r#image.as_slice()
 	}
-	fn take_image(&mut self) -> Vec<ImageProperty> {
-		std::mem::take(&mut self.r#image)
-	}
-	fn get_main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
+	fn r#main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
 		self.r#main_entity_of_page.as_slice()
 	}
-	fn take_main_entity_of_page(&mut self) -> Vec<MainEntityOfPageProperty> {
-		std::mem::take(&mut self.r#main_entity_of_page)
-	}
-	fn get_name(&self) -> &[NameProperty] {
+	fn r#name(&self) -> &[NameProperty] {
 		self.r#name.as_slice()
 	}
-	fn take_name(&mut self) -> Vec<NameProperty> {
-		std::mem::take(&mut self.r#name)
-	}
-	fn get_owner(&self) -> &[OwnerProperty] {
+	fn r#owner(&self) -> &[OwnerProperty] {
 		self.r#owner.as_slice()
 	}
-	fn take_owner(&mut self) -> Vec<OwnerProperty> {
-		std::mem::take(&mut self.r#owner)
-	}
-	fn get_potential_action(&self) -> &[PotentialActionProperty] {
+	fn r#potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
 	}
-	fn take_potential_action(&mut self) -> Vec<PotentialActionProperty> {
-		std::mem::take(&mut self.r#potential_action)
-	}
-	fn get_same_as(&self) -> &[SameAsProperty] {
+	fn r#same_as(&self) -> &[SameAsProperty] {
 		self.r#same_as.as_slice()
 	}
-	fn take_same_as(&mut self) -> Vec<SameAsProperty> {
-		std::mem::take(&mut self.r#same_as)
-	}
-	fn get_subject_of(&self) -> &[SubjectOfProperty] {
+	fn r#subject_of(&self) -> &[SubjectOfProperty] {
 		self.r#subject_of.as_slice()
 	}
-	fn take_subject_of(&mut self) -> Vec<SubjectOfProperty> {
-		std::mem::take(&mut self.r#subject_of)
-	}
-	fn get_url(&self) -> &[UrlProperty] {
+	fn r#url(&self) -> &[UrlProperty] {
 		self.r#url.as_slice()
-	}
-	fn take_url(&mut self) -> Vec<UrlProperty> {
-		std::mem::take(&mut self.r#url)
 	}
 }

@@ -518,311 +518,159 @@ pub struct PaymentCard {
 /// This trait is for properties from <https://schema.org/PaymentCard>.
 pub trait PaymentCardTrait {
 	/// Get <https://schema.org/cashBack> from [`Self`] as borrowed slice.
-	fn get_cash_back(&self) -> &[CashBackProperty];
-	/// Take <https://schema.org/cashBack> from [`Self`] as owned vector.
-	fn take_cash_back(&mut self) -> Vec<CashBackProperty>;
+	fn r#cash_back(&self) -> &[CashBackProperty];
 	/// Get <https://schema.org/contactlessPayment> from [`Self`] as borrowed slice.
-	fn get_contactless_payment(&self) -> &[ContactlessPaymentProperty];
-	/// Take <https://schema.org/contactlessPayment> from [`Self`] as owned vector.
-	fn take_contactless_payment(&mut self) -> Vec<ContactlessPaymentProperty>;
+	fn r#contactless_payment(&self) -> &[ContactlessPaymentProperty];
 	/// Get <https://schema.org/floorLimit> from [`Self`] as borrowed slice.
-	fn get_floor_limit(&self) -> &[FloorLimitProperty];
-	/// Take <https://schema.org/floorLimit> from [`Self`] as owned vector.
-	fn take_floor_limit(&mut self) -> Vec<FloorLimitProperty>;
+	fn r#floor_limit(&self) -> &[FloorLimitProperty];
 	/// Get <https://schema.org/monthlyMinimumRepaymentAmount> from [`Self`] as borrowed slice.
-	fn get_monthly_minimum_repayment_amount(&self) -> &[MonthlyMinimumRepaymentAmountProperty];
-	/// Take <https://schema.org/monthlyMinimumRepaymentAmount> from [`Self`] as owned vector.
-	fn take_monthly_minimum_repayment_amount(
-		&mut self,
-	) -> Vec<MonthlyMinimumRepaymentAmountProperty>;
+	fn r#monthly_minimum_repayment_amount(&self) -> &[MonthlyMinimumRepaymentAmountProperty];
 }
 impl PaymentCardTrait for PaymentCard {
-	fn get_cash_back(&self) -> &[CashBackProperty] {
+	fn r#cash_back(&self) -> &[CashBackProperty] {
 		self.r#cash_back.as_slice()
 	}
-	fn take_cash_back(&mut self) -> Vec<CashBackProperty> {
-		std::mem::take(&mut self.r#cash_back)
-	}
-	fn get_contactless_payment(&self) -> &[ContactlessPaymentProperty] {
+	fn r#contactless_payment(&self) -> &[ContactlessPaymentProperty] {
 		self.r#contactless_payment.as_slice()
 	}
-	fn take_contactless_payment(&mut self) -> Vec<ContactlessPaymentProperty> {
-		std::mem::take(&mut self.r#contactless_payment)
-	}
-	fn get_floor_limit(&self) -> &[FloorLimitProperty] {
+	fn r#floor_limit(&self) -> &[FloorLimitProperty] {
 		self.r#floor_limit.as_slice()
 	}
-	fn take_floor_limit(&mut self) -> Vec<FloorLimitProperty> {
-		std::mem::take(&mut self.r#floor_limit)
-	}
-	fn get_monthly_minimum_repayment_amount(&self) -> &[MonthlyMinimumRepaymentAmountProperty] {
+	fn r#monthly_minimum_repayment_amount(&self) -> &[MonthlyMinimumRepaymentAmountProperty] {
 		self.r#monthly_minimum_repayment_amount.as_slice()
-	}
-	fn take_monthly_minimum_repayment_amount(
-		&mut self,
-	) -> Vec<MonthlyMinimumRepaymentAmountProperty> {
-		std::mem::take(&mut self.r#monthly_minimum_repayment_amount)
 	}
 }
 impl FinancialProductTrait for PaymentCard {
-	fn get_annual_percentage_rate(&self) -> &[AnnualPercentageRateProperty] {
+	fn r#annual_percentage_rate(&self) -> &[AnnualPercentageRateProperty] {
 		self.r#annual_percentage_rate.as_slice()
 	}
-	fn take_annual_percentage_rate(&mut self) -> Vec<AnnualPercentageRateProperty> {
-		std::mem::take(&mut self.r#annual_percentage_rate)
-	}
-	fn get_fees_and_commissions_specification(&self) -> &[FeesAndCommissionsSpecificationProperty] {
+	fn r#fees_and_commissions_specification(&self) -> &[FeesAndCommissionsSpecificationProperty] {
 		self.r#fees_and_commissions_specification.as_slice()
 	}
-	fn take_fees_and_commissions_specification(
-		&mut self,
-	) -> Vec<FeesAndCommissionsSpecificationProperty> {
-		std::mem::take(&mut self.r#fees_and_commissions_specification)
-	}
-	fn get_interest_rate(&self) -> &[InterestRateProperty] {
+	fn r#interest_rate(&self) -> &[InterestRateProperty] {
 		self.r#interest_rate.as_slice()
-	}
-	fn take_interest_rate(&mut self) -> Vec<InterestRateProperty> {
-		std::mem::take(&mut self.r#interest_rate)
 	}
 }
 impl PaymentMethodTrait for PaymentCard {
-	fn get_payment_method_type(&self) -> &[PaymentMethodTypeProperty] {
+	fn r#payment_method_type(&self) -> &[PaymentMethodTypeProperty] {
 		self.r#payment_method_type.as_slice()
-	}
-	fn take_payment_method_type(&mut self) -> Vec<PaymentMethodTypeProperty> {
-		std::mem::take(&mut self.r#payment_method_type)
 	}
 }
 impl ServiceTrait for PaymentCard {
-	fn get_aggregate_rating(&self) -> &[AggregateRatingProperty] {
+	fn r#aggregate_rating(&self) -> &[AggregateRatingProperty] {
 		self.r#aggregate_rating.as_slice()
 	}
-	fn take_aggregate_rating(&mut self) -> Vec<AggregateRatingProperty> {
-		std::mem::take(&mut self.r#aggregate_rating)
-	}
-	fn get_area_served(&self) -> &[AreaServedProperty] {
+	fn r#area_served(&self) -> &[AreaServedProperty] {
 		self.r#area_served.as_slice()
 	}
-	fn take_area_served(&mut self) -> Vec<AreaServedProperty> {
-		std::mem::take(&mut self.r#area_served)
-	}
-	fn get_audience(&self) -> &[AudienceProperty] {
+	fn r#audience(&self) -> &[AudienceProperty] {
 		self.r#audience.as_slice()
 	}
-	fn take_audience(&mut self) -> Vec<AudienceProperty> {
-		std::mem::take(&mut self.r#audience)
-	}
-	fn get_available_channel(&self) -> &[AvailableChannelProperty] {
+	fn r#available_channel(&self) -> &[AvailableChannelProperty] {
 		self.r#available_channel.as_slice()
 	}
-	fn take_available_channel(&mut self) -> Vec<AvailableChannelProperty> {
-		std::mem::take(&mut self.r#available_channel)
-	}
-	fn get_award(&self) -> &[AwardProperty] {
+	fn r#award(&self) -> &[AwardProperty] {
 		self.r#award.as_slice()
 	}
-	fn take_award(&mut self) -> Vec<AwardProperty> {
-		std::mem::take(&mut self.r#award)
-	}
-	fn get_brand(&self) -> &[BrandProperty] {
+	fn r#brand(&self) -> &[BrandProperty] {
 		self.r#brand.as_slice()
 	}
-	fn take_brand(&mut self) -> Vec<BrandProperty> {
-		std::mem::take(&mut self.r#brand)
-	}
-	fn get_broker(&self) -> &[BrokerProperty] {
+	fn r#broker(&self) -> &[BrokerProperty] {
 		self.r#broker.as_slice()
 	}
-	fn take_broker(&mut self) -> Vec<BrokerProperty> {
-		std::mem::take(&mut self.r#broker)
-	}
-	fn get_category(&self) -> &[CategoryProperty] {
+	fn r#category(&self) -> &[CategoryProperty] {
 		self.r#category.as_slice()
 	}
-	fn take_category(&mut self) -> Vec<CategoryProperty> {
-		std::mem::take(&mut self.r#category)
-	}
-	fn get_has_certification(&self) -> &[HasCertificationProperty] {
+	fn r#has_certification(&self) -> &[HasCertificationProperty] {
 		self.r#has_certification.as_slice()
 	}
-	fn take_has_certification(&mut self) -> Vec<HasCertificationProperty> {
-		std::mem::take(&mut self.r#has_certification)
-	}
-	fn get_has_offer_catalog(&self) -> &[HasOfferCatalogProperty] {
+	fn r#has_offer_catalog(&self) -> &[HasOfferCatalogProperty] {
 		self.r#has_offer_catalog.as_slice()
 	}
-	fn take_has_offer_catalog(&mut self) -> Vec<HasOfferCatalogProperty> {
-		std::mem::take(&mut self.r#has_offer_catalog)
-	}
-	fn get_hours_available(&self) -> &[HoursAvailableProperty] {
+	fn r#hours_available(&self) -> &[HoursAvailableProperty] {
 		self.r#hours_available.as_slice()
 	}
-	fn take_hours_available(&mut self) -> Vec<HoursAvailableProperty> {
-		std::mem::take(&mut self.r#hours_available)
-	}
-	fn get_is_related_to(&self) -> &[IsRelatedToProperty] {
+	fn r#is_related_to(&self) -> &[IsRelatedToProperty] {
 		self.r#is_related_to.as_slice()
 	}
-	fn take_is_related_to(&mut self) -> Vec<IsRelatedToProperty> {
-		std::mem::take(&mut self.r#is_related_to)
-	}
-	fn get_is_similar_to(&self) -> &[IsSimilarToProperty] {
+	fn r#is_similar_to(&self) -> &[IsSimilarToProperty] {
 		self.r#is_similar_to.as_slice()
 	}
-	fn take_is_similar_to(&mut self) -> Vec<IsSimilarToProperty> {
-		std::mem::take(&mut self.r#is_similar_to)
-	}
-	fn get_logo(&self) -> &[LogoProperty] {
+	fn r#logo(&self) -> &[LogoProperty] {
 		self.r#logo.as_slice()
 	}
-	fn take_logo(&mut self) -> Vec<LogoProperty> {
-		std::mem::take(&mut self.r#logo)
-	}
-	fn get_offers(&self) -> &[OffersProperty] {
+	fn r#offers(&self) -> &[OffersProperty] {
 		self.r#offers.as_slice()
 	}
-	fn take_offers(&mut self) -> Vec<OffersProperty> {
-		std::mem::take(&mut self.r#offers)
-	}
-	fn get_produces(&self) -> &[ProducesProperty] {
+	fn r#produces(&self) -> &[ProducesProperty] {
 		self.r#produces.as_slice()
 	}
-	fn take_produces(&mut self) -> Vec<ProducesProperty> {
-		std::mem::take(&mut self.r#produces)
-	}
-	fn get_provider(&self) -> &[ProviderProperty] {
+	fn r#provider(&self) -> &[ProviderProperty] {
 		self.r#provider.as_slice()
 	}
-	fn take_provider(&mut self) -> Vec<ProviderProperty> {
-		std::mem::take(&mut self.r#provider)
-	}
-	fn get_provider_mobility(&self) -> &[ProviderMobilityProperty] {
+	fn r#provider_mobility(&self) -> &[ProviderMobilityProperty] {
 		self.r#provider_mobility.as_slice()
 	}
-	fn take_provider_mobility(&mut self) -> Vec<ProviderMobilityProperty> {
-		std::mem::take(&mut self.r#provider_mobility)
-	}
-	fn get_review(&self) -> &[ReviewProperty] {
+	fn r#review(&self) -> &[ReviewProperty] {
 		self.r#review.as_slice()
 	}
-	fn take_review(&mut self) -> Vec<ReviewProperty> {
-		std::mem::take(&mut self.r#review)
-	}
-	fn get_service_area(&self) -> &[ServiceAreaProperty] {
+	fn r#service_area(&self) -> &[ServiceAreaProperty] {
 		self.r#service_area.as_slice()
 	}
-	fn take_service_area(&mut self) -> Vec<ServiceAreaProperty> {
-		std::mem::take(&mut self.r#service_area)
-	}
-	fn get_service_audience(&self) -> &[ServiceAudienceProperty] {
+	fn r#service_audience(&self) -> &[ServiceAudienceProperty] {
 		self.r#service_audience.as_slice()
 	}
-	fn take_service_audience(&mut self) -> Vec<ServiceAudienceProperty> {
-		std::mem::take(&mut self.r#service_audience)
-	}
-	fn get_service_output(&self) -> &[ServiceOutputProperty] {
+	fn r#service_output(&self) -> &[ServiceOutputProperty] {
 		self.r#service_output.as_slice()
 	}
-	fn take_service_output(&mut self) -> Vec<ServiceOutputProperty> {
-		std::mem::take(&mut self.r#service_output)
-	}
-	fn get_service_type(&self) -> &[ServiceTypeProperty] {
+	fn r#service_type(&self) -> &[ServiceTypeProperty] {
 		self.r#service_type.as_slice()
 	}
-	fn take_service_type(&mut self) -> Vec<ServiceTypeProperty> {
-		std::mem::take(&mut self.r#service_type)
-	}
-	fn get_slogan(&self) -> &[SloganProperty] {
+	fn r#slogan(&self) -> &[SloganProperty] {
 		self.r#slogan.as_slice()
 	}
-	fn take_slogan(&mut self) -> Vec<SloganProperty> {
-		std::mem::take(&mut self.r#slogan)
-	}
-	fn get_terms_of_service(&self) -> &[TermsOfServiceProperty] {
+	fn r#terms_of_service(&self) -> &[TermsOfServiceProperty] {
 		self.r#terms_of_service.as_slice()
-	}
-	fn take_terms_of_service(&mut self) -> Vec<TermsOfServiceProperty> {
-		std::mem::take(&mut self.r#terms_of_service)
 	}
 }
 impl ThingTrait for PaymentCard {
-	fn get_additional_type(&self) -> &[AdditionalTypeProperty] {
+	fn r#additional_type(&self) -> &[AdditionalTypeProperty] {
 		self.r#additional_type.as_slice()
 	}
-	fn take_additional_type(&mut self) -> Vec<AdditionalTypeProperty> {
-		std::mem::take(&mut self.r#additional_type)
-	}
-	fn get_alternate_name(&self) -> &[AlternateNameProperty] {
+	fn r#alternate_name(&self) -> &[AlternateNameProperty] {
 		self.r#alternate_name.as_slice()
 	}
-	fn take_alternate_name(&mut self) -> Vec<AlternateNameProperty> {
-		std::mem::take(&mut self.r#alternate_name)
-	}
-	fn get_description(&self) -> &[DescriptionProperty] {
+	fn r#description(&self) -> &[DescriptionProperty] {
 		self.r#description.as_slice()
 	}
-	fn take_description(&mut self) -> Vec<DescriptionProperty> {
-		std::mem::take(&mut self.r#description)
-	}
-	fn get_disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
+	fn r#disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
 		self.r#disambiguating_description.as_slice()
 	}
-	fn take_disambiguating_description(&mut self) -> Vec<DisambiguatingDescriptionProperty> {
-		std::mem::take(&mut self.r#disambiguating_description)
-	}
-	fn get_identifier(&self) -> &[IdentifierProperty] {
+	fn r#identifier(&self) -> &[IdentifierProperty] {
 		self.r#identifier.as_slice()
 	}
-	fn take_identifier(&mut self) -> Vec<IdentifierProperty> {
-		std::mem::take(&mut self.r#identifier)
-	}
-	fn get_image(&self) -> &[ImageProperty] {
+	fn r#image(&self) -> &[ImageProperty] {
 		self.r#image.as_slice()
 	}
-	fn take_image(&mut self) -> Vec<ImageProperty> {
-		std::mem::take(&mut self.r#image)
-	}
-	fn get_main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
+	fn r#main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
 		self.r#main_entity_of_page.as_slice()
 	}
-	fn take_main_entity_of_page(&mut self) -> Vec<MainEntityOfPageProperty> {
-		std::mem::take(&mut self.r#main_entity_of_page)
-	}
-	fn get_name(&self) -> &[NameProperty] {
+	fn r#name(&self) -> &[NameProperty] {
 		self.r#name.as_slice()
 	}
-	fn take_name(&mut self) -> Vec<NameProperty> {
-		std::mem::take(&mut self.r#name)
-	}
-	fn get_owner(&self) -> &[OwnerProperty] {
+	fn r#owner(&self) -> &[OwnerProperty] {
 		self.r#owner.as_slice()
 	}
-	fn take_owner(&mut self) -> Vec<OwnerProperty> {
-		std::mem::take(&mut self.r#owner)
-	}
-	fn get_potential_action(&self) -> &[PotentialActionProperty] {
+	fn r#potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
 	}
-	fn take_potential_action(&mut self) -> Vec<PotentialActionProperty> {
-		std::mem::take(&mut self.r#potential_action)
-	}
-	fn get_same_as(&self) -> &[SameAsProperty] {
+	fn r#same_as(&self) -> &[SameAsProperty] {
 		self.r#same_as.as_slice()
 	}
-	fn take_same_as(&mut self) -> Vec<SameAsProperty> {
-		std::mem::take(&mut self.r#same_as)
-	}
-	fn get_subject_of(&self) -> &[SubjectOfProperty] {
+	fn r#subject_of(&self) -> &[SubjectOfProperty] {
 		self.r#subject_of.as_slice()
 	}
-	fn take_subject_of(&mut self) -> Vec<SubjectOfProperty> {
-		std::mem::take(&mut self.r#subject_of)
-	}
-	fn get_url(&self) -> &[UrlProperty] {
+	fn r#url(&self) -> &[UrlProperty] {
 		self.r#url.as_slice()
-	}
-	fn take_url(&mut self) -> Vec<UrlProperty> {
-		std::mem::take(&mut self.r#url)
 	}
 }

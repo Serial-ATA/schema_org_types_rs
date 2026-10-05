@@ -251,176 +251,92 @@ pub struct ShippingRateSettings {
 /// This trait is for properties from <https://schema.org/ShippingRateSettings>.
 pub trait ShippingRateSettingsTrait {
 	/// Get <https://schema.org/doesNotShip> from [`Self`] as borrowed slice.
-	fn get_does_not_ship(&self) -> &[DoesNotShipProperty];
-	/// Take <https://schema.org/doesNotShip> from [`Self`] as owned vector.
-	fn take_does_not_ship(&mut self) -> Vec<DoesNotShipProperty>;
+	fn r#does_not_ship(&self) -> &[DoesNotShipProperty];
 	/// Get <https://schema.org/freeShippingThreshold> from [`Self`] as borrowed slice.
-	fn get_free_shipping_threshold(&self) -> &[FreeShippingThresholdProperty];
-	/// Take <https://schema.org/freeShippingThreshold> from [`Self`] as owned vector.
-	fn take_free_shipping_threshold(&mut self) -> Vec<FreeShippingThresholdProperty>;
+	fn r#free_shipping_threshold(&self) -> &[FreeShippingThresholdProperty];
 	/// Get <https://schema.org/isUnlabelledFallback> from [`Self`] as borrowed slice.
-	fn get_is_unlabelled_fallback(&self) -> &[IsUnlabelledFallbackProperty];
-	/// Take <https://schema.org/isUnlabelledFallback> from [`Self`] as owned vector.
-	fn take_is_unlabelled_fallback(&mut self) -> Vec<IsUnlabelledFallbackProperty>;
+	fn r#is_unlabelled_fallback(&self) -> &[IsUnlabelledFallbackProperty];
 	/// Get <https://schema.org/minimumOrderValue> from [`Self`] as borrowed slice.
-	fn get_minimum_order_value(&self) -> &[MinimumOrderValueProperty];
-	/// Take <https://schema.org/minimumOrderValue> from [`Self`] as owned vector.
-	fn take_minimum_order_value(&mut self) -> Vec<MinimumOrderValueProperty>;
+	fn r#minimum_order_value(&self) -> &[MinimumOrderValueProperty];
 	/// Get <https://schema.org/orderPercentage> from [`Self`] as borrowed slice.
-	fn get_order_percentage(&self) -> &[OrderPercentageProperty];
-	/// Take <https://schema.org/orderPercentage> from [`Self`] as owned vector.
-	fn take_order_percentage(&mut self) -> Vec<OrderPercentageProperty>;
+	fn r#order_percentage(&self) -> &[OrderPercentageProperty];
 	/// Get <https://schema.org/shippingDestination> from [`Self`] as borrowed slice.
-	fn get_shipping_destination(&self) -> &[ShippingDestinationProperty];
-	/// Take <https://schema.org/shippingDestination> from [`Self`] as owned vector.
-	fn take_shipping_destination(&mut self) -> Vec<ShippingDestinationProperty>;
+	fn r#shipping_destination(&self) -> &[ShippingDestinationProperty];
 	/// Get <https://schema.org/shippingLabel> from [`Self`] as borrowed slice.
-	fn get_shipping_label(&self) -> &[ShippingLabelProperty];
-	/// Take <https://schema.org/shippingLabel> from [`Self`] as owned vector.
-	fn take_shipping_label(&mut self) -> Vec<ShippingLabelProperty>;
+	fn r#shipping_label(&self) -> &[ShippingLabelProperty];
 	/// Get <https://schema.org/shippingRate> from [`Self`] as borrowed slice.
-	fn get_shipping_rate(&self) -> &[ShippingRateProperty];
-	/// Take <https://schema.org/shippingRate> from [`Self`] as owned vector.
-	fn take_shipping_rate(&mut self) -> Vec<ShippingRateProperty>;
+	fn r#shipping_rate(&self) -> &[ShippingRateProperty];
 	/// Get <https://schema.org/weightPercentage> from [`Self`] as borrowed slice.
-	fn get_weight_percentage(&self) -> &[WeightPercentageProperty];
-	/// Take <https://schema.org/weightPercentage> from [`Self`] as owned vector.
-	fn take_weight_percentage(&mut self) -> Vec<WeightPercentageProperty>;
+	fn r#weight_percentage(&self) -> &[WeightPercentageProperty];
 }
 impl ShippingRateSettingsTrait for ShippingRateSettings {
-	fn get_does_not_ship(&self) -> &[DoesNotShipProperty] {
+	fn r#does_not_ship(&self) -> &[DoesNotShipProperty] {
 		self.r#does_not_ship.as_slice()
 	}
-	fn take_does_not_ship(&mut self) -> Vec<DoesNotShipProperty> {
-		std::mem::take(&mut self.r#does_not_ship)
-	}
-	fn get_free_shipping_threshold(&self) -> &[FreeShippingThresholdProperty] {
+	fn r#free_shipping_threshold(&self) -> &[FreeShippingThresholdProperty] {
 		self.r#free_shipping_threshold.as_slice()
 	}
-	fn take_free_shipping_threshold(&mut self) -> Vec<FreeShippingThresholdProperty> {
-		std::mem::take(&mut self.r#free_shipping_threshold)
-	}
-	fn get_is_unlabelled_fallback(&self) -> &[IsUnlabelledFallbackProperty] {
+	fn r#is_unlabelled_fallback(&self) -> &[IsUnlabelledFallbackProperty] {
 		self.r#is_unlabelled_fallback.as_slice()
 	}
-	fn take_is_unlabelled_fallback(&mut self) -> Vec<IsUnlabelledFallbackProperty> {
-		std::mem::take(&mut self.r#is_unlabelled_fallback)
-	}
-	fn get_minimum_order_value(&self) -> &[MinimumOrderValueProperty] {
+	fn r#minimum_order_value(&self) -> &[MinimumOrderValueProperty] {
 		self.r#minimum_order_value.as_slice()
 	}
-	fn take_minimum_order_value(&mut self) -> Vec<MinimumOrderValueProperty> {
-		std::mem::take(&mut self.r#minimum_order_value)
-	}
-	fn get_order_percentage(&self) -> &[OrderPercentageProperty] {
+	fn r#order_percentage(&self) -> &[OrderPercentageProperty] {
 		self.r#order_percentage.as_slice()
 	}
-	fn take_order_percentage(&mut self) -> Vec<OrderPercentageProperty> {
-		std::mem::take(&mut self.r#order_percentage)
-	}
-	fn get_shipping_destination(&self) -> &[ShippingDestinationProperty] {
+	fn r#shipping_destination(&self) -> &[ShippingDestinationProperty] {
 		self.r#shipping_destination.as_slice()
 	}
-	fn take_shipping_destination(&mut self) -> Vec<ShippingDestinationProperty> {
-		std::mem::take(&mut self.r#shipping_destination)
-	}
-	fn get_shipping_label(&self) -> &[ShippingLabelProperty] {
+	fn r#shipping_label(&self) -> &[ShippingLabelProperty] {
 		self.r#shipping_label.as_slice()
 	}
-	fn take_shipping_label(&mut self) -> Vec<ShippingLabelProperty> {
-		std::mem::take(&mut self.r#shipping_label)
-	}
-	fn get_shipping_rate(&self) -> &[ShippingRateProperty] {
+	fn r#shipping_rate(&self) -> &[ShippingRateProperty] {
 		self.r#shipping_rate.as_slice()
 	}
-	fn take_shipping_rate(&mut self) -> Vec<ShippingRateProperty> {
-		std::mem::take(&mut self.r#shipping_rate)
-	}
-	fn get_weight_percentage(&self) -> &[WeightPercentageProperty] {
+	fn r#weight_percentage(&self) -> &[WeightPercentageProperty] {
 		self.r#weight_percentage.as_slice()
-	}
-	fn take_weight_percentage(&mut self) -> Vec<WeightPercentageProperty> {
-		std::mem::take(&mut self.r#weight_percentage)
 	}
 }
 impl StructuredValueTrait for ShippingRateSettings {}
 impl ThingTrait for ShippingRateSettings {
-	fn get_additional_type(&self) -> &[AdditionalTypeProperty] {
+	fn r#additional_type(&self) -> &[AdditionalTypeProperty] {
 		self.r#additional_type.as_slice()
 	}
-	fn take_additional_type(&mut self) -> Vec<AdditionalTypeProperty> {
-		std::mem::take(&mut self.r#additional_type)
-	}
-	fn get_alternate_name(&self) -> &[AlternateNameProperty] {
+	fn r#alternate_name(&self) -> &[AlternateNameProperty] {
 		self.r#alternate_name.as_slice()
 	}
-	fn take_alternate_name(&mut self) -> Vec<AlternateNameProperty> {
-		std::mem::take(&mut self.r#alternate_name)
-	}
-	fn get_description(&self) -> &[DescriptionProperty] {
+	fn r#description(&self) -> &[DescriptionProperty] {
 		self.r#description.as_slice()
 	}
-	fn take_description(&mut self) -> Vec<DescriptionProperty> {
-		std::mem::take(&mut self.r#description)
-	}
-	fn get_disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
+	fn r#disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
 		self.r#disambiguating_description.as_slice()
 	}
-	fn take_disambiguating_description(&mut self) -> Vec<DisambiguatingDescriptionProperty> {
-		std::mem::take(&mut self.r#disambiguating_description)
-	}
-	fn get_identifier(&self) -> &[IdentifierProperty] {
+	fn r#identifier(&self) -> &[IdentifierProperty] {
 		self.r#identifier.as_slice()
 	}
-	fn take_identifier(&mut self) -> Vec<IdentifierProperty> {
-		std::mem::take(&mut self.r#identifier)
-	}
-	fn get_image(&self) -> &[ImageProperty] {
+	fn r#image(&self) -> &[ImageProperty] {
 		self.r#image.as_slice()
 	}
-	fn take_image(&mut self) -> Vec<ImageProperty> {
-		std::mem::take(&mut self.r#image)
-	}
-	fn get_main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
+	fn r#main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
 		self.r#main_entity_of_page.as_slice()
 	}
-	fn take_main_entity_of_page(&mut self) -> Vec<MainEntityOfPageProperty> {
-		std::mem::take(&mut self.r#main_entity_of_page)
-	}
-	fn get_name(&self) -> &[NameProperty] {
+	fn r#name(&self) -> &[NameProperty] {
 		self.r#name.as_slice()
 	}
-	fn take_name(&mut self) -> Vec<NameProperty> {
-		std::mem::take(&mut self.r#name)
-	}
-	fn get_owner(&self) -> &[OwnerProperty] {
+	fn r#owner(&self) -> &[OwnerProperty] {
 		self.r#owner.as_slice()
 	}
-	fn take_owner(&mut self) -> Vec<OwnerProperty> {
-		std::mem::take(&mut self.r#owner)
-	}
-	fn get_potential_action(&self) -> &[PotentialActionProperty] {
+	fn r#potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
 	}
-	fn take_potential_action(&mut self) -> Vec<PotentialActionProperty> {
-		std::mem::take(&mut self.r#potential_action)
-	}
-	fn get_same_as(&self) -> &[SameAsProperty] {
+	fn r#same_as(&self) -> &[SameAsProperty] {
 		self.r#same_as.as_slice()
 	}
-	fn take_same_as(&mut self) -> Vec<SameAsProperty> {
-		std::mem::take(&mut self.r#same_as)
-	}
-	fn get_subject_of(&self) -> &[SubjectOfProperty] {
+	fn r#subject_of(&self) -> &[SubjectOfProperty] {
 		self.r#subject_of.as_slice()
 	}
-	fn take_subject_of(&mut self) -> Vec<SubjectOfProperty> {
-		std::mem::take(&mut self.r#subject_of)
-	}
-	fn get_url(&self) -> &[UrlProperty] {
+	fn r#url(&self) -> &[UrlProperty] {
 		self.r#url.as_slice()
-	}
-	fn take_url(&mut self) -> Vec<UrlProperty> {
-		std::mem::take(&mut self.r#url)
 	}
 }

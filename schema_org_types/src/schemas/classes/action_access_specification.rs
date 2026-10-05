@@ -229,155 +229,81 @@ pub struct ActionAccessSpecification {
 /// This trait is for properties from <https://schema.org/ActionAccessSpecification>.
 pub trait ActionAccessSpecificationTrait {
 	/// Get <https://schema.org/availabilityEnds> from [`Self`] as borrowed slice.
-	fn get_availability_ends(&self) -> &[AvailabilityEndsProperty];
-	/// Take <https://schema.org/availabilityEnds> from [`Self`] as owned vector.
-	fn take_availability_ends(&mut self) -> Vec<AvailabilityEndsProperty>;
+	fn r#availability_ends(&self) -> &[AvailabilityEndsProperty];
 	/// Get <https://schema.org/availabilityStarts> from [`Self`] as borrowed slice.
-	fn get_availability_starts(&self) -> &[AvailabilityStartsProperty];
-	/// Take <https://schema.org/availabilityStarts> from [`Self`] as owned vector.
-	fn take_availability_starts(&mut self) -> Vec<AvailabilityStartsProperty>;
+	fn r#availability_starts(&self) -> &[AvailabilityStartsProperty];
 	/// Get <https://schema.org/category> from [`Self`] as borrowed slice.
-	fn get_category(&self) -> &[CategoryProperty];
-	/// Take <https://schema.org/category> from [`Self`] as owned vector.
-	fn take_category(&mut self) -> Vec<CategoryProperty>;
+	fn r#category(&self) -> &[CategoryProperty];
 	/// Get <https://schema.org/eligibleRegion> from [`Self`] as borrowed slice.
-	fn get_eligible_region(&self) -> &[EligibleRegionProperty];
-	/// Take <https://schema.org/eligibleRegion> from [`Self`] as owned vector.
-	fn take_eligible_region(&mut self) -> Vec<EligibleRegionProperty>;
+	fn r#eligible_region(&self) -> &[EligibleRegionProperty];
 	/// Get <https://schema.org/expectsAcceptanceOf> from [`Self`] as borrowed slice.
-	fn get_expects_acceptance_of(&self) -> &[ExpectsAcceptanceOfProperty];
-	/// Take <https://schema.org/expectsAcceptanceOf> from [`Self`] as owned vector.
-	fn take_expects_acceptance_of(&mut self) -> Vec<ExpectsAcceptanceOfProperty>;
+	fn r#expects_acceptance_of(&self) -> &[ExpectsAcceptanceOfProperty];
 	/// Get <https://schema.org/ineligibleRegion> from [`Self`] as borrowed slice.
-	fn get_ineligible_region(&self) -> &[IneligibleRegionProperty];
-	/// Take <https://schema.org/ineligibleRegion> from [`Self`] as owned vector.
-	fn take_ineligible_region(&mut self) -> Vec<IneligibleRegionProperty>;
+	fn r#ineligible_region(&self) -> &[IneligibleRegionProperty];
 	/// Get <https://schema.org/requiresSubscription> from [`Self`] as borrowed slice.
-	fn get_requires_subscription(&self) -> &[RequiresSubscriptionProperty];
-	/// Take <https://schema.org/requiresSubscription> from [`Self`] as owned vector.
-	fn take_requires_subscription(&mut self) -> Vec<RequiresSubscriptionProperty>;
+	fn r#requires_subscription(&self) -> &[RequiresSubscriptionProperty];
 }
 impl ActionAccessSpecificationTrait for ActionAccessSpecification {
-	fn get_availability_ends(&self) -> &[AvailabilityEndsProperty] {
+	fn r#availability_ends(&self) -> &[AvailabilityEndsProperty] {
 		self.r#availability_ends.as_slice()
 	}
-	fn take_availability_ends(&mut self) -> Vec<AvailabilityEndsProperty> {
-		std::mem::take(&mut self.r#availability_ends)
-	}
-	fn get_availability_starts(&self) -> &[AvailabilityStartsProperty] {
+	fn r#availability_starts(&self) -> &[AvailabilityStartsProperty] {
 		self.r#availability_starts.as_slice()
 	}
-	fn take_availability_starts(&mut self) -> Vec<AvailabilityStartsProperty> {
-		std::mem::take(&mut self.r#availability_starts)
-	}
-	fn get_category(&self) -> &[CategoryProperty] {
+	fn r#category(&self) -> &[CategoryProperty] {
 		self.r#category.as_slice()
 	}
-	fn take_category(&mut self) -> Vec<CategoryProperty> {
-		std::mem::take(&mut self.r#category)
-	}
-	fn get_eligible_region(&self) -> &[EligibleRegionProperty] {
+	fn r#eligible_region(&self) -> &[EligibleRegionProperty] {
 		self.r#eligible_region.as_slice()
 	}
-	fn take_eligible_region(&mut self) -> Vec<EligibleRegionProperty> {
-		std::mem::take(&mut self.r#eligible_region)
-	}
-	fn get_expects_acceptance_of(&self) -> &[ExpectsAcceptanceOfProperty] {
+	fn r#expects_acceptance_of(&self) -> &[ExpectsAcceptanceOfProperty] {
 		self.r#expects_acceptance_of.as_slice()
 	}
-	fn take_expects_acceptance_of(&mut self) -> Vec<ExpectsAcceptanceOfProperty> {
-		std::mem::take(&mut self.r#expects_acceptance_of)
-	}
-	fn get_ineligible_region(&self) -> &[IneligibleRegionProperty] {
+	fn r#ineligible_region(&self) -> &[IneligibleRegionProperty] {
 		self.r#ineligible_region.as_slice()
 	}
-	fn take_ineligible_region(&mut self) -> Vec<IneligibleRegionProperty> {
-		std::mem::take(&mut self.r#ineligible_region)
-	}
-	fn get_requires_subscription(&self) -> &[RequiresSubscriptionProperty] {
+	fn r#requires_subscription(&self) -> &[RequiresSubscriptionProperty] {
 		self.r#requires_subscription.as_slice()
-	}
-	fn take_requires_subscription(&mut self) -> Vec<RequiresSubscriptionProperty> {
-		std::mem::take(&mut self.r#requires_subscription)
 	}
 }
 impl ThingTrait for ActionAccessSpecification {
-	fn get_additional_type(&self) -> &[AdditionalTypeProperty] {
+	fn r#additional_type(&self) -> &[AdditionalTypeProperty] {
 		self.r#additional_type.as_slice()
 	}
-	fn take_additional_type(&mut self) -> Vec<AdditionalTypeProperty> {
-		std::mem::take(&mut self.r#additional_type)
-	}
-	fn get_alternate_name(&self) -> &[AlternateNameProperty] {
+	fn r#alternate_name(&self) -> &[AlternateNameProperty] {
 		self.r#alternate_name.as_slice()
 	}
-	fn take_alternate_name(&mut self) -> Vec<AlternateNameProperty> {
-		std::mem::take(&mut self.r#alternate_name)
-	}
-	fn get_description(&self) -> &[DescriptionProperty] {
+	fn r#description(&self) -> &[DescriptionProperty] {
 		self.r#description.as_slice()
 	}
-	fn take_description(&mut self) -> Vec<DescriptionProperty> {
-		std::mem::take(&mut self.r#description)
-	}
-	fn get_disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
+	fn r#disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
 		self.r#disambiguating_description.as_slice()
 	}
-	fn take_disambiguating_description(&mut self) -> Vec<DisambiguatingDescriptionProperty> {
-		std::mem::take(&mut self.r#disambiguating_description)
-	}
-	fn get_identifier(&self) -> &[IdentifierProperty] {
+	fn r#identifier(&self) -> &[IdentifierProperty] {
 		self.r#identifier.as_slice()
 	}
-	fn take_identifier(&mut self) -> Vec<IdentifierProperty> {
-		std::mem::take(&mut self.r#identifier)
-	}
-	fn get_image(&self) -> &[ImageProperty] {
+	fn r#image(&self) -> &[ImageProperty] {
 		self.r#image.as_slice()
 	}
-	fn take_image(&mut self) -> Vec<ImageProperty> {
-		std::mem::take(&mut self.r#image)
-	}
-	fn get_main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
+	fn r#main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
 		self.r#main_entity_of_page.as_slice()
 	}
-	fn take_main_entity_of_page(&mut self) -> Vec<MainEntityOfPageProperty> {
-		std::mem::take(&mut self.r#main_entity_of_page)
-	}
-	fn get_name(&self) -> &[NameProperty] {
+	fn r#name(&self) -> &[NameProperty] {
 		self.r#name.as_slice()
 	}
-	fn take_name(&mut self) -> Vec<NameProperty> {
-		std::mem::take(&mut self.r#name)
-	}
-	fn get_owner(&self) -> &[OwnerProperty] {
+	fn r#owner(&self) -> &[OwnerProperty] {
 		self.r#owner.as_slice()
 	}
-	fn take_owner(&mut self) -> Vec<OwnerProperty> {
-		std::mem::take(&mut self.r#owner)
-	}
-	fn get_potential_action(&self) -> &[PotentialActionProperty] {
+	fn r#potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
 	}
-	fn take_potential_action(&mut self) -> Vec<PotentialActionProperty> {
-		std::mem::take(&mut self.r#potential_action)
-	}
-	fn get_same_as(&self) -> &[SameAsProperty] {
+	fn r#same_as(&self) -> &[SameAsProperty] {
 		self.r#same_as.as_slice()
 	}
-	fn take_same_as(&mut self) -> Vec<SameAsProperty> {
-		std::mem::take(&mut self.r#same_as)
-	}
-	fn get_subject_of(&self) -> &[SubjectOfProperty] {
+	fn r#subject_of(&self) -> &[SubjectOfProperty] {
 		self.r#subject_of.as_slice()
 	}
-	fn take_subject_of(&mut self) -> Vec<SubjectOfProperty> {
-		std::mem::take(&mut self.r#subject_of)
-	}
-	fn get_url(&self) -> &[UrlProperty] {
+	fn r#url(&self) -> &[UrlProperty] {
 		self.r#url.as_slice()
-	}
-	fn take_url(&mut self) -> Vec<UrlProperty> {
-		std::mem::take(&mut self.r#url)
 	}
 }

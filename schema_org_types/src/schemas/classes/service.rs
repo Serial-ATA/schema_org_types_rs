@@ -430,341 +430,174 @@ pub struct Service {
 /// This trait is for properties from <https://schema.org/Service>.
 pub trait ServiceTrait {
 	/// Get <https://schema.org/aggregateRating> from [`Self`] as borrowed slice.
-	fn get_aggregate_rating(&self) -> &[AggregateRatingProperty];
-	/// Take <https://schema.org/aggregateRating> from [`Self`] as owned vector.
-	fn take_aggregate_rating(&mut self) -> Vec<AggregateRatingProperty>;
+	fn r#aggregate_rating(&self) -> &[AggregateRatingProperty];
 	/// Get <https://schema.org/areaServed> from [`Self`] as borrowed slice.
-	fn get_area_served(&self) -> &[AreaServedProperty];
-	/// Take <https://schema.org/areaServed> from [`Self`] as owned vector.
-	fn take_area_served(&mut self) -> Vec<AreaServedProperty>;
+	fn r#area_served(&self) -> &[AreaServedProperty];
 	/// Get <https://schema.org/audience> from [`Self`] as borrowed slice.
-	fn get_audience(&self) -> &[AudienceProperty];
-	/// Take <https://schema.org/audience> from [`Self`] as owned vector.
-	fn take_audience(&mut self) -> Vec<AudienceProperty>;
+	fn r#audience(&self) -> &[AudienceProperty];
 	/// Get <https://schema.org/availableChannel> from [`Self`] as borrowed slice.
-	fn get_available_channel(&self) -> &[AvailableChannelProperty];
-	/// Take <https://schema.org/availableChannel> from [`Self`] as owned vector.
-	fn take_available_channel(&mut self) -> Vec<AvailableChannelProperty>;
+	fn r#available_channel(&self) -> &[AvailableChannelProperty];
 	/// Get <https://schema.org/award> from [`Self`] as borrowed slice.
-	fn get_award(&self) -> &[AwardProperty];
-	/// Take <https://schema.org/award> from [`Self`] as owned vector.
-	fn take_award(&mut self) -> Vec<AwardProperty>;
+	fn r#award(&self) -> &[AwardProperty];
 	/// Get <https://schema.org/brand> from [`Self`] as borrowed slice.
-	fn get_brand(&self) -> &[BrandProperty];
-	/// Take <https://schema.org/brand> from [`Self`] as owned vector.
-	fn take_brand(&mut self) -> Vec<BrandProperty>;
+	fn r#brand(&self) -> &[BrandProperty];
 	/// Get <https://schema.org/broker> from [`Self`] as borrowed slice.
-	fn get_broker(&self) -> &[BrokerProperty];
-	/// Take <https://schema.org/broker> from [`Self`] as owned vector.
-	fn take_broker(&mut self) -> Vec<BrokerProperty>;
+	fn r#broker(&self) -> &[BrokerProperty];
 	/// Get <https://schema.org/category> from [`Self`] as borrowed slice.
-	fn get_category(&self) -> &[CategoryProperty];
-	/// Take <https://schema.org/category> from [`Self`] as owned vector.
-	fn take_category(&mut self) -> Vec<CategoryProperty>;
+	fn r#category(&self) -> &[CategoryProperty];
 	/// Get <https://schema.org/hasCertification> from [`Self`] as borrowed slice.
-	fn get_has_certification(&self) -> &[HasCertificationProperty];
-	/// Take <https://schema.org/hasCertification> from [`Self`] as owned vector.
-	fn take_has_certification(&mut self) -> Vec<HasCertificationProperty>;
+	fn r#has_certification(&self) -> &[HasCertificationProperty];
 	/// Get <https://schema.org/hasOfferCatalog> from [`Self`] as borrowed slice.
-	fn get_has_offer_catalog(&self) -> &[HasOfferCatalogProperty];
-	/// Take <https://schema.org/hasOfferCatalog> from [`Self`] as owned vector.
-	fn take_has_offer_catalog(&mut self) -> Vec<HasOfferCatalogProperty>;
+	fn r#has_offer_catalog(&self) -> &[HasOfferCatalogProperty];
 	/// Get <https://schema.org/hoursAvailable> from [`Self`] as borrowed slice.
-	fn get_hours_available(&self) -> &[HoursAvailableProperty];
-	/// Take <https://schema.org/hoursAvailable> from [`Self`] as owned vector.
-	fn take_hours_available(&mut self) -> Vec<HoursAvailableProperty>;
+	fn r#hours_available(&self) -> &[HoursAvailableProperty];
 	/// Get <https://schema.org/isRelatedTo> from [`Self`] as borrowed slice.
-	fn get_is_related_to(&self) -> &[IsRelatedToProperty];
-	/// Take <https://schema.org/isRelatedTo> from [`Self`] as owned vector.
-	fn take_is_related_to(&mut self) -> Vec<IsRelatedToProperty>;
+	fn r#is_related_to(&self) -> &[IsRelatedToProperty];
 	/// Get <https://schema.org/isSimilarTo> from [`Self`] as borrowed slice.
-	fn get_is_similar_to(&self) -> &[IsSimilarToProperty];
-	/// Take <https://schema.org/isSimilarTo> from [`Self`] as owned vector.
-	fn take_is_similar_to(&mut self) -> Vec<IsSimilarToProperty>;
+	fn r#is_similar_to(&self) -> &[IsSimilarToProperty];
 	/// Get <https://schema.org/logo> from [`Self`] as borrowed slice.
-	fn get_logo(&self) -> &[LogoProperty];
-	/// Take <https://schema.org/logo> from [`Self`] as owned vector.
-	fn take_logo(&mut self) -> Vec<LogoProperty>;
+	fn r#logo(&self) -> &[LogoProperty];
 	/// Get <https://schema.org/offers> from [`Self`] as borrowed slice.
-	fn get_offers(&self) -> &[OffersProperty];
-	/// Take <https://schema.org/offers> from [`Self`] as owned vector.
-	fn take_offers(&mut self) -> Vec<OffersProperty>;
+	fn r#offers(&self) -> &[OffersProperty];
 	/// Get <https://schema.org/produces> from [`Self`] as borrowed slice.
 	#[deprecated = "This schema is superseded by <https://schema.org/serviceOutput>."]
-	fn get_produces(&self) -> &[ProducesProperty];
-	/// Take <https://schema.org/produces> from [`Self`] as owned vector.
-	#[deprecated = "This schema is superseded by <https://schema.org/serviceOutput>."]
-	fn take_produces(&mut self) -> Vec<ProducesProperty>;
+	fn r#produces(&self) -> &[ProducesProperty];
 	/// Get <https://schema.org/provider> from [`Self`] as borrowed slice.
-	fn get_provider(&self) -> &[ProviderProperty];
-	/// Take <https://schema.org/provider> from [`Self`] as owned vector.
-	fn take_provider(&mut self) -> Vec<ProviderProperty>;
+	fn r#provider(&self) -> &[ProviderProperty];
 	/// Get <https://schema.org/providerMobility> from [`Self`] as borrowed slice.
-	fn get_provider_mobility(&self) -> &[ProviderMobilityProperty];
-	/// Take <https://schema.org/providerMobility> from [`Self`] as owned vector.
-	fn take_provider_mobility(&mut self) -> Vec<ProviderMobilityProperty>;
+	fn r#provider_mobility(&self) -> &[ProviderMobilityProperty];
 	/// Get <https://schema.org/review> from [`Self`] as borrowed slice.
-	fn get_review(&self) -> &[ReviewProperty];
-	/// Take <https://schema.org/review> from [`Self`] as owned vector.
-	fn take_review(&mut self) -> Vec<ReviewProperty>;
+	fn r#review(&self) -> &[ReviewProperty];
 	/// Get <https://schema.org/serviceArea> from [`Self`] as borrowed slice.
 	#[deprecated = "This schema is superseded by <https://schema.org/areaServed>."]
-	fn get_service_area(&self) -> &[ServiceAreaProperty];
-	/// Take <https://schema.org/serviceArea> from [`Self`] as owned vector.
-	#[deprecated = "This schema is superseded by <https://schema.org/areaServed>."]
-	fn take_service_area(&mut self) -> Vec<ServiceAreaProperty>;
+	fn r#service_area(&self) -> &[ServiceAreaProperty];
 	/// Get <https://schema.org/serviceAudience> from [`Self`] as borrowed slice.
 	#[deprecated = "This schema is superseded by <https://schema.org/audience>."]
-	fn get_service_audience(&self) -> &[ServiceAudienceProperty];
-	/// Take <https://schema.org/serviceAudience> from [`Self`] as owned vector.
-	#[deprecated = "This schema is superseded by <https://schema.org/audience>."]
-	fn take_service_audience(&mut self) -> Vec<ServiceAudienceProperty>;
+	fn r#service_audience(&self) -> &[ServiceAudienceProperty];
 	/// Get <https://schema.org/serviceOutput> from [`Self`] as borrowed slice.
-	fn get_service_output(&self) -> &[ServiceOutputProperty];
-	/// Take <https://schema.org/serviceOutput> from [`Self`] as owned vector.
-	fn take_service_output(&mut self) -> Vec<ServiceOutputProperty>;
+	fn r#service_output(&self) -> &[ServiceOutputProperty];
 	/// Get <https://schema.org/serviceType> from [`Self`] as borrowed slice.
-	fn get_service_type(&self) -> &[ServiceTypeProperty];
-	/// Take <https://schema.org/serviceType> from [`Self`] as owned vector.
-	fn take_service_type(&mut self) -> Vec<ServiceTypeProperty>;
+	fn r#service_type(&self) -> &[ServiceTypeProperty];
 	/// Get <https://schema.org/slogan> from [`Self`] as borrowed slice.
-	fn get_slogan(&self) -> &[SloganProperty];
-	/// Take <https://schema.org/slogan> from [`Self`] as owned vector.
-	fn take_slogan(&mut self) -> Vec<SloganProperty>;
+	fn r#slogan(&self) -> &[SloganProperty];
 	/// Get <https://schema.org/termsOfService> from [`Self`] as borrowed slice.
-	fn get_terms_of_service(&self) -> &[TermsOfServiceProperty];
-	/// Take <https://schema.org/termsOfService> from [`Self`] as owned vector.
-	fn take_terms_of_service(&mut self) -> Vec<TermsOfServiceProperty>;
+	fn r#terms_of_service(&self) -> &[TermsOfServiceProperty];
 }
 impl ServiceTrait for Service {
-	fn get_aggregate_rating(&self) -> &[AggregateRatingProperty] {
+	fn r#aggregate_rating(&self) -> &[AggregateRatingProperty] {
 		self.r#aggregate_rating.as_slice()
 	}
-	fn take_aggregate_rating(&mut self) -> Vec<AggregateRatingProperty> {
-		std::mem::take(&mut self.r#aggregate_rating)
-	}
-	fn get_area_served(&self) -> &[AreaServedProperty] {
+	fn r#area_served(&self) -> &[AreaServedProperty] {
 		self.r#area_served.as_slice()
 	}
-	fn take_area_served(&mut self) -> Vec<AreaServedProperty> {
-		std::mem::take(&mut self.r#area_served)
-	}
-	fn get_audience(&self) -> &[AudienceProperty] {
+	fn r#audience(&self) -> &[AudienceProperty] {
 		self.r#audience.as_slice()
 	}
-	fn take_audience(&mut self) -> Vec<AudienceProperty> {
-		std::mem::take(&mut self.r#audience)
-	}
-	fn get_available_channel(&self) -> &[AvailableChannelProperty] {
+	fn r#available_channel(&self) -> &[AvailableChannelProperty] {
 		self.r#available_channel.as_slice()
 	}
-	fn take_available_channel(&mut self) -> Vec<AvailableChannelProperty> {
-		std::mem::take(&mut self.r#available_channel)
-	}
-	fn get_award(&self) -> &[AwardProperty] {
+	fn r#award(&self) -> &[AwardProperty] {
 		self.r#award.as_slice()
 	}
-	fn take_award(&mut self) -> Vec<AwardProperty> {
-		std::mem::take(&mut self.r#award)
-	}
-	fn get_brand(&self) -> &[BrandProperty] {
+	fn r#brand(&self) -> &[BrandProperty] {
 		self.r#brand.as_slice()
 	}
-	fn take_brand(&mut self) -> Vec<BrandProperty> {
-		std::mem::take(&mut self.r#brand)
-	}
-	fn get_broker(&self) -> &[BrokerProperty] {
+	fn r#broker(&self) -> &[BrokerProperty] {
 		self.r#broker.as_slice()
 	}
-	fn take_broker(&mut self) -> Vec<BrokerProperty> {
-		std::mem::take(&mut self.r#broker)
-	}
-	fn get_category(&self) -> &[CategoryProperty] {
+	fn r#category(&self) -> &[CategoryProperty] {
 		self.r#category.as_slice()
 	}
-	fn take_category(&mut self) -> Vec<CategoryProperty> {
-		std::mem::take(&mut self.r#category)
-	}
-	fn get_has_certification(&self) -> &[HasCertificationProperty] {
+	fn r#has_certification(&self) -> &[HasCertificationProperty] {
 		self.r#has_certification.as_slice()
 	}
-	fn take_has_certification(&mut self) -> Vec<HasCertificationProperty> {
-		std::mem::take(&mut self.r#has_certification)
-	}
-	fn get_has_offer_catalog(&self) -> &[HasOfferCatalogProperty] {
+	fn r#has_offer_catalog(&self) -> &[HasOfferCatalogProperty] {
 		self.r#has_offer_catalog.as_slice()
 	}
-	fn take_has_offer_catalog(&mut self) -> Vec<HasOfferCatalogProperty> {
-		std::mem::take(&mut self.r#has_offer_catalog)
-	}
-	fn get_hours_available(&self) -> &[HoursAvailableProperty] {
+	fn r#hours_available(&self) -> &[HoursAvailableProperty] {
 		self.r#hours_available.as_slice()
 	}
-	fn take_hours_available(&mut self) -> Vec<HoursAvailableProperty> {
-		std::mem::take(&mut self.r#hours_available)
-	}
-	fn get_is_related_to(&self) -> &[IsRelatedToProperty] {
+	fn r#is_related_to(&self) -> &[IsRelatedToProperty] {
 		self.r#is_related_to.as_slice()
 	}
-	fn take_is_related_to(&mut self) -> Vec<IsRelatedToProperty> {
-		std::mem::take(&mut self.r#is_related_to)
-	}
-	fn get_is_similar_to(&self) -> &[IsSimilarToProperty] {
+	fn r#is_similar_to(&self) -> &[IsSimilarToProperty] {
 		self.r#is_similar_to.as_slice()
 	}
-	fn take_is_similar_to(&mut self) -> Vec<IsSimilarToProperty> {
-		std::mem::take(&mut self.r#is_similar_to)
-	}
-	fn get_logo(&self) -> &[LogoProperty] {
+	fn r#logo(&self) -> &[LogoProperty] {
 		self.r#logo.as_slice()
 	}
-	fn take_logo(&mut self) -> Vec<LogoProperty> {
-		std::mem::take(&mut self.r#logo)
-	}
-	fn get_offers(&self) -> &[OffersProperty] {
+	fn r#offers(&self) -> &[OffersProperty] {
 		self.r#offers.as_slice()
 	}
-	fn take_offers(&mut self) -> Vec<OffersProperty> {
-		std::mem::take(&mut self.r#offers)
-	}
-	fn get_produces(&self) -> &[ProducesProperty] {
+	fn r#produces(&self) -> &[ProducesProperty] {
 		self.r#produces.as_slice()
 	}
-	fn take_produces(&mut self) -> Vec<ProducesProperty> {
-		std::mem::take(&mut self.r#produces)
-	}
-	fn get_provider(&self) -> &[ProviderProperty] {
+	fn r#provider(&self) -> &[ProviderProperty] {
 		self.r#provider.as_slice()
 	}
-	fn take_provider(&mut self) -> Vec<ProviderProperty> {
-		std::mem::take(&mut self.r#provider)
-	}
-	fn get_provider_mobility(&self) -> &[ProviderMobilityProperty] {
+	fn r#provider_mobility(&self) -> &[ProviderMobilityProperty] {
 		self.r#provider_mobility.as_slice()
 	}
-	fn take_provider_mobility(&mut self) -> Vec<ProviderMobilityProperty> {
-		std::mem::take(&mut self.r#provider_mobility)
-	}
-	fn get_review(&self) -> &[ReviewProperty] {
+	fn r#review(&self) -> &[ReviewProperty] {
 		self.r#review.as_slice()
 	}
-	fn take_review(&mut self) -> Vec<ReviewProperty> {
-		std::mem::take(&mut self.r#review)
-	}
-	fn get_service_area(&self) -> &[ServiceAreaProperty] {
+	fn r#service_area(&self) -> &[ServiceAreaProperty] {
 		self.r#service_area.as_slice()
 	}
-	fn take_service_area(&mut self) -> Vec<ServiceAreaProperty> {
-		std::mem::take(&mut self.r#service_area)
-	}
-	fn get_service_audience(&self) -> &[ServiceAudienceProperty] {
+	fn r#service_audience(&self) -> &[ServiceAudienceProperty] {
 		self.r#service_audience.as_slice()
 	}
-	fn take_service_audience(&mut self) -> Vec<ServiceAudienceProperty> {
-		std::mem::take(&mut self.r#service_audience)
-	}
-	fn get_service_output(&self) -> &[ServiceOutputProperty] {
+	fn r#service_output(&self) -> &[ServiceOutputProperty] {
 		self.r#service_output.as_slice()
 	}
-	fn take_service_output(&mut self) -> Vec<ServiceOutputProperty> {
-		std::mem::take(&mut self.r#service_output)
-	}
-	fn get_service_type(&self) -> &[ServiceTypeProperty] {
+	fn r#service_type(&self) -> &[ServiceTypeProperty] {
 		self.r#service_type.as_slice()
 	}
-	fn take_service_type(&mut self) -> Vec<ServiceTypeProperty> {
-		std::mem::take(&mut self.r#service_type)
-	}
-	fn get_slogan(&self) -> &[SloganProperty] {
+	fn r#slogan(&self) -> &[SloganProperty] {
 		self.r#slogan.as_slice()
 	}
-	fn take_slogan(&mut self) -> Vec<SloganProperty> {
-		std::mem::take(&mut self.r#slogan)
-	}
-	fn get_terms_of_service(&self) -> &[TermsOfServiceProperty] {
+	fn r#terms_of_service(&self) -> &[TermsOfServiceProperty] {
 		self.r#terms_of_service.as_slice()
-	}
-	fn take_terms_of_service(&mut self) -> Vec<TermsOfServiceProperty> {
-		std::mem::take(&mut self.r#terms_of_service)
 	}
 }
 impl ThingTrait for Service {
-	fn get_additional_type(&self) -> &[AdditionalTypeProperty] {
+	fn r#additional_type(&self) -> &[AdditionalTypeProperty] {
 		self.r#additional_type.as_slice()
 	}
-	fn take_additional_type(&mut self) -> Vec<AdditionalTypeProperty> {
-		std::mem::take(&mut self.r#additional_type)
-	}
-	fn get_alternate_name(&self) -> &[AlternateNameProperty] {
+	fn r#alternate_name(&self) -> &[AlternateNameProperty] {
 		self.r#alternate_name.as_slice()
 	}
-	fn take_alternate_name(&mut self) -> Vec<AlternateNameProperty> {
-		std::mem::take(&mut self.r#alternate_name)
-	}
-	fn get_description(&self) -> &[DescriptionProperty] {
+	fn r#description(&self) -> &[DescriptionProperty] {
 		self.r#description.as_slice()
 	}
-	fn take_description(&mut self) -> Vec<DescriptionProperty> {
-		std::mem::take(&mut self.r#description)
-	}
-	fn get_disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
+	fn r#disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
 		self.r#disambiguating_description.as_slice()
 	}
-	fn take_disambiguating_description(&mut self) -> Vec<DisambiguatingDescriptionProperty> {
-		std::mem::take(&mut self.r#disambiguating_description)
-	}
-	fn get_identifier(&self) -> &[IdentifierProperty] {
+	fn r#identifier(&self) -> &[IdentifierProperty] {
 		self.r#identifier.as_slice()
 	}
-	fn take_identifier(&mut self) -> Vec<IdentifierProperty> {
-		std::mem::take(&mut self.r#identifier)
-	}
-	fn get_image(&self) -> &[ImageProperty] {
+	fn r#image(&self) -> &[ImageProperty] {
 		self.r#image.as_slice()
 	}
-	fn take_image(&mut self) -> Vec<ImageProperty> {
-		std::mem::take(&mut self.r#image)
-	}
-	fn get_main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
+	fn r#main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
 		self.r#main_entity_of_page.as_slice()
 	}
-	fn take_main_entity_of_page(&mut self) -> Vec<MainEntityOfPageProperty> {
-		std::mem::take(&mut self.r#main_entity_of_page)
-	}
-	fn get_name(&self) -> &[NameProperty] {
+	fn r#name(&self) -> &[NameProperty] {
 		self.r#name.as_slice()
 	}
-	fn take_name(&mut self) -> Vec<NameProperty> {
-		std::mem::take(&mut self.r#name)
-	}
-	fn get_owner(&self) -> &[OwnerProperty] {
+	fn r#owner(&self) -> &[OwnerProperty] {
 		self.r#owner.as_slice()
 	}
-	fn take_owner(&mut self) -> Vec<OwnerProperty> {
-		std::mem::take(&mut self.r#owner)
-	}
-	fn get_potential_action(&self) -> &[PotentialActionProperty] {
+	fn r#potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
 	}
-	fn take_potential_action(&mut self) -> Vec<PotentialActionProperty> {
-		std::mem::take(&mut self.r#potential_action)
-	}
-	fn get_same_as(&self) -> &[SameAsProperty] {
+	fn r#same_as(&self) -> &[SameAsProperty] {
 		self.r#same_as.as_slice()
 	}
-	fn take_same_as(&mut self) -> Vec<SameAsProperty> {
-		std::mem::take(&mut self.r#same_as)
-	}
-	fn get_subject_of(&self) -> &[SubjectOfProperty] {
+	fn r#subject_of(&self) -> &[SubjectOfProperty] {
 		self.r#subject_of.as_slice()
 	}
-	fn take_subject_of(&mut self) -> Vec<SubjectOfProperty> {
-		std::mem::take(&mut self.r#subject_of)
-	}
-	fn get_url(&self) -> &[UrlProperty] {
+	fn r#url(&self) -> &[UrlProperty] {
 		self.r#url.as_slice()
-	}
-	fn take_url(&mut self) -> Vec<UrlProperty> {
-		std::mem::take(&mut self.r#url)
 	}
 }

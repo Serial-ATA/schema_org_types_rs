@@ -462,310 +462,160 @@ pub struct ExerciseAction {
 pub trait ExerciseActionTrait {
 	/// Get <https://schema.org/course> from [`Self`] as borrowed slice.
 	#[deprecated = "This schema is superseded by <https://schema.org/exerciseCourse>."]
-	fn get_course(&self) -> &[CourseProperty];
-	/// Take <https://schema.org/course> from [`Self`] as owned vector.
-	#[deprecated = "This schema is superseded by <https://schema.org/exerciseCourse>."]
-	fn take_course(&mut self) -> Vec<CourseProperty>;
+	fn r#course(&self) -> &[CourseProperty];
 	/// Get <https://schema.org/diet> from [`Self`] as borrowed slice.
-	fn get_diet(&self) -> &[DietProperty];
-	/// Take <https://schema.org/diet> from [`Self`] as owned vector.
-	fn take_diet(&mut self) -> Vec<DietProperty>;
+	fn r#diet(&self) -> &[DietProperty];
 	/// Get <https://schema.org/distance> from [`Self`] as borrowed slice.
-	fn get_distance(&self) -> &[DistanceProperty];
-	/// Take <https://schema.org/distance> from [`Self`] as owned vector.
-	fn take_distance(&mut self) -> Vec<DistanceProperty>;
+	fn r#distance(&self) -> &[DistanceProperty];
 	/// Get <https://schema.org/exerciseCourse> from [`Self`] as borrowed slice.
-	fn get_exercise_course(&self) -> &[ExerciseCourseProperty];
-	/// Take <https://schema.org/exerciseCourse> from [`Self`] as owned vector.
-	fn take_exercise_course(&mut self) -> Vec<ExerciseCourseProperty>;
+	fn r#exercise_course(&self) -> &[ExerciseCourseProperty];
 	/// Get <https://schema.org/exercisePlan> from [`Self`] as borrowed slice.
-	fn get_exercise_plan(&self) -> &[ExercisePlanProperty];
-	/// Take <https://schema.org/exercisePlan> from [`Self`] as owned vector.
-	fn take_exercise_plan(&mut self) -> Vec<ExercisePlanProperty>;
+	fn r#exercise_plan(&self) -> &[ExercisePlanProperty];
 	/// Get <https://schema.org/exerciseRelatedDiet> from [`Self`] as borrowed slice.
-	fn get_exercise_related_diet(&self) -> &[ExerciseRelatedDietProperty];
-	/// Take <https://schema.org/exerciseRelatedDiet> from [`Self`] as owned vector.
-	fn take_exercise_related_diet(&mut self) -> Vec<ExerciseRelatedDietProperty>;
+	fn r#exercise_related_diet(&self) -> &[ExerciseRelatedDietProperty];
 	/// Get <https://schema.org/exerciseType> from [`Self`] as borrowed slice.
-	fn get_exercise_type(&self) -> &[ExerciseTypeProperty];
-	/// Take <https://schema.org/exerciseType> from [`Self`] as owned vector.
-	fn take_exercise_type(&mut self) -> Vec<ExerciseTypeProperty>;
+	fn r#exercise_type(&self) -> &[ExerciseTypeProperty];
 	/// Get <https://schema.org/fromLocation> from [`Self`] as borrowed slice.
-	fn get_from_location(&self) -> &[FromLocationProperty];
-	/// Take <https://schema.org/fromLocation> from [`Self`] as owned vector.
-	fn take_from_location(&mut self) -> Vec<FromLocationProperty>;
+	fn r#from_location(&self) -> &[FromLocationProperty];
 	/// Get <https://schema.org/opponent> from [`Self`] as borrowed slice.
-	fn get_opponent(&self) -> &[OpponentProperty];
-	/// Take <https://schema.org/opponent> from [`Self`] as owned vector.
-	fn take_opponent(&mut self) -> Vec<OpponentProperty>;
+	fn r#opponent(&self) -> &[OpponentProperty];
 	/// Get <https://schema.org/sportsActivityLocation> from [`Self`] as borrowed slice.
-	fn get_sports_activity_location(&self) -> &[SportsActivityLocationProperty];
-	/// Take <https://schema.org/sportsActivityLocation> from [`Self`] as owned vector.
-	fn take_sports_activity_location(&mut self) -> Vec<SportsActivityLocationProperty>;
+	fn r#sports_activity_location(&self) -> &[SportsActivityLocationProperty];
 	/// Get <https://schema.org/sportsEvent> from [`Self`] as borrowed slice.
-	fn get_sports_event(&self) -> &[SportsEventProperty];
-	/// Take <https://schema.org/sportsEvent> from [`Self`] as owned vector.
-	fn take_sports_event(&mut self) -> Vec<SportsEventProperty>;
+	fn r#sports_event(&self) -> &[SportsEventProperty];
 	/// Get <https://schema.org/sportsTeam> from [`Self`] as borrowed slice.
-	fn get_sports_team(&self) -> &[SportsTeamProperty];
-	/// Take <https://schema.org/sportsTeam> from [`Self`] as owned vector.
-	fn take_sports_team(&mut self) -> Vec<SportsTeamProperty>;
+	fn r#sports_team(&self) -> &[SportsTeamProperty];
 	/// Get <https://schema.org/toLocation> from [`Self`] as borrowed slice.
-	fn get_to_location(&self) -> &[ToLocationProperty];
-	/// Take <https://schema.org/toLocation> from [`Self`] as owned vector.
-	fn take_to_location(&mut self) -> Vec<ToLocationProperty>;
+	fn r#to_location(&self) -> &[ToLocationProperty];
 }
 impl ExerciseActionTrait for ExerciseAction {
-	fn get_course(&self) -> &[CourseProperty] {
+	fn r#course(&self) -> &[CourseProperty] {
 		self.r#course.as_slice()
 	}
-	fn take_course(&mut self) -> Vec<CourseProperty> {
-		std::mem::take(&mut self.r#course)
-	}
-	fn get_diet(&self) -> &[DietProperty] {
+	fn r#diet(&self) -> &[DietProperty] {
 		self.r#diet.as_slice()
 	}
-	fn take_diet(&mut self) -> Vec<DietProperty> {
-		std::mem::take(&mut self.r#diet)
-	}
-	fn get_distance(&self) -> &[DistanceProperty] {
+	fn r#distance(&self) -> &[DistanceProperty] {
 		self.r#distance.as_slice()
 	}
-	fn take_distance(&mut self) -> Vec<DistanceProperty> {
-		std::mem::take(&mut self.r#distance)
-	}
-	fn get_exercise_course(&self) -> &[ExerciseCourseProperty] {
+	fn r#exercise_course(&self) -> &[ExerciseCourseProperty] {
 		self.r#exercise_course.as_slice()
 	}
-	fn take_exercise_course(&mut self) -> Vec<ExerciseCourseProperty> {
-		std::mem::take(&mut self.r#exercise_course)
-	}
-	fn get_exercise_plan(&self) -> &[ExercisePlanProperty] {
+	fn r#exercise_plan(&self) -> &[ExercisePlanProperty] {
 		self.r#exercise_plan.as_slice()
 	}
-	fn take_exercise_plan(&mut self) -> Vec<ExercisePlanProperty> {
-		std::mem::take(&mut self.r#exercise_plan)
-	}
-	fn get_exercise_related_diet(&self) -> &[ExerciseRelatedDietProperty] {
+	fn r#exercise_related_diet(&self) -> &[ExerciseRelatedDietProperty] {
 		self.r#exercise_related_diet.as_slice()
 	}
-	fn take_exercise_related_diet(&mut self) -> Vec<ExerciseRelatedDietProperty> {
-		std::mem::take(&mut self.r#exercise_related_diet)
-	}
-	fn get_exercise_type(&self) -> &[ExerciseTypeProperty] {
+	fn r#exercise_type(&self) -> &[ExerciseTypeProperty] {
 		self.r#exercise_type.as_slice()
 	}
-	fn take_exercise_type(&mut self) -> Vec<ExerciseTypeProperty> {
-		std::mem::take(&mut self.r#exercise_type)
-	}
-	fn get_from_location(&self) -> &[FromLocationProperty] {
+	fn r#from_location(&self) -> &[FromLocationProperty] {
 		self.r#from_location.as_slice()
 	}
-	fn take_from_location(&mut self) -> Vec<FromLocationProperty> {
-		std::mem::take(&mut self.r#from_location)
-	}
-	fn get_opponent(&self) -> &[OpponentProperty] {
+	fn r#opponent(&self) -> &[OpponentProperty] {
 		self.r#opponent.as_slice()
 	}
-	fn take_opponent(&mut self) -> Vec<OpponentProperty> {
-		std::mem::take(&mut self.r#opponent)
-	}
-	fn get_sports_activity_location(&self) -> &[SportsActivityLocationProperty] {
+	fn r#sports_activity_location(&self) -> &[SportsActivityLocationProperty] {
 		self.r#sports_activity_location.as_slice()
 	}
-	fn take_sports_activity_location(&mut self) -> Vec<SportsActivityLocationProperty> {
-		std::mem::take(&mut self.r#sports_activity_location)
-	}
-	fn get_sports_event(&self) -> &[SportsEventProperty] {
+	fn r#sports_event(&self) -> &[SportsEventProperty] {
 		self.r#sports_event.as_slice()
 	}
-	fn take_sports_event(&mut self) -> Vec<SportsEventProperty> {
-		std::mem::take(&mut self.r#sports_event)
-	}
-	fn get_sports_team(&self) -> &[SportsTeamProperty] {
+	fn r#sports_team(&self) -> &[SportsTeamProperty] {
 		self.r#sports_team.as_slice()
 	}
-	fn take_sports_team(&mut self) -> Vec<SportsTeamProperty> {
-		std::mem::take(&mut self.r#sports_team)
-	}
-	fn get_to_location(&self) -> &[ToLocationProperty] {
+	fn r#to_location(&self) -> &[ToLocationProperty] {
 		self.r#to_location.as_slice()
-	}
-	fn take_to_location(&mut self) -> Vec<ToLocationProperty> {
-		std::mem::take(&mut self.r#to_location)
 	}
 }
 impl ActionTrait for ExerciseAction {
-	fn get_action_process(&self) -> &[ActionProcessProperty] {
+	fn r#action_process(&self) -> &[ActionProcessProperty] {
 		self.r#action_process.as_slice()
 	}
-	fn take_action_process(&mut self) -> Vec<ActionProcessProperty> {
-		std::mem::take(&mut self.r#action_process)
-	}
-	fn get_action_status(&self) -> &[ActionStatusProperty] {
+	fn r#action_status(&self) -> &[ActionStatusProperty] {
 		self.r#action_status.as_slice()
 	}
-	fn take_action_status(&mut self) -> Vec<ActionStatusProperty> {
-		std::mem::take(&mut self.r#action_status)
-	}
-	fn get_agent(&self) -> &[AgentProperty] {
+	fn r#agent(&self) -> &[AgentProperty] {
 		self.r#agent.as_slice()
 	}
-	fn take_agent(&mut self) -> Vec<AgentProperty> {
-		std::mem::take(&mut self.r#agent)
-	}
-	fn get_end_time(&self) -> &[EndTimeProperty] {
+	fn r#end_time(&self) -> &[EndTimeProperty] {
 		self.r#end_time.as_slice()
 	}
-	fn take_end_time(&mut self) -> Vec<EndTimeProperty> {
-		std::mem::take(&mut self.r#end_time)
-	}
-	fn get_error(&self) -> &[ErrorProperty] {
+	fn r#error(&self) -> &[ErrorProperty] {
 		self.r#error.as_slice()
 	}
-	fn take_error(&mut self) -> Vec<ErrorProperty> {
-		std::mem::take(&mut self.r#error)
-	}
-	fn get_instrument(&self) -> &[InstrumentProperty] {
+	fn r#instrument(&self) -> &[InstrumentProperty] {
 		self.r#instrument.as_slice()
 	}
-	fn take_instrument(&mut self) -> Vec<InstrumentProperty> {
-		std::mem::take(&mut self.r#instrument)
-	}
-	fn get_location(&self) -> &[LocationProperty] {
+	fn r#location(&self) -> &[LocationProperty] {
 		self.r#location.as_slice()
 	}
-	fn take_location(&mut self) -> Vec<LocationProperty> {
-		std::mem::take(&mut self.r#location)
-	}
-	fn get_object(&self) -> &[ObjectProperty] {
+	fn r#object(&self) -> &[ObjectProperty] {
 		self.r#object.as_slice()
 	}
-	fn take_object(&mut self) -> Vec<ObjectProperty> {
-		std::mem::take(&mut self.r#object)
-	}
-	fn get_participant(&self) -> &[ParticipantProperty] {
+	fn r#participant(&self) -> &[ParticipantProperty] {
 		self.r#participant.as_slice()
 	}
-	fn take_participant(&mut self) -> Vec<ParticipantProperty> {
-		std::mem::take(&mut self.r#participant)
-	}
-	fn get_provider(&self) -> &[ProviderProperty] {
+	fn r#provider(&self) -> &[ProviderProperty] {
 		self.r#provider.as_slice()
 	}
-	fn take_provider(&mut self) -> Vec<ProviderProperty> {
-		std::mem::take(&mut self.r#provider)
-	}
-	fn get_result(&self) -> &[ResultProperty] {
+	fn r#result(&self) -> &[ResultProperty] {
 		self.r#result.as_slice()
 	}
-	fn take_result(&mut self) -> Vec<ResultProperty> {
-		std::mem::take(&mut self.r#result)
-	}
-	fn get_start_time(&self) -> &[StartTimeProperty] {
+	fn r#start_time(&self) -> &[StartTimeProperty] {
 		self.r#start_time.as_slice()
 	}
-	fn take_start_time(&mut self) -> Vec<StartTimeProperty> {
-		std::mem::take(&mut self.r#start_time)
-	}
-	fn get_target(&self) -> &[TargetProperty] {
+	fn r#target(&self) -> &[TargetProperty] {
 		self.r#target.as_slice()
-	}
-	fn take_target(&mut self) -> Vec<TargetProperty> {
-		std::mem::take(&mut self.r#target)
 	}
 }
 impl PlayActionTrait for ExerciseAction {
-	fn get_audience(&self) -> &[AudienceProperty] {
+	fn r#audience(&self) -> &[AudienceProperty] {
 		self.r#audience.as_slice()
 	}
-	fn take_audience(&mut self) -> Vec<AudienceProperty> {
-		std::mem::take(&mut self.r#audience)
-	}
-	fn get_event(&self) -> &[EventProperty] {
+	fn r#event(&self) -> &[EventProperty] {
 		self.r#event.as_slice()
-	}
-	fn take_event(&mut self) -> Vec<EventProperty> {
-		std::mem::take(&mut self.r#event)
 	}
 }
 impl ThingTrait for ExerciseAction {
-	fn get_additional_type(&self) -> &[AdditionalTypeProperty] {
+	fn r#additional_type(&self) -> &[AdditionalTypeProperty] {
 		self.r#additional_type.as_slice()
 	}
-	fn take_additional_type(&mut self) -> Vec<AdditionalTypeProperty> {
-		std::mem::take(&mut self.r#additional_type)
-	}
-	fn get_alternate_name(&self) -> &[AlternateNameProperty] {
+	fn r#alternate_name(&self) -> &[AlternateNameProperty] {
 		self.r#alternate_name.as_slice()
 	}
-	fn take_alternate_name(&mut self) -> Vec<AlternateNameProperty> {
-		std::mem::take(&mut self.r#alternate_name)
-	}
-	fn get_description(&self) -> &[DescriptionProperty] {
+	fn r#description(&self) -> &[DescriptionProperty] {
 		self.r#description.as_slice()
 	}
-	fn take_description(&mut self) -> Vec<DescriptionProperty> {
-		std::mem::take(&mut self.r#description)
-	}
-	fn get_disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
+	fn r#disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
 		self.r#disambiguating_description.as_slice()
 	}
-	fn take_disambiguating_description(&mut self) -> Vec<DisambiguatingDescriptionProperty> {
-		std::mem::take(&mut self.r#disambiguating_description)
-	}
-	fn get_identifier(&self) -> &[IdentifierProperty] {
+	fn r#identifier(&self) -> &[IdentifierProperty] {
 		self.r#identifier.as_slice()
 	}
-	fn take_identifier(&mut self) -> Vec<IdentifierProperty> {
-		std::mem::take(&mut self.r#identifier)
-	}
-	fn get_image(&self) -> &[ImageProperty] {
+	fn r#image(&self) -> &[ImageProperty] {
 		self.r#image.as_slice()
 	}
-	fn take_image(&mut self) -> Vec<ImageProperty> {
-		std::mem::take(&mut self.r#image)
-	}
-	fn get_main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
+	fn r#main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
 		self.r#main_entity_of_page.as_slice()
 	}
-	fn take_main_entity_of_page(&mut self) -> Vec<MainEntityOfPageProperty> {
-		std::mem::take(&mut self.r#main_entity_of_page)
-	}
-	fn get_name(&self) -> &[NameProperty] {
+	fn r#name(&self) -> &[NameProperty] {
 		self.r#name.as_slice()
 	}
-	fn take_name(&mut self) -> Vec<NameProperty> {
-		std::mem::take(&mut self.r#name)
-	}
-	fn get_owner(&self) -> &[OwnerProperty] {
+	fn r#owner(&self) -> &[OwnerProperty] {
 		self.r#owner.as_slice()
 	}
-	fn take_owner(&mut self) -> Vec<OwnerProperty> {
-		std::mem::take(&mut self.r#owner)
-	}
-	fn get_potential_action(&self) -> &[PotentialActionProperty] {
+	fn r#potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
 	}
-	fn take_potential_action(&mut self) -> Vec<PotentialActionProperty> {
-		std::mem::take(&mut self.r#potential_action)
-	}
-	fn get_same_as(&self) -> &[SameAsProperty] {
+	fn r#same_as(&self) -> &[SameAsProperty] {
 		self.r#same_as.as_slice()
 	}
-	fn take_same_as(&mut self) -> Vec<SameAsProperty> {
-		std::mem::take(&mut self.r#same_as)
-	}
-	fn get_subject_of(&self) -> &[SubjectOfProperty] {
+	fn r#subject_of(&self) -> &[SubjectOfProperty] {
 		self.r#subject_of.as_slice()
 	}
-	fn take_subject_of(&mut self) -> Vec<SubjectOfProperty> {
-		std::mem::take(&mut self.r#subject_of)
-	}
-	fn get_url(&self) -> &[UrlProperty] {
+	fn r#url(&self) -> &[UrlProperty] {
 		self.r#url.as_slice()
-	}
-	fn take_url(&mut self) -> Vec<UrlProperty> {
-		std::mem::take(&mut self.r#url)
 	}
 }

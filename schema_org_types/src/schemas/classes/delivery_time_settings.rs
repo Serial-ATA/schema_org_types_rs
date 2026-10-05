@@ -198,126 +198,67 @@ pub struct DeliveryTimeSettings {
 #[deprecated = "This schema is superseded by <https://schema.org/ShippingConditions>."]
 pub trait DeliveryTimeSettingsTrait {
 	/// Get <https://schema.org/deliveryTime> from [`Self`] as borrowed slice.
-	fn get_delivery_time(&self) -> &[DeliveryTimeProperty];
-	/// Take <https://schema.org/deliveryTime> from [`Self`] as owned vector.
-	fn take_delivery_time(&mut self) -> Vec<DeliveryTimeProperty>;
+	fn r#delivery_time(&self) -> &[DeliveryTimeProperty];
 	/// Get <https://schema.org/isUnlabelledFallback> from [`Self`] as borrowed slice.
-	fn get_is_unlabelled_fallback(&self) -> &[IsUnlabelledFallbackProperty];
-	/// Take <https://schema.org/isUnlabelledFallback> from [`Self`] as owned vector.
-	fn take_is_unlabelled_fallback(&mut self) -> Vec<IsUnlabelledFallbackProperty>;
+	fn r#is_unlabelled_fallback(&self) -> &[IsUnlabelledFallbackProperty];
 	/// Get <https://schema.org/shippingDestination> from [`Self`] as borrowed slice.
-	fn get_shipping_destination(&self) -> &[ShippingDestinationProperty];
-	/// Take <https://schema.org/shippingDestination> from [`Self`] as owned vector.
-	fn take_shipping_destination(&mut self) -> Vec<ShippingDestinationProperty>;
+	fn r#shipping_destination(&self) -> &[ShippingDestinationProperty];
 	/// Get <https://schema.org/transitTimeLabel> from [`Self`] as borrowed slice.
-	fn get_transit_time_label(&self) -> &[TransitTimeLabelProperty];
-	/// Take <https://schema.org/transitTimeLabel> from [`Self`] as owned vector.
-	fn take_transit_time_label(&mut self) -> Vec<TransitTimeLabelProperty>;
+	fn r#transit_time_label(&self) -> &[TransitTimeLabelProperty];
 }
 impl DeliveryTimeSettingsTrait for DeliveryTimeSettings {
-	fn get_delivery_time(&self) -> &[DeliveryTimeProperty] {
+	fn r#delivery_time(&self) -> &[DeliveryTimeProperty] {
 		self.r#delivery_time.as_slice()
 	}
-	fn take_delivery_time(&mut self) -> Vec<DeliveryTimeProperty> {
-		std::mem::take(&mut self.r#delivery_time)
-	}
-	fn get_is_unlabelled_fallback(&self) -> &[IsUnlabelledFallbackProperty] {
+	fn r#is_unlabelled_fallback(&self) -> &[IsUnlabelledFallbackProperty] {
 		self.r#is_unlabelled_fallback.as_slice()
 	}
-	fn take_is_unlabelled_fallback(&mut self) -> Vec<IsUnlabelledFallbackProperty> {
-		std::mem::take(&mut self.r#is_unlabelled_fallback)
-	}
-	fn get_shipping_destination(&self) -> &[ShippingDestinationProperty] {
+	fn r#shipping_destination(&self) -> &[ShippingDestinationProperty] {
 		self.r#shipping_destination.as_slice()
 	}
-	fn take_shipping_destination(&mut self) -> Vec<ShippingDestinationProperty> {
-		std::mem::take(&mut self.r#shipping_destination)
-	}
-	fn get_transit_time_label(&self) -> &[TransitTimeLabelProperty] {
+	fn r#transit_time_label(&self) -> &[TransitTimeLabelProperty] {
 		self.r#transit_time_label.as_slice()
-	}
-	fn take_transit_time_label(&mut self) -> Vec<TransitTimeLabelProperty> {
-		std::mem::take(&mut self.r#transit_time_label)
 	}
 }
 impl StructuredValueTrait for DeliveryTimeSettings {}
 impl ThingTrait for DeliveryTimeSettings {
-	fn get_additional_type(&self) -> &[AdditionalTypeProperty] {
+	fn r#additional_type(&self) -> &[AdditionalTypeProperty] {
 		self.r#additional_type.as_slice()
 	}
-	fn take_additional_type(&mut self) -> Vec<AdditionalTypeProperty> {
-		std::mem::take(&mut self.r#additional_type)
-	}
-	fn get_alternate_name(&self) -> &[AlternateNameProperty] {
+	fn r#alternate_name(&self) -> &[AlternateNameProperty] {
 		self.r#alternate_name.as_slice()
 	}
-	fn take_alternate_name(&mut self) -> Vec<AlternateNameProperty> {
-		std::mem::take(&mut self.r#alternate_name)
-	}
-	fn get_description(&self) -> &[DescriptionProperty] {
+	fn r#description(&self) -> &[DescriptionProperty] {
 		self.r#description.as_slice()
 	}
-	fn take_description(&mut self) -> Vec<DescriptionProperty> {
-		std::mem::take(&mut self.r#description)
-	}
-	fn get_disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
+	fn r#disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
 		self.r#disambiguating_description.as_slice()
 	}
-	fn take_disambiguating_description(&mut self) -> Vec<DisambiguatingDescriptionProperty> {
-		std::mem::take(&mut self.r#disambiguating_description)
-	}
-	fn get_identifier(&self) -> &[IdentifierProperty] {
+	fn r#identifier(&self) -> &[IdentifierProperty] {
 		self.r#identifier.as_slice()
 	}
-	fn take_identifier(&mut self) -> Vec<IdentifierProperty> {
-		std::mem::take(&mut self.r#identifier)
-	}
-	fn get_image(&self) -> &[ImageProperty] {
+	fn r#image(&self) -> &[ImageProperty] {
 		self.r#image.as_slice()
 	}
-	fn take_image(&mut self) -> Vec<ImageProperty> {
-		std::mem::take(&mut self.r#image)
-	}
-	fn get_main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
+	fn r#main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
 		self.r#main_entity_of_page.as_slice()
 	}
-	fn take_main_entity_of_page(&mut self) -> Vec<MainEntityOfPageProperty> {
-		std::mem::take(&mut self.r#main_entity_of_page)
-	}
-	fn get_name(&self) -> &[NameProperty] {
+	fn r#name(&self) -> &[NameProperty] {
 		self.r#name.as_slice()
 	}
-	fn take_name(&mut self) -> Vec<NameProperty> {
-		std::mem::take(&mut self.r#name)
-	}
-	fn get_owner(&self) -> &[OwnerProperty] {
+	fn r#owner(&self) -> &[OwnerProperty] {
 		self.r#owner.as_slice()
 	}
-	fn take_owner(&mut self) -> Vec<OwnerProperty> {
-		std::mem::take(&mut self.r#owner)
-	}
-	fn get_potential_action(&self) -> &[PotentialActionProperty] {
+	fn r#potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
 	}
-	fn take_potential_action(&mut self) -> Vec<PotentialActionProperty> {
-		std::mem::take(&mut self.r#potential_action)
-	}
-	fn get_same_as(&self) -> &[SameAsProperty] {
+	fn r#same_as(&self) -> &[SameAsProperty] {
 		self.r#same_as.as_slice()
 	}
-	fn take_same_as(&mut self) -> Vec<SameAsProperty> {
-		std::mem::take(&mut self.r#same_as)
-	}
-	fn get_subject_of(&self) -> &[SubjectOfProperty] {
+	fn r#subject_of(&self) -> &[SubjectOfProperty] {
 		self.r#subject_of.as_slice()
 	}
-	fn take_subject_of(&mut self) -> Vec<SubjectOfProperty> {
-		std::mem::take(&mut self.r#subject_of)
-	}
-	fn get_url(&self) -> &[UrlProperty] {
+	fn r#url(&self) -> &[UrlProperty] {
 		self.r#url.as_slice()
-	}
-	fn take_url(&mut self) -> Vec<UrlProperty> {
-		std::mem::take(&mut self.r#url)
 	}
 }

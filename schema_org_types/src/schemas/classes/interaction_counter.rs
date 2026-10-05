@@ -218,146 +218,77 @@ pub struct InteractionCounter {
 /// This trait is for properties from <https://schema.org/InteractionCounter>.
 pub trait InteractionCounterTrait {
 	/// Get <https://schema.org/endTime> from [`Self`] as borrowed slice.
-	fn get_end_time(&self) -> &[EndTimeProperty];
-	/// Take <https://schema.org/endTime> from [`Self`] as owned vector.
-	fn take_end_time(&mut self) -> Vec<EndTimeProperty>;
+	fn r#end_time(&self) -> &[EndTimeProperty];
 	/// Get <https://schema.org/interactionService> from [`Self`] as borrowed slice.
-	fn get_interaction_service(&self) -> &[InteractionServiceProperty];
-	/// Take <https://schema.org/interactionService> from [`Self`] as owned vector.
-	fn take_interaction_service(&mut self) -> Vec<InteractionServiceProperty>;
+	fn r#interaction_service(&self) -> &[InteractionServiceProperty];
 	/// Get <https://schema.org/interactionType> from [`Self`] as borrowed slice.
-	fn get_interaction_type(&self) -> &[InteractionTypeProperty];
-	/// Take <https://schema.org/interactionType> from [`Self`] as owned vector.
-	fn take_interaction_type(&mut self) -> Vec<InteractionTypeProperty>;
+	fn r#interaction_type(&self) -> &[InteractionTypeProperty];
 	/// Get <https://schema.org/location> from [`Self`] as borrowed slice.
-	fn get_location(&self) -> &[LocationProperty];
-	/// Take <https://schema.org/location> from [`Self`] as owned vector.
-	fn take_location(&mut self) -> Vec<LocationProperty>;
+	fn r#location(&self) -> &[LocationProperty];
 	/// Get <https://schema.org/startTime> from [`Self`] as borrowed slice.
-	fn get_start_time(&self) -> &[StartTimeProperty];
-	/// Take <https://schema.org/startTime> from [`Self`] as owned vector.
-	fn take_start_time(&mut self) -> Vec<StartTimeProperty>;
+	fn r#start_time(&self) -> &[StartTimeProperty];
 	/// Get <https://schema.org/userInteractionCount> from [`Self`] as borrowed slice.
-	fn get_user_interaction_count(&self) -> &[UserInteractionCountProperty];
-	/// Take <https://schema.org/userInteractionCount> from [`Self`] as owned vector.
-	fn take_user_interaction_count(&mut self) -> Vec<UserInteractionCountProperty>;
+	fn r#user_interaction_count(&self) -> &[UserInteractionCountProperty];
 }
 impl InteractionCounterTrait for InteractionCounter {
-	fn get_end_time(&self) -> &[EndTimeProperty] {
+	fn r#end_time(&self) -> &[EndTimeProperty] {
 		self.r#end_time.as_slice()
 	}
-	fn take_end_time(&mut self) -> Vec<EndTimeProperty> {
-		std::mem::take(&mut self.r#end_time)
-	}
-	fn get_interaction_service(&self) -> &[InteractionServiceProperty] {
+	fn r#interaction_service(&self) -> &[InteractionServiceProperty] {
 		self.r#interaction_service.as_slice()
 	}
-	fn take_interaction_service(&mut self) -> Vec<InteractionServiceProperty> {
-		std::mem::take(&mut self.r#interaction_service)
-	}
-	fn get_interaction_type(&self) -> &[InteractionTypeProperty] {
+	fn r#interaction_type(&self) -> &[InteractionTypeProperty] {
 		self.r#interaction_type.as_slice()
 	}
-	fn take_interaction_type(&mut self) -> Vec<InteractionTypeProperty> {
-		std::mem::take(&mut self.r#interaction_type)
-	}
-	fn get_location(&self) -> &[LocationProperty] {
+	fn r#location(&self) -> &[LocationProperty] {
 		self.r#location.as_slice()
 	}
-	fn take_location(&mut self) -> Vec<LocationProperty> {
-		std::mem::take(&mut self.r#location)
-	}
-	fn get_start_time(&self) -> &[StartTimeProperty] {
+	fn r#start_time(&self) -> &[StartTimeProperty] {
 		self.r#start_time.as_slice()
 	}
-	fn take_start_time(&mut self) -> Vec<StartTimeProperty> {
-		std::mem::take(&mut self.r#start_time)
-	}
-	fn get_user_interaction_count(&self) -> &[UserInteractionCountProperty] {
+	fn r#user_interaction_count(&self) -> &[UserInteractionCountProperty] {
 		self.r#user_interaction_count.as_slice()
-	}
-	fn take_user_interaction_count(&mut self) -> Vec<UserInteractionCountProperty> {
-		std::mem::take(&mut self.r#user_interaction_count)
 	}
 }
 impl StructuredValueTrait for InteractionCounter {}
 impl ThingTrait for InteractionCounter {
-	fn get_additional_type(&self) -> &[AdditionalTypeProperty] {
+	fn r#additional_type(&self) -> &[AdditionalTypeProperty] {
 		self.r#additional_type.as_slice()
 	}
-	fn take_additional_type(&mut self) -> Vec<AdditionalTypeProperty> {
-		std::mem::take(&mut self.r#additional_type)
-	}
-	fn get_alternate_name(&self) -> &[AlternateNameProperty] {
+	fn r#alternate_name(&self) -> &[AlternateNameProperty] {
 		self.r#alternate_name.as_slice()
 	}
-	fn take_alternate_name(&mut self) -> Vec<AlternateNameProperty> {
-		std::mem::take(&mut self.r#alternate_name)
-	}
-	fn get_description(&self) -> &[DescriptionProperty] {
+	fn r#description(&self) -> &[DescriptionProperty] {
 		self.r#description.as_slice()
 	}
-	fn take_description(&mut self) -> Vec<DescriptionProperty> {
-		std::mem::take(&mut self.r#description)
-	}
-	fn get_disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
+	fn r#disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
 		self.r#disambiguating_description.as_slice()
 	}
-	fn take_disambiguating_description(&mut self) -> Vec<DisambiguatingDescriptionProperty> {
-		std::mem::take(&mut self.r#disambiguating_description)
-	}
-	fn get_identifier(&self) -> &[IdentifierProperty] {
+	fn r#identifier(&self) -> &[IdentifierProperty] {
 		self.r#identifier.as_slice()
 	}
-	fn take_identifier(&mut self) -> Vec<IdentifierProperty> {
-		std::mem::take(&mut self.r#identifier)
-	}
-	fn get_image(&self) -> &[ImageProperty] {
+	fn r#image(&self) -> &[ImageProperty] {
 		self.r#image.as_slice()
 	}
-	fn take_image(&mut self) -> Vec<ImageProperty> {
-		std::mem::take(&mut self.r#image)
-	}
-	fn get_main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
+	fn r#main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
 		self.r#main_entity_of_page.as_slice()
 	}
-	fn take_main_entity_of_page(&mut self) -> Vec<MainEntityOfPageProperty> {
-		std::mem::take(&mut self.r#main_entity_of_page)
-	}
-	fn get_name(&self) -> &[NameProperty] {
+	fn r#name(&self) -> &[NameProperty] {
 		self.r#name.as_slice()
 	}
-	fn take_name(&mut self) -> Vec<NameProperty> {
-		std::mem::take(&mut self.r#name)
-	}
-	fn get_owner(&self) -> &[OwnerProperty] {
+	fn r#owner(&self) -> &[OwnerProperty] {
 		self.r#owner.as_slice()
 	}
-	fn take_owner(&mut self) -> Vec<OwnerProperty> {
-		std::mem::take(&mut self.r#owner)
-	}
-	fn get_potential_action(&self) -> &[PotentialActionProperty] {
+	fn r#potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
 	}
-	fn take_potential_action(&mut self) -> Vec<PotentialActionProperty> {
-		std::mem::take(&mut self.r#potential_action)
-	}
-	fn get_same_as(&self) -> &[SameAsProperty] {
+	fn r#same_as(&self) -> &[SameAsProperty] {
 		self.r#same_as.as_slice()
 	}
-	fn take_same_as(&mut self) -> Vec<SameAsProperty> {
-		std::mem::take(&mut self.r#same_as)
-	}
-	fn get_subject_of(&self) -> &[SubjectOfProperty] {
+	fn r#subject_of(&self) -> &[SubjectOfProperty] {
 		self.r#subject_of.as_slice()
 	}
-	fn take_subject_of(&mut self) -> Vec<SubjectOfProperty> {
-		std::mem::take(&mut self.r#subject_of)
-	}
-	fn get_url(&self) -> &[UrlProperty] {
+	fn r#url(&self) -> &[UrlProperty] {
 		self.r#url.as_slice()
-	}
-	fn take_url(&mut self) -> Vec<UrlProperty> {
-		std::mem::take(&mut self.r#url)
 	}
 }

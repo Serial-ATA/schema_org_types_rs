@@ -401,333 +401,168 @@ pub struct MerchantReturnPolicy {
 /// This trait is for properties from <https://schema.org/MerchantReturnPolicy>.
 pub trait MerchantReturnPolicyTrait {
 	/// Get <https://schema.org/additionalProperty> from [`Self`] as borrowed slice.
-	fn get_additional_property(&self) -> &[AdditionalPropertyProperty];
-	/// Take <https://schema.org/additionalProperty> from [`Self`] as owned vector.
-	fn take_additional_property(&mut self) -> Vec<AdditionalPropertyProperty>;
+	fn r#additional_property(&self) -> &[AdditionalPropertyProperty];
 	/// Get <https://schema.org/applicableCountry> from [`Self`] as borrowed slice.
-	fn get_applicable_country(&self) -> &[ApplicableCountryProperty];
-	/// Take <https://schema.org/applicableCountry> from [`Self`] as owned vector.
-	fn take_applicable_country(&mut self) -> Vec<ApplicableCountryProperty>;
+	fn r#applicable_country(&self) -> &[ApplicableCountryProperty];
 	/// Get <https://schema.org/customerRemorseReturnFees> from [`Self`] as borrowed slice.
-	fn get_customer_remorse_return_fees(&self) -> &[CustomerRemorseReturnFeesProperty];
-	/// Take <https://schema.org/customerRemorseReturnFees> from [`Self`] as owned vector.
-	fn take_customer_remorse_return_fees(&mut self) -> Vec<CustomerRemorseReturnFeesProperty>;
+	fn r#customer_remorse_return_fees(&self) -> &[CustomerRemorseReturnFeesProperty];
 	/// Get <https://schema.org/customerRemorseReturnLabelSource> from [`Self`] as borrowed slice.
-	fn get_customer_remorse_return_label_source(
-		&self,
-	) -> &[CustomerRemorseReturnLabelSourceProperty];
-	/// Take <https://schema.org/customerRemorseReturnLabelSource> from [`Self`] as owned vector.
-	fn take_customer_remorse_return_label_source(
-		&mut self,
-	) -> Vec<CustomerRemorseReturnLabelSourceProperty>;
+	fn r#customer_remorse_return_label_source(&self)
+	-> &[CustomerRemorseReturnLabelSourceProperty];
 	/// Get <https://schema.org/customerRemorseReturnShippingFeesAmount> from [`Self`] as borrowed slice.
-	fn get_customer_remorse_return_shipping_fees_amount(
+	fn r#customer_remorse_return_shipping_fees_amount(
 		&self,
 	) -> &[CustomerRemorseReturnShippingFeesAmountProperty];
-	/// Take <https://schema.org/customerRemorseReturnShippingFeesAmount> from [`Self`] as owned vector.
-	fn take_customer_remorse_return_shipping_fees_amount(
-		&mut self,
-	) -> Vec<CustomerRemorseReturnShippingFeesAmountProperty>;
 	/// Get <https://schema.org/inStoreReturnsOffered> from [`Self`] as borrowed slice.
-	fn get_in_store_returns_offered(&self) -> &[InStoreReturnsOfferedProperty];
-	/// Take <https://schema.org/inStoreReturnsOffered> from [`Self`] as owned vector.
-	fn take_in_store_returns_offered(&mut self) -> Vec<InStoreReturnsOfferedProperty>;
+	fn r#in_store_returns_offered(&self) -> &[InStoreReturnsOfferedProperty];
 	/// Get <https://schema.org/itemCondition> from [`Self`] as borrowed slice.
-	fn get_item_condition(&self) -> &[ItemConditionProperty];
-	/// Take <https://schema.org/itemCondition> from [`Self`] as owned vector.
-	fn take_item_condition(&mut self) -> Vec<ItemConditionProperty>;
+	fn r#item_condition(&self) -> &[ItemConditionProperty];
 	/// Get <https://schema.org/itemDefectReturnFees> from [`Self`] as borrowed slice.
-	fn get_item_defect_return_fees(&self) -> &[ItemDefectReturnFeesProperty];
-	/// Take <https://schema.org/itemDefectReturnFees> from [`Self`] as owned vector.
-	fn take_item_defect_return_fees(&mut self) -> Vec<ItemDefectReturnFeesProperty>;
+	fn r#item_defect_return_fees(&self) -> &[ItemDefectReturnFeesProperty];
 	/// Get <https://schema.org/itemDefectReturnLabelSource> from [`Self`] as borrowed slice.
-	fn get_item_defect_return_label_source(&self) -> &[ItemDefectReturnLabelSourceProperty];
-	/// Take <https://schema.org/itemDefectReturnLabelSource> from [`Self`] as owned vector.
-	fn take_item_defect_return_label_source(&mut self) -> Vec<ItemDefectReturnLabelSourceProperty>;
+	fn r#item_defect_return_label_source(&self) -> &[ItemDefectReturnLabelSourceProperty];
 	/// Get <https://schema.org/itemDefectReturnShippingFeesAmount> from [`Self`] as borrowed slice.
-	fn get_item_defect_return_shipping_fees_amount(
+	fn r#item_defect_return_shipping_fees_amount(
 		&self,
 	) -> &[ItemDefectReturnShippingFeesAmountProperty];
-	/// Take <https://schema.org/itemDefectReturnShippingFeesAmount> from [`Self`] as owned vector.
-	fn take_item_defect_return_shipping_fees_amount(
-		&mut self,
-	) -> Vec<ItemDefectReturnShippingFeesAmountProperty>;
 	/// Get <https://schema.org/merchantReturnDays> from [`Self`] as borrowed slice.
-	fn get_merchant_return_days(&self) -> &[MerchantReturnDaysProperty];
-	/// Take <https://schema.org/merchantReturnDays> from [`Self`] as owned vector.
-	fn take_merchant_return_days(&mut self) -> Vec<MerchantReturnDaysProperty>;
+	fn r#merchant_return_days(&self) -> &[MerchantReturnDaysProperty];
 	/// Get <https://schema.org/merchantReturnLink> from [`Self`] as borrowed slice.
-	fn get_merchant_return_link(&self) -> &[MerchantReturnLinkProperty];
-	/// Take <https://schema.org/merchantReturnLink> from [`Self`] as owned vector.
-	fn take_merchant_return_link(&mut self) -> Vec<MerchantReturnLinkProperty>;
+	fn r#merchant_return_link(&self) -> &[MerchantReturnLinkProperty];
 	/// Get <https://schema.org/refundType> from [`Self`] as borrowed slice.
-	fn get_refund_type(&self) -> &[RefundTypeProperty];
-	/// Take <https://schema.org/refundType> from [`Self`] as owned vector.
-	fn take_refund_type(&mut self) -> Vec<RefundTypeProperty>;
+	fn r#refund_type(&self) -> &[RefundTypeProperty];
 	/// Get <https://schema.org/restockingFee> from [`Self`] as borrowed slice.
-	fn get_restocking_fee(&self) -> &[RestockingFeeProperty];
-	/// Take <https://schema.org/restockingFee> from [`Self`] as owned vector.
-	fn take_restocking_fee(&mut self) -> Vec<RestockingFeeProperty>;
+	fn r#restocking_fee(&self) -> &[RestockingFeeProperty];
 	/// Get <https://schema.org/returnFees> from [`Self`] as borrowed slice.
-	fn get_return_fees(&self) -> &[ReturnFeesProperty];
-	/// Take <https://schema.org/returnFees> from [`Self`] as owned vector.
-	fn take_return_fees(&mut self) -> Vec<ReturnFeesProperty>;
+	fn r#return_fees(&self) -> &[ReturnFeesProperty];
 	/// Get <https://schema.org/returnLabelSource> from [`Self`] as borrowed slice.
-	fn get_return_label_source(&self) -> &[ReturnLabelSourceProperty];
-	/// Take <https://schema.org/returnLabelSource> from [`Self`] as owned vector.
-	fn take_return_label_source(&mut self) -> Vec<ReturnLabelSourceProperty>;
+	fn r#return_label_source(&self) -> &[ReturnLabelSourceProperty];
 	/// Get <https://schema.org/returnMethod> from [`Self`] as borrowed slice.
-	fn get_return_method(&self) -> &[ReturnMethodProperty];
-	/// Take <https://schema.org/returnMethod> from [`Self`] as owned vector.
-	fn take_return_method(&mut self) -> Vec<ReturnMethodProperty>;
+	fn r#return_method(&self) -> &[ReturnMethodProperty];
 	/// Get <https://schema.org/returnPolicyCategory> from [`Self`] as borrowed slice.
-	fn get_return_policy_category(&self) -> &[ReturnPolicyCategoryProperty];
-	/// Take <https://schema.org/returnPolicyCategory> from [`Self`] as owned vector.
-	fn take_return_policy_category(&mut self) -> Vec<ReturnPolicyCategoryProperty>;
+	fn r#return_policy_category(&self) -> &[ReturnPolicyCategoryProperty];
 	/// Get <https://schema.org/returnPolicyCountry> from [`Self`] as borrowed slice.
-	fn get_return_policy_country(&self) -> &[ReturnPolicyCountryProperty];
-	/// Take <https://schema.org/returnPolicyCountry> from [`Self`] as owned vector.
-	fn take_return_policy_country(&mut self) -> Vec<ReturnPolicyCountryProperty>;
+	fn r#return_policy_country(&self) -> &[ReturnPolicyCountryProperty];
 	/// Get <https://schema.org/returnPolicySeasonalOverride> from [`Self`] as borrowed slice.
-	fn get_return_policy_seasonal_override(&self) -> &[ReturnPolicySeasonalOverrideProperty];
-	/// Take <https://schema.org/returnPolicySeasonalOverride> from [`Self`] as owned vector.
-	fn take_return_policy_seasonal_override(&mut self)
-	-> Vec<ReturnPolicySeasonalOverrideProperty>;
+	fn r#return_policy_seasonal_override(&self) -> &[ReturnPolicySeasonalOverrideProperty];
 	/// Get <https://schema.org/returnShippingFeesAmount> from [`Self`] as borrowed slice.
-	fn get_return_shipping_fees_amount(&self) -> &[ReturnShippingFeesAmountProperty];
-	/// Take <https://schema.org/returnShippingFeesAmount> from [`Self`] as owned vector.
-	fn take_return_shipping_fees_amount(&mut self) -> Vec<ReturnShippingFeesAmountProperty>;
+	fn r#return_shipping_fees_amount(&self) -> &[ReturnShippingFeesAmountProperty];
 	/// Get <https://schema.org/validForMemberTier> from [`Self`] as borrowed slice.
-	fn get_valid_for_member_tier(&self) -> &[ValidForMemberTierProperty];
-	/// Take <https://schema.org/validForMemberTier> from [`Self`] as owned vector.
-	fn take_valid_for_member_tier(&mut self) -> Vec<ValidForMemberTierProperty>;
+	fn r#valid_for_member_tier(&self) -> &[ValidForMemberTierProperty];
 }
 impl MerchantReturnPolicyTrait for MerchantReturnPolicy {
-	fn get_additional_property(&self) -> &[AdditionalPropertyProperty] {
+	fn r#additional_property(&self) -> &[AdditionalPropertyProperty] {
 		self.r#additional_property.as_slice()
 	}
-	fn take_additional_property(&mut self) -> Vec<AdditionalPropertyProperty> {
-		std::mem::take(&mut self.r#additional_property)
-	}
-	fn get_applicable_country(&self) -> &[ApplicableCountryProperty] {
+	fn r#applicable_country(&self) -> &[ApplicableCountryProperty] {
 		self.r#applicable_country.as_slice()
 	}
-	fn take_applicable_country(&mut self) -> Vec<ApplicableCountryProperty> {
-		std::mem::take(&mut self.r#applicable_country)
-	}
-	fn get_customer_remorse_return_fees(&self) -> &[CustomerRemorseReturnFeesProperty] {
+	fn r#customer_remorse_return_fees(&self) -> &[CustomerRemorseReturnFeesProperty] {
 		self.r#customer_remorse_return_fees.as_slice()
 	}
-	fn take_customer_remorse_return_fees(&mut self) -> Vec<CustomerRemorseReturnFeesProperty> {
-		std::mem::take(&mut self.r#customer_remorse_return_fees)
-	}
-	fn get_customer_remorse_return_label_source(
+	fn r#customer_remorse_return_label_source(
 		&self,
 	) -> &[CustomerRemorseReturnLabelSourceProperty] {
 		self.r#customer_remorse_return_label_source.as_slice()
 	}
-	fn take_customer_remorse_return_label_source(
-		&mut self,
-	) -> Vec<CustomerRemorseReturnLabelSourceProperty> {
-		std::mem::take(&mut self.r#customer_remorse_return_label_source)
-	}
-	fn get_customer_remorse_return_shipping_fees_amount(
+	fn r#customer_remorse_return_shipping_fees_amount(
 		&self,
 	) -> &[CustomerRemorseReturnShippingFeesAmountProperty] {
 		self.r#customer_remorse_return_shipping_fees_amount
 			.as_slice()
 	}
-	fn take_customer_remorse_return_shipping_fees_amount(
-		&mut self,
-	) -> Vec<CustomerRemorseReturnShippingFeesAmountProperty> {
-		std::mem::take(&mut self.r#customer_remorse_return_shipping_fees_amount)
-	}
-	fn get_in_store_returns_offered(&self) -> &[InStoreReturnsOfferedProperty] {
+	fn r#in_store_returns_offered(&self) -> &[InStoreReturnsOfferedProperty] {
 		self.r#in_store_returns_offered.as_slice()
 	}
-	fn take_in_store_returns_offered(&mut self) -> Vec<InStoreReturnsOfferedProperty> {
-		std::mem::take(&mut self.r#in_store_returns_offered)
-	}
-	fn get_item_condition(&self) -> &[ItemConditionProperty] {
+	fn r#item_condition(&self) -> &[ItemConditionProperty] {
 		self.r#item_condition.as_slice()
 	}
-	fn take_item_condition(&mut self) -> Vec<ItemConditionProperty> {
-		std::mem::take(&mut self.r#item_condition)
-	}
-	fn get_item_defect_return_fees(&self) -> &[ItemDefectReturnFeesProperty] {
+	fn r#item_defect_return_fees(&self) -> &[ItemDefectReturnFeesProperty] {
 		self.r#item_defect_return_fees.as_slice()
 	}
-	fn take_item_defect_return_fees(&mut self) -> Vec<ItemDefectReturnFeesProperty> {
-		std::mem::take(&mut self.r#item_defect_return_fees)
-	}
-	fn get_item_defect_return_label_source(&self) -> &[ItemDefectReturnLabelSourceProperty] {
+	fn r#item_defect_return_label_source(&self) -> &[ItemDefectReturnLabelSourceProperty] {
 		self.r#item_defect_return_label_source.as_slice()
 	}
-	fn take_item_defect_return_label_source(&mut self) -> Vec<ItemDefectReturnLabelSourceProperty> {
-		std::mem::take(&mut self.r#item_defect_return_label_source)
-	}
-	fn get_item_defect_return_shipping_fees_amount(
+	fn r#item_defect_return_shipping_fees_amount(
 		&self,
 	) -> &[ItemDefectReturnShippingFeesAmountProperty] {
 		self.r#item_defect_return_shipping_fees_amount.as_slice()
 	}
-	fn take_item_defect_return_shipping_fees_amount(
-		&mut self,
-	) -> Vec<ItemDefectReturnShippingFeesAmountProperty> {
-		std::mem::take(&mut self.r#item_defect_return_shipping_fees_amount)
-	}
-	fn get_merchant_return_days(&self) -> &[MerchantReturnDaysProperty] {
+	fn r#merchant_return_days(&self) -> &[MerchantReturnDaysProperty] {
 		self.r#merchant_return_days.as_slice()
 	}
-	fn take_merchant_return_days(&mut self) -> Vec<MerchantReturnDaysProperty> {
-		std::mem::take(&mut self.r#merchant_return_days)
-	}
-	fn get_merchant_return_link(&self) -> &[MerchantReturnLinkProperty] {
+	fn r#merchant_return_link(&self) -> &[MerchantReturnLinkProperty] {
 		self.r#merchant_return_link.as_slice()
 	}
-	fn take_merchant_return_link(&mut self) -> Vec<MerchantReturnLinkProperty> {
-		std::mem::take(&mut self.r#merchant_return_link)
-	}
-	fn get_refund_type(&self) -> &[RefundTypeProperty] {
+	fn r#refund_type(&self) -> &[RefundTypeProperty] {
 		self.r#refund_type.as_slice()
 	}
-	fn take_refund_type(&mut self) -> Vec<RefundTypeProperty> {
-		std::mem::take(&mut self.r#refund_type)
-	}
-	fn get_restocking_fee(&self) -> &[RestockingFeeProperty] {
+	fn r#restocking_fee(&self) -> &[RestockingFeeProperty] {
 		self.r#restocking_fee.as_slice()
 	}
-	fn take_restocking_fee(&mut self) -> Vec<RestockingFeeProperty> {
-		std::mem::take(&mut self.r#restocking_fee)
-	}
-	fn get_return_fees(&self) -> &[ReturnFeesProperty] {
+	fn r#return_fees(&self) -> &[ReturnFeesProperty] {
 		self.r#return_fees.as_slice()
 	}
-	fn take_return_fees(&mut self) -> Vec<ReturnFeesProperty> {
-		std::mem::take(&mut self.r#return_fees)
-	}
-	fn get_return_label_source(&self) -> &[ReturnLabelSourceProperty] {
+	fn r#return_label_source(&self) -> &[ReturnLabelSourceProperty] {
 		self.r#return_label_source.as_slice()
 	}
-	fn take_return_label_source(&mut self) -> Vec<ReturnLabelSourceProperty> {
-		std::mem::take(&mut self.r#return_label_source)
-	}
-	fn get_return_method(&self) -> &[ReturnMethodProperty] {
+	fn r#return_method(&self) -> &[ReturnMethodProperty] {
 		self.r#return_method.as_slice()
 	}
-	fn take_return_method(&mut self) -> Vec<ReturnMethodProperty> {
-		std::mem::take(&mut self.r#return_method)
-	}
-	fn get_return_policy_category(&self) -> &[ReturnPolicyCategoryProperty] {
+	fn r#return_policy_category(&self) -> &[ReturnPolicyCategoryProperty] {
 		self.r#return_policy_category.as_slice()
 	}
-	fn take_return_policy_category(&mut self) -> Vec<ReturnPolicyCategoryProperty> {
-		std::mem::take(&mut self.r#return_policy_category)
-	}
-	fn get_return_policy_country(&self) -> &[ReturnPolicyCountryProperty] {
+	fn r#return_policy_country(&self) -> &[ReturnPolicyCountryProperty] {
 		self.r#return_policy_country.as_slice()
 	}
-	fn take_return_policy_country(&mut self) -> Vec<ReturnPolicyCountryProperty> {
-		std::mem::take(&mut self.r#return_policy_country)
-	}
-	fn get_return_policy_seasonal_override(&self) -> &[ReturnPolicySeasonalOverrideProperty] {
+	fn r#return_policy_seasonal_override(&self) -> &[ReturnPolicySeasonalOverrideProperty] {
 		self.r#return_policy_seasonal_override.as_slice()
 	}
-	fn take_return_policy_seasonal_override(
-		&mut self,
-	) -> Vec<ReturnPolicySeasonalOverrideProperty> {
-		std::mem::take(&mut self.r#return_policy_seasonal_override)
-	}
-	fn get_return_shipping_fees_amount(&self) -> &[ReturnShippingFeesAmountProperty] {
+	fn r#return_shipping_fees_amount(&self) -> &[ReturnShippingFeesAmountProperty] {
 		self.r#return_shipping_fees_amount.as_slice()
 	}
-	fn take_return_shipping_fees_amount(&mut self) -> Vec<ReturnShippingFeesAmountProperty> {
-		std::mem::take(&mut self.r#return_shipping_fees_amount)
-	}
-	fn get_valid_for_member_tier(&self) -> &[ValidForMemberTierProperty] {
+	fn r#valid_for_member_tier(&self) -> &[ValidForMemberTierProperty] {
 		self.r#valid_for_member_tier.as_slice()
-	}
-	fn take_valid_for_member_tier(&mut self) -> Vec<ValidForMemberTierProperty> {
-		std::mem::take(&mut self.r#valid_for_member_tier)
 	}
 }
 impl ThingTrait for MerchantReturnPolicy {
-	fn get_additional_type(&self) -> &[AdditionalTypeProperty] {
+	fn r#additional_type(&self) -> &[AdditionalTypeProperty] {
 		self.r#additional_type.as_slice()
 	}
-	fn take_additional_type(&mut self) -> Vec<AdditionalTypeProperty> {
-		std::mem::take(&mut self.r#additional_type)
-	}
-	fn get_alternate_name(&self) -> &[AlternateNameProperty] {
+	fn r#alternate_name(&self) -> &[AlternateNameProperty] {
 		self.r#alternate_name.as_slice()
 	}
-	fn take_alternate_name(&mut self) -> Vec<AlternateNameProperty> {
-		std::mem::take(&mut self.r#alternate_name)
-	}
-	fn get_description(&self) -> &[DescriptionProperty] {
+	fn r#description(&self) -> &[DescriptionProperty] {
 		self.r#description.as_slice()
 	}
-	fn take_description(&mut self) -> Vec<DescriptionProperty> {
-		std::mem::take(&mut self.r#description)
-	}
-	fn get_disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
+	fn r#disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
 		self.r#disambiguating_description.as_slice()
 	}
-	fn take_disambiguating_description(&mut self) -> Vec<DisambiguatingDescriptionProperty> {
-		std::mem::take(&mut self.r#disambiguating_description)
-	}
-	fn get_identifier(&self) -> &[IdentifierProperty] {
+	fn r#identifier(&self) -> &[IdentifierProperty] {
 		self.r#identifier.as_slice()
 	}
-	fn take_identifier(&mut self) -> Vec<IdentifierProperty> {
-		std::mem::take(&mut self.r#identifier)
-	}
-	fn get_image(&self) -> &[ImageProperty] {
+	fn r#image(&self) -> &[ImageProperty] {
 		self.r#image.as_slice()
 	}
-	fn take_image(&mut self) -> Vec<ImageProperty> {
-		std::mem::take(&mut self.r#image)
-	}
-	fn get_main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
+	fn r#main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
 		self.r#main_entity_of_page.as_slice()
 	}
-	fn take_main_entity_of_page(&mut self) -> Vec<MainEntityOfPageProperty> {
-		std::mem::take(&mut self.r#main_entity_of_page)
-	}
-	fn get_name(&self) -> &[NameProperty] {
+	fn r#name(&self) -> &[NameProperty] {
 		self.r#name.as_slice()
 	}
-	fn take_name(&mut self) -> Vec<NameProperty> {
-		std::mem::take(&mut self.r#name)
-	}
-	fn get_owner(&self) -> &[OwnerProperty] {
+	fn r#owner(&self) -> &[OwnerProperty] {
 		self.r#owner.as_slice()
 	}
-	fn take_owner(&mut self) -> Vec<OwnerProperty> {
-		std::mem::take(&mut self.r#owner)
-	}
-	fn get_potential_action(&self) -> &[PotentialActionProperty] {
+	fn r#potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
 	}
-	fn take_potential_action(&mut self) -> Vec<PotentialActionProperty> {
-		std::mem::take(&mut self.r#potential_action)
-	}
-	fn get_same_as(&self) -> &[SameAsProperty] {
+	fn r#same_as(&self) -> &[SameAsProperty] {
 		self.r#same_as.as_slice()
 	}
-	fn take_same_as(&mut self) -> Vec<SameAsProperty> {
-		std::mem::take(&mut self.r#same_as)
-	}
-	fn get_subject_of(&self) -> &[SubjectOfProperty] {
+	fn r#subject_of(&self) -> &[SubjectOfProperty] {
 		self.r#subject_of.as_slice()
 	}
-	fn take_subject_of(&mut self) -> Vec<SubjectOfProperty> {
-		std::mem::take(&mut self.r#subject_of)
-	}
-	fn get_url(&self) -> &[UrlProperty] {
+	fn r#url(&self) -> &[UrlProperty] {
 		self.r#url.as_slice()
-	}
-	fn take_url(&mut self) -> Vec<UrlProperty> {
-		std::mem::take(&mut self.r#url)
 	}
 }

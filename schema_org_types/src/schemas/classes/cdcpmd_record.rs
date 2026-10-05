@@ -339,256 +339,132 @@ pub struct CdcpmdRecord {
 /// This trait is for properties from <https://schema.org/CDCPMDRecord>.
 pub trait CdcpmdRecordTrait {
 	/// Get <https://schema.org/cvdCollectionDate> from [`Self`] as borrowed slice.
-	fn get_cvd_collection_date(&self) -> &[CvdCollectionDateProperty];
-	/// Take <https://schema.org/cvdCollectionDate> from [`Self`] as owned vector.
-	fn take_cvd_collection_date(&mut self) -> Vec<CvdCollectionDateProperty>;
+	fn r#cvd_collection_date(&self) -> &[CvdCollectionDateProperty];
 	/// Get <https://schema.org/cvdFacilityCounty> from [`Self`] as borrowed slice.
-	fn get_cvd_facility_county(&self) -> &[CvdFacilityCountyProperty];
-	/// Take <https://schema.org/cvdFacilityCounty> from [`Self`] as owned vector.
-	fn take_cvd_facility_county(&mut self) -> Vec<CvdFacilityCountyProperty>;
+	fn r#cvd_facility_county(&self) -> &[CvdFacilityCountyProperty];
 	/// Get <https://schema.org/cvdFacilityId> from [`Self`] as borrowed slice.
-	fn get_cvd_facility_id(&self) -> &[CvdFacilityIdProperty];
-	/// Take <https://schema.org/cvdFacilityId> from [`Self`] as owned vector.
-	fn take_cvd_facility_id(&mut self) -> Vec<CvdFacilityIdProperty>;
+	fn r#cvd_facility_id(&self) -> &[CvdFacilityIdProperty];
 	/// Get <https://schema.org/cvdNumBeds> from [`Self`] as borrowed slice.
-	fn get_cvd_num_beds(&self) -> &[CvdNumBedsProperty];
-	/// Take <https://schema.org/cvdNumBeds> from [`Self`] as owned vector.
-	fn take_cvd_num_beds(&mut self) -> Vec<CvdNumBedsProperty>;
+	fn r#cvd_num_beds(&self) -> &[CvdNumBedsProperty];
 	/// Get <https://schema.org/cvdNumBedsOcc> from [`Self`] as borrowed slice.
-	fn get_cvd_num_beds_occ(&self) -> &[CvdNumBedsOccProperty];
-	/// Take <https://schema.org/cvdNumBedsOcc> from [`Self`] as owned vector.
-	fn take_cvd_num_beds_occ(&mut self) -> Vec<CvdNumBedsOccProperty>;
+	fn r#cvd_num_beds_occ(&self) -> &[CvdNumBedsOccProperty];
 	/// Get <https://schema.org/cvdNumC19Died> from [`Self`] as borrowed slice.
-	fn get_cvd_num_c_19_died(&self) -> &[CvdNumC19DiedProperty];
-	/// Take <https://schema.org/cvdNumC19Died> from [`Self`] as owned vector.
-	fn take_cvd_num_c_19_died(&mut self) -> Vec<CvdNumC19DiedProperty>;
+	fn r#cvd_num_c_19_died(&self) -> &[CvdNumC19DiedProperty];
 	/// Get <https://schema.org/cvdNumC19HOPats> from [`Self`] as borrowed slice.
-	fn get_cvd_num_c_19_ho_pats(&self) -> &[CvdNumC19HoPatsProperty];
-	/// Take <https://schema.org/cvdNumC19HOPats> from [`Self`] as owned vector.
-	fn take_cvd_num_c_19_ho_pats(&mut self) -> Vec<CvdNumC19HoPatsProperty>;
+	fn r#cvd_num_c_19_ho_pats(&self) -> &[CvdNumC19HoPatsProperty];
 	/// Get <https://schema.org/cvdNumC19HospPats> from [`Self`] as borrowed slice.
-	fn get_cvd_num_c_19_hosp_pats(&self) -> &[CvdNumC19HospPatsProperty];
-	/// Take <https://schema.org/cvdNumC19HospPats> from [`Self`] as owned vector.
-	fn take_cvd_num_c_19_hosp_pats(&mut self) -> Vec<CvdNumC19HospPatsProperty>;
+	fn r#cvd_num_c_19_hosp_pats(&self) -> &[CvdNumC19HospPatsProperty];
 	/// Get <https://schema.org/cvdNumC19MechVentPats> from [`Self`] as borrowed slice.
-	fn get_cvd_num_c_19_mech_vent_pats(&self) -> &[CvdNumC19MechVentPatsProperty];
-	/// Take <https://schema.org/cvdNumC19MechVentPats> from [`Self`] as owned vector.
-	fn take_cvd_num_c_19_mech_vent_pats(&mut self) -> Vec<CvdNumC19MechVentPatsProperty>;
+	fn r#cvd_num_c_19_mech_vent_pats(&self) -> &[CvdNumC19MechVentPatsProperty];
 	/// Get <https://schema.org/cvdNumC19OFMechVentPats> from [`Self`] as borrowed slice.
-	fn get_cvd_num_c_19_of_mech_vent_pats(&self) -> &[CvdNumC19OfMechVentPatsProperty];
-	/// Take <https://schema.org/cvdNumC19OFMechVentPats> from [`Self`] as owned vector.
-	fn take_cvd_num_c_19_of_mech_vent_pats(&mut self) -> Vec<CvdNumC19OfMechVentPatsProperty>;
+	fn r#cvd_num_c_19_of_mech_vent_pats(&self) -> &[CvdNumC19OfMechVentPatsProperty];
 	/// Get <https://schema.org/cvdNumC19OverflowPats> from [`Self`] as borrowed slice.
-	fn get_cvd_num_c_19_overflow_pats(&self) -> &[CvdNumC19OverflowPatsProperty];
-	/// Take <https://schema.org/cvdNumC19OverflowPats> from [`Self`] as owned vector.
-	fn take_cvd_num_c_19_overflow_pats(&mut self) -> Vec<CvdNumC19OverflowPatsProperty>;
+	fn r#cvd_num_c_19_overflow_pats(&self) -> &[CvdNumC19OverflowPatsProperty];
 	/// Get <https://schema.org/cvdNumICUBeds> from [`Self`] as borrowed slice.
-	fn get_cvd_num_icu_beds(&self) -> &[CvdNumIcuBedsProperty];
-	/// Take <https://schema.org/cvdNumICUBeds> from [`Self`] as owned vector.
-	fn take_cvd_num_icu_beds(&mut self) -> Vec<CvdNumIcuBedsProperty>;
+	fn r#cvd_num_icu_beds(&self) -> &[CvdNumIcuBedsProperty];
 	/// Get <https://schema.org/cvdNumICUBedsOcc> from [`Self`] as borrowed slice.
-	fn get_cvd_num_icu_beds_occ(&self) -> &[CvdNumIcuBedsOccProperty];
-	/// Take <https://schema.org/cvdNumICUBedsOcc> from [`Self`] as owned vector.
-	fn take_cvd_num_icu_beds_occ(&mut self) -> Vec<CvdNumIcuBedsOccProperty>;
+	fn r#cvd_num_icu_beds_occ(&self) -> &[CvdNumIcuBedsOccProperty];
 	/// Get <https://schema.org/cvdNumTotBeds> from [`Self`] as borrowed slice.
-	fn get_cvd_num_tot_beds(&self) -> &[CvdNumTotBedsProperty];
-	/// Take <https://schema.org/cvdNumTotBeds> from [`Self`] as owned vector.
-	fn take_cvd_num_tot_beds(&mut self) -> Vec<CvdNumTotBedsProperty>;
+	fn r#cvd_num_tot_beds(&self) -> &[CvdNumTotBedsProperty];
 	/// Get <https://schema.org/cvdNumVent> from [`Self`] as borrowed slice.
-	fn get_cvd_num_vent(&self) -> &[CvdNumVentProperty];
-	/// Take <https://schema.org/cvdNumVent> from [`Self`] as owned vector.
-	fn take_cvd_num_vent(&mut self) -> Vec<CvdNumVentProperty>;
+	fn r#cvd_num_vent(&self) -> &[CvdNumVentProperty];
 	/// Get <https://schema.org/cvdNumVentUse> from [`Self`] as borrowed slice.
-	fn get_cvd_num_vent_use(&self) -> &[CvdNumVentUseProperty];
-	/// Take <https://schema.org/cvdNumVentUse> from [`Self`] as owned vector.
-	fn take_cvd_num_vent_use(&mut self) -> Vec<CvdNumVentUseProperty>;
+	fn r#cvd_num_vent_use(&self) -> &[CvdNumVentUseProperty];
 	/// Get <https://schema.org/datePosted> from [`Self`] as borrowed slice.
-	fn get_date_posted(&self) -> &[DatePostedProperty];
-	/// Take <https://schema.org/datePosted> from [`Self`] as owned vector.
-	fn take_date_posted(&mut self) -> Vec<DatePostedProperty>;
+	fn r#date_posted(&self) -> &[DatePostedProperty];
 }
 impl CdcpmdRecordTrait for CdcpmdRecord {
-	fn get_cvd_collection_date(&self) -> &[CvdCollectionDateProperty] {
+	fn r#cvd_collection_date(&self) -> &[CvdCollectionDateProperty] {
 		self.r#cvd_collection_date.as_slice()
 	}
-	fn take_cvd_collection_date(&mut self) -> Vec<CvdCollectionDateProperty> {
-		std::mem::take(&mut self.r#cvd_collection_date)
-	}
-	fn get_cvd_facility_county(&self) -> &[CvdFacilityCountyProperty] {
+	fn r#cvd_facility_county(&self) -> &[CvdFacilityCountyProperty] {
 		self.r#cvd_facility_county.as_slice()
 	}
-	fn take_cvd_facility_county(&mut self) -> Vec<CvdFacilityCountyProperty> {
-		std::mem::take(&mut self.r#cvd_facility_county)
-	}
-	fn get_cvd_facility_id(&self) -> &[CvdFacilityIdProperty] {
+	fn r#cvd_facility_id(&self) -> &[CvdFacilityIdProperty] {
 		self.r#cvd_facility_id.as_slice()
 	}
-	fn take_cvd_facility_id(&mut self) -> Vec<CvdFacilityIdProperty> {
-		std::mem::take(&mut self.r#cvd_facility_id)
-	}
-	fn get_cvd_num_beds(&self) -> &[CvdNumBedsProperty] {
+	fn r#cvd_num_beds(&self) -> &[CvdNumBedsProperty] {
 		self.r#cvd_num_beds.as_slice()
 	}
-	fn take_cvd_num_beds(&mut self) -> Vec<CvdNumBedsProperty> {
-		std::mem::take(&mut self.r#cvd_num_beds)
-	}
-	fn get_cvd_num_beds_occ(&self) -> &[CvdNumBedsOccProperty] {
+	fn r#cvd_num_beds_occ(&self) -> &[CvdNumBedsOccProperty] {
 		self.r#cvd_num_beds_occ.as_slice()
 	}
-	fn take_cvd_num_beds_occ(&mut self) -> Vec<CvdNumBedsOccProperty> {
-		std::mem::take(&mut self.r#cvd_num_beds_occ)
-	}
-	fn get_cvd_num_c_19_died(&self) -> &[CvdNumC19DiedProperty] {
+	fn r#cvd_num_c_19_died(&self) -> &[CvdNumC19DiedProperty] {
 		self.r#cvd_num_c_19_died.as_slice()
 	}
-	fn take_cvd_num_c_19_died(&mut self) -> Vec<CvdNumC19DiedProperty> {
-		std::mem::take(&mut self.r#cvd_num_c_19_died)
-	}
-	fn get_cvd_num_c_19_ho_pats(&self) -> &[CvdNumC19HoPatsProperty] {
+	fn r#cvd_num_c_19_ho_pats(&self) -> &[CvdNumC19HoPatsProperty] {
 		self.r#cvd_num_c_19_ho_pats.as_slice()
 	}
-	fn take_cvd_num_c_19_ho_pats(&mut self) -> Vec<CvdNumC19HoPatsProperty> {
-		std::mem::take(&mut self.r#cvd_num_c_19_ho_pats)
-	}
-	fn get_cvd_num_c_19_hosp_pats(&self) -> &[CvdNumC19HospPatsProperty] {
+	fn r#cvd_num_c_19_hosp_pats(&self) -> &[CvdNumC19HospPatsProperty] {
 		self.r#cvd_num_c_19_hosp_pats.as_slice()
 	}
-	fn take_cvd_num_c_19_hosp_pats(&mut self) -> Vec<CvdNumC19HospPatsProperty> {
-		std::mem::take(&mut self.r#cvd_num_c_19_hosp_pats)
-	}
-	fn get_cvd_num_c_19_mech_vent_pats(&self) -> &[CvdNumC19MechVentPatsProperty] {
+	fn r#cvd_num_c_19_mech_vent_pats(&self) -> &[CvdNumC19MechVentPatsProperty] {
 		self.r#cvd_num_c_19_mech_vent_pats.as_slice()
 	}
-	fn take_cvd_num_c_19_mech_vent_pats(&mut self) -> Vec<CvdNumC19MechVentPatsProperty> {
-		std::mem::take(&mut self.r#cvd_num_c_19_mech_vent_pats)
-	}
-	fn get_cvd_num_c_19_of_mech_vent_pats(&self) -> &[CvdNumC19OfMechVentPatsProperty] {
+	fn r#cvd_num_c_19_of_mech_vent_pats(&self) -> &[CvdNumC19OfMechVentPatsProperty] {
 		self.r#cvd_num_c_19_of_mech_vent_pats.as_slice()
 	}
-	fn take_cvd_num_c_19_of_mech_vent_pats(&mut self) -> Vec<CvdNumC19OfMechVentPatsProperty> {
-		std::mem::take(&mut self.r#cvd_num_c_19_of_mech_vent_pats)
-	}
-	fn get_cvd_num_c_19_overflow_pats(&self) -> &[CvdNumC19OverflowPatsProperty] {
+	fn r#cvd_num_c_19_overflow_pats(&self) -> &[CvdNumC19OverflowPatsProperty] {
 		self.r#cvd_num_c_19_overflow_pats.as_slice()
 	}
-	fn take_cvd_num_c_19_overflow_pats(&mut self) -> Vec<CvdNumC19OverflowPatsProperty> {
-		std::mem::take(&mut self.r#cvd_num_c_19_overflow_pats)
-	}
-	fn get_cvd_num_icu_beds(&self) -> &[CvdNumIcuBedsProperty] {
+	fn r#cvd_num_icu_beds(&self) -> &[CvdNumIcuBedsProperty] {
 		self.r#cvd_num_icu_beds.as_slice()
 	}
-	fn take_cvd_num_icu_beds(&mut self) -> Vec<CvdNumIcuBedsProperty> {
-		std::mem::take(&mut self.r#cvd_num_icu_beds)
-	}
-	fn get_cvd_num_icu_beds_occ(&self) -> &[CvdNumIcuBedsOccProperty] {
+	fn r#cvd_num_icu_beds_occ(&self) -> &[CvdNumIcuBedsOccProperty] {
 		self.r#cvd_num_icu_beds_occ.as_slice()
 	}
-	fn take_cvd_num_icu_beds_occ(&mut self) -> Vec<CvdNumIcuBedsOccProperty> {
-		std::mem::take(&mut self.r#cvd_num_icu_beds_occ)
-	}
-	fn get_cvd_num_tot_beds(&self) -> &[CvdNumTotBedsProperty] {
+	fn r#cvd_num_tot_beds(&self) -> &[CvdNumTotBedsProperty] {
 		self.r#cvd_num_tot_beds.as_slice()
 	}
-	fn take_cvd_num_tot_beds(&mut self) -> Vec<CvdNumTotBedsProperty> {
-		std::mem::take(&mut self.r#cvd_num_tot_beds)
-	}
-	fn get_cvd_num_vent(&self) -> &[CvdNumVentProperty] {
+	fn r#cvd_num_vent(&self) -> &[CvdNumVentProperty] {
 		self.r#cvd_num_vent.as_slice()
 	}
-	fn take_cvd_num_vent(&mut self) -> Vec<CvdNumVentProperty> {
-		std::mem::take(&mut self.r#cvd_num_vent)
-	}
-	fn get_cvd_num_vent_use(&self) -> &[CvdNumVentUseProperty] {
+	fn r#cvd_num_vent_use(&self) -> &[CvdNumVentUseProperty] {
 		self.r#cvd_num_vent_use.as_slice()
 	}
-	fn take_cvd_num_vent_use(&mut self) -> Vec<CvdNumVentUseProperty> {
-		std::mem::take(&mut self.r#cvd_num_vent_use)
-	}
-	fn get_date_posted(&self) -> &[DatePostedProperty] {
+	fn r#date_posted(&self) -> &[DatePostedProperty] {
 		self.r#date_posted.as_slice()
-	}
-	fn take_date_posted(&mut self) -> Vec<DatePostedProperty> {
-		std::mem::take(&mut self.r#date_posted)
 	}
 }
 impl StructuredValueTrait for CdcpmdRecord {}
 impl ThingTrait for CdcpmdRecord {
-	fn get_additional_type(&self) -> &[AdditionalTypeProperty] {
+	fn r#additional_type(&self) -> &[AdditionalTypeProperty] {
 		self.r#additional_type.as_slice()
 	}
-	fn take_additional_type(&mut self) -> Vec<AdditionalTypeProperty> {
-		std::mem::take(&mut self.r#additional_type)
-	}
-	fn get_alternate_name(&self) -> &[AlternateNameProperty] {
+	fn r#alternate_name(&self) -> &[AlternateNameProperty] {
 		self.r#alternate_name.as_slice()
 	}
-	fn take_alternate_name(&mut self) -> Vec<AlternateNameProperty> {
-		std::mem::take(&mut self.r#alternate_name)
-	}
-	fn get_description(&self) -> &[DescriptionProperty] {
+	fn r#description(&self) -> &[DescriptionProperty] {
 		self.r#description.as_slice()
 	}
-	fn take_description(&mut self) -> Vec<DescriptionProperty> {
-		std::mem::take(&mut self.r#description)
-	}
-	fn get_disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
+	fn r#disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
 		self.r#disambiguating_description.as_slice()
 	}
-	fn take_disambiguating_description(&mut self) -> Vec<DisambiguatingDescriptionProperty> {
-		std::mem::take(&mut self.r#disambiguating_description)
-	}
-	fn get_identifier(&self) -> &[IdentifierProperty] {
+	fn r#identifier(&self) -> &[IdentifierProperty] {
 		self.r#identifier.as_slice()
 	}
-	fn take_identifier(&mut self) -> Vec<IdentifierProperty> {
-		std::mem::take(&mut self.r#identifier)
-	}
-	fn get_image(&self) -> &[ImageProperty] {
+	fn r#image(&self) -> &[ImageProperty] {
 		self.r#image.as_slice()
 	}
-	fn take_image(&mut self) -> Vec<ImageProperty> {
-		std::mem::take(&mut self.r#image)
-	}
-	fn get_main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
+	fn r#main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
 		self.r#main_entity_of_page.as_slice()
 	}
-	fn take_main_entity_of_page(&mut self) -> Vec<MainEntityOfPageProperty> {
-		std::mem::take(&mut self.r#main_entity_of_page)
-	}
-	fn get_name(&self) -> &[NameProperty] {
+	fn r#name(&self) -> &[NameProperty] {
 		self.r#name.as_slice()
 	}
-	fn take_name(&mut self) -> Vec<NameProperty> {
-		std::mem::take(&mut self.r#name)
-	}
-	fn get_owner(&self) -> &[OwnerProperty] {
+	fn r#owner(&self) -> &[OwnerProperty] {
 		self.r#owner.as_slice()
 	}
-	fn take_owner(&mut self) -> Vec<OwnerProperty> {
-		std::mem::take(&mut self.r#owner)
-	}
-	fn get_potential_action(&self) -> &[PotentialActionProperty] {
+	fn r#potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
 	}
-	fn take_potential_action(&mut self) -> Vec<PotentialActionProperty> {
-		std::mem::take(&mut self.r#potential_action)
-	}
-	fn get_same_as(&self) -> &[SameAsProperty] {
+	fn r#same_as(&self) -> &[SameAsProperty] {
 		self.r#same_as.as_slice()
 	}
-	fn take_same_as(&mut self) -> Vec<SameAsProperty> {
-		std::mem::take(&mut self.r#same_as)
-	}
-	fn get_subject_of(&self) -> &[SubjectOfProperty] {
+	fn r#subject_of(&self) -> &[SubjectOfProperty] {
 		self.r#subject_of.as_slice()
 	}
-	fn take_subject_of(&mut self) -> Vec<SubjectOfProperty> {
-		std::mem::take(&mut self.r#subject_of)
-	}
-	fn get_url(&self) -> &[UrlProperty] {
+	fn r#url(&self) -> &[UrlProperty] {
 		self.r#url.as_slice()
-	}
-	fn take_url(&mut self) -> Vec<UrlProperty> {
-		std::mem::take(&mut self.r#url)
 	}
 }

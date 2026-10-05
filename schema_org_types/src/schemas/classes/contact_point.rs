@@ -263,188 +263,98 @@ pub struct ContactPoint {
 /// This trait is for properties from <https://schema.org/ContactPoint>.
 pub trait ContactPointTrait {
 	/// Get <https://schema.org/areaServed> from [`Self`] as borrowed slice.
-	fn get_area_served(&self) -> &[AreaServedProperty];
-	/// Take <https://schema.org/areaServed> from [`Self`] as owned vector.
-	fn take_area_served(&mut self) -> Vec<AreaServedProperty>;
+	fn r#area_served(&self) -> &[AreaServedProperty];
 	/// Get <https://schema.org/availableLanguage> from [`Self`] as borrowed slice.
-	fn get_available_language(&self) -> &[AvailableLanguageProperty];
-	/// Take <https://schema.org/availableLanguage> from [`Self`] as owned vector.
-	fn take_available_language(&mut self) -> Vec<AvailableLanguageProperty>;
+	fn r#available_language(&self) -> &[AvailableLanguageProperty];
 	/// Get <https://schema.org/contactOption> from [`Self`] as borrowed slice.
-	fn get_contact_option(&self) -> &[ContactOptionProperty];
-	/// Take <https://schema.org/contactOption> from [`Self`] as owned vector.
-	fn take_contact_option(&mut self) -> Vec<ContactOptionProperty>;
+	fn r#contact_option(&self) -> &[ContactOptionProperty];
 	/// Get <https://schema.org/contactType> from [`Self`] as borrowed slice.
-	fn get_contact_type(&self) -> &[ContactTypeProperty];
-	/// Take <https://schema.org/contactType> from [`Self`] as owned vector.
-	fn take_contact_type(&mut self) -> Vec<ContactTypeProperty>;
+	fn r#contact_type(&self) -> &[ContactTypeProperty];
 	/// Get <https://schema.org/email> from [`Self`] as borrowed slice.
-	fn get_email(&self) -> &[EmailProperty];
-	/// Take <https://schema.org/email> from [`Self`] as owned vector.
-	fn take_email(&mut self) -> Vec<EmailProperty>;
+	fn r#email(&self) -> &[EmailProperty];
 	/// Get <https://schema.org/faxNumber> from [`Self`] as borrowed slice.
-	fn get_fax_number(&self) -> &[FaxNumberProperty];
-	/// Take <https://schema.org/faxNumber> from [`Self`] as owned vector.
-	fn take_fax_number(&mut self) -> Vec<FaxNumberProperty>;
+	fn r#fax_number(&self) -> &[FaxNumberProperty];
 	/// Get <https://schema.org/hoursAvailable> from [`Self`] as borrowed slice.
-	fn get_hours_available(&self) -> &[HoursAvailableProperty];
-	/// Take <https://schema.org/hoursAvailable> from [`Self`] as owned vector.
-	fn take_hours_available(&mut self) -> Vec<HoursAvailableProperty>;
+	fn r#hours_available(&self) -> &[HoursAvailableProperty];
 	/// Get <https://schema.org/productSupported> from [`Self`] as borrowed slice.
-	fn get_product_supported(&self) -> &[ProductSupportedProperty];
-	/// Take <https://schema.org/productSupported> from [`Self`] as owned vector.
-	fn take_product_supported(&mut self) -> Vec<ProductSupportedProperty>;
+	fn r#product_supported(&self) -> &[ProductSupportedProperty];
 	/// Get <https://schema.org/serviceArea> from [`Self`] as borrowed slice.
 	#[deprecated = "This schema is superseded by <https://schema.org/areaServed>."]
-	fn get_service_area(&self) -> &[ServiceAreaProperty];
-	/// Take <https://schema.org/serviceArea> from [`Self`] as owned vector.
-	#[deprecated = "This schema is superseded by <https://schema.org/areaServed>."]
-	fn take_service_area(&mut self) -> Vec<ServiceAreaProperty>;
+	fn r#service_area(&self) -> &[ServiceAreaProperty];
 	/// Get <https://schema.org/telephone> from [`Self`] as borrowed slice.
-	fn get_telephone(&self) -> &[TelephoneProperty];
-	/// Take <https://schema.org/telephone> from [`Self`] as owned vector.
-	fn take_telephone(&mut self) -> Vec<TelephoneProperty>;
+	fn r#telephone(&self) -> &[TelephoneProperty];
 }
 impl ContactPointTrait for ContactPoint {
-	fn get_area_served(&self) -> &[AreaServedProperty] {
+	fn r#area_served(&self) -> &[AreaServedProperty] {
 		self.r#area_served.as_slice()
 	}
-	fn take_area_served(&mut self) -> Vec<AreaServedProperty> {
-		std::mem::take(&mut self.r#area_served)
-	}
-	fn get_available_language(&self) -> &[AvailableLanguageProperty] {
+	fn r#available_language(&self) -> &[AvailableLanguageProperty] {
 		self.r#available_language.as_slice()
 	}
-	fn take_available_language(&mut self) -> Vec<AvailableLanguageProperty> {
-		std::mem::take(&mut self.r#available_language)
-	}
-	fn get_contact_option(&self) -> &[ContactOptionProperty] {
+	fn r#contact_option(&self) -> &[ContactOptionProperty] {
 		self.r#contact_option.as_slice()
 	}
-	fn take_contact_option(&mut self) -> Vec<ContactOptionProperty> {
-		std::mem::take(&mut self.r#contact_option)
-	}
-	fn get_contact_type(&self) -> &[ContactTypeProperty] {
+	fn r#contact_type(&self) -> &[ContactTypeProperty] {
 		self.r#contact_type.as_slice()
 	}
-	fn take_contact_type(&mut self) -> Vec<ContactTypeProperty> {
-		std::mem::take(&mut self.r#contact_type)
-	}
-	fn get_email(&self) -> &[EmailProperty] {
+	fn r#email(&self) -> &[EmailProperty] {
 		self.r#email.as_slice()
 	}
-	fn take_email(&mut self) -> Vec<EmailProperty> {
-		std::mem::take(&mut self.r#email)
-	}
-	fn get_fax_number(&self) -> &[FaxNumberProperty] {
+	fn r#fax_number(&self) -> &[FaxNumberProperty] {
 		self.r#fax_number.as_slice()
 	}
-	fn take_fax_number(&mut self) -> Vec<FaxNumberProperty> {
-		std::mem::take(&mut self.r#fax_number)
-	}
-	fn get_hours_available(&self) -> &[HoursAvailableProperty] {
+	fn r#hours_available(&self) -> &[HoursAvailableProperty] {
 		self.r#hours_available.as_slice()
 	}
-	fn take_hours_available(&mut self) -> Vec<HoursAvailableProperty> {
-		std::mem::take(&mut self.r#hours_available)
-	}
-	fn get_product_supported(&self) -> &[ProductSupportedProperty] {
+	fn r#product_supported(&self) -> &[ProductSupportedProperty] {
 		self.r#product_supported.as_slice()
 	}
-	fn take_product_supported(&mut self) -> Vec<ProductSupportedProperty> {
-		std::mem::take(&mut self.r#product_supported)
-	}
-	fn get_service_area(&self) -> &[ServiceAreaProperty] {
+	fn r#service_area(&self) -> &[ServiceAreaProperty] {
 		self.r#service_area.as_slice()
 	}
-	fn take_service_area(&mut self) -> Vec<ServiceAreaProperty> {
-		std::mem::take(&mut self.r#service_area)
-	}
-	fn get_telephone(&self) -> &[TelephoneProperty] {
+	fn r#telephone(&self) -> &[TelephoneProperty] {
 		self.r#telephone.as_slice()
-	}
-	fn take_telephone(&mut self) -> Vec<TelephoneProperty> {
-		std::mem::take(&mut self.r#telephone)
 	}
 }
 impl StructuredValueTrait for ContactPoint {}
 impl ThingTrait for ContactPoint {
-	fn get_additional_type(&self) -> &[AdditionalTypeProperty] {
+	fn r#additional_type(&self) -> &[AdditionalTypeProperty] {
 		self.r#additional_type.as_slice()
 	}
-	fn take_additional_type(&mut self) -> Vec<AdditionalTypeProperty> {
-		std::mem::take(&mut self.r#additional_type)
-	}
-	fn get_alternate_name(&self) -> &[AlternateNameProperty] {
+	fn r#alternate_name(&self) -> &[AlternateNameProperty] {
 		self.r#alternate_name.as_slice()
 	}
-	fn take_alternate_name(&mut self) -> Vec<AlternateNameProperty> {
-		std::mem::take(&mut self.r#alternate_name)
-	}
-	fn get_description(&self) -> &[DescriptionProperty] {
+	fn r#description(&self) -> &[DescriptionProperty] {
 		self.r#description.as_slice()
 	}
-	fn take_description(&mut self) -> Vec<DescriptionProperty> {
-		std::mem::take(&mut self.r#description)
-	}
-	fn get_disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
+	fn r#disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
 		self.r#disambiguating_description.as_slice()
 	}
-	fn take_disambiguating_description(&mut self) -> Vec<DisambiguatingDescriptionProperty> {
-		std::mem::take(&mut self.r#disambiguating_description)
-	}
-	fn get_identifier(&self) -> &[IdentifierProperty] {
+	fn r#identifier(&self) -> &[IdentifierProperty] {
 		self.r#identifier.as_slice()
 	}
-	fn take_identifier(&mut self) -> Vec<IdentifierProperty> {
-		std::mem::take(&mut self.r#identifier)
-	}
-	fn get_image(&self) -> &[ImageProperty] {
+	fn r#image(&self) -> &[ImageProperty] {
 		self.r#image.as_slice()
 	}
-	fn take_image(&mut self) -> Vec<ImageProperty> {
-		std::mem::take(&mut self.r#image)
-	}
-	fn get_main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
+	fn r#main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
 		self.r#main_entity_of_page.as_slice()
 	}
-	fn take_main_entity_of_page(&mut self) -> Vec<MainEntityOfPageProperty> {
-		std::mem::take(&mut self.r#main_entity_of_page)
-	}
-	fn get_name(&self) -> &[NameProperty] {
+	fn r#name(&self) -> &[NameProperty] {
 		self.r#name.as_slice()
 	}
-	fn take_name(&mut self) -> Vec<NameProperty> {
-		std::mem::take(&mut self.r#name)
-	}
-	fn get_owner(&self) -> &[OwnerProperty] {
+	fn r#owner(&self) -> &[OwnerProperty] {
 		self.r#owner.as_slice()
 	}
-	fn take_owner(&mut self) -> Vec<OwnerProperty> {
-		std::mem::take(&mut self.r#owner)
-	}
-	fn get_potential_action(&self) -> &[PotentialActionProperty] {
+	fn r#potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
 	}
-	fn take_potential_action(&mut self) -> Vec<PotentialActionProperty> {
-		std::mem::take(&mut self.r#potential_action)
-	}
-	fn get_same_as(&self) -> &[SameAsProperty] {
+	fn r#same_as(&self) -> &[SameAsProperty] {
 		self.r#same_as.as_slice()
 	}
-	fn take_same_as(&mut self) -> Vec<SameAsProperty> {
-		std::mem::take(&mut self.r#same_as)
-	}
-	fn get_subject_of(&self) -> &[SubjectOfProperty] {
+	fn r#subject_of(&self) -> &[SubjectOfProperty] {
 		self.r#subject_of.as_slice()
 	}
-	fn take_subject_of(&mut self) -> Vec<SubjectOfProperty> {
-		std::mem::take(&mut self.r#subject_of)
-	}
-	fn get_url(&self) -> &[UrlProperty] {
+	fn r#url(&self) -> &[UrlProperty] {
 		self.r#url.as_slice()
-	}
-	fn take_url(&mut self) -> Vec<UrlProperty> {
-		std::mem::take(&mut self.r#url)
 	}
 }

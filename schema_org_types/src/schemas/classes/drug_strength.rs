@@ -295,186 +295,98 @@ pub struct DrugStrength {
 /// This trait is for properties from <https://schema.org/DrugStrength>.
 pub trait DrugStrengthTrait {
 	/// Get <https://schema.org/activeIngredient> from [`Self`] as borrowed slice.
-	fn get_active_ingredient(&self) -> &[ActiveIngredientProperty];
-	/// Take <https://schema.org/activeIngredient> from [`Self`] as owned vector.
-	fn take_active_ingredient(&mut self) -> Vec<ActiveIngredientProperty>;
+	fn r#active_ingredient(&self) -> &[ActiveIngredientProperty];
 	/// Get <https://schema.org/availableIn> from [`Self`] as borrowed slice.
-	fn get_available_in(&self) -> &[AvailableInProperty];
-	/// Take <https://schema.org/availableIn> from [`Self`] as owned vector.
-	fn take_available_in(&mut self) -> Vec<AvailableInProperty>;
+	fn r#available_in(&self) -> &[AvailableInProperty];
 	/// Get <https://schema.org/maximumIntake> from [`Self`] as borrowed slice.
-	fn get_maximum_intake(&self) -> &[MaximumIntakeProperty];
-	/// Take <https://schema.org/maximumIntake> from [`Self`] as owned vector.
-	fn take_maximum_intake(&mut self) -> Vec<MaximumIntakeProperty>;
+	fn r#maximum_intake(&self) -> &[MaximumIntakeProperty];
 	/// Get <https://schema.org/strengthUnit> from [`Self`] as borrowed slice.
-	fn get_strength_unit(&self) -> &[StrengthUnitProperty];
-	/// Take <https://schema.org/strengthUnit> from [`Self`] as owned vector.
-	fn take_strength_unit(&mut self) -> Vec<StrengthUnitProperty>;
+	fn r#strength_unit(&self) -> &[StrengthUnitProperty];
 	/// Get <https://schema.org/strengthValue> from [`Self`] as borrowed slice.
-	fn get_strength_value(&self) -> &[StrengthValueProperty];
-	/// Take <https://schema.org/strengthValue> from [`Self`] as owned vector.
-	fn take_strength_value(&mut self) -> Vec<StrengthValueProperty>;
+	fn r#strength_value(&self) -> &[StrengthValueProperty];
 }
 impl DrugStrengthTrait for DrugStrength {
-	fn get_active_ingredient(&self) -> &[ActiveIngredientProperty] {
+	fn r#active_ingredient(&self) -> &[ActiveIngredientProperty] {
 		self.r#active_ingredient.as_slice()
 	}
-	fn take_active_ingredient(&mut self) -> Vec<ActiveIngredientProperty> {
-		std::mem::take(&mut self.r#active_ingredient)
-	}
-	fn get_available_in(&self) -> &[AvailableInProperty] {
+	fn r#available_in(&self) -> &[AvailableInProperty] {
 		self.r#available_in.as_slice()
 	}
-	fn take_available_in(&mut self) -> Vec<AvailableInProperty> {
-		std::mem::take(&mut self.r#available_in)
-	}
-	fn get_maximum_intake(&self) -> &[MaximumIntakeProperty] {
+	fn r#maximum_intake(&self) -> &[MaximumIntakeProperty] {
 		self.r#maximum_intake.as_slice()
 	}
-	fn take_maximum_intake(&mut self) -> Vec<MaximumIntakeProperty> {
-		std::mem::take(&mut self.r#maximum_intake)
-	}
-	fn get_strength_unit(&self) -> &[StrengthUnitProperty] {
+	fn r#strength_unit(&self) -> &[StrengthUnitProperty] {
 		self.r#strength_unit.as_slice()
 	}
-	fn take_strength_unit(&mut self) -> Vec<StrengthUnitProperty> {
-		std::mem::take(&mut self.r#strength_unit)
-	}
-	fn get_strength_value(&self) -> &[StrengthValueProperty] {
+	fn r#strength_value(&self) -> &[StrengthValueProperty] {
 		self.r#strength_value.as_slice()
-	}
-	fn take_strength_value(&mut self) -> Vec<StrengthValueProperty> {
-		std::mem::take(&mut self.r#strength_value)
 	}
 }
 impl MedicalEntityTrait for DrugStrength {
-	fn get_code(&self) -> &[CodeProperty] {
+	fn r#code(&self) -> &[CodeProperty] {
 		self.r#code.as_slice()
 	}
-	fn take_code(&mut self) -> Vec<CodeProperty> {
-		std::mem::take(&mut self.r#code)
-	}
-	fn get_funding(&self) -> &[FundingProperty] {
+	fn r#funding(&self) -> &[FundingProperty] {
 		self.r#funding.as_slice()
 	}
-	fn take_funding(&mut self) -> Vec<FundingProperty> {
-		std::mem::take(&mut self.r#funding)
-	}
-	fn get_guideline(&self) -> &[GuidelineProperty] {
+	fn r#guideline(&self) -> &[GuidelineProperty] {
 		self.r#guideline.as_slice()
 	}
-	fn take_guideline(&mut self) -> Vec<GuidelineProperty> {
-		std::mem::take(&mut self.r#guideline)
-	}
-	fn get_legal_status(&self) -> &[LegalStatusProperty] {
+	fn r#legal_status(&self) -> &[LegalStatusProperty] {
 		self.r#legal_status.as_slice()
 	}
-	fn take_legal_status(&mut self) -> Vec<LegalStatusProperty> {
-		std::mem::take(&mut self.r#legal_status)
-	}
-	fn get_medicine_system(&self) -> &[MedicineSystemProperty] {
+	fn r#medicine_system(&self) -> &[MedicineSystemProperty] {
 		self.r#medicine_system.as_slice()
 	}
-	fn take_medicine_system(&mut self) -> Vec<MedicineSystemProperty> {
-		std::mem::take(&mut self.r#medicine_system)
-	}
-	fn get_recognizing_authority(&self) -> &[RecognizingAuthorityProperty] {
+	fn r#recognizing_authority(&self) -> &[RecognizingAuthorityProperty] {
 		self.r#recognizing_authority.as_slice()
 	}
-	fn take_recognizing_authority(&mut self) -> Vec<RecognizingAuthorityProperty> {
-		std::mem::take(&mut self.r#recognizing_authority)
-	}
-	fn get_relevant_specialty(&self) -> &[RelevantSpecialtyProperty] {
+	fn r#relevant_specialty(&self) -> &[RelevantSpecialtyProperty] {
 		self.r#relevant_specialty.as_slice()
 	}
-	fn take_relevant_specialty(&mut self) -> Vec<RelevantSpecialtyProperty> {
-		std::mem::take(&mut self.r#relevant_specialty)
-	}
-	fn get_study(&self) -> &[StudyProperty] {
+	fn r#study(&self) -> &[StudyProperty] {
 		self.r#study.as_slice()
-	}
-	fn take_study(&mut self) -> Vec<StudyProperty> {
-		std::mem::take(&mut self.r#study)
 	}
 }
 impl MedicalIntangibleTrait for DrugStrength {}
 impl ThingTrait for DrugStrength {
-	fn get_additional_type(&self) -> &[AdditionalTypeProperty] {
+	fn r#additional_type(&self) -> &[AdditionalTypeProperty] {
 		self.r#additional_type.as_slice()
 	}
-	fn take_additional_type(&mut self) -> Vec<AdditionalTypeProperty> {
-		std::mem::take(&mut self.r#additional_type)
-	}
-	fn get_alternate_name(&self) -> &[AlternateNameProperty] {
+	fn r#alternate_name(&self) -> &[AlternateNameProperty] {
 		self.r#alternate_name.as_slice()
 	}
-	fn take_alternate_name(&mut self) -> Vec<AlternateNameProperty> {
-		std::mem::take(&mut self.r#alternate_name)
-	}
-	fn get_description(&self) -> &[DescriptionProperty] {
+	fn r#description(&self) -> &[DescriptionProperty] {
 		self.r#description.as_slice()
 	}
-	fn take_description(&mut self) -> Vec<DescriptionProperty> {
-		std::mem::take(&mut self.r#description)
-	}
-	fn get_disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
+	fn r#disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
 		self.r#disambiguating_description.as_slice()
 	}
-	fn take_disambiguating_description(&mut self) -> Vec<DisambiguatingDescriptionProperty> {
-		std::mem::take(&mut self.r#disambiguating_description)
-	}
-	fn get_identifier(&self) -> &[IdentifierProperty] {
+	fn r#identifier(&self) -> &[IdentifierProperty] {
 		self.r#identifier.as_slice()
 	}
-	fn take_identifier(&mut self) -> Vec<IdentifierProperty> {
-		std::mem::take(&mut self.r#identifier)
-	}
-	fn get_image(&self) -> &[ImageProperty] {
+	fn r#image(&self) -> &[ImageProperty] {
 		self.r#image.as_slice()
 	}
-	fn take_image(&mut self) -> Vec<ImageProperty> {
-		std::mem::take(&mut self.r#image)
-	}
-	fn get_main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
+	fn r#main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
 		self.r#main_entity_of_page.as_slice()
 	}
-	fn take_main_entity_of_page(&mut self) -> Vec<MainEntityOfPageProperty> {
-		std::mem::take(&mut self.r#main_entity_of_page)
-	}
-	fn get_name(&self) -> &[NameProperty] {
+	fn r#name(&self) -> &[NameProperty] {
 		self.r#name.as_slice()
 	}
-	fn take_name(&mut self) -> Vec<NameProperty> {
-		std::mem::take(&mut self.r#name)
-	}
-	fn get_owner(&self) -> &[OwnerProperty] {
+	fn r#owner(&self) -> &[OwnerProperty] {
 		self.r#owner.as_slice()
 	}
-	fn take_owner(&mut self) -> Vec<OwnerProperty> {
-		std::mem::take(&mut self.r#owner)
-	}
-	fn get_potential_action(&self) -> &[PotentialActionProperty] {
+	fn r#potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
 	}
-	fn take_potential_action(&mut self) -> Vec<PotentialActionProperty> {
-		std::mem::take(&mut self.r#potential_action)
-	}
-	fn get_same_as(&self) -> &[SameAsProperty] {
+	fn r#same_as(&self) -> &[SameAsProperty] {
 		self.r#same_as.as_slice()
 	}
-	fn take_same_as(&mut self) -> Vec<SameAsProperty> {
-		std::mem::take(&mut self.r#same_as)
-	}
-	fn get_subject_of(&self) -> &[SubjectOfProperty] {
+	fn r#subject_of(&self) -> &[SubjectOfProperty] {
 		self.r#subject_of.as_slice()
 	}
-	fn take_subject_of(&mut self) -> Vec<SubjectOfProperty> {
-		std::mem::take(&mut self.r#subject_of)
-	}
-	fn get_url(&self) -> &[UrlProperty] {
+	fn r#url(&self) -> &[UrlProperty] {
 		self.r#url.as_slice()
-	}
-	fn take_url(&mut self) -> Vec<UrlProperty> {
-		std::mem::take(&mut self.r#url)
 	}
 }

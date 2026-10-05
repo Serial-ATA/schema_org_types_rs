@@ -218,145 +218,76 @@ pub struct BroadcastChannel {
 /// This trait is for properties from <https://schema.org/BroadcastChannel>.
 pub trait BroadcastChannelTrait {
 	/// Get <https://schema.org/broadcastChannelId> from [`Self`] as borrowed slice.
-	fn get_broadcast_channel_id(&self) -> &[BroadcastChannelIdProperty];
-	/// Take <https://schema.org/broadcastChannelId> from [`Self`] as owned vector.
-	fn take_broadcast_channel_id(&mut self) -> Vec<BroadcastChannelIdProperty>;
+	fn r#broadcast_channel_id(&self) -> &[BroadcastChannelIdProperty];
 	/// Get <https://schema.org/broadcastFrequency> from [`Self`] as borrowed slice.
-	fn get_broadcast_frequency(&self) -> &[BroadcastFrequencyProperty];
-	/// Take <https://schema.org/broadcastFrequency> from [`Self`] as owned vector.
-	fn take_broadcast_frequency(&mut self) -> Vec<BroadcastFrequencyProperty>;
+	fn r#broadcast_frequency(&self) -> &[BroadcastFrequencyProperty];
 	/// Get <https://schema.org/broadcastServiceTier> from [`Self`] as borrowed slice.
-	fn get_broadcast_service_tier(&self) -> &[BroadcastServiceTierProperty];
-	/// Take <https://schema.org/broadcastServiceTier> from [`Self`] as owned vector.
-	fn take_broadcast_service_tier(&mut self) -> Vec<BroadcastServiceTierProperty>;
+	fn r#broadcast_service_tier(&self) -> &[BroadcastServiceTierProperty];
 	/// Get <https://schema.org/genre> from [`Self`] as borrowed slice.
-	fn get_genre(&self) -> &[GenreProperty];
-	/// Take <https://schema.org/genre> from [`Self`] as owned vector.
-	fn take_genre(&mut self) -> Vec<GenreProperty>;
+	fn r#genre(&self) -> &[GenreProperty];
 	/// Get <https://schema.org/inBroadcastLineup> from [`Self`] as borrowed slice.
-	fn get_in_broadcast_lineup(&self) -> &[InBroadcastLineupProperty];
-	/// Take <https://schema.org/inBroadcastLineup> from [`Self`] as owned vector.
-	fn take_in_broadcast_lineup(&mut self) -> Vec<InBroadcastLineupProperty>;
+	fn r#in_broadcast_lineup(&self) -> &[InBroadcastLineupProperty];
 	/// Get <https://schema.org/providesBroadcastService> from [`Self`] as borrowed slice.
-	fn get_provides_broadcast_service(&self) -> &[ProvidesBroadcastServiceProperty];
-	/// Take <https://schema.org/providesBroadcastService> from [`Self`] as owned vector.
-	fn take_provides_broadcast_service(&mut self) -> Vec<ProvidesBroadcastServiceProperty>;
+	fn r#provides_broadcast_service(&self) -> &[ProvidesBroadcastServiceProperty];
 }
 impl BroadcastChannelTrait for BroadcastChannel {
-	fn get_broadcast_channel_id(&self) -> &[BroadcastChannelIdProperty] {
+	fn r#broadcast_channel_id(&self) -> &[BroadcastChannelIdProperty] {
 		self.r#broadcast_channel_id.as_slice()
 	}
-	fn take_broadcast_channel_id(&mut self) -> Vec<BroadcastChannelIdProperty> {
-		std::mem::take(&mut self.r#broadcast_channel_id)
-	}
-	fn get_broadcast_frequency(&self) -> &[BroadcastFrequencyProperty] {
+	fn r#broadcast_frequency(&self) -> &[BroadcastFrequencyProperty] {
 		self.r#broadcast_frequency.as_slice()
 	}
-	fn take_broadcast_frequency(&mut self) -> Vec<BroadcastFrequencyProperty> {
-		std::mem::take(&mut self.r#broadcast_frequency)
-	}
-	fn get_broadcast_service_tier(&self) -> &[BroadcastServiceTierProperty] {
+	fn r#broadcast_service_tier(&self) -> &[BroadcastServiceTierProperty] {
 		self.r#broadcast_service_tier.as_slice()
 	}
-	fn take_broadcast_service_tier(&mut self) -> Vec<BroadcastServiceTierProperty> {
-		std::mem::take(&mut self.r#broadcast_service_tier)
-	}
-	fn get_genre(&self) -> &[GenreProperty] {
+	fn r#genre(&self) -> &[GenreProperty] {
 		self.r#genre.as_slice()
 	}
-	fn take_genre(&mut self) -> Vec<GenreProperty> {
-		std::mem::take(&mut self.r#genre)
-	}
-	fn get_in_broadcast_lineup(&self) -> &[InBroadcastLineupProperty] {
+	fn r#in_broadcast_lineup(&self) -> &[InBroadcastLineupProperty] {
 		self.r#in_broadcast_lineup.as_slice()
 	}
-	fn take_in_broadcast_lineup(&mut self) -> Vec<InBroadcastLineupProperty> {
-		std::mem::take(&mut self.r#in_broadcast_lineup)
-	}
-	fn get_provides_broadcast_service(&self) -> &[ProvidesBroadcastServiceProperty] {
+	fn r#provides_broadcast_service(&self) -> &[ProvidesBroadcastServiceProperty] {
 		self.r#provides_broadcast_service.as_slice()
-	}
-	fn take_provides_broadcast_service(&mut self) -> Vec<ProvidesBroadcastServiceProperty> {
-		std::mem::take(&mut self.r#provides_broadcast_service)
 	}
 }
 impl ThingTrait for BroadcastChannel {
-	fn get_additional_type(&self) -> &[AdditionalTypeProperty] {
+	fn r#additional_type(&self) -> &[AdditionalTypeProperty] {
 		self.r#additional_type.as_slice()
 	}
-	fn take_additional_type(&mut self) -> Vec<AdditionalTypeProperty> {
-		std::mem::take(&mut self.r#additional_type)
-	}
-	fn get_alternate_name(&self) -> &[AlternateNameProperty] {
+	fn r#alternate_name(&self) -> &[AlternateNameProperty] {
 		self.r#alternate_name.as_slice()
 	}
-	fn take_alternate_name(&mut self) -> Vec<AlternateNameProperty> {
-		std::mem::take(&mut self.r#alternate_name)
-	}
-	fn get_description(&self) -> &[DescriptionProperty] {
+	fn r#description(&self) -> &[DescriptionProperty] {
 		self.r#description.as_slice()
 	}
-	fn take_description(&mut self) -> Vec<DescriptionProperty> {
-		std::mem::take(&mut self.r#description)
-	}
-	fn get_disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
+	fn r#disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
 		self.r#disambiguating_description.as_slice()
 	}
-	fn take_disambiguating_description(&mut self) -> Vec<DisambiguatingDescriptionProperty> {
-		std::mem::take(&mut self.r#disambiguating_description)
-	}
-	fn get_identifier(&self) -> &[IdentifierProperty] {
+	fn r#identifier(&self) -> &[IdentifierProperty] {
 		self.r#identifier.as_slice()
 	}
-	fn take_identifier(&mut self) -> Vec<IdentifierProperty> {
-		std::mem::take(&mut self.r#identifier)
-	}
-	fn get_image(&self) -> &[ImageProperty] {
+	fn r#image(&self) -> &[ImageProperty] {
 		self.r#image.as_slice()
 	}
-	fn take_image(&mut self) -> Vec<ImageProperty> {
-		std::mem::take(&mut self.r#image)
-	}
-	fn get_main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
+	fn r#main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
 		self.r#main_entity_of_page.as_slice()
 	}
-	fn take_main_entity_of_page(&mut self) -> Vec<MainEntityOfPageProperty> {
-		std::mem::take(&mut self.r#main_entity_of_page)
-	}
-	fn get_name(&self) -> &[NameProperty] {
+	fn r#name(&self) -> &[NameProperty] {
 		self.r#name.as_slice()
 	}
-	fn take_name(&mut self) -> Vec<NameProperty> {
-		std::mem::take(&mut self.r#name)
-	}
-	fn get_owner(&self) -> &[OwnerProperty] {
+	fn r#owner(&self) -> &[OwnerProperty] {
 		self.r#owner.as_slice()
 	}
-	fn take_owner(&mut self) -> Vec<OwnerProperty> {
-		std::mem::take(&mut self.r#owner)
-	}
-	fn get_potential_action(&self) -> &[PotentialActionProperty] {
+	fn r#potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
 	}
-	fn take_potential_action(&mut self) -> Vec<PotentialActionProperty> {
-		std::mem::take(&mut self.r#potential_action)
-	}
-	fn get_same_as(&self) -> &[SameAsProperty] {
+	fn r#same_as(&self) -> &[SameAsProperty] {
 		self.r#same_as.as_slice()
 	}
-	fn take_same_as(&mut self) -> Vec<SameAsProperty> {
-		std::mem::take(&mut self.r#same_as)
-	}
-	fn get_subject_of(&self) -> &[SubjectOfProperty] {
+	fn r#subject_of(&self) -> &[SubjectOfProperty] {
 		self.r#subject_of.as_slice()
 	}
-	fn take_subject_of(&mut self) -> Vec<SubjectOfProperty> {
-		std::mem::take(&mut self.r#subject_of)
-	}
-	fn get_url(&self) -> &[UrlProperty] {
+	fn r#url(&self) -> &[UrlProperty] {
 		self.r#url.as_slice()
-	}
-	fn take_url(&mut self) -> Vec<UrlProperty> {
-		std::mem::take(&mut self.r#url)
 	}
 }

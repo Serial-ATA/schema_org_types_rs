@@ -196,125 +196,66 @@ pub struct Property {
 /// This trait is for properties from <https://schema.org/Property>.
 pub trait PropertyTrait {
 	/// Get <https://schema.org/domainIncludes> from [`Self`] as borrowed slice.
-	fn get_domain_includes(&self) -> &[DomainIncludesProperty];
-	/// Take <https://schema.org/domainIncludes> from [`Self`] as owned vector.
-	fn take_domain_includes(&mut self) -> Vec<DomainIncludesProperty>;
+	fn r#domain_includes(&self) -> &[DomainIncludesProperty];
 	/// Get <https://schema.org/inverseOf> from [`Self`] as borrowed slice.
-	fn get_inverse_of(&self) -> &[InverseOfProperty];
-	/// Take <https://schema.org/inverseOf> from [`Self`] as owned vector.
-	fn take_inverse_of(&mut self) -> Vec<InverseOfProperty>;
+	fn r#inverse_of(&self) -> &[InverseOfProperty];
 	/// Get <https://schema.org/rangeIncludes> from [`Self`] as borrowed slice.
-	fn get_range_includes(&self) -> &[RangeIncludesProperty];
-	/// Take <https://schema.org/rangeIncludes> from [`Self`] as owned vector.
-	fn take_range_includes(&mut self) -> Vec<RangeIncludesProperty>;
+	fn r#range_includes(&self) -> &[RangeIncludesProperty];
 	/// Get <https://schema.org/supersededBy> from [`Self`] as borrowed slice.
-	fn get_superseded_by(&self) -> &[SupersededByProperty];
-	/// Take <https://schema.org/supersededBy> from [`Self`] as owned vector.
-	fn take_superseded_by(&mut self) -> Vec<SupersededByProperty>;
+	fn r#superseded_by(&self) -> &[SupersededByProperty];
 }
 impl PropertyTrait for Property {
-	fn get_domain_includes(&self) -> &[DomainIncludesProperty] {
+	fn r#domain_includes(&self) -> &[DomainIncludesProperty] {
 		self.r#domain_includes.as_slice()
 	}
-	fn take_domain_includes(&mut self) -> Vec<DomainIncludesProperty> {
-		std::mem::take(&mut self.r#domain_includes)
-	}
-	fn get_inverse_of(&self) -> &[InverseOfProperty] {
+	fn r#inverse_of(&self) -> &[InverseOfProperty] {
 		self.r#inverse_of.as_slice()
 	}
-	fn take_inverse_of(&mut self) -> Vec<InverseOfProperty> {
-		std::mem::take(&mut self.r#inverse_of)
-	}
-	fn get_range_includes(&self) -> &[RangeIncludesProperty] {
+	fn r#range_includes(&self) -> &[RangeIncludesProperty] {
 		self.r#range_includes.as_slice()
 	}
-	fn take_range_includes(&mut self) -> Vec<RangeIncludesProperty> {
-		std::mem::take(&mut self.r#range_includes)
-	}
-	fn get_superseded_by(&self) -> &[SupersededByProperty] {
+	fn r#superseded_by(&self) -> &[SupersededByProperty] {
 		self.r#superseded_by.as_slice()
-	}
-	fn take_superseded_by(&mut self) -> Vec<SupersededByProperty> {
-		std::mem::take(&mut self.r#superseded_by)
 	}
 }
 impl ThingTrait for Property {
-	fn get_additional_type(&self) -> &[AdditionalTypeProperty] {
+	fn r#additional_type(&self) -> &[AdditionalTypeProperty] {
 		self.r#additional_type.as_slice()
 	}
-	fn take_additional_type(&mut self) -> Vec<AdditionalTypeProperty> {
-		std::mem::take(&mut self.r#additional_type)
-	}
-	fn get_alternate_name(&self) -> &[AlternateNameProperty] {
+	fn r#alternate_name(&self) -> &[AlternateNameProperty] {
 		self.r#alternate_name.as_slice()
 	}
-	fn take_alternate_name(&mut self) -> Vec<AlternateNameProperty> {
-		std::mem::take(&mut self.r#alternate_name)
-	}
-	fn get_description(&self) -> &[DescriptionProperty] {
+	fn r#description(&self) -> &[DescriptionProperty] {
 		self.r#description.as_slice()
 	}
-	fn take_description(&mut self) -> Vec<DescriptionProperty> {
-		std::mem::take(&mut self.r#description)
-	}
-	fn get_disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
+	fn r#disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
 		self.r#disambiguating_description.as_slice()
 	}
-	fn take_disambiguating_description(&mut self) -> Vec<DisambiguatingDescriptionProperty> {
-		std::mem::take(&mut self.r#disambiguating_description)
-	}
-	fn get_identifier(&self) -> &[IdentifierProperty] {
+	fn r#identifier(&self) -> &[IdentifierProperty] {
 		self.r#identifier.as_slice()
 	}
-	fn take_identifier(&mut self) -> Vec<IdentifierProperty> {
-		std::mem::take(&mut self.r#identifier)
-	}
-	fn get_image(&self) -> &[ImageProperty] {
+	fn r#image(&self) -> &[ImageProperty] {
 		self.r#image.as_slice()
 	}
-	fn take_image(&mut self) -> Vec<ImageProperty> {
-		std::mem::take(&mut self.r#image)
-	}
-	fn get_main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
+	fn r#main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
 		self.r#main_entity_of_page.as_slice()
 	}
-	fn take_main_entity_of_page(&mut self) -> Vec<MainEntityOfPageProperty> {
-		std::mem::take(&mut self.r#main_entity_of_page)
-	}
-	fn get_name(&self) -> &[NameProperty] {
+	fn r#name(&self) -> &[NameProperty] {
 		self.r#name.as_slice()
 	}
-	fn take_name(&mut self) -> Vec<NameProperty> {
-		std::mem::take(&mut self.r#name)
-	}
-	fn get_owner(&self) -> &[OwnerProperty] {
+	fn r#owner(&self) -> &[OwnerProperty] {
 		self.r#owner.as_slice()
 	}
-	fn take_owner(&mut self) -> Vec<OwnerProperty> {
-		std::mem::take(&mut self.r#owner)
-	}
-	fn get_potential_action(&self) -> &[PotentialActionProperty] {
+	fn r#potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
 	}
-	fn take_potential_action(&mut self) -> Vec<PotentialActionProperty> {
-		std::mem::take(&mut self.r#potential_action)
-	}
-	fn get_same_as(&self) -> &[SameAsProperty] {
+	fn r#same_as(&self) -> &[SameAsProperty] {
 		self.r#same_as.as_slice()
 	}
-	fn take_same_as(&mut self) -> Vec<SameAsProperty> {
-		std::mem::take(&mut self.r#same_as)
-	}
-	fn get_subject_of(&self) -> &[SubjectOfProperty] {
+	fn r#subject_of(&self) -> &[SubjectOfProperty] {
 		self.r#subject_of.as_slice()
 	}
-	fn take_subject_of(&mut self) -> Vec<SubjectOfProperty> {
-		std::mem::take(&mut self.r#subject_of)
-	}
-	fn get_url(&self) -> &[UrlProperty] {
+	fn r#url(&self) -> &[UrlProperty] {
 		self.r#url.as_slice()
-	}
-	fn take_url(&mut self) -> Vec<UrlProperty> {
-		std::mem::take(&mut self.r#url)
 	}
 }

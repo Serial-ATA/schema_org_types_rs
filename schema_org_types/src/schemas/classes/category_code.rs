@@ -207,125 +207,67 @@ pub struct CategoryCode {
 /// This trait is for properties from <https://schema.org/CategoryCode>.
 pub trait CategoryCodeTrait {
 	/// Get <https://schema.org/codeValue> from [`Self`] as borrowed slice.
-	fn get_code_value(&self) -> &[CodeValueProperty];
-	/// Take <https://schema.org/codeValue> from [`Self`] as owned vector.
-	fn take_code_value(&mut self) -> Vec<CodeValueProperty>;
+	fn r#code_value(&self) -> &[CodeValueProperty];
 	/// Get <https://schema.org/inCodeSet> from [`Self`] as borrowed slice.
-	fn get_in_code_set(&self) -> &[InCodeSetProperty];
-	/// Take <https://schema.org/inCodeSet> from [`Self`] as owned vector.
-	fn take_in_code_set(&mut self) -> Vec<InCodeSetProperty>;
+	fn r#in_code_set(&self) -> &[InCodeSetProperty];
 }
 impl CategoryCodeTrait for CategoryCode {
-	fn get_code_value(&self) -> &[CodeValueProperty] {
+	fn r#code_value(&self) -> &[CodeValueProperty] {
 		self.r#code_value.as_slice()
 	}
-	fn take_code_value(&mut self) -> Vec<CodeValueProperty> {
-		std::mem::take(&mut self.r#code_value)
-	}
-	fn get_in_code_set(&self) -> &[InCodeSetProperty] {
+	fn r#in_code_set(&self) -> &[InCodeSetProperty] {
 		self.r#in_code_set.as_slice()
-	}
-	fn take_in_code_set(&mut self) -> Vec<InCodeSetProperty> {
-		std::mem::take(&mut self.r#in_code_set)
 	}
 }
 impl DefinedTermTrait for CategoryCode {
-	fn get_about(&self) -> &[AboutProperty] {
+	fn r#about(&self) -> &[AboutProperty] {
 		self.r#about.as_slice()
 	}
-	fn take_about(&mut self) -> Vec<AboutProperty> {
-		std::mem::take(&mut self.r#about)
-	}
-	fn get_in_defined_term_set(&self) -> &[InDefinedTermSetProperty] {
+	fn r#in_defined_term_set(&self) -> &[InDefinedTermSetProperty] {
 		self.r#in_defined_term_set.as_slice()
 	}
-	fn take_in_defined_term_set(&mut self) -> Vec<InDefinedTermSetProperty> {
-		std::mem::take(&mut self.r#in_defined_term_set)
-	}
-	fn get_term_code(&self) -> &[TermCodeProperty] {
+	fn r#term_code(&self) -> &[TermCodeProperty] {
 		self.r#term_code.as_slice()
-	}
-	fn take_term_code(&mut self) -> Vec<TermCodeProperty> {
-		std::mem::take(&mut self.r#term_code)
 	}
 }
 impl ThingTrait for CategoryCode {
-	fn get_additional_type(&self) -> &[AdditionalTypeProperty] {
+	fn r#additional_type(&self) -> &[AdditionalTypeProperty] {
 		self.r#additional_type.as_slice()
 	}
-	fn take_additional_type(&mut self) -> Vec<AdditionalTypeProperty> {
-		std::mem::take(&mut self.r#additional_type)
-	}
-	fn get_alternate_name(&self) -> &[AlternateNameProperty] {
+	fn r#alternate_name(&self) -> &[AlternateNameProperty] {
 		self.r#alternate_name.as_slice()
 	}
-	fn take_alternate_name(&mut self) -> Vec<AlternateNameProperty> {
-		std::mem::take(&mut self.r#alternate_name)
-	}
-	fn get_description(&self) -> &[DescriptionProperty] {
+	fn r#description(&self) -> &[DescriptionProperty] {
 		self.r#description.as_slice()
 	}
-	fn take_description(&mut self) -> Vec<DescriptionProperty> {
-		std::mem::take(&mut self.r#description)
-	}
-	fn get_disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
+	fn r#disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
 		self.r#disambiguating_description.as_slice()
 	}
-	fn take_disambiguating_description(&mut self) -> Vec<DisambiguatingDescriptionProperty> {
-		std::mem::take(&mut self.r#disambiguating_description)
-	}
-	fn get_identifier(&self) -> &[IdentifierProperty] {
+	fn r#identifier(&self) -> &[IdentifierProperty] {
 		self.r#identifier.as_slice()
 	}
-	fn take_identifier(&mut self) -> Vec<IdentifierProperty> {
-		std::mem::take(&mut self.r#identifier)
-	}
-	fn get_image(&self) -> &[ImageProperty] {
+	fn r#image(&self) -> &[ImageProperty] {
 		self.r#image.as_slice()
 	}
-	fn take_image(&mut self) -> Vec<ImageProperty> {
-		std::mem::take(&mut self.r#image)
-	}
-	fn get_main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
+	fn r#main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
 		self.r#main_entity_of_page.as_slice()
 	}
-	fn take_main_entity_of_page(&mut self) -> Vec<MainEntityOfPageProperty> {
-		std::mem::take(&mut self.r#main_entity_of_page)
-	}
-	fn get_name(&self) -> &[NameProperty] {
+	fn r#name(&self) -> &[NameProperty] {
 		self.r#name.as_slice()
 	}
-	fn take_name(&mut self) -> Vec<NameProperty> {
-		std::mem::take(&mut self.r#name)
-	}
-	fn get_owner(&self) -> &[OwnerProperty] {
+	fn r#owner(&self) -> &[OwnerProperty] {
 		self.r#owner.as_slice()
 	}
-	fn take_owner(&mut self) -> Vec<OwnerProperty> {
-		std::mem::take(&mut self.r#owner)
-	}
-	fn get_potential_action(&self) -> &[PotentialActionProperty] {
+	fn r#potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
 	}
-	fn take_potential_action(&mut self) -> Vec<PotentialActionProperty> {
-		std::mem::take(&mut self.r#potential_action)
-	}
-	fn get_same_as(&self) -> &[SameAsProperty] {
+	fn r#same_as(&self) -> &[SameAsProperty] {
 		self.r#same_as.as_slice()
 	}
-	fn take_same_as(&mut self) -> Vec<SameAsProperty> {
-		std::mem::take(&mut self.r#same_as)
-	}
-	fn get_subject_of(&self) -> &[SubjectOfProperty] {
+	fn r#subject_of(&self) -> &[SubjectOfProperty] {
 		self.r#subject_of.as_slice()
 	}
-	fn take_subject_of(&mut self) -> Vec<SubjectOfProperty> {
-		std::mem::take(&mut self.r#subject_of)
-	}
-	fn get_url(&self) -> &[UrlProperty] {
+	fn r#url(&self) -> &[UrlProperty] {
 		self.r#url.as_slice()
-	}
-	fn take_url(&mut self) -> Vec<UrlProperty> {
-		std::mem::take(&mut self.r#url)
 	}
 }

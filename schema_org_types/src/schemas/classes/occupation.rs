@@ -240,165 +240,86 @@ pub struct Occupation {
 /// This trait is for properties from <https://schema.org/Occupation>.
 pub trait OccupationTrait {
 	/// Get <https://schema.org/educationRequirements> from [`Self`] as borrowed slice.
-	fn get_education_requirements(&self) -> &[EducationRequirementsProperty];
-	/// Take <https://schema.org/educationRequirements> from [`Self`] as owned vector.
-	fn take_education_requirements(&mut self) -> Vec<EducationRequirementsProperty>;
+	fn r#education_requirements(&self) -> &[EducationRequirementsProperty];
 	/// Get <https://schema.org/estimatedSalary> from [`Self`] as borrowed slice.
-	fn get_estimated_salary(&self) -> &[EstimatedSalaryProperty];
-	/// Take <https://schema.org/estimatedSalary> from [`Self`] as owned vector.
-	fn take_estimated_salary(&mut self) -> Vec<EstimatedSalaryProperty>;
+	fn r#estimated_salary(&self) -> &[EstimatedSalaryProperty];
 	/// Get <https://schema.org/experienceRequirements> from [`Self`] as borrowed slice.
-	fn get_experience_requirements(&self) -> &[ExperienceRequirementsProperty];
-	/// Take <https://schema.org/experienceRequirements> from [`Self`] as owned vector.
-	fn take_experience_requirements(&mut self) -> Vec<ExperienceRequirementsProperty>;
+	fn r#experience_requirements(&self) -> &[ExperienceRequirementsProperty];
 	/// Get <https://schema.org/occupationLocation> from [`Self`] as borrowed slice.
-	fn get_occupation_location(&self) -> &[OccupationLocationProperty];
-	/// Take <https://schema.org/occupationLocation> from [`Self`] as owned vector.
-	fn take_occupation_location(&mut self) -> Vec<OccupationLocationProperty>;
+	fn r#occupation_location(&self) -> &[OccupationLocationProperty];
 	/// Get <https://schema.org/occupationalCategory> from [`Self`] as borrowed slice.
-	fn get_occupational_category(&self) -> &[OccupationalCategoryProperty];
-	/// Take <https://schema.org/occupationalCategory> from [`Self`] as owned vector.
-	fn take_occupational_category(&mut self) -> Vec<OccupationalCategoryProperty>;
+	fn r#occupational_category(&self) -> &[OccupationalCategoryProperty];
 	/// Get <https://schema.org/qualifications> from [`Self`] as borrowed slice.
-	fn get_qualifications(&self) -> &[QualificationsProperty];
-	/// Take <https://schema.org/qualifications> from [`Self`] as owned vector.
-	fn take_qualifications(&mut self) -> Vec<QualificationsProperty>;
+	fn r#qualifications(&self) -> &[QualificationsProperty];
 	/// Get <https://schema.org/responsibilities> from [`Self`] as borrowed slice.
-	fn get_responsibilities(&self) -> &[ResponsibilitiesProperty];
-	/// Take <https://schema.org/responsibilities> from [`Self`] as owned vector.
-	fn take_responsibilities(&mut self) -> Vec<ResponsibilitiesProperty>;
+	fn r#responsibilities(&self) -> &[ResponsibilitiesProperty];
 	/// Get <https://schema.org/skills> from [`Self`] as borrowed slice.
-	fn get_skills(&self) -> &[SkillsProperty];
-	/// Take <https://schema.org/skills> from [`Self`] as owned vector.
-	fn take_skills(&mut self) -> Vec<SkillsProperty>;
+	fn r#skills(&self) -> &[SkillsProperty];
 }
 impl OccupationTrait for Occupation {
-	fn get_education_requirements(&self) -> &[EducationRequirementsProperty] {
+	fn r#education_requirements(&self) -> &[EducationRequirementsProperty] {
 		self.r#education_requirements.as_slice()
 	}
-	fn take_education_requirements(&mut self) -> Vec<EducationRequirementsProperty> {
-		std::mem::take(&mut self.r#education_requirements)
-	}
-	fn get_estimated_salary(&self) -> &[EstimatedSalaryProperty] {
+	fn r#estimated_salary(&self) -> &[EstimatedSalaryProperty] {
 		self.r#estimated_salary.as_slice()
 	}
-	fn take_estimated_salary(&mut self) -> Vec<EstimatedSalaryProperty> {
-		std::mem::take(&mut self.r#estimated_salary)
-	}
-	fn get_experience_requirements(&self) -> &[ExperienceRequirementsProperty] {
+	fn r#experience_requirements(&self) -> &[ExperienceRequirementsProperty] {
 		self.r#experience_requirements.as_slice()
 	}
-	fn take_experience_requirements(&mut self) -> Vec<ExperienceRequirementsProperty> {
-		std::mem::take(&mut self.r#experience_requirements)
-	}
-	fn get_occupation_location(&self) -> &[OccupationLocationProperty] {
+	fn r#occupation_location(&self) -> &[OccupationLocationProperty] {
 		self.r#occupation_location.as_slice()
 	}
-	fn take_occupation_location(&mut self) -> Vec<OccupationLocationProperty> {
-		std::mem::take(&mut self.r#occupation_location)
-	}
-	fn get_occupational_category(&self) -> &[OccupationalCategoryProperty] {
+	fn r#occupational_category(&self) -> &[OccupationalCategoryProperty] {
 		self.r#occupational_category.as_slice()
 	}
-	fn take_occupational_category(&mut self) -> Vec<OccupationalCategoryProperty> {
-		std::mem::take(&mut self.r#occupational_category)
-	}
-	fn get_qualifications(&self) -> &[QualificationsProperty] {
+	fn r#qualifications(&self) -> &[QualificationsProperty] {
 		self.r#qualifications.as_slice()
 	}
-	fn take_qualifications(&mut self) -> Vec<QualificationsProperty> {
-		std::mem::take(&mut self.r#qualifications)
-	}
-	fn get_responsibilities(&self) -> &[ResponsibilitiesProperty] {
+	fn r#responsibilities(&self) -> &[ResponsibilitiesProperty] {
 		self.r#responsibilities.as_slice()
 	}
-	fn take_responsibilities(&mut self) -> Vec<ResponsibilitiesProperty> {
-		std::mem::take(&mut self.r#responsibilities)
-	}
-	fn get_skills(&self) -> &[SkillsProperty] {
+	fn r#skills(&self) -> &[SkillsProperty] {
 		self.r#skills.as_slice()
-	}
-	fn take_skills(&mut self) -> Vec<SkillsProperty> {
-		std::mem::take(&mut self.r#skills)
 	}
 }
 impl ThingTrait for Occupation {
-	fn get_additional_type(&self) -> &[AdditionalTypeProperty] {
+	fn r#additional_type(&self) -> &[AdditionalTypeProperty] {
 		self.r#additional_type.as_slice()
 	}
-	fn take_additional_type(&mut self) -> Vec<AdditionalTypeProperty> {
-		std::mem::take(&mut self.r#additional_type)
-	}
-	fn get_alternate_name(&self) -> &[AlternateNameProperty] {
+	fn r#alternate_name(&self) -> &[AlternateNameProperty] {
 		self.r#alternate_name.as_slice()
 	}
-	fn take_alternate_name(&mut self) -> Vec<AlternateNameProperty> {
-		std::mem::take(&mut self.r#alternate_name)
-	}
-	fn get_description(&self) -> &[DescriptionProperty] {
+	fn r#description(&self) -> &[DescriptionProperty] {
 		self.r#description.as_slice()
 	}
-	fn take_description(&mut self) -> Vec<DescriptionProperty> {
-		std::mem::take(&mut self.r#description)
-	}
-	fn get_disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
+	fn r#disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
 		self.r#disambiguating_description.as_slice()
 	}
-	fn take_disambiguating_description(&mut self) -> Vec<DisambiguatingDescriptionProperty> {
-		std::mem::take(&mut self.r#disambiguating_description)
-	}
-	fn get_identifier(&self) -> &[IdentifierProperty] {
+	fn r#identifier(&self) -> &[IdentifierProperty] {
 		self.r#identifier.as_slice()
 	}
-	fn take_identifier(&mut self) -> Vec<IdentifierProperty> {
-		std::mem::take(&mut self.r#identifier)
-	}
-	fn get_image(&self) -> &[ImageProperty] {
+	fn r#image(&self) -> &[ImageProperty] {
 		self.r#image.as_slice()
 	}
-	fn take_image(&mut self) -> Vec<ImageProperty> {
-		std::mem::take(&mut self.r#image)
-	}
-	fn get_main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
+	fn r#main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
 		self.r#main_entity_of_page.as_slice()
 	}
-	fn take_main_entity_of_page(&mut self) -> Vec<MainEntityOfPageProperty> {
-		std::mem::take(&mut self.r#main_entity_of_page)
-	}
-	fn get_name(&self) -> &[NameProperty] {
+	fn r#name(&self) -> &[NameProperty] {
 		self.r#name.as_slice()
 	}
-	fn take_name(&mut self) -> Vec<NameProperty> {
-		std::mem::take(&mut self.r#name)
-	}
-	fn get_owner(&self) -> &[OwnerProperty] {
+	fn r#owner(&self) -> &[OwnerProperty] {
 		self.r#owner.as_slice()
 	}
-	fn take_owner(&mut self) -> Vec<OwnerProperty> {
-		std::mem::take(&mut self.r#owner)
-	}
-	fn get_potential_action(&self) -> &[PotentialActionProperty] {
+	fn r#potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
 	}
-	fn take_potential_action(&mut self) -> Vec<PotentialActionProperty> {
-		std::mem::take(&mut self.r#potential_action)
-	}
-	fn get_same_as(&self) -> &[SameAsProperty] {
+	fn r#same_as(&self) -> &[SameAsProperty] {
 		self.r#same_as.as_slice()
 	}
-	fn take_same_as(&mut self) -> Vec<SameAsProperty> {
-		std::mem::take(&mut self.r#same_as)
-	}
-	fn get_subject_of(&self) -> &[SubjectOfProperty] {
+	fn r#subject_of(&self) -> &[SubjectOfProperty] {
 		self.r#subject_of.as_slice()
 	}
-	fn take_subject_of(&mut self) -> Vec<SubjectOfProperty> {
-		std::mem::take(&mut self.r#subject_of)
-	}
-	fn get_url(&self) -> &[UrlProperty] {
+	fn r#url(&self) -> &[UrlProperty] {
 		self.r#url.as_slice()
-	}
-	fn take_url(&mut self) -> Vec<UrlProperty> {
-		std::mem::take(&mut self.r#url)
 	}
 }

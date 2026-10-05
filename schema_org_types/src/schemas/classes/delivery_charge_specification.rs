@@ -317,194 +317,102 @@ pub struct DeliveryChargeSpecification {
 /// This trait is for properties from <https://schema.org/DeliveryChargeSpecification>.
 pub trait DeliveryChargeSpecificationTrait {
 	/// Get <https://schema.org/appliesToDeliveryMethod> from [`Self`] as borrowed slice.
-	fn get_applies_to_delivery_method(&self) -> &[AppliesToDeliveryMethodProperty];
-	/// Take <https://schema.org/appliesToDeliveryMethod> from [`Self`] as owned vector.
-	fn take_applies_to_delivery_method(&mut self) -> Vec<AppliesToDeliveryMethodProperty>;
+	fn r#applies_to_delivery_method(&self) -> &[AppliesToDeliveryMethodProperty];
 	/// Get <https://schema.org/areaServed> from [`Self`] as borrowed slice.
-	fn get_area_served(&self) -> &[AreaServedProperty];
-	/// Take <https://schema.org/areaServed> from [`Self`] as owned vector.
-	fn take_area_served(&mut self) -> Vec<AreaServedProperty>;
+	fn r#area_served(&self) -> &[AreaServedProperty];
 	/// Get <https://schema.org/eligibleRegion> from [`Self`] as borrowed slice.
-	fn get_eligible_region(&self) -> &[EligibleRegionProperty];
-	/// Take <https://schema.org/eligibleRegion> from [`Self`] as owned vector.
-	fn take_eligible_region(&mut self) -> Vec<EligibleRegionProperty>;
+	fn r#eligible_region(&self) -> &[EligibleRegionProperty];
 	/// Get <https://schema.org/ineligibleRegion> from [`Self`] as borrowed slice.
-	fn get_ineligible_region(&self) -> &[IneligibleRegionProperty];
-	/// Take <https://schema.org/ineligibleRegion> from [`Self`] as owned vector.
-	fn take_ineligible_region(&mut self) -> Vec<IneligibleRegionProperty>;
+	fn r#ineligible_region(&self) -> &[IneligibleRegionProperty];
 }
 impl DeliveryChargeSpecificationTrait for DeliveryChargeSpecification {
-	fn get_applies_to_delivery_method(&self) -> &[AppliesToDeliveryMethodProperty] {
+	fn r#applies_to_delivery_method(&self) -> &[AppliesToDeliveryMethodProperty] {
 		self.r#applies_to_delivery_method.as_slice()
 	}
-	fn take_applies_to_delivery_method(&mut self) -> Vec<AppliesToDeliveryMethodProperty> {
-		std::mem::take(&mut self.r#applies_to_delivery_method)
-	}
-	fn get_area_served(&self) -> &[AreaServedProperty] {
+	fn r#area_served(&self) -> &[AreaServedProperty] {
 		self.r#area_served.as_slice()
 	}
-	fn take_area_served(&mut self) -> Vec<AreaServedProperty> {
-		std::mem::take(&mut self.r#area_served)
-	}
-	fn get_eligible_region(&self) -> &[EligibleRegionProperty] {
+	fn r#eligible_region(&self) -> &[EligibleRegionProperty] {
 		self.r#eligible_region.as_slice()
 	}
-	fn take_eligible_region(&mut self) -> Vec<EligibleRegionProperty> {
-		std::mem::take(&mut self.r#eligible_region)
-	}
-	fn get_ineligible_region(&self) -> &[IneligibleRegionProperty] {
+	fn r#ineligible_region(&self) -> &[IneligibleRegionProperty] {
 		self.r#ineligible_region.as_slice()
-	}
-	fn take_ineligible_region(&mut self) -> Vec<IneligibleRegionProperty> {
-		std::mem::take(&mut self.r#ineligible_region)
 	}
 }
 impl PriceSpecificationTrait for DeliveryChargeSpecification {
-	fn get_eligible_quantity(&self) -> &[EligibleQuantityProperty] {
+	fn r#eligible_quantity(&self) -> &[EligibleQuantityProperty] {
 		self.r#eligible_quantity.as_slice()
 	}
-	fn take_eligible_quantity(&mut self) -> Vec<EligibleQuantityProperty> {
-		std::mem::take(&mut self.r#eligible_quantity)
-	}
-	fn get_eligible_transaction_volume(&self) -> &[EligibleTransactionVolumeProperty] {
+	fn r#eligible_transaction_volume(&self) -> &[EligibleTransactionVolumeProperty] {
 		self.r#eligible_transaction_volume.as_slice()
 	}
-	fn take_eligible_transaction_volume(&mut self) -> Vec<EligibleTransactionVolumeProperty> {
-		std::mem::take(&mut self.r#eligible_transaction_volume)
-	}
-	fn get_max_price(&self) -> &[MaxPriceProperty] {
+	fn r#max_price(&self) -> &[MaxPriceProperty] {
 		self.r#max_price.as_slice()
 	}
-	fn take_max_price(&mut self) -> Vec<MaxPriceProperty> {
-		std::mem::take(&mut self.r#max_price)
-	}
-	fn get_membership_points_earned(&self) -> &[MembershipPointsEarnedProperty] {
+	fn r#membership_points_earned(&self) -> &[MembershipPointsEarnedProperty] {
 		self.r#membership_points_earned.as_slice()
 	}
-	fn take_membership_points_earned(&mut self) -> Vec<MembershipPointsEarnedProperty> {
-		std::mem::take(&mut self.r#membership_points_earned)
-	}
-	fn get_min_price(&self) -> &[MinPriceProperty] {
+	fn r#min_price(&self) -> &[MinPriceProperty] {
 		self.r#min_price.as_slice()
 	}
-	fn take_min_price(&mut self) -> Vec<MinPriceProperty> {
-		std::mem::take(&mut self.r#min_price)
-	}
-	fn get_price(&self) -> &[PriceProperty] {
+	fn r#price(&self) -> &[PriceProperty] {
 		self.r#price.as_slice()
 	}
-	fn take_price(&mut self) -> Vec<PriceProperty> {
-		std::mem::take(&mut self.r#price)
-	}
-	fn get_price_currency(&self) -> &[PriceCurrencyProperty] {
+	fn r#price_currency(&self) -> &[PriceCurrencyProperty] {
 		self.r#price_currency.as_slice()
 	}
-	fn take_price_currency(&mut self) -> Vec<PriceCurrencyProperty> {
-		std::mem::take(&mut self.r#price_currency)
-	}
-	fn get_valid_for_member_tier(&self) -> &[ValidForMemberTierProperty] {
+	fn r#valid_for_member_tier(&self) -> &[ValidForMemberTierProperty] {
 		self.r#valid_for_member_tier.as_slice()
 	}
-	fn take_valid_for_member_tier(&mut self) -> Vec<ValidForMemberTierProperty> {
-		std::mem::take(&mut self.r#valid_for_member_tier)
-	}
-	fn get_valid_from(&self) -> &[ValidFromProperty] {
+	fn r#valid_from(&self) -> &[ValidFromProperty] {
 		self.r#valid_from.as_slice()
 	}
-	fn take_valid_from(&mut self) -> Vec<ValidFromProperty> {
-		std::mem::take(&mut self.r#valid_from)
-	}
-	fn get_valid_through(&self) -> &[ValidThroughProperty] {
+	fn r#valid_through(&self) -> &[ValidThroughProperty] {
 		self.r#valid_through.as_slice()
 	}
-	fn take_valid_through(&mut self) -> Vec<ValidThroughProperty> {
-		std::mem::take(&mut self.r#valid_through)
-	}
-	fn get_value_added_tax_included(&self) -> &[ValueAddedTaxIncludedProperty] {
+	fn r#value_added_tax_included(&self) -> &[ValueAddedTaxIncludedProperty] {
 		self.r#value_added_tax_included.as_slice()
-	}
-	fn take_value_added_tax_included(&mut self) -> Vec<ValueAddedTaxIncludedProperty> {
-		std::mem::take(&mut self.r#value_added_tax_included)
 	}
 }
 impl StructuredValueTrait for DeliveryChargeSpecification {}
 impl ThingTrait for DeliveryChargeSpecification {
-	fn get_additional_type(&self) -> &[AdditionalTypeProperty] {
+	fn r#additional_type(&self) -> &[AdditionalTypeProperty] {
 		self.r#additional_type.as_slice()
 	}
-	fn take_additional_type(&mut self) -> Vec<AdditionalTypeProperty> {
-		std::mem::take(&mut self.r#additional_type)
-	}
-	fn get_alternate_name(&self) -> &[AlternateNameProperty] {
+	fn r#alternate_name(&self) -> &[AlternateNameProperty] {
 		self.r#alternate_name.as_slice()
 	}
-	fn take_alternate_name(&mut self) -> Vec<AlternateNameProperty> {
-		std::mem::take(&mut self.r#alternate_name)
-	}
-	fn get_description(&self) -> &[DescriptionProperty] {
+	fn r#description(&self) -> &[DescriptionProperty] {
 		self.r#description.as_slice()
 	}
-	fn take_description(&mut self) -> Vec<DescriptionProperty> {
-		std::mem::take(&mut self.r#description)
-	}
-	fn get_disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
+	fn r#disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
 		self.r#disambiguating_description.as_slice()
 	}
-	fn take_disambiguating_description(&mut self) -> Vec<DisambiguatingDescriptionProperty> {
-		std::mem::take(&mut self.r#disambiguating_description)
-	}
-	fn get_identifier(&self) -> &[IdentifierProperty] {
+	fn r#identifier(&self) -> &[IdentifierProperty] {
 		self.r#identifier.as_slice()
 	}
-	fn take_identifier(&mut self) -> Vec<IdentifierProperty> {
-		std::mem::take(&mut self.r#identifier)
-	}
-	fn get_image(&self) -> &[ImageProperty] {
+	fn r#image(&self) -> &[ImageProperty] {
 		self.r#image.as_slice()
 	}
-	fn take_image(&mut self) -> Vec<ImageProperty> {
-		std::mem::take(&mut self.r#image)
-	}
-	fn get_main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
+	fn r#main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
 		self.r#main_entity_of_page.as_slice()
 	}
-	fn take_main_entity_of_page(&mut self) -> Vec<MainEntityOfPageProperty> {
-		std::mem::take(&mut self.r#main_entity_of_page)
-	}
-	fn get_name(&self) -> &[NameProperty] {
+	fn r#name(&self) -> &[NameProperty] {
 		self.r#name.as_slice()
 	}
-	fn take_name(&mut self) -> Vec<NameProperty> {
-		std::mem::take(&mut self.r#name)
-	}
-	fn get_owner(&self) -> &[OwnerProperty] {
+	fn r#owner(&self) -> &[OwnerProperty] {
 		self.r#owner.as_slice()
 	}
-	fn take_owner(&mut self) -> Vec<OwnerProperty> {
-		std::mem::take(&mut self.r#owner)
-	}
-	fn get_potential_action(&self) -> &[PotentialActionProperty] {
+	fn r#potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
 	}
-	fn take_potential_action(&mut self) -> Vec<PotentialActionProperty> {
-		std::mem::take(&mut self.r#potential_action)
-	}
-	fn get_same_as(&self) -> &[SameAsProperty] {
+	fn r#same_as(&self) -> &[SameAsProperty] {
 		self.r#same_as.as_slice()
 	}
-	fn take_same_as(&mut self) -> Vec<SameAsProperty> {
-		std::mem::take(&mut self.r#same_as)
-	}
-	fn get_subject_of(&self) -> &[SubjectOfProperty] {
+	fn r#subject_of(&self) -> &[SubjectOfProperty] {
 		self.r#subject_of.as_slice()
 	}
-	fn take_subject_of(&mut self) -> Vec<SubjectOfProperty> {
-		std::mem::take(&mut self.r#subject_of)
-	}
-	fn get_url(&self) -> &[UrlProperty] {
+	fn r#url(&self) -> &[UrlProperty] {
 		self.r#url.as_slice()
-	}
-	fn take_url(&mut self) -> Vec<UrlProperty> {
-		std::mem::take(&mut self.r#url)
 	}
 }

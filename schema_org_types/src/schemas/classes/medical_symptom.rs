@@ -428,244 +428,127 @@ pub struct MedicalSymptom {
 pub trait MedicalSymptomTrait {}
 impl MedicalSymptomTrait for MedicalSymptom {}
 impl MedicalConditionTrait for MedicalSymptom {
-	fn get_associated_anatomy(&self) -> &[AssociatedAnatomyProperty] {
+	fn r#associated_anatomy(&self) -> &[AssociatedAnatomyProperty] {
 		self.r#associated_anatomy.as_slice()
 	}
-	fn take_associated_anatomy(&mut self) -> Vec<AssociatedAnatomyProperty> {
-		std::mem::take(&mut self.r#associated_anatomy)
-	}
-	fn get_cause(&self) -> &[CauseProperty] {
+	fn r#cause(&self) -> &[CauseProperty] {
 		self.r#cause.as_slice()
 	}
-	fn take_cause(&mut self) -> Vec<CauseProperty> {
-		std::mem::take(&mut self.r#cause)
-	}
-	fn get_differential_diagnosis(&self) -> &[DifferentialDiagnosisProperty] {
+	fn r#differential_diagnosis(&self) -> &[DifferentialDiagnosisProperty] {
 		self.r#differential_diagnosis.as_slice()
 	}
-	fn take_differential_diagnosis(&mut self) -> Vec<DifferentialDiagnosisProperty> {
-		std::mem::take(&mut self.r#differential_diagnosis)
-	}
-	fn get_drug(&self) -> &[DrugProperty] {
+	fn r#drug(&self) -> &[DrugProperty] {
 		self.r#drug.as_slice()
 	}
-	fn take_drug(&mut self) -> Vec<DrugProperty> {
-		std::mem::take(&mut self.r#drug)
-	}
-	fn get_epidemiology(&self) -> &[EpidemiologyProperty] {
+	fn r#epidemiology(&self) -> &[EpidemiologyProperty] {
 		self.r#epidemiology.as_slice()
 	}
-	fn take_epidemiology(&mut self) -> Vec<EpidemiologyProperty> {
-		std::mem::take(&mut self.r#epidemiology)
-	}
-	fn get_expected_prognosis(&self) -> &[ExpectedPrognosisProperty] {
+	fn r#expected_prognosis(&self) -> &[ExpectedPrognosisProperty] {
 		self.r#expected_prognosis.as_slice()
 	}
-	fn take_expected_prognosis(&mut self) -> Vec<ExpectedPrognosisProperty> {
-		std::mem::take(&mut self.r#expected_prognosis)
-	}
-	fn get_natural_progression(&self) -> &[NaturalProgressionProperty] {
+	fn r#natural_progression(&self) -> &[NaturalProgressionProperty] {
 		self.r#natural_progression.as_slice()
 	}
-	fn take_natural_progression(&mut self) -> Vec<NaturalProgressionProperty> {
-		std::mem::take(&mut self.r#natural_progression)
-	}
-	fn get_pathophysiology(&self) -> &[PathophysiologyProperty] {
+	fn r#pathophysiology(&self) -> &[PathophysiologyProperty] {
 		self.r#pathophysiology.as_slice()
 	}
-	fn take_pathophysiology(&mut self) -> Vec<PathophysiologyProperty> {
-		std::mem::take(&mut self.r#pathophysiology)
-	}
-	fn get_possible_complication(&self) -> &[PossibleComplicationProperty] {
+	fn r#possible_complication(&self) -> &[PossibleComplicationProperty] {
 		self.r#possible_complication.as_slice()
 	}
-	fn take_possible_complication(&mut self) -> Vec<PossibleComplicationProperty> {
-		std::mem::take(&mut self.r#possible_complication)
-	}
-	fn get_possible_treatment(&self) -> &[PossibleTreatmentProperty] {
+	fn r#possible_treatment(&self) -> &[PossibleTreatmentProperty] {
 		self.r#possible_treatment.as_slice()
 	}
-	fn take_possible_treatment(&mut self) -> Vec<PossibleTreatmentProperty> {
-		std::mem::take(&mut self.r#possible_treatment)
-	}
-	fn get_primary_prevention(&self) -> &[PrimaryPreventionProperty] {
+	fn r#primary_prevention(&self) -> &[PrimaryPreventionProperty] {
 		self.r#primary_prevention.as_slice()
 	}
-	fn take_primary_prevention(&mut self) -> Vec<PrimaryPreventionProperty> {
-		std::mem::take(&mut self.r#primary_prevention)
-	}
-	fn get_risk_factor(&self) -> &[RiskFactorProperty] {
+	fn r#risk_factor(&self) -> &[RiskFactorProperty] {
 		self.r#risk_factor.as_slice()
 	}
-	fn take_risk_factor(&mut self) -> Vec<RiskFactorProperty> {
-		std::mem::take(&mut self.r#risk_factor)
-	}
-	fn get_secondary_prevention(&self) -> &[SecondaryPreventionProperty] {
+	fn r#secondary_prevention(&self) -> &[SecondaryPreventionProperty] {
 		self.r#secondary_prevention.as_slice()
 	}
-	fn take_secondary_prevention(&mut self) -> Vec<SecondaryPreventionProperty> {
-		std::mem::take(&mut self.r#secondary_prevention)
-	}
-	fn get_sign_or_symptom(&self) -> &[SignOrSymptomProperty] {
+	fn r#sign_or_symptom(&self) -> &[SignOrSymptomProperty] {
 		self.r#sign_or_symptom.as_slice()
 	}
-	fn take_sign_or_symptom(&mut self) -> Vec<SignOrSymptomProperty> {
-		std::mem::take(&mut self.r#sign_or_symptom)
-	}
-	fn get_stage(&self) -> &[StageProperty] {
+	fn r#stage(&self) -> &[StageProperty] {
 		self.r#stage.as_slice()
 	}
-	fn take_stage(&mut self) -> Vec<StageProperty> {
-		std::mem::take(&mut self.r#stage)
-	}
-	fn get_status(&self) -> &[StatusProperty] {
+	fn r#status(&self) -> &[StatusProperty] {
 		self.r#status.as_slice()
 	}
-	fn take_status(&mut self) -> Vec<StatusProperty> {
-		std::mem::take(&mut self.r#status)
-	}
-	fn get_typical_test(&self) -> &[TypicalTestProperty] {
+	fn r#typical_test(&self) -> &[TypicalTestProperty] {
 		self.r#typical_test.as_slice()
-	}
-	fn take_typical_test(&mut self) -> Vec<TypicalTestProperty> {
-		std::mem::take(&mut self.r#typical_test)
 	}
 }
 impl MedicalEntityTrait for MedicalSymptom {
-	fn get_code(&self) -> &[CodeProperty] {
+	fn r#code(&self) -> &[CodeProperty] {
 		self.r#code.as_slice()
 	}
-	fn take_code(&mut self) -> Vec<CodeProperty> {
-		std::mem::take(&mut self.r#code)
-	}
-	fn get_funding(&self) -> &[FundingProperty] {
+	fn r#funding(&self) -> &[FundingProperty] {
 		self.r#funding.as_slice()
 	}
-	fn take_funding(&mut self) -> Vec<FundingProperty> {
-		std::mem::take(&mut self.r#funding)
-	}
-	fn get_guideline(&self) -> &[GuidelineProperty] {
+	fn r#guideline(&self) -> &[GuidelineProperty] {
 		self.r#guideline.as_slice()
 	}
-	fn take_guideline(&mut self) -> Vec<GuidelineProperty> {
-		std::mem::take(&mut self.r#guideline)
-	}
-	fn get_legal_status(&self) -> &[LegalStatusProperty] {
+	fn r#legal_status(&self) -> &[LegalStatusProperty] {
 		self.r#legal_status.as_slice()
 	}
-	fn take_legal_status(&mut self) -> Vec<LegalStatusProperty> {
-		std::mem::take(&mut self.r#legal_status)
-	}
-	fn get_medicine_system(&self) -> &[MedicineSystemProperty] {
+	fn r#medicine_system(&self) -> &[MedicineSystemProperty] {
 		self.r#medicine_system.as_slice()
 	}
-	fn take_medicine_system(&mut self) -> Vec<MedicineSystemProperty> {
-		std::mem::take(&mut self.r#medicine_system)
-	}
-	fn get_recognizing_authority(&self) -> &[RecognizingAuthorityProperty] {
+	fn r#recognizing_authority(&self) -> &[RecognizingAuthorityProperty] {
 		self.r#recognizing_authority.as_slice()
 	}
-	fn take_recognizing_authority(&mut self) -> Vec<RecognizingAuthorityProperty> {
-		std::mem::take(&mut self.r#recognizing_authority)
-	}
-	fn get_relevant_specialty(&self) -> &[RelevantSpecialtyProperty] {
+	fn r#relevant_specialty(&self) -> &[RelevantSpecialtyProperty] {
 		self.r#relevant_specialty.as_slice()
 	}
-	fn take_relevant_specialty(&mut self) -> Vec<RelevantSpecialtyProperty> {
-		std::mem::take(&mut self.r#relevant_specialty)
-	}
-	fn get_study(&self) -> &[StudyProperty] {
+	fn r#study(&self) -> &[StudyProperty] {
 		self.r#study.as_slice()
-	}
-	fn take_study(&mut self) -> Vec<StudyProperty> {
-		std::mem::take(&mut self.r#study)
 	}
 }
 impl MedicalSignOrSymptomTrait for MedicalSymptom {
-	fn get_possible_treatment(&self) -> &[PossibleTreatmentProperty] {
+	fn r#possible_treatment(&self) -> &[PossibleTreatmentProperty] {
 		self.r#possible_treatment.as_slice()
-	}
-	fn take_possible_treatment(&mut self) -> Vec<PossibleTreatmentProperty> {
-		std::mem::take(&mut self.r#possible_treatment)
 	}
 }
 impl ThingTrait for MedicalSymptom {
-	fn get_additional_type(&self) -> &[AdditionalTypeProperty] {
+	fn r#additional_type(&self) -> &[AdditionalTypeProperty] {
 		self.r#additional_type.as_slice()
 	}
-	fn take_additional_type(&mut self) -> Vec<AdditionalTypeProperty> {
-		std::mem::take(&mut self.r#additional_type)
-	}
-	fn get_alternate_name(&self) -> &[AlternateNameProperty] {
+	fn r#alternate_name(&self) -> &[AlternateNameProperty] {
 		self.r#alternate_name.as_slice()
 	}
-	fn take_alternate_name(&mut self) -> Vec<AlternateNameProperty> {
-		std::mem::take(&mut self.r#alternate_name)
-	}
-	fn get_description(&self) -> &[DescriptionProperty] {
+	fn r#description(&self) -> &[DescriptionProperty] {
 		self.r#description.as_slice()
 	}
-	fn take_description(&mut self) -> Vec<DescriptionProperty> {
-		std::mem::take(&mut self.r#description)
-	}
-	fn get_disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
+	fn r#disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
 		self.r#disambiguating_description.as_slice()
 	}
-	fn take_disambiguating_description(&mut self) -> Vec<DisambiguatingDescriptionProperty> {
-		std::mem::take(&mut self.r#disambiguating_description)
-	}
-	fn get_identifier(&self) -> &[IdentifierProperty] {
+	fn r#identifier(&self) -> &[IdentifierProperty] {
 		self.r#identifier.as_slice()
 	}
-	fn take_identifier(&mut self) -> Vec<IdentifierProperty> {
-		std::mem::take(&mut self.r#identifier)
-	}
-	fn get_image(&self) -> &[ImageProperty] {
+	fn r#image(&self) -> &[ImageProperty] {
 		self.r#image.as_slice()
 	}
-	fn take_image(&mut self) -> Vec<ImageProperty> {
-		std::mem::take(&mut self.r#image)
-	}
-	fn get_main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
+	fn r#main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
 		self.r#main_entity_of_page.as_slice()
 	}
-	fn take_main_entity_of_page(&mut self) -> Vec<MainEntityOfPageProperty> {
-		std::mem::take(&mut self.r#main_entity_of_page)
-	}
-	fn get_name(&self) -> &[NameProperty] {
+	fn r#name(&self) -> &[NameProperty] {
 		self.r#name.as_slice()
 	}
-	fn take_name(&mut self) -> Vec<NameProperty> {
-		std::mem::take(&mut self.r#name)
-	}
-	fn get_owner(&self) -> &[OwnerProperty] {
+	fn r#owner(&self) -> &[OwnerProperty] {
 		self.r#owner.as_slice()
 	}
-	fn take_owner(&mut self) -> Vec<OwnerProperty> {
-		std::mem::take(&mut self.r#owner)
-	}
-	fn get_potential_action(&self) -> &[PotentialActionProperty] {
+	fn r#potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
 	}
-	fn take_potential_action(&mut self) -> Vec<PotentialActionProperty> {
-		std::mem::take(&mut self.r#potential_action)
-	}
-	fn get_same_as(&self) -> &[SameAsProperty] {
+	fn r#same_as(&self) -> &[SameAsProperty] {
 		self.r#same_as.as_slice()
 	}
-	fn take_same_as(&mut self) -> Vec<SameAsProperty> {
-		std::mem::take(&mut self.r#same_as)
-	}
-	fn get_subject_of(&self) -> &[SubjectOfProperty] {
+	fn r#subject_of(&self) -> &[SubjectOfProperty] {
 		self.r#subject_of.as_slice()
 	}
-	fn take_subject_of(&mut self) -> Vec<SubjectOfProperty> {
-		std::mem::take(&mut self.r#subject_of)
-	}
-	fn get_url(&self) -> &[UrlProperty] {
+	fn r#url(&self) -> &[UrlProperty] {
 		self.r#url.as_slice()
-	}
-	fn take_url(&mut self) -> Vec<UrlProperty> {
-		std::mem::take(&mut self.r#url)
 	}
 }

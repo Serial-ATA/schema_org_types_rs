@@ -629,346 +629,174 @@ pub struct FoodEvent {
 pub trait FoodEventTrait {}
 impl FoodEventTrait for FoodEvent {}
 impl EventTrait for FoodEvent {
-	fn get_about(&self) -> &[AboutProperty] {
+	fn r#about(&self) -> &[AboutProperty] {
 		self.r#about.as_slice()
 	}
-	fn take_about(&mut self) -> Vec<AboutProperty> {
-		std::mem::take(&mut self.r#about)
-	}
-	fn get_actor(&self) -> &[ActorProperty] {
+	fn r#actor(&self) -> &[ActorProperty] {
 		self.r#actor.as_slice()
 	}
-	fn take_actor(&mut self) -> Vec<ActorProperty> {
-		std::mem::take(&mut self.r#actor)
-	}
-	fn get_aggregate_rating(&self) -> &[AggregateRatingProperty] {
+	fn r#aggregate_rating(&self) -> &[AggregateRatingProperty] {
 		self.r#aggregate_rating.as_slice()
 	}
-	fn take_aggregate_rating(&mut self) -> Vec<AggregateRatingProperty> {
-		std::mem::take(&mut self.r#aggregate_rating)
-	}
-	fn get_attendee(&self) -> &[AttendeeProperty] {
+	fn r#attendee(&self) -> &[AttendeeProperty] {
 		self.r#attendee.as_slice()
 	}
-	fn take_attendee(&mut self) -> Vec<AttendeeProperty> {
-		std::mem::take(&mut self.r#attendee)
-	}
-	fn get_attendees(&self) -> &[AttendeesProperty] {
+	fn r#attendees(&self) -> &[AttendeesProperty] {
 		self.r#attendees.as_slice()
 	}
-	fn take_attendees(&mut self) -> Vec<AttendeesProperty> {
-		std::mem::take(&mut self.r#attendees)
-	}
-	fn get_audience(&self) -> &[AudienceProperty] {
+	fn r#audience(&self) -> &[AudienceProperty] {
 		self.r#audience.as_slice()
 	}
-	fn take_audience(&mut self) -> Vec<AudienceProperty> {
-		std::mem::take(&mut self.r#audience)
-	}
-	fn get_composer(&self) -> &[ComposerProperty] {
+	fn r#composer(&self) -> &[ComposerProperty] {
 		self.r#composer.as_slice()
 	}
-	fn take_composer(&mut self) -> Vec<ComposerProperty> {
-		std::mem::take(&mut self.r#composer)
-	}
-	fn get_contributor(&self) -> &[ContributorProperty] {
+	fn r#contributor(&self) -> &[ContributorProperty] {
 		self.r#contributor.as_slice()
 	}
-	fn take_contributor(&mut self) -> Vec<ContributorProperty> {
-		std::mem::take(&mut self.r#contributor)
-	}
-	fn get_director(&self) -> &[DirectorProperty] {
+	fn r#director(&self) -> &[DirectorProperty] {
 		self.r#director.as_slice()
 	}
-	fn take_director(&mut self) -> Vec<DirectorProperty> {
-		std::mem::take(&mut self.r#director)
-	}
-	fn get_door_time(&self) -> &[DoorTimeProperty] {
+	fn r#door_time(&self) -> &[DoorTimeProperty] {
 		self.r#door_time.as_slice()
 	}
-	fn take_door_time(&mut self) -> Vec<DoorTimeProperty> {
-		std::mem::take(&mut self.r#door_time)
-	}
-	fn get_duration(&self) -> &[DurationProperty] {
+	fn r#duration(&self) -> &[DurationProperty] {
 		self.r#duration.as_slice()
 	}
-	fn take_duration(&mut self) -> Vec<DurationProperty> {
-		std::mem::take(&mut self.r#duration)
-	}
-	fn get_end_date(&self) -> &[EndDateProperty] {
+	fn r#end_date(&self) -> &[EndDateProperty] {
 		self.r#end_date.as_slice()
 	}
-	fn take_end_date(&mut self) -> Vec<EndDateProperty> {
-		std::mem::take(&mut self.r#end_date)
-	}
-	fn get_event_attendance_mode(&self) -> &[EventAttendanceModeProperty] {
+	fn r#event_attendance_mode(&self) -> &[EventAttendanceModeProperty] {
 		self.r#event_attendance_mode.as_slice()
 	}
-	fn take_event_attendance_mode(&mut self) -> Vec<EventAttendanceModeProperty> {
-		std::mem::take(&mut self.r#event_attendance_mode)
-	}
-	fn get_event_schedule(&self) -> &[EventScheduleProperty] {
+	fn r#event_schedule(&self) -> &[EventScheduleProperty] {
 		self.r#event_schedule.as_slice()
 	}
-	fn take_event_schedule(&mut self) -> Vec<EventScheduleProperty> {
-		std::mem::take(&mut self.r#event_schedule)
-	}
-	fn get_event_status(&self) -> &[EventStatusProperty] {
+	fn r#event_status(&self) -> &[EventStatusProperty] {
 		self.r#event_status.as_slice()
 	}
-	fn take_event_status(&mut self) -> Vec<EventStatusProperty> {
-		std::mem::take(&mut self.r#event_status)
-	}
-	fn get_funder(&self) -> &[FunderProperty] {
+	fn r#funder(&self) -> &[FunderProperty] {
 		self.r#funder.as_slice()
 	}
-	fn take_funder(&mut self) -> Vec<FunderProperty> {
-		std::mem::take(&mut self.r#funder)
-	}
-	fn get_funding(&self) -> &[FundingProperty] {
+	fn r#funding(&self) -> &[FundingProperty] {
 		self.r#funding.as_slice()
 	}
-	fn take_funding(&mut self) -> Vec<FundingProperty> {
-		std::mem::take(&mut self.r#funding)
-	}
-	fn get_has_participation_offer(&self) -> &[HasParticipationOfferProperty] {
+	fn r#has_participation_offer(&self) -> &[HasParticipationOfferProperty] {
 		self.r#has_participation_offer.as_slice()
 	}
-	fn take_has_participation_offer(&mut self) -> Vec<HasParticipationOfferProperty> {
-		std::mem::take(&mut self.r#has_participation_offer)
-	}
-	fn get_has_sponsorship_offer(&self) -> &[HasSponsorshipOfferProperty] {
+	fn r#has_sponsorship_offer(&self) -> &[HasSponsorshipOfferProperty] {
 		self.r#has_sponsorship_offer.as_slice()
 	}
-	fn take_has_sponsorship_offer(&mut self) -> Vec<HasSponsorshipOfferProperty> {
-		std::mem::take(&mut self.r#has_sponsorship_offer)
-	}
-	fn get_in_language(&self) -> &[InLanguageProperty] {
+	fn r#in_language(&self) -> &[InLanguageProperty] {
 		self.r#in_language.as_slice()
 	}
-	fn take_in_language(&mut self) -> Vec<InLanguageProperty> {
-		std::mem::take(&mut self.r#in_language)
-	}
-	fn get_is_accessible_for_free(&self) -> &[IsAccessibleForFreeProperty] {
+	fn r#is_accessible_for_free(&self) -> &[IsAccessibleForFreeProperty] {
 		self.r#is_accessible_for_free.as_slice()
 	}
-	fn take_is_accessible_for_free(&mut self) -> Vec<IsAccessibleForFreeProperty> {
-		std::mem::take(&mut self.r#is_accessible_for_free)
-	}
-	fn get_keywords(&self) -> &[KeywordsProperty] {
+	fn r#keywords(&self) -> &[KeywordsProperty] {
 		self.r#keywords.as_slice()
 	}
-	fn take_keywords(&mut self) -> Vec<KeywordsProperty> {
-		std::mem::take(&mut self.r#keywords)
-	}
-	fn get_location(&self) -> &[LocationProperty] {
+	fn r#location(&self) -> &[LocationProperty] {
 		self.r#location.as_slice()
 	}
-	fn take_location(&mut self) -> Vec<LocationProperty> {
-		std::mem::take(&mut self.r#location)
-	}
-	fn get_maximum_attendee_capacity(&self) -> &[MaximumAttendeeCapacityProperty] {
+	fn r#maximum_attendee_capacity(&self) -> &[MaximumAttendeeCapacityProperty] {
 		self.r#maximum_attendee_capacity.as_slice()
 	}
-	fn take_maximum_attendee_capacity(&mut self) -> Vec<MaximumAttendeeCapacityProperty> {
-		std::mem::take(&mut self.r#maximum_attendee_capacity)
-	}
-	fn get_maximum_physical_attendee_capacity(&self) -> &[MaximumPhysicalAttendeeCapacityProperty] {
+	fn r#maximum_physical_attendee_capacity(&self) -> &[MaximumPhysicalAttendeeCapacityProperty] {
 		self.r#maximum_physical_attendee_capacity.as_slice()
 	}
-	fn take_maximum_physical_attendee_capacity(
-		&mut self,
-	) -> Vec<MaximumPhysicalAttendeeCapacityProperty> {
-		std::mem::take(&mut self.r#maximum_physical_attendee_capacity)
-	}
-	fn get_maximum_virtual_attendee_capacity(&self) -> &[MaximumVirtualAttendeeCapacityProperty] {
+	fn r#maximum_virtual_attendee_capacity(&self) -> &[MaximumVirtualAttendeeCapacityProperty] {
 		self.r#maximum_virtual_attendee_capacity.as_slice()
 	}
-	fn take_maximum_virtual_attendee_capacity(
-		&mut self,
-	) -> Vec<MaximumVirtualAttendeeCapacityProperty> {
-		std::mem::take(&mut self.r#maximum_virtual_attendee_capacity)
-	}
-	fn get_offers(&self) -> &[OffersProperty] {
+	fn r#offers(&self) -> &[OffersProperty] {
 		self.r#offers.as_slice()
 	}
-	fn take_offers(&mut self) -> Vec<OffersProperty> {
-		std::mem::take(&mut self.r#offers)
-	}
-	fn get_organizer(&self) -> &[OrganizerProperty] {
+	fn r#organizer(&self) -> &[OrganizerProperty] {
 		self.r#organizer.as_slice()
 	}
-	fn take_organizer(&mut self) -> Vec<OrganizerProperty> {
-		std::mem::take(&mut self.r#organizer)
-	}
-	fn get_performer(&self) -> &[PerformerProperty] {
+	fn r#performer(&self) -> &[PerformerProperty] {
 		self.r#performer.as_slice()
 	}
-	fn take_performer(&mut self) -> Vec<PerformerProperty> {
-		std::mem::take(&mut self.r#performer)
-	}
-	fn get_performers(&self) -> &[PerformersProperty] {
+	fn r#performers(&self) -> &[PerformersProperty] {
 		self.r#performers.as_slice()
 	}
-	fn take_performers(&mut self) -> Vec<PerformersProperty> {
-		std::mem::take(&mut self.r#performers)
-	}
-	fn get_previous_start_date(&self) -> &[PreviousStartDateProperty] {
+	fn r#previous_start_date(&self) -> &[PreviousStartDateProperty] {
 		self.r#previous_start_date.as_slice()
 	}
-	fn take_previous_start_date(&mut self) -> Vec<PreviousStartDateProperty> {
-		std::mem::take(&mut self.r#previous_start_date)
-	}
-	fn get_recorded_in(&self) -> &[RecordedInProperty] {
+	fn r#recorded_in(&self) -> &[RecordedInProperty] {
 		self.r#recorded_in.as_slice()
 	}
-	fn take_recorded_in(&mut self) -> Vec<RecordedInProperty> {
-		std::mem::take(&mut self.r#recorded_in)
-	}
-	fn get_remaining_attendee_capacity(&self) -> &[RemainingAttendeeCapacityProperty] {
+	fn r#remaining_attendee_capacity(&self) -> &[RemainingAttendeeCapacityProperty] {
 		self.r#remaining_attendee_capacity.as_slice()
 	}
-	fn take_remaining_attendee_capacity(&mut self) -> Vec<RemainingAttendeeCapacityProperty> {
-		std::mem::take(&mut self.r#remaining_attendee_capacity)
-	}
-	fn get_review(&self) -> &[ReviewProperty] {
+	fn r#review(&self) -> &[ReviewProperty] {
 		self.r#review.as_slice()
 	}
-	fn take_review(&mut self) -> Vec<ReviewProperty> {
-		std::mem::take(&mut self.r#review)
-	}
-	fn get_sponsor(&self) -> &[SponsorProperty] {
+	fn r#sponsor(&self) -> &[SponsorProperty] {
 		self.r#sponsor.as_slice()
 	}
-	fn take_sponsor(&mut self) -> Vec<SponsorProperty> {
-		std::mem::take(&mut self.r#sponsor)
-	}
-	fn get_start_date(&self) -> &[StartDateProperty] {
+	fn r#start_date(&self) -> &[StartDateProperty] {
 		self.r#start_date.as_slice()
 	}
-	fn take_start_date(&mut self) -> Vec<StartDateProperty> {
-		std::mem::take(&mut self.r#start_date)
-	}
-	fn get_sub_event(&self) -> &[SubEventProperty] {
+	fn r#sub_event(&self) -> &[SubEventProperty] {
 		self.r#sub_event.as_slice()
 	}
-	fn take_sub_event(&mut self) -> Vec<SubEventProperty> {
-		std::mem::take(&mut self.r#sub_event)
-	}
-	fn get_sub_events(&self) -> &[SubEventsProperty] {
+	fn r#sub_events(&self) -> &[SubEventsProperty] {
 		self.r#sub_events.as_slice()
 	}
-	fn take_sub_events(&mut self) -> Vec<SubEventsProperty> {
-		std::mem::take(&mut self.r#sub_events)
-	}
-	fn get_super_event(&self) -> &[SuperEventProperty] {
+	fn r#super_event(&self) -> &[SuperEventProperty] {
 		self.r#super_event.as_slice()
 	}
-	fn take_super_event(&mut self) -> Vec<SuperEventProperty> {
-		std::mem::take(&mut self.r#super_event)
-	}
-	fn get_translator(&self) -> &[TranslatorProperty] {
+	fn r#translator(&self) -> &[TranslatorProperty] {
 		self.r#translator.as_slice()
 	}
-	fn take_translator(&mut self) -> Vec<TranslatorProperty> {
-		std::mem::take(&mut self.r#translator)
-	}
-	fn get_typical_age_range(&self) -> &[TypicalAgeRangeProperty] {
+	fn r#typical_age_range(&self) -> &[TypicalAgeRangeProperty] {
 		self.r#typical_age_range.as_slice()
 	}
-	fn take_typical_age_range(&mut self) -> Vec<TypicalAgeRangeProperty> {
-		std::mem::take(&mut self.r#typical_age_range)
-	}
-	fn get_work_featured(&self) -> &[WorkFeaturedProperty] {
+	fn r#work_featured(&self) -> &[WorkFeaturedProperty] {
 		self.r#work_featured.as_slice()
 	}
-	fn take_work_featured(&mut self) -> Vec<WorkFeaturedProperty> {
-		std::mem::take(&mut self.r#work_featured)
-	}
-	fn get_work_performed(&self) -> &[WorkPerformedProperty] {
+	fn r#work_performed(&self) -> &[WorkPerformedProperty] {
 		self.r#work_performed.as_slice()
-	}
-	fn take_work_performed(&mut self) -> Vec<WorkPerformedProperty> {
-		std::mem::take(&mut self.r#work_performed)
 	}
 }
 impl ThingTrait for FoodEvent {
-	fn get_additional_type(&self) -> &[AdditionalTypeProperty] {
+	fn r#additional_type(&self) -> &[AdditionalTypeProperty] {
 		self.r#additional_type.as_slice()
 	}
-	fn take_additional_type(&mut self) -> Vec<AdditionalTypeProperty> {
-		std::mem::take(&mut self.r#additional_type)
-	}
-	fn get_alternate_name(&self) -> &[AlternateNameProperty] {
+	fn r#alternate_name(&self) -> &[AlternateNameProperty] {
 		self.r#alternate_name.as_slice()
 	}
-	fn take_alternate_name(&mut self) -> Vec<AlternateNameProperty> {
-		std::mem::take(&mut self.r#alternate_name)
-	}
-	fn get_description(&self) -> &[DescriptionProperty] {
+	fn r#description(&self) -> &[DescriptionProperty] {
 		self.r#description.as_slice()
 	}
-	fn take_description(&mut self) -> Vec<DescriptionProperty> {
-		std::mem::take(&mut self.r#description)
-	}
-	fn get_disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
+	fn r#disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
 		self.r#disambiguating_description.as_slice()
 	}
-	fn take_disambiguating_description(&mut self) -> Vec<DisambiguatingDescriptionProperty> {
-		std::mem::take(&mut self.r#disambiguating_description)
-	}
-	fn get_identifier(&self) -> &[IdentifierProperty] {
+	fn r#identifier(&self) -> &[IdentifierProperty] {
 		self.r#identifier.as_slice()
 	}
-	fn take_identifier(&mut self) -> Vec<IdentifierProperty> {
-		std::mem::take(&mut self.r#identifier)
-	}
-	fn get_image(&self) -> &[ImageProperty] {
+	fn r#image(&self) -> &[ImageProperty] {
 		self.r#image.as_slice()
 	}
-	fn take_image(&mut self) -> Vec<ImageProperty> {
-		std::mem::take(&mut self.r#image)
-	}
-	fn get_main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
+	fn r#main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
 		self.r#main_entity_of_page.as_slice()
 	}
-	fn take_main_entity_of_page(&mut self) -> Vec<MainEntityOfPageProperty> {
-		std::mem::take(&mut self.r#main_entity_of_page)
-	}
-	fn get_name(&self) -> &[NameProperty] {
+	fn r#name(&self) -> &[NameProperty] {
 		self.r#name.as_slice()
 	}
-	fn take_name(&mut self) -> Vec<NameProperty> {
-		std::mem::take(&mut self.r#name)
-	}
-	fn get_owner(&self) -> &[OwnerProperty] {
+	fn r#owner(&self) -> &[OwnerProperty] {
 		self.r#owner.as_slice()
 	}
-	fn take_owner(&mut self) -> Vec<OwnerProperty> {
-		std::mem::take(&mut self.r#owner)
-	}
-	fn get_potential_action(&self) -> &[PotentialActionProperty] {
+	fn r#potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
 	}
-	fn take_potential_action(&mut self) -> Vec<PotentialActionProperty> {
-		std::mem::take(&mut self.r#potential_action)
-	}
-	fn get_same_as(&self) -> &[SameAsProperty] {
+	fn r#same_as(&self) -> &[SameAsProperty] {
 		self.r#same_as.as_slice()
 	}
-	fn take_same_as(&mut self) -> Vec<SameAsProperty> {
-		std::mem::take(&mut self.r#same_as)
-	}
-	fn get_subject_of(&self) -> &[SubjectOfProperty] {
+	fn r#subject_of(&self) -> &[SubjectOfProperty] {
 		self.r#subject_of.as_slice()
 	}
-	fn take_subject_of(&mut self) -> Vec<SubjectOfProperty> {
-		std::mem::take(&mut self.r#subject_of)
-	}
-	fn get_url(&self) -> &[UrlProperty] {
+	fn r#url(&self) -> &[UrlProperty] {
 		self.r#url.as_slice()
-	}
-	fn take_url(&mut self) -> Vec<UrlProperty> {
-		std::mem::take(&mut self.r#url)
 	}
 }

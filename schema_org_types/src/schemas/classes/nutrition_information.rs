@@ -284,206 +284,107 @@ pub struct NutritionInformation {
 /// This trait is for properties from <https://schema.org/NutritionInformation>.
 pub trait NutritionInformationTrait {
 	/// Get <https://schema.org/calories> from [`Self`] as borrowed slice.
-	fn get_calories(&self) -> &[CaloriesProperty];
-	/// Take <https://schema.org/calories> from [`Self`] as owned vector.
-	fn take_calories(&mut self) -> Vec<CaloriesProperty>;
+	fn r#calories(&self) -> &[CaloriesProperty];
 	/// Get <https://schema.org/carbohydrateContent> from [`Self`] as borrowed slice.
-	fn get_carbohydrate_content(&self) -> &[CarbohydrateContentProperty];
-	/// Take <https://schema.org/carbohydrateContent> from [`Self`] as owned vector.
-	fn take_carbohydrate_content(&mut self) -> Vec<CarbohydrateContentProperty>;
+	fn r#carbohydrate_content(&self) -> &[CarbohydrateContentProperty];
 	/// Get <https://schema.org/cholesterolContent> from [`Self`] as borrowed slice.
-	fn get_cholesterol_content(&self) -> &[CholesterolContentProperty];
-	/// Take <https://schema.org/cholesterolContent> from [`Self`] as owned vector.
-	fn take_cholesterol_content(&mut self) -> Vec<CholesterolContentProperty>;
+	fn r#cholesterol_content(&self) -> &[CholesterolContentProperty];
 	/// Get <https://schema.org/fatContent> from [`Self`] as borrowed slice.
-	fn get_fat_content(&self) -> &[FatContentProperty];
-	/// Take <https://schema.org/fatContent> from [`Self`] as owned vector.
-	fn take_fat_content(&mut self) -> Vec<FatContentProperty>;
+	fn r#fat_content(&self) -> &[FatContentProperty];
 	/// Get <https://schema.org/fiberContent> from [`Self`] as borrowed slice.
-	fn get_fiber_content(&self) -> &[FiberContentProperty];
-	/// Take <https://schema.org/fiberContent> from [`Self`] as owned vector.
-	fn take_fiber_content(&mut self) -> Vec<FiberContentProperty>;
+	fn r#fiber_content(&self) -> &[FiberContentProperty];
 	/// Get <https://schema.org/proteinContent> from [`Self`] as borrowed slice.
-	fn get_protein_content(&self) -> &[ProteinContentProperty];
-	/// Take <https://schema.org/proteinContent> from [`Self`] as owned vector.
-	fn take_protein_content(&mut self) -> Vec<ProteinContentProperty>;
+	fn r#protein_content(&self) -> &[ProteinContentProperty];
 	/// Get <https://schema.org/saturatedFatContent> from [`Self`] as borrowed slice.
-	fn get_saturated_fat_content(&self) -> &[SaturatedFatContentProperty];
-	/// Take <https://schema.org/saturatedFatContent> from [`Self`] as owned vector.
-	fn take_saturated_fat_content(&mut self) -> Vec<SaturatedFatContentProperty>;
+	fn r#saturated_fat_content(&self) -> &[SaturatedFatContentProperty];
 	/// Get <https://schema.org/servingSize> from [`Self`] as borrowed slice.
-	fn get_serving_size(&self) -> &[ServingSizeProperty];
-	/// Take <https://schema.org/servingSize> from [`Self`] as owned vector.
-	fn take_serving_size(&mut self) -> Vec<ServingSizeProperty>;
+	fn r#serving_size(&self) -> &[ServingSizeProperty];
 	/// Get <https://schema.org/sodiumContent> from [`Self`] as borrowed slice.
-	fn get_sodium_content(&self) -> &[SodiumContentProperty];
-	/// Take <https://schema.org/sodiumContent> from [`Self`] as owned vector.
-	fn take_sodium_content(&mut self) -> Vec<SodiumContentProperty>;
+	fn r#sodium_content(&self) -> &[SodiumContentProperty];
 	/// Get <https://schema.org/sugarContent> from [`Self`] as borrowed slice.
-	fn get_sugar_content(&self) -> &[SugarContentProperty];
-	/// Take <https://schema.org/sugarContent> from [`Self`] as owned vector.
-	fn take_sugar_content(&mut self) -> Vec<SugarContentProperty>;
+	fn r#sugar_content(&self) -> &[SugarContentProperty];
 	/// Get <https://schema.org/transFatContent> from [`Self`] as borrowed slice.
-	fn get_trans_fat_content(&self) -> &[TransFatContentProperty];
-	/// Take <https://schema.org/transFatContent> from [`Self`] as owned vector.
-	fn take_trans_fat_content(&mut self) -> Vec<TransFatContentProperty>;
+	fn r#trans_fat_content(&self) -> &[TransFatContentProperty];
 	/// Get <https://schema.org/unsaturatedFatContent> from [`Self`] as borrowed slice.
-	fn get_unsaturated_fat_content(&self) -> &[UnsaturatedFatContentProperty];
-	/// Take <https://schema.org/unsaturatedFatContent> from [`Self`] as owned vector.
-	fn take_unsaturated_fat_content(&mut self) -> Vec<UnsaturatedFatContentProperty>;
+	fn r#unsaturated_fat_content(&self) -> &[UnsaturatedFatContentProperty];
 }
 impl NutritionInformationTrait for NutritionInformation {
-	fn get_calories(&self) -> &[CaloriesProperty] {
+	fn r#calories(&self) -> &[CaloriesProperty] {
 		self.r#calories.as_slice()
 	}
-	fn take_calories(&mut self) -> Vec<CaloriesProperty> {
-		std::mem::take(&mut self.r#calories)
-	}
-	fn get_carbohydrate_content(&self) -> &[CarbohydrateContentProperty] {
+	fn r#carbohydrate_content(&self) -> &[CarbohydrateContentProperty] {
 		self.r#carbohydrate_content.as_slice()
 	}
-	fn take_carbohydrate_content(&mut self) -> Vec<CarbohydrateContentProperty> {
-		std::mem::take(&mut self.r#carbohydrate_content)
-	}
-	fn get_cholesterol_content(&self) -> &[CholesterolContentProperty] {
+	fn r#cholesterol_content(&self) -> &[CholesterolContentProperty] {
 		self.r#cholesterol_content.as_slice()
 	}
-	fn take_cholesterol_content(&mut self) -> Vec<CholesterolContentProperty> {
-		std::mem::take(&mut self.r#cholesterol_content)
-	}
-	fn get_fat_content(&self) -> &[FatContentProperty] {
+	fn r#fat_content(&self) -> &[FatContentProperty] {
 		self.r#fat_content.as_slice()
 	}
-	fn take_fat_content(&mut self) -> Vec<FatContentProperty> {
-		std::mem::take(&mut self.r#fat_content)
-	}
-	fn get_fiber_content(&self) -> &[FiberContentProperty] {
+	fn r#fiber_content(&self) -> &[FiberContentProperty] {
 		self.r#fiber_content.as_slice()
 	}
-	fn take_fiber_content(&mut self) -> Vec<FiberContentProperty> {
-		std::mem::take(&mut self.r#fiber_content)
-	}
-	fn get_protein_content(&self) -> &[ProteinContentProperty] {
+	fn r#protein_content(&self) -> &[ProteinContentProperty] {
 		self.r#protein_content.as_slice()
 	}
-	fn take_protein_content(&mut self) -> Vec<ProteinContentProperty> {
-		std::mem::take(&mut self.r#protein_content)
-	}
-	fn get_saturated_fat_content(&self) -> &[SaturatedFatContentProperty] {
+	fn r#saturated_fat_content(&self) -> &[SaturatedFatContentProperty] {
 		self.r#saturated_fat_content.as_slice()
 	}
-	fn take_saturated_fat_content(&mut self) -> Vec<SaturatedFatContentProperty> {
-		std::mem::take(&mut self.r#saturated_fat_content)
-	}
-	fn get_serving_size(&self) -> &[ServingSizeProperty] {
+	fn r#serving_size(&self) -> &[ServingSizeProperty] {
 		self.r#serving_size.as_slice()
 	}
-	fn take_serving_size(&mut self) -> Vec<ServingSizeProperty> {
-		std::mem::take(&mut self.r#serving_size)
-	}
-	fn get_sodium_content(&self) -> &[SodiumContentProperty] {
+	fn r#sodium_content(&self) -> &[SodiumContentProperty] {
 		self.r#sodium_content.as_slice()
 	}
-	fn take_sodium_content(&mut self) -> Vec<SodiumContentProperty> {
-		std::mem::take(&mut self.r#sodium_content)
-	}
-	fn get_sugar_content(&self) -> &[SugarContentProperty] {
+	fn r#sugar_content(&self) -> &[SugarContentProperty] {
 		self.r#sugar_content.as_slice()
 	}
-	fn take_sugar_content(&mut self) -> Vec<SugarContentProperty> {
-		std::mem::take(&mut self.r#sugar_content)
-	}
-	fn get_trans_fat_content(&self) -> &[TransFatContentProperty] {
+	fn r#trans_fat_content(&self) -> &[TransFatContentProperty] {
 		self.r#trans_fat_content.as_slice()
 	}
-	fn take_trans_fat_content(&mut self) -> Vec<TransFatContentProperty> {
-		std::mem::take(&mut self.r#trans_fat_content)
-	}
-	fn get_unsaturated_fat_content(&self) -> &[UnsaturatedFatContentProperty] {
+	fn r#unsaturated_fat_content(&self) -> &[UnsaturatedFatContentProperty] {
 		self.r#unsaturated_fat_content.as_slice()
-	}
-	fn take_unsaturated_fat_content(&mut self) -> Vec<UnsaturatedFatContentProperty> {
-		std::mem::take(&mut self.r#unsaturated_fat_content)
 	}
 }
 impl StructuredValueTrait for NutritionInformation {}
 impl ThingTrait for NutritionInformation {
-	fn get_additional_type(&self) -> &[AdditionalTypeProperty] {
+	fn r#additional_type(&self) -> &[AdditionalTypeProperty] {
 		self.r#additional_type.as_slice()
 	}
-	fn take_additional_type(&mut self) -> Vec<AdditionalTypeProperty> {
-		std::mem::take(&mut self.r#additional_type)
-	}
-	fn get_alternate_name(&self) -> &[AlternateNameProperty] {
+	fn r#alternate_name(&self) -> &[AlternateNameProperty] {
 		self.r#alternate_name.as_slice()
 	}
-	fn take_alternate_name(&mut self) -> Vec<AlternateNameProperty> {
-		std::mem::take(&mut self.r#alternate_name)
-	}
-	fn get_description(&self) -> &[DescriptionProperty] {
+	fn r#description(&self) -> &[DescriptionProperty] {
 		self.r#description.as_slice()
 	}
-	fn take_description(&mut self) -> Vec<DescriptionProperty> {
-		std::mem::take(&mut self.r#description)
-	}
-	fn get_disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
+	fn r#disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
 		self.r#disambiguating_description.as_slice()
 	}
-	fn take_disambiguating_description(&mut self) -> Vec<DisambiguatingDescriptionProperty> {
-		std::mem::take(&mut self.r#disambiguating_description)
-	}
-	fn get_identifier(&self) -> &[IdentifierProperty] {
+	fn r#identifier(&self) -> &[IdentifierProperty] {
 		self.r#identifier.as_slice()
 	}
-	fn take_identifier(&mut self) -> Vec<IdentifierProperty> {
-		std::mem::take(&mut self.r#identifier)
-	}
-	fn get_image(&self) -> &[ImageProperty] {
+	fn r#image(&self) -> &[ImageProperty] {
 		self.r#image.as_slice()
 	}
-	fn take_image(&mut self) -> Vec<ImageProperty> {
-		std::mem::take(&mut self.r#image)
-	}
-	fn get_main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
+	fn r#main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
 		self.r#main_entity_of_page.as_slice()
 	}
-	fn take_main_entity_of_page(&mut self) -> Vec<MainEntityOfPageProperty> {
-		std::mem::take(&mut self.r#main_entity_of_page)
-	}
-	fn get_name(&self) -> &[NameProperty] {
+	fn r#name(&self) -> &[NameProperty] {
 		self.r#name.as_slice()
 	}
-	fn take_name(&mut self) -> Vec<NameProperty> {
-		std::mem::take(&mut self.r#name)
-	}
-	fn get_owner(&self) -> &[OwnerProperty] {
+	fn r#owner(&self) -> &[OwnerProperty] {
 		self.r#owner.as_slice()
 	}
-	fn take_owner(&mut self) -> Vec<OwnerProperty> {
-		std::mem::take(&mut self.r#owner)
-	}
-	fn get_potential_action(&self) -> &[PotentialActionProperty] {
+	fn r#potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
 	}
-	fn take_potential_action(&mut self) -> Vec<PotentialActionProperty> {
-		std::mem::take(&mut self.r#potential_action)
-	}
-	fn get_same_as(&self) -> &[SameAsProperty] {
+	fn r#same_as(&self) -> &[SameAsProperty] {
 		self.r#same_as.as_slice()
 	}
-	fn take_same_as(&mut self) -> Vec<SameAsProperty> {
-		std::mem::take(&mut self.r#same_as)
-	}
-	fn get_subject_of(&self) -> &[SubjectOfProperty] {
+	fn r#subject_of(&self) -> &[SubjectOfProperty] {
 		self.r#subject_of.as_slice()
 	}
-	fn take_subject_of(&mut self) -> Vec<SubjectOfProperty> {
-		std::mem::take(&mut self.r#subject_of)
-	}
-	fn get_url(&self) -> &[UrlProperty] {
+	fn r#url(&self) -> &[UrlProperty] {
 		self.r#url.as_slice()
-	}
-	fn take_url(&mut self) -> Vec<UrlProperty> {
-		std::mem::take(&mut self.r#url)
 	}
 }

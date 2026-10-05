@@ -351,207 +351,109 @@ pub struct SellAction {
 /// This trait is for properties from <https://schema.org/SellAction>.
 pub trait SellActionTrait {
 	/// Get <https://schema.org/buyer> from [`Self`] as borrowed slice.
-	fn get_buyer(&self) -> &[BuyerProperty];
-	/// Take <https://schema.org/buyer> from [`Self`] as owned vector.
-	fn take_buyer(&mut self) -> Vec<BuyerProperty>;
+	fn r#buyer(&self) -> &[BuyerProperty];
 	/// Get <https://schema.org/warrantyPromise> from [`Self`] as borrowed slice.
 	#[deprecated = "This schema is superseded by <https://schema.org/warranty>."]
-	fn get_warranty_promise(&self) -> &[WarrantyPromiseProperty];
-	/// Take <https://schema.org/warrantyPromise> from [`Self`] as owned vector.
-	#[deprecated = "This schema is superseded by <https://schema.org/warranty>."]
-	fn take_warranty_promise(&mut self) -> Vec<WarrantyPromiseProperty>;
+	fn r#warranty_promise(&self) -> &[WarrantyPromiseProperty];
 }
 impl SellActionTrait for SellAction {
-	fn get_buyer(&self) -> &[BuyerProperty] {
+	fn r#buyer(&self) -> &[BuyerProperty] {
 		self.r#buyer.as_slice()
 	}
-	fn take_buyer(&mut self) -> Vec<BuyerProperty> {
-		std::mem::take(&mut self.r#buyer)
-	}
-	fn get_warranty_promise(&self) -> &[WarrantyPromiseProperty] {
+	fn r#warranty_promise(&self) -> &[WarrantyPromiseProperty] {
 		self.r#warranty_promise.as_slice()
-	}
-	fn take_warranty_promise(&mut self) -> Vec<WarrantyPromiseProperty> {
-		std::mem::take(&mut self.r#warranty_promise)
 	}
 }
 impl ActionTrait for SellAction {
-	fn get_action_process(&self) -> &[ActionProcessProperty] {
+	fn r#action_process(&self) -> &[ActionProcessProperty] {
 		self.r#action_process.as_slice()
 	}
-	fn take_action_process(&mut self) -> Vec<ActionProcessProperty> {
-		std::mem::take(&mut self.r#action_process)
-	}
-	fn get_action_status(&self) -> &[ActionStatusProperty] {
+	fn r#action_status(&self) -> &[ActionStatusProperty] {
 		self.r#action_status.as_slice()
 	}
-	fn take_action_status(&mut self) -> Vec<ActionStatusProperty> {
-		std::mem::take(&mut self.r#action_status)
-	}
-	fn get_agent(&self) -> &[AgentProperty] {
+	fn r#agent(&self) -> &[AgentProperty] {
 		self.r#agent.as_slice()
 	}
-	fn take_agent(&mut self) -> Vec<AgentProperty> {
-		std::mem::take(&mut self.r#agent)
-	}
-	fn get_end_time(&self) -> &[EndTimeProperty] {
+	fn r#end_time(&self) -> &[EndTimeProperty] {
 		self.r#end_time.as_slice()
 	}
-	fn take_end_time(&mut self) -> Vec<EndTimeProperty> {
-		std::mem::take(&mut self.r#end_time)
-	}
-	fn get_error(&self) -> &[ErrorProperty] {
+	fn r#error(&self) -> &[ErrorProperty] {
 		self.r#error.as_slice()
 	}
-	fn take_error(&mut self) -> Vec<ErrorProperty> {
-		std::mem::take(&mut self.r#error)
-	}
-	fn get_instrument(&self) -> &[InstrumentProperty] {
+	fn r#instrument(&self) -> &[InstrumentProperty] {
 		self.r#instrument.as_slice()
 	}
-	fn take_instrument(&mut self) -> Vec<InstrumentProperty> {
-		std::mem::take(&mut self.r#instrument)
-	}
-	fn get_location(&self) -> &[LocationProperty] {
+	fn r#location(&self) -> &[LocationProperty] {
 		self.r#location.as_slice()
 	}
-	fn take_location(&mut self) -> Vec<LocationProperty> {
-		std::mem::take(&mut self.r#location)
-	}
-	fn get_object(&self) -> &[ObjectProperty] {
+	fn r#object(&self) -> &[ObjectProperty] {
 		self.r#object.as_slice()
 	}
-	fn take_object(&mut self) -> Vec<ObjectProperty> {
-		std::mem::take(&mut self.r#object)
-	}
-	fn get_participant(&self) -> &[ParticipantProperty] {
+	fn r#participant(&self) -> &[ParticipantProperty] {
 		self.r#participant.as_slice()
 	}
-	fn take_participant(&mut self) -> Vec<ParticipantProperty> {
-		std::mem::take(&mut self.r#participant)
-	}
-	fn get_provider(&self) -> &[ProviderProperty] {
+	fn r#provider(&self) -> &[ProviderProperty] {
 		self.r#provider.as_slice()
 	}
-	fn take_provider(&mut self) -> Vec<ProviderProperty> {
-		std::mem::take(&mut self.r#provider)
-	}
-	fn get_result(&self) -> &[ResultProperty] {
+	fn r#result(&self) -> &[ResultProperty] {
 		self.r#result.as_slice()
 	}
-	fn take_result(&mut self) -> Vec<ResultProperty> {
-		std::mem::take(&mut self.r#result)
-	}
-	fn get_start_time(&self) -> &[StartTimeProperty] {
+	fn r#start_time(&self) -> &[StartTimeProperty] {
 		self.r#start_time.as_slice()
 	}
-	fn take_start_time(&mut self) -> Vec<StartTimeProperty> {
-		std::mem::take(&mut self.r#start_time)
-	}
-	fn get_target(&self) -> &[TargetProperty] {
+	fn r#target(&self) -> &[TargetProperty] {
 		self.r#target.as_slice()
-	}
-	fn take_target(&mut self) -> Vec<TargetProperty> {
-		std::mem::take(&mut self.r#target)
 	}
 }
 impl ThingTrait for SellAction {
-	fn get_additional_type(&self) -> &[AdditionalTypeProperty] {
+	fn r#additional_type(&self) -> &[AdditionalTypeProperty] {
 		self.r#additional_type.as_slice()
 	}
-	fn take_additional_type(&mut self) -> Vec<AdditionalTypeProperty> {
-		std::mem::take(&mut self.r#additional_type)
-	}
-	fn get_alternate_name(&self) -> &[AlternateNameProperty] {
+	fn r#alternate_name(&self) -> &[AlternateNameProperty] {
 		self.r#alternate_name.as_slice()
 	}
-	fn take_alternate_name(&mut self) -> Vec<AlternateNameProperty> {
-		std::mem::take(&mut self.r#alternate_name)
-	}
-	fn get_description(&self) -> &[DescriptionProperty] {
+	fn r#description(&self) -> &[DescriptionProperty] {
 		self.r#description.as_slice()
 	}
-	fn take_description(&mut self) -> Vec<DescriptionProperty> {
-		std::mem::take(&mut self.r#description)
-	}
-	fn get_disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
+	fn r#disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
 		self.r#disambiguating_description.as_slice()
 	}
-	fn take_disambiguating_description(&mut self) -> Vec<DisambiguatingDescriptionProperty> {
-		std::mem::take(&mut self.r#disambiguating_description)
-	}
-	fn get_identifier(&self) -> &[IdentifierProperty] {
+	fn r#identifier(&self) -> &[IdentifierProperty] {
 		self.r#identifier.as_slice()
 	}
-	fn take_identifier(&mut self) -> Vec<IdentifierProperty> {
-		std::mem::take(&mut self.r#identifier)
-	}
-	fn get_image(&self) -> &[ImageProperty] {
+	fn r#image(&self) -> &[ImageProperty] {
 		self.r#image.as_slice()
 	}
-	fn take_image(&mut self) -> Vec<ImageProperty> {
-		std::mem::take(&mut self.r#image)
-	}
-	fn get_main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
+	fn r#main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
 		self.r#main_entity_of_page.as_slice()
 	}
-	fn take_main_entity_of_page(&mut self) -> Vec<MainEntityOfPageProperty> {
-		std::mem::take(&mut self.r#main_entity_of_page)
-	}
-	fn get_name(&self) -> &[NameProperty] {
+	fn r#name(&self) -> &[NameProperty] {
 		self.r#name.as_slice()
 	}
-	fn take_name(&mut self) -> Vec<NameProperty> {
-		std::mem::take(&mut self.r#name)
-	}
-	fn get_owner(&self) -> &[OwnerProperty] {
+	fn r#owner(&self) -> &[OwnerProperty] {
 		self.r#owner.as_slice()
 	}
-	fn take_owner(&mut self) -> Vec<OwnerProperty> {
-		std::mem::take(&mut self.r#owner)
-	}
-	fn get_potential_action(&self) -> &[PotentialActionProperty] {
+	fn r#potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
 	}
-	fn take_potential_action(&mut self) -> Vec<PotentialActionProperty> {
-		std::mem::take(&mut self.r#potential_action)
-	}
-	fn get_same_as(&self) -> &[SameAsProperty] {
+	fn r#same_as(&self) -> &[SameAsProperty] {
 		self.r#same_as.as_slice()
 	}
-	fn take_same_as(&mut self) -> Vec<SameAsProperty> {
-		std::mem::take(&mut self.r#same_as)
-	}
-	fn get_subject_of(&self) -> &[SubjectOfProperty] {
+	fn r#subject_of(&self) -> &[SubjectOfProperty] {
 		self.r#subject_of.as_slice()
 	}
-	fn take_subject_of(&mut self) -> Vec<SubjectOfProperty> {
-		std::mem::take(&mut self.r#subject_of)
-	}
-	fn get_url(&self) -> &[UrlProperty] {
+	fn r#url(&self) -> &[UrlProperty] {
 		self.r#url.as_slice()
-	}
-	fn take_url(&mut self) -> Vec<UrlProperty> {
-		std::mem::take(&mut self.r#url)
 	}
 }
 impl TradeActionTrait for SellAction {
-	fn get_price(&self) -> &[PriceProperty] {
+	fn r#price(&self) -> &[PriceProperty] {
 		self.r#price.as_slice()
 	}
-	fn take_price(&mut self) -> Vec<PriceProperty> {
-		std::mem::take(&mut self.r#price)
-	}
-	fn get_price_currency(&self) -> &[PriceCurrencyProperty] {
+	fn r#price_currency(&self) -> &[PriceCurrencyProperty] {
 		self.r#price_currency.as_slice()
 	}
-	fn take_price_currency(&mut self) -> Vec<PriceCurrencyProperty> {
-		std::mem::take(&mut self.r#price_currency)
-	}
-	fn get_price_specification(&self) -> &[PriceSpecificationProperty] {
+	fn r#price_specification(&self) -> &[PriceSpecificationProperty] {
 		self.r#price_specification.as_slice()
-	}
-	fn take_price_specification(&mut self) -> Vec<PriceSpecificationProperty> {
-		std::mem::take(&mut self.r#price_specification)
 	}
 }

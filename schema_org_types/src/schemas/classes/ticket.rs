@@ -240,165 +240,86 @@ pub struct Ticket {
 /// This trait is for properties from <https://schema.org/Ticket>.
 pub trait TicketTrait {
 	/// Get <https://schema.org/dateIssued> from [`Self`] as borrowed slice.
-	fn get_date_issued(&self) -> &[DateIssuedProperty];
-	/// Take <https://schema.org/dateIssued> from [`Self`] as owned vector.
-	fn take_date_issued(&mut self) -> Vec<DateIssuedProperty>;
+	fn r#date_issued(&self) -> &[DateIssuedProperty];
 	/// Get <https://schema.org/issuedBy> from [`Self`] as borrowed slice.
-	fn get_issued_by(&self) -> &[IssuedByProperty];
-	/// Take <https://schema.org/issuedBy> from [`Self`] as owned vector.
-	fn take_issued_by(&mut self) -> Vec<IssuedByProperty>;
+	fn r#issued_by(&self) -> &[IssuedByProperty];
 	/// Get <https://schema.org/priceCurrency> from [`Self`] as borrowed slice.
-	fn get_price_currency(&self) -> &[PriceCurrencyProperty];
-	/// Take <https://schema.org/priceCurrency> from [`Self`] as owned vector.
-	fn take_price_currency(&mut self) -> Vec<PriceCurrencyProperty>;
+	fn r#price_currency(&self) -> &[PriceCurrencyProperty];
 	/// Get <https://schema.org/ticketNumber> from [`Self`] as borrowed slice.
-	fn get_ticket_number(&self) -> &[TicketNumberProperty];
-	/// Take <https://schema.org/ticketNumber> from [`Self`] as owned vector.
-	fn take_ticket_number(&mut self) -> Vec<TicketNumberProperty>;
+	fn r#ticket_number(&self) -> &[TicketNumberProperty];
 	/// Get <https://schema.org/ticketToken> from [`Self`] as borrowed slice.
-	fn get_ticket_token(&self) -> &[TicketTokenProperty];
-	/// Take <https://schema.org/ticketToken> from [`Self`] as owned vector.
-	fn take_ticket_token(&mut self) -> Vec<TicketTokenProperty>;
+	fn r#ticket_token(&self) -> &[TicketTokenProperty];
 	/// Get <https://schema.org/ticketedSeat> from [`Self`] as borrowed slice.
-	fn get_ticketed_seat(&self) -> &[TicketedSeatProperty];
-	/// Take <https://schema.org/ticketedSeat> from [`Self`] as owned vector.
-	fn take_ticketed_seat(&mut self) -> Vec<TicketedSeatProperty>;
+	fn r#ticketed_seat(&self) -> &[TicketedSeatProperty];
 	/// Get <https://schema.org/totalPrice> from [`Self`] as borrowed slice.
-	fn get_total_price(&self) -> &[TotalPriceProperty];
-	/// Take <https://schema.org/totalPrice> from [`Self`] as owned vector.
-	fn take_total_price(&mut self) -> Vec<TotalPriceProperty>;
+	fn r#total_price(&self) -> &[TotalPriceProperty];
 	/// Get <https://schema.org/underName> from [`Self`] as borrowed slice.
-	fn get_under_name(&self) -> &[UnderNameProperty];
-	/// Take <https://schema.org/underName> from [`Self`] as owned vector.
-	fn take_under_name(&mut self) -> Vec<UnderNameProperty>;
+	fn r#under_name(&self) -> &[UnderNameProperty];
 }
 impl TicketTrait for Ticket {
-	fn get_date_issued(&self) -> &[DateIssuedProperty] {
+	fn r#date_issued(&self) -> &[DateIssuedProperty] {
 		self.r#date_issued.as_slice()
 	}
-	fn take_date_issued(&mut self) -> Vec<DateIssuedProperty> {
-		std::mem::take(&mut self.r#date_issued)
-	}
-	fn get_issued_by(&self) -> &[IssuedByProperty] {
+	fn r#issued_by(&self) -> &[IssuedByProperty] {
 		self.r#issued_by.as_slice()
 	}
-	fn take_issued_by(&mut self) -> Vec<IssuedByProperty> {
-		std::mem::take(&mut self.r#issued_by)
-	}
-	fn get_price_currency(&self) -> &[PriceCurrencyProperty] {
+	fn r#price_currency(&self) -> &[PriceCurrencyProperty] {
 		self.r#price_currency.as_slice()
 	}
-	fn take_price_currency(&mut self) -> Vec<PriceCurrencyProperty> {
-		std::mem::take(&mut self.r#price_currency)
-	}
-	fn get_ticket_number(&self) -> &[TicketNumberProperty] {
+	fn r#ticket_number(&self) -> &[TicketNumberProperty] {
 		self.r#ticket_number.as_slice()
 	}
-	fn take_ticket_number(&mut self) -> Vec<TicketNumberProperty> {
-		std::mem::take(&mut self.r#ticket_number)
-	}
-	fn get_ticket_token(&self) -> &[TicketTokenProperty] {
+	fn r#ticket_token(&self) -> &[TicketTokenProperty] {
 		self.r#ticket_token.as_slice()
 	}
-	fn take_ticket_token(&mut self) -> Vec<TicketTokenProperty> {
-		std::mem::take(&mut self.r#ticket_token)
-	}
-	fn get_ticketed_seat(&self) -> &[TicketedSeatProperty] {
+	fn r#ticketed_seat(&self) -> &[TicketedSeatProperty] {
 		self.r#ticketed_seat.as_slice()
 	}
-	fn take_ticketed_seat(&mut self) -> Vec<TicketedSeatProperty> {
-		std::mem::take(&mut self.r#ticketed_seat)
-	}
-	fn get_total_price(&self) -> &[TotalPriceProperty] {
+	fn r#total_price(&self) -> &[TotalPriceProperty] {
 		self.r#total_price.as_slice()
 	}
-	fn take_total_price(&mut self) -> Vec<TotalPriceProperty> {
-		std::mem::take(&mut self.r#total_price)
-	}
-	fn get_under_name(&self) -> &[UnderNameProperty] {
+	fn r#under_name(&self) -> &[UnderNameProperty] {
 		self.r#under_name.as_slice()
-	}
-	fn take_under_name(&mut self) -> Vec<UnderNameProperty> {
-		std::mem::take(&mut self.r#under_name)
 	}
 }
 impl ThingTrait for Ticket {
-	fn get_additional_type(&self) -> &[AdditionalTypeProperty] {
+	fn r#additional_type(&self) -> &[AdditionalTypeProperty] {
 		self.r#additional_type.as_slice()
 	}
-	fn take_additional_type(&mut self) -> Vec<AdditionalTypeProperty> {
-		std::mem::take(&mut self.r#additional_type)
-	}
-	fn get_alternate_name(&self) -> &[AlternateNameProperty] {
+	fn r#alternate_name(&self) -> &[AlternateNameProperty] {
 		self.r#alternate_name.as_slice()
 	}
-	fn take_alternate_name(&mut self) -> Vec<AlternateNameProperty> {
-		std::mem::take(&mut self.r#alternate_name)
-	}
-	fn get_description(&self) -> &[DescriptionProperty] {
+	fn r#description(&self) -> &[DescriptionProperty] {
 		self.r#description.as_slice()
 	}
-	fn take_description(&mut self) -> Vec<DescriptionProperty> {
-		std::mem::take(&mut self.r#description)
-	}
-	fn get_disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
+	fn r#disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
 		self.r#disambiguating_description.as_slice()
 	}
-	fn take_disambiguating_description(&mut self) -> Vec<DisambiguatingDescriptionProperty> {
-		std::mem::take(&mut self.r#disambiguating_description)
-	}
-	fn get_identifier(&self) -> &[IdentifierProperty] {
+	fn r#identifier(&self) -> &[IdentifierProperty] {
 		self.r#identifier.as_slice()
 	}
-	fn take_identifier(&mut self) -> Vec<IdentifierProperty> {
-		std::mem::take(&mut self.r#identifier)
-	}
-	fn get_image(&self) -> &[ImageProperty] {
+	fn r#image(&self) -> &[ImageProperty] {
 		self.r#image.as_slice()
 	}
-	fn take_image(&mut self) -> Vec<ImageProperty> {
-		std::mem::take(&mut self.r#image)
-	}
-	fn get_main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
+	fn r#main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
 		self.r#main_entity_of_page.as_slice()
 	}
-	fn take_main_entity_of_page(&mut self) -> Vec<MainEntityOfPageProperty> {
-		std::mem::take(&mut self.r#main_entity_of_page)
-	}
-	fn get_name(&self) -> &[NameProperty] {
+	fn r#name(&self) -> &[NameProperty] {
 		self.r#name.as_slice()
 	}
-	fn take_name(&mut self) -> Vec<NameProperty> {
-		std::mem::take(&mut self.r#name)
-	}
-	fn get_owner(&self) -> &[OwnerProperty] {
+	fn r#owner(&self) -> &[OwnerProperty] {
 		self.r#owner.as_slice()
 	}
-	fn take_owner(&mut self) -> Vec<OwnerProperty> {
-		std::mem::take(&mut self.r#owner)
-	}
-	fn get_potential_action(&self) -> &[PotentialActionProperty] {
+	fn r#potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
 	}
-	fn take_potential_action(&mut self) -> Vec<PotentialActionProperty> {
-		std::mem::take(&mut self.r#potential_action)
-	}
-	fn get_same_as(&self) -> &[SameAsProperty] {
+	fn r#same_as(&self) -> &[SameAsProperty] {
 		self.r#same_as.as_slice()
 	}
-	fn take_same_as(&mut self) -> Vec<SameAsProperty> {
-		std::mem::take(&mut self.r#same_as)
-	}
-	fn get_subject_of(&self) -> &[SubjectOfProperty] {
+	fn r#subject_of(&self) -> &[SubjectOfProperty] {
 		self.r#subject_of.as_slice()
 	}
-	fn take_subject_of(&mut self) -> Vec<SubjectOfProperty> {
-		std::mem::take(&mut self.r#subject_of)
-	}
-	fn get_url(&self) -> &[UrlProperty] {
+	fn r#url(&self) -> &[UrlProperty] {
 		self.r#url.as_slice()
-	}
-	fn take_url(&mut self) -> Vec<UrlProperty> {
-		std::mem::take(&mut self.r#url)
 	}
 }

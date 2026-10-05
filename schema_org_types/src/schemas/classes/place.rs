@@ -675,575 +675,287 @@ pub struct Place {
 /// This trait is for properties from <https://schema.org/Place>.
 pub trait PlaceTrait {
 	/// Get <https://schema.org/additionalProperty> from [`Self`] as borrowed slice.
-	fn get_additional_property(&self) -> &[AdditionalPropertyProperty];
-	/// Take <https://schema.org/additionalProperty> from [`Self`] as owned vector.
-	fn take_additional_property(&mut self) -> Vec<AdditionalPropertyProperty>;
+	fn r#additional_property(&self) -> &[AdditionalPropertyProperty];
 	/// Get <https://schema.org/address> from [`Self`] as borrowed slice.
-	fn get_address(&self) -> &[AddressProperty];
-	/// Take <https://schema.org/address> from [`Self`] as owned vector.
-	fn take_address(&mut self) -> Vec<AddressProperty>;
+	fn r#address(&self) -> &[AddressProperty];
 	/// Get <https://schema.org/aggregateRating> from [`Self`] as borrowed slice.
-	fn get_aggregate_rating(&self) -> &[AggregateRatingProperty];
-	/// Take <https://schema.org/aggregateRating> from [`Self`] as owned vector.
-	fn take_aggregate_rating(&mut self) -> Vec<AggregateRatingProperty>;
+	fn r#aggregate_rating(&self) -> &[AggregateRatingProperty];
 	/// Get <https://schema.org/amenityFeature> from [`Self`] as borrowed slice.
-	fn get_amenity_feature(&self) -> &[AmenityFeatureProperty];
-	/// Take <https://schema.org/amenityFeature> from [`Self`] as owned vector.
-	fn take_amenity_feature(&mut self) -> Vec<AmenityFeatureProperty>;
+	fn r#amenity_feature(&self) -> &[AmenityFeatureProperty];
 	/// Get <https://schema.org/branchCode> from [`Self`] as borrowed slice.
-	fn get_branch_code(&self) -> &[BranchCodeProperty];
-	/// Take <https://schema.org/branchCode> from [`Self`] as owned vector.
-	fn take_branch_code(&mut self) -> Vec<BranchCodeProperty>;
+	fn r#branch_code(&self) -> &[BranchCodeProperty];
 	/// Get <https://schema.org/containedIn> from [`Self`] as borrowed slice.
 	#[deprecated = "This schema is superseded by <https://schema.org/containedInPlace>."]
-	fn get_contained_in(&self) -> &[ContainedInProperty];
-	/// Take <https://schema.org/containedIn> from [`Self`] as owned vector.
-	#[deprecated = "This schema is superseded by <https://schema.org/containedInPlace>."]
-	fn take_contained_in(&mut self) -> Vec<ContainedInProperty>;
+	fn r#contained_in(&self) -> &[ContainedInProperty];
 	/// Get <https://schema.org/containedInPlace> from [`Self`] as borrowed slice.
-	fn get_contained_in_place(&self) -> &[ContainedInPlaceProperty];
-	/// Take <https://schema.org/containedInPlace> from [`Self`] as owned vector.
-	fn take_contained_in_place(&mut self) -> Vec<ContainedInPlaceProperty>;
+	fn r#contained_in_place(&self) -> &[ContainedInPlaceProperty];
 	/// Get <https://schema.org/containsPlace> from [`Self`] as borrowed slice.
-	fn get_contains_place(&self) -> &[ContainsPlaceProperty];
-	/// Take <https://schema.org/containsPlace> from [`Self`] as owned vector.
-	fn take_contains_place(&mut self) -> Vec<ContainsPlaceProperty>;
+	fn r#contains_place(&self) -> &[ContainsPlaceProperty];
 	/// Get <https://schema.org/event> from [`Self`] as borrowed slice.
-	fn get_event(&self) -> &[EventProperty];
-	/// Take <https://schema.org/event> from [`Self`] as owned vector.
-	fn take_event(&mut self) -> Vec<EventProperty>;
+	fn r#event(&self) -> &[EventProperty];
 	/// Get <https://schema.org/events> from [`Self`] as borrowed slice.
 	#[deprecated = "This schema is superseded by <https://schema.org/event>."]
-	fn get_events(&self) -> &[EventsProperty];
-	/// Take <https://schema.org/events> from [`Self`] as owned vector.
-	#[deprecated = "This schema is superseded by <https://schema.org/event>."]
-	fn take_events(&mut self) -> Vec<EventsProperty>;
+	fn r#events(&self) -> &[EventsProperty];
 	/// Get <https://schema.org/faxNumber> from [`Self`] as borrowed slice.
-	fn get_fax_number(&self) -> &[FaxNumberProperty];
-	/// Take <https://schema.org/faxNumber> from [`Self`] as owned vector.
-	fn take_fax_number(&mut self) -> Vec<FaxNumberProperty>;
+	fn r#fax_number(&self) -> &[FaxNumberProperty];
 	/// Get <https://schema.org/geo> from [`Self`] as borrowed slice.
-	fn get_geo(&self) -> &[GeoProperty];
-	/// Take <https://schema.org/geo> from [`Self`] as owned vector.
-	fn take_geo(&mut self) -> Vec<GeoProperty>;
+	fn r#geo(&self) -> &[GeoProperty];
 	/// Get <https://schema.org/geoContains> from [`Self`] as borrowed slice.
-	fn get_geo_contains(&self) -> &[GeoContainsProperty];
-	/// Take <https://schema.org/geoContains> from [`Self`] as owned vector.
-	fn take_geo_contains(&mut self) -> Vec<GeoContainsProperty>;
+	fn r#geo_contains(&self) -> &[GeoContainsProperty];
 	/// Get <https://schema.org/geoCoveredBy> from [`Self`] as borrowed slice.
-	fn get_geo_covered_by(&self) -> &[GeoCoveredByProperty];
-	/// Take <https://schema.org/geoCoveredBy> from [`Self`] as owned vector.
-	fn take_geo_covered_by(&mut self) -> Vec<GeoCoveredByProperty>;
+	fn r#geo_covered_by(&self) -> &[GeoCoveredByProperty];
 	/// Get <https://schema.org/geoCovers> from [`Self`] as borrowed slice.
-	fn get_geo_covers(&self) -> &[GeoCoversProperty];
-	/// Take <https://schema.org/geoCovers> from [`Self`] as owned vector.
-	fn take_geo_covers(&mut self) -> Vec<GeoCoversProperty>;
+	fn r#geo_covers(&self) -> &[GeoCoversProperty];
 	/// Get <https://schema.org/geoCrosses> from [`Self`] as borrowed slice.
-	fn get_geo_crosses(&self) -> &[GeoCrossesProperty];
-	/// Take <https://schema.org/geoCrosses> from [`Self`] as owned vector.
-	fn take_geo_crosses(&mut self) -> Vec<GeoCrossesProperty>;
+	fn r#geo_crosses(&self) -> &[GeoCrossesProperty];
 	/// Get <https://schema.org/geoDisjoint> from [`Self`] as borrowed slice.
-	fn get_geo_disjoint(&self) -> &[GeoDisjointProperty];
-	/// Take <https://schema.org/geoDisjoint> from [`Self`] as owned vector.
-	fn take_geo_disjoint(&mut self) -> Vec<GeoDisjointProperty>;
+	fn r#geo_disjoint(&self) -> &[GeoDisjointProperty];
 	/// Get <https://schema.org/geoEquals> from [`Self`] as borrowed slice.
-	fn get_geo_equals(&self) -> &[GeoEqualsProperty];
-	/// Take <https://schema.org/geoEquals> from [`Self`] as owned vector.
-	fn take_geo_equals(&mut self) -> Vec<GeoEqualsProperty>;
+	fn r#geo_equals(&self) -> &[GeoEqualsProperty];
 	/// Get <https://schema.org/geoIntersects> from [`Self`] as borrowed slice.
-	fn get_geo_intersects(&self) -> &[GeoIntersectsProperty];
-	/// Take <https://schema.org/geoIntersects> from [`Self`] as owned vector.
-	fn take_geo_intersects(&mut self) -> Vec<GeoIntersectsProperty>;
+	fn r#geo_intersects(&self) -> &[GeoIntersectsProperty];
 	/// Get <https://schema.org/geoOverlaps> from [`Self`] as borrowed slice.
-	fn get_geo_overlaps(&self) -> &[GeoOverlapsProperty];
-	/// Take <https://schema.org/geoOverlaps> from [`Self`] as owned vector.
-	fn take_geo_overlaps(&mut self) -> Vec<GeoOverlapsProperty>;
+	fn r#geo_overlaps(&self) -> &[GeoOverlapsProperty];
 	/// Get <https://schema.org/geoTouches> from [`Self`] as borrowed slice.
-	fn get_geo_touches(&self) -> &[GeoTouchesProperty];
-	/// Take <https://schema.org/geoTouches> from [`Self`] as owned vector.
-	fn take_geo_touches(&mut self) -> Vec<GeoTouchesProperty>;
+	fn r#geo_touches(&self) -> &[GeoTouchesProperty];
 	/// Get <https://schema.org/geoWithin> from [`Self`] as borrowed slice.
-	fn get_geo_within(&self) -> &[GeoWithinProperty];
-	/// Take <https://schema.org/geoWithin> from [`Self`] as owned vector.
-	fn take_geo_within(&mut self) -> Vec<GeoWithinProperty>;
+	fn r#geo_within(&self) -> &[GeoWithinProperty];
 	/// Get <https://schema.org/globalLocationNumber> from [`Self`] as borrowed slice.
-	fn get_global_location_number(&self) -> &[GlobalLocationNumberProperty];
-	/// Take <https://schema.org/globalLocationNumber> from [`Self`] as owned vector.
-	fn take_global_location_number(&mut self) -> Vec<GlobalLocationNumberProperty>;
+	fn r#global_location_number(&self) -> &[GlobalLocationNumberProperty];
 	/// Get <https://schema.org/hasCertification> from [`Self`] as borrowed slice.
-	fn get_has_certification(&self) -> &[HasCertificationProperty];
-	/// Take <https://schema.org/hasCertification> from [`Self`] as owned vector.
-	fn take_has_certification(&mut self) -> Vec<HasCertificationProperty>;
+	fn r#has_certification(&self) -> &[HasCertificationProperty];
 	/// Get <https://schema.org/hasDriveThroughService> from [`Self`] as borrowed slice.
-	fn get_has_drive_through_service(&self) -> &[HasDriveThroughServiceProperty];
-	/// Take <https://schema.org/hasDriveThroughService> from [`Self`] as owned vector.
-	fn take_has_drive_through_service(&mut self) -> Vec<HasDriveThroughServiceProperty>;
+	fn r#has_drive_through_service(&self) -> &[HasDriveThroughServiceProperty];
 	/// Get <https://schema.org/hasGS1DigitalLink> from [`Self`] as borrowed slice.
-	fn get_has_gs_1_digital_link(&self) -> &[HasGs1DigitalLinkProperty];
-	/// Take <https://schema.org/hasGS1DigitalLink> from [`Self`] as owned vector.
-	fn take_has_gs_1_digital_link(&mut self) -> Vec<HasGs1DigitalLinkProperty>;
+	fn r#has_gs_1_digital_link(&self) -> &[HasGs1DigitalLinkProperty];
 	/// Get <https://schema.org/hasMap> from [`Self`] as borrowed slice.
-	fn get_has_map(&self) -> &[HasMapProperty];
-	/// Take <https://schema.org/hasMap> from [`Self`] as owned vector.
-	fn take_has_map(&mut self) -> Vec<HasMapProperty>;
+	fn r#has_map(&self) -> &[HasMapProperty];
 	/// Get <https://schema.org/isAccessibleForFree> from [`Self`] as borrowed slice.
-	fn get_is_accessible_for_free(&self) -> &[IsAccessibleForFreeProperty];
-	/// Take <https://schema.org/isAccessibleForFree> from [`Self`] as owned vector.
-	fn take_is_accessible_for_free(&mut self) -> Vec<IsAccessibleForFreeProperty>;
+	fn r#is_accessible_for_free(&self) -> &[IsAccessibleForFreeProperty];
 	/// Get <https://schema.org/isicV4> from [`Self`] as borrowed slice.
-	fn get_isic_v_4(&self) -> &[IsicV4Property];
-	/// Take <https://schema.org/isicV4> from [`Self`] as owned vector.
-	fn take_isic_v_4(&mut self) -> Vec<IsicV4Property>;
+	fn r#isic_v_4(&self) -> &[IsicV4Property];
 	/// Get <https://schema.org/keywords> from [`Self`] as borrowed slice.
-	fn get_keywords(&self) -> &[KeywordsProperty];
-	/// Take <https://schema.org/keywords> from [`Self`] as owned vector.
-	fn take_keywords(&mut self) -> Vec<KeywordsProperty>;
+	fn r#keywords(&self) -> &[KeywordsProperty];
 	/// Get <https://schema.org/latitude> from [`Self`] as borrowed slice.
-	fn get_latitude(&self) -> &[LatitudeProperty];
-	/// Take <https://schema.org/latitude> from [`Self`] as owned vector.
-	fn take_latitude(&mut self) -> Vec<LatitudeProperty>;
+	fn r#latitude(&self) -> &[LatitudeProperty];
 	/// Get <https://schema.org/logo> from [`Self`] as borrowed slice.
-	fn get_logo(&self) -> &[LogoProperty];
-	/// Take <https://schema.org/logo> from [`Self`] as owned vector.
-	fn take_logo(&mut self) -> Vec<LogoProperty>;
+	fn r#logo(&self) -> &[LogoProperty];
 	/// Get <https://schema.org/longitude> from [`Self`] as borrowed slice.
-	fn get_longitude(&self) -> &[LongitudeProperty];
-	/// Take <https://schema.org/longitude> from [`Self`] as owned vector.
-	fn take_longitude(&mut self) -> Vec<LongitudeProperty>;
+	fn r#longitude(&self) -> &[LongitudeProperty];
 	/// Get <https://schema.org/map> from [`Self`] as borrowed slice.
 	#[deprecated = "This schema is superseded by <https://schema.org/hasMap>."]
-	fn get_map(&self) -> &[MapProperty];
-	/// Take <https://schema.org/map> from [`Self`] as owned vector.
-	#[deprecated = "This schema is superseded by <https://schema.org/hasMap>."]
-	fn take_map(&mut self) -> Vec<MapProperty>;
+	fn r#map(&self) -> &[MapProperty];
 	/// Get <https://schema.org/maps> from [`Self`] as borrowed slice.
 	#[deprecated = "This schema is superseded by <https://schema.org/hasMap>."]
-	fn get_maps(&self) -> &[MapsProperty];
-	/// Take <https://schema.org/maps> from [`Self`] as owned vector.
-	#[deprecated = "This schema is superseded by <https://schema.org/hasMap>."]
-	fn take_maps(&mut self) -> Vec<MapsProperty>;
+	fn r#maps(&self) -> &[MapsProperty];
 	/// Get <https://schema.org/maximumAttendeeCapacity> from [`Self`] as borrowed slice.
-	fn get_maximum_attendee_capacity(&self) -> &[MaximumAttendeeCapacityProperty];
-	/// Take <https://schema.org/maximumAttendeeCapacity> from [`Self`] as owned vector.
-	fn take_maximum_attendee_capacity(&mut self) -> Vec<MaximumAttendeeCapacityProperty>;
+	fn r#maximum_attendee_capacity(&self) -> &[MaximumAttendeeCapacityProperty];
 	/// Get <https://schema.org/openingHoursSpecification> from [`Self`] as borrowed slice.
-	fn get_opening_hours_specification(&self) -> &[OpeningHoursSpecificationProperty];
-	/// Take <https://schema.org/openingHoursSpecification> from [`Self`] as owned vector.
-	fn take_opening_hours_specification(&mut self) -> Vec<OpeningHoursSpecificationProperty>;
+	fn r#opening_hours_specification(&self) -> &[OpeningHoursSpecificationProperty];
 	/// Get <https://schema.org/photo> from [`Self`] as borrowed slice.
-	fn get_photo(&self) -> &[PhotoProperty];
-	/// Take <https://schema.org/photo> from [`Self`] as owned vector.
-	fn take_photo(&mut self) -> Vec<PhotoProperty>;
+	fn r#photo(&self) -> &[PhotoProperty];
 	/// Get <https://schema.org/photos> from [`Self`] as borrowed slice.
 	#[deprecated = "This schema is superseded by <https://schema.org/photo>."]
-	fn get_photos(&self) -> &[PhotosProperty];
-	/// Take <https://schema.org/photos> from [`Self`] as owned vector.
-	#[deprecated = "This schema is superseded by <https://schema.org/photo>."]
-	fn take_photos(&mut self) -> Vec<PhotosProperty>;
+	fn r#photos(&self) -> &[PhotosProperty];
 	/// Get <https://schema.org/publicAccess> from [`Self`] as borrowed slice.
-	fn get_public_access(&self) -> &[PublicAccessProperty];
-	/// Take <https://schema.org/publicAccess> from [`Self`] as owned vector.
-	fn take_public_access(&mut self) -> Vec<PublicAccessProperty>;
+	fn r#public_access(&self) -> &[PublicAccessProperty];
 	/// Get <https://schema.org/review> from [`Self`] as borrowed slice.
-	fn get_review(&self) -> &[ReviewProperty];
-	/// Take <https://schema.org/review> from [`Self`] as owned vector.
-	fn take_review(&mut self) -> Vec<ReviewProperty>;
+	fn r#review(&self) -> &[ReviewProperty];
 	/// Get <https://schema.org/reviews> from [`Self`] as borrowed slice.
 	#[deprecated = "This schema is superseded by <https://schema.org/review>."]
-	fn get_reviews(&self) -> &[ReviewsProperty];
-	/// Take <https://schema.org/reviews> from [`Self`] as owned vector.
-	#[deprecated = "This schema is superseded by <https://schema.org/review>."]
-	fn take_reviews(&mut self) -> Vec<ReviewsProperty>;
+	fn r#reviews(&self) -> &[ReviewsProperty];
 	/// Get <https://schema.org/slogan> from [`Self`] as borrowed slice.
-	fn get_slogan(&self) -> &[SloganProperty];
-	/// Take <https://schema.org/slogan> from [`Self`] as owned vector.
-	fn take_slogan(&mut self) -> Vec<SloganProperty>;
+	fn r#slogan(&self) -> &[SloganProperty];
 	/// Get <https://schema.org/smokingAllowed> from [`Self`] as borrowed slice.
-	fn get_smoking_allowed(&self) -> &[SmokingAllowedProperty];
-	/// Take <https://schema.org/smokingAllowed> from [`Self`] as owned vector.
-	fn take_smoking_allowed(&mut self) -> Vec<SmokingAllowedProperty>;
+	fn r#smoking_allowed(&self) -> &[SmokingAllowedProperty];
 	/// Get <https://schema.org/specialOpeningHoursSpecification> from [`Self`] as borrowed slice.
-	fn get_special_opening_hours_specification(
-		&self,
-	) -> &[SpecialOpeningHoursSpecificationProperty];
-	/// Take <https://schema.org/specialOpeningHoursSpecification> from [`Self`] as owned vector.
-	fn take_special_opening_hours_specification(
-		&mut self,
-	) -> Vec<SpecialOpeningHoursSpecificationProperty>;
+	fn r#special_opening_hours_specification(&self) -> &[SpecialOpeningHoursSpecificationProperty];
 	/// Get <https://schema.org/telephone> from [`Self`] as borrowed slice.
-	fn get_telephone(&self) -> &[TelephoneProperty];
-	/// Take <https://schema.org/telephone> from [`Self`] as owned vector.
-	fn take_telephone(&mut self) -> Vec<TelephoneProperty>;
+	fn r#telephone(&self) -> &[TelephoneProperty];
 	/// Get <https://schema.org/tourBookingPage> from [`Self`] as borrowed slice.
-	fn get_tour_booking_page(&self) -> &[TourBookingPageProperty];
-	/// Take <https://schema.org/tourBookingPage> from [`Self`] as owned vector.
-	fn take_tour_booking_page(&mut self) -> Vec<TourBookingPageProperty>;
+	fn r#tour_booking_page(&self) -> &[TourBookingPageProperty];
 }
 impl PlaceTrait for Place {
-	fn get_additional_property(&self) -> &[AdditionalPropertyProperty] {
+	fn r#additional_property(&self) -> &[AdditionalPropertyProperty] {
 		self.r#additional_property.as_slice()
 	}
-	fn take_additional_property(&mut self) -> Vec<AdditionalPropertyProperty> {
-		std::mem::take(&mut self.r#additional_property)
-	}
-	fn get_address(&self) -> &[AddressProperty] {
+	fn r#address(&self) -> &[AddressProperty] {
 		self.r#address.as_slice()
 	}
-	fn take_address(&mut self) -> Vec<AddressProperty> {
-		std::mem::take(&mut self.r#address)
-	}
-	fn get_aggregate_rating(&self) -> &[AggregateRatingProperty] {
+	fn r#aggregate_rating(&self) -> &[AggregateRatingProperty] {
 		self.r#aggregate_rating.as_slice()
 	}
-	fn take_aggregate_rating(&mut self) -> Vec<AggregateRatingProperty> {
-		std::mem::take(&mut self.r#aggregate_rating)
-	}
-	fn get_amenity_feature(&self) -> &[AmenityFeatureProperty] {
+	fn r#amenity_feature(&self) -> &[AmenityFeatureProperty] {
 		self.r#amenity_feature.as_slice()
 	}
-	fn take_amenity_feature(&mut self) -> Vec<AmenityFeatureProperty> {
-		std::mem::take(&mut self.r#amenity_feature)
-	}
-	fn get_branch_code(&self) -> &[BranchCodeProperty] {
+	fn r#branch_code(&self) -> &[BranchCodeProperty] {
 		self.r#branch_code.as_slice()
 	}
-	fn take_branch_code(&mut self) -> Vec<BranchCodeProperty> {
-		std::mem::take(&mut self.r#branch_code)
-	}
-	fn get_contained_in(&self) -> &[ContainedInProperty] {
+	fn r#contained_in(&self) -> &[ContainedInProperty] {
 		self.r#contained_in.as_slice()
 	}
-	fn take_contained_in(&mut self) -> Vec<ContainedInProperty> {
-		std::mem::take(&mut self.r#contained_in)
-	}
-	fn get_contained_in_place(&self) -> &[ContainedInPlaceProperty] {
+	fn r#contained_in_place(&self) -> &[ContainedInPlaceProperty] {
 		self.r#contained_in_place.as_slice()
 	}
-	fn take_contained_in_place(&mut self) -> Vec<ContainedInPlaceProperty> {
-		std::mem::take(&mut self.r#contained_in_place)
-	}
-	fn get_contains_place(&self) -> &[ContainsPlaceProperty] {
+	fn r#contains_place(&self) -> &[ContainsPlaceProperty] {
 		self.r#contains_place.as_slice()
 	}
-	fn take_contains_place(&mut self) -> Vec<ContainsPlaceProperty> {
-		std::mem::take(&mut self.r#contains_place)
-	}
-	fn get_event(&self) -> &[EventProperty] {
+	fn r#event(&self) -> &[EventProperty] {
 		self.r#event.as_slice()
 	}
-	fn take_event(&mut self) -> Vec<EventProperty> {
-		std::mem::take(&mut self.r#event)
-	}
-	fn get_events(&self) -> &[EventsProperty] {
+	fn r#events(&self) -> &[EventsProperty] {
 		self.r#events.as_slice()
 	}
-	fn take_events(&mut self) -> Vec<EventsProperty> {
-		std::mem::take(&mut self.r#events)
-	}
-	fn get_fax_number(&self) -> &[FaxNumberProperty] {
+	fn r#fax_number(&self) -> &[FaxNumberProperty] {
 		self.r#fax_number.as_slice()
 	}
-	fn take_fax_number(&mut self) -> Vec<FaxNumberProperty> {
-		std::mem::take(&mut self.r#fax_number)
-	}
-	fn get_geo(&self) -> &[GeoProperty] {
+	fn r#geo(&self) -> &[GeoProperty] {
 		self.r#geo.as_slice()
 	}
-	fn take_geo(&mut self) -> Vec<GeoProperty> {
-		std::mem::take(&mut self.r#geo)
-	}
-	fn get_geo_contains(&self) -> &[GeoContainsProperty] {
+	fn r#geo_contains(&self) -> &[GeoContainsProperty] {
 		self.r#geo_contains.as_slice()
 	}
-	fn take_geo_contains(&mut self) -> Vec<GeoContainsProperty> {
-		std::mem::take(&mut self.r#geo_contains)
-	}
-	fn get_geo_covered_by(&self) -> &[GeoCoveredByProperty] {
+	fn r#geo_covered_by(&self) -> &[GeoCoveredByProperty] {
 		self.r#geo_covered_by.as_slice()
 	}
-	fn take_geo_covered_by(&mut self) -> Vec<GeoCoveredByProperty> {
-		std::mem::take(&mut self.r#geo_covered_by)
-	}
-	fn get_geo_covers(&self) -> &[GeoCoversProperty] {
+	fn r#geo_covers(&self) -> &[GeoCoversProperty] {
 		self.r#geo_covers.as_slice()
 	}
-	fn take_geo_covers(&mut self) -> Vec<GeoCoversProperty> {
-		std::mem::take(&mut self.r#geo_covers)
-	}
-	fn get_geo_crosses(&self) -> &[GeoCrossesProperty] {
+	fn r#geo_crosses(&self) -> &[GeoCrossesProperty] {
 		self.r#geo_crosses.as_slice()
 	}
-	fn take_geo_crosses(&mut self) -> Vec<GeoCrossesProperty> {
-		std::mem::take(&mut self.r#geo_crosses)
-	}
-	fn get_geo_disjoint(&self) -> &[GeoDisjointProperty] {
+	fn r#geo_disjoint(&self) -> &[GeoDisjointProperty] {
 		self.r#geo_disjoint.as_slice()
 	}
-	fn take_geo_disjoint(&mut self) -> Vec<GeoDisjointProperty> {
-		std::mem::take(&mut self.r#geo_disjoint)
-	}
-	fn get_geo_equals(&self) -> &[GeoEqualsProperty] {
+	fn r#geo_equals(&self) -> &[GeoEqualsProperty] {
 		self.r#geo_equals.as_slice()
 	}
-	fn take_geo_equals(&mut self) -> Vec<GeoEqualsProperty> {
-		std::mem::take(&mut self.r#geo_equals)
-	}
-	fn get_geo_intersects(&self) -> &[GeoIntersectsProperty] {
+	fn r#geo_intersects(&self) -> &[GeoIntersectsProperty] {
 		self.r#geo_intersects.as_slice()
 	}
-	fn take_geo_intersects(&mut self) -> Vec<GeoIntersectsProperty> {
-		std::mem::take(&mut self.r#geo_intersects)
-	}
-	fn get_geo_overlaps(&self) -> &[GeoOverlapsProperty] {
+	fn r#geo_overlaps(&self) -> &[GeoOverlapsProperty] {
 		self.r#geo_overlaps.as_slice()
 	}
-	fn take_geo_overlaps(&mut self) -> Vec<GeoOverlapsProperty> {
-		std::mem::take(&mut self.r#geo_overlaps)
-	}
-	fn get_geo_touches(&self) -> &[GeoTouchesProperty] {
+	fn r#geo_touches(&self) -> &[GeoTouchesProperty] {
 		self.r#geo_touches.as_slice()
 	}
-	fn take_geo_touches(&mut self) -> Vec<GeoTouchesProperty> {
-		std::mem::take(&mut self.r#geo_touches)
-	}
-	fn get_geo_within(&self) -> &[GeoWithinProperty] {
+	fn r#geo_within(&self) -> &[GeoWithinProperty] {
 		self.r#geo_within.as_slice()
 	}
-	fn take_geo_within(&mut self) -> Vec<GeoWithinProperty> {
-		std::mem::take(&mut self.r#geo_within)
-	}
-	fn get_global_location_number(&self) -> &[GlobalLocationNumberProperty] {
+	fn r#global_location_number(&self) -> &[GlobalLocationNumberProperty] {
 		self.r#global_location_number.as_slice()
 	}
-	fn take_global_location_number(&mut self) -> Vec<GlobalLocationNumberProperty> {
-		std::mem::take(&mut self.r#global_location_number)
-	}
-	fn get_has_certification(&self) -> &[HasCertificationProperty] {
+	fn r#has_certification(&self) -> &[HasCertificationProperty] {
 		self.r#has_certification.as_slice()
 	}
-	fn take_has_certification(&mut self) -> Vec<HasCertificationProperty> {
-		std::mem::take(&mut self.r#has_certification)
-	}
-	fn get_has_drive_through_service(&self) -> &[HasDriveThroughServiceProperty] {
+	fn r#has_drive_through_service(&self) -> &[HasDriveThroughServiceProperty] {
 		self.r#has_drive_through_service.as_slice()
 	}
-	fn take_has_drive_through_service(&mut self) -> Vec<HasDriveThroughServiceProperty> {
-		std::mem::take(&mut self.r#has_drive_through_service)
-	}
-	fn get_has_gs_1_digital_link(&self) -> &[HasGs1DigitalLinkProperty] {
+	fn r#has_gs_1_digital_link(&self) -> &[HasGs1DigitalLinkProperty] {
 		self.r#has_gs_1_digital_link.as_slice()
 	}
-	fn take_has_gs_1_digital_link(&mut self) -> Vec<HasGs1DigitalLinkProperty> {
-		std::mem::take(&mut self.r#has_gs_1_digital_link)
-	}
-	fn get_has_map(&self) -> &[HasMapProperty] {
+	fn r#has_map(&self) -> &[HasMapProperty] {
 		self.r#has_map.as_slice()
 	}
-	fn take_has_map(&mut self) -> Vec<HasMapProperty> {
-		std::mem::take(&mut self.r#has_map)
-	}
-	fn get_is_accessible_for_free(&self) -> &[IsAccessibleForFreeProperty] {
+	fn r#is_accessible_for_free(&self) -> &[IsAccessibleForFreeProperty] {
 		self.r#is_accessible_for_free.as_slice()
 	}
-	fn take_is_accessible_for_free(&mut self) -> Vec<IsAccessibleForFreeProperty> {
-		std::mem::take(&mut self.r#is_accessible_for_free)
-	}
-	fn get_isic_v_4(&self) -> &[IsicV4Property] {
+	fn r#isic_v_4(&self) -> &[IsicV4Property] {
 		self.r#isic_v_4.as_slice()
 	}
-	fn take_isic_v_4(&mut self) -> Vec<IsicV4Property> {
-		std::mem::take(&mut self.r#isic_v_4)
-	}
-	fn get_keywords(&self) -> &[KeywordsProperty] {
+	fn r#keywords(&self) -> &[KeywordsProperty] {
 		self.r#keywords.as_slice()
 	}
-	fn take_keywords(&mut self) -> Vec<KeywordsProperty> {
-		std::mem::take(&mut self.r#keywords)
-	}
-	fn get_latitude(&self) -> &[LatitudeProperty] {
+	fn r#latitude(&self) -> &[LatitudeProperty] {
 		self.r#latitude.as_slice()
 	}
-	fn take_latitude(&mut self) -> Vec<LatitudeProperty> {
-		std::mem::take(&mut self.r#latitude)
-	}
-	fn get_logo(&self) -> &[LogoProperty] {
+	fn r#logo(&self) -> &[LogoProperty] {
 		self.r#logo.as_slice()
 	}
-	fn take_logo(&mut self) -> Vec<LogoProperty> {
-		std::mem::take(&mut self.r#logo)
-	}
-	fn get_longitude(&self) -> &[LongitudeProperty] {
+	fn r#longitude(&self) -> &[LongitudeProperty] {
 		self.r#longitude.as_slice()
 	}
-	fn take_longitude(&mut self) -> Vec<LongitudeProperty> {
-		std::mem::take(&mut self.r#longitude)
-	}
-	fn get_map(&self) -> &[MapProperty] {
+	fn r#map(&self) -> &[MapProperty] {
 		self.r#map.as_slice()
 	}
-	fn take_map(&mut self) -> Vec<MapProperty> {
-		std::mem::take(&mut self.r#map)
-	}
-	fn get_maps(&self) -> &[MapsProperty] {
+	fn r#maps(&self) -> &[MapsProperty] {
 		self.r#maps.as_slice()
 	}
-	fn take_maps(&mut self) -> Vec<MapsProperty> {
-		std::mem::take(&mut self.r#maps)
-	}
-	fn get_maximum_attendee_capacity(&self) -> &[MaximumAttendeeCapacityProperty] {
+	fn r#maximum_attendee_capacity(&self) -> &[MaximumAttendeeCapacityProperty] {
 		self.r#maximum_attendee_capacity.as_slice()
 	}
-	fn take_maximum_attendee_capacity(&mut self) -> Vec<MaximumAttendeeCapacityProperty> {
-		std::mem::take(&mut self.r#maximum_attendee_capacity)
-	}
-	fn get_opening_hours_specification(&self) -> &[OpeningHoursSpecificationProperty] {
+	fn r#opening_hours_specification(&self) -> &[OpeningHoursSpecificationProperty] {
 		self.r#opening_hours_specification.as_slice()
 	}
-	fn take_opening_hours_specification(&mut self) -> Vec<OpeningHoursSpecificationProperty> {
-		std::mem::take(&mut self.r#opening_hours_specification)
-	}
-	fn get_photo(&self) -> &[PhotoProperty] {
+	fn r#photo(&self) -> &[PhotoProperty] {
 		self.r#photo.as_slice()
 	}
-	fn take_photo(&mut self) -> Vec<PhotoProperty> {
-		std::mem::take(&mut self.r#photo)
-	}
-	fn get_photos(&self) -> &[PhotosProperty] {
+	fn r#photos(&self) -> &[PhotosProperty] {
 		self.r#photos.as_slice()
 	}
-	fn take_photos(&mut self) -> Vec<PhotosProperty> {
-		std::mem::take(&mut self.r#photos)
-	}
-	fn get_public_access(&self) -> &[PublicAccessProperty] {
+	fn r#public_access(&self) -> &[PublicAccessProperty] {
 		self.r#public_access.as_slice()
 	}
-	fn take_public_access(&mut self) -> Vec<PublicAccessProperty> {
-		std::mem::take(&mut self.r#public_access)
-	}
-	fn get_review(&self) -> &[ReviewProperty] {
+	fn r#review(&self) -> &[ReviewProperty] {
 		self.r#review.as_slice()
 	}
-	fn take_review(&mut self) -> Vec<ReviewProperty> {
-		std::mem::take(&mut self.r#review)
-	}
-	fn get_reviews(&self) -> &[ReviewsProperty] {
+	fn r#reviews(&self) -> &[ReviewsProperty] {
 		self.r#reviews.as_slice()
 	}
-	fn take_reviews(&mut self) -> Vec<ReviewsProperty> {
-		std::mem::take(&mut self.r#reviews)
-	}
-	fn get_slogan(&self) -> &[SloganProperty] {
+	fn r#slogan(&self) -> &[SloganProperty] {
 		self.r#slogan.as_slice()
 	}
-	fn take_slogan(&mut self) -> Vec<SloganProperty> {
-		std::mem::take(&mut self.r#slogan)
-	}
-	fn get_smoking_allowed(&self) -> &[SmokingAllowedProperty] {
+	fn r#smoking_allowed(&self) -> &[SmokingAllowedProperty] {
 		self.r#smoking_allowed.as_slice()
 	}
-	fn take_smoking_allowed(&mut self) -> Vec<SmokingAllowedProperty> {
-		std::mem::take(&mut self.r#smoking_allowed)
-	}
-	fn get_special_opening_hours_specification(
-		&self,
-	) -> &[SpecialOpeningHoursSpecificationProperty] {
+	fn r#special_opening_hours_specification(&self) -> &[SpecialOpeningHoursSpecificationProperty] {
 		self.r#special_opening_hours_specification.as_slice()
 	}
-	fn take_special_opening_hours_specification(
-		&mut self,
-	) -> Vec<SpecialOpeningHoursSpecificationProperty> {
-		std::mem::take(&mut self.r#special_opening_hours_specification)
-	}
-	fn get_telephone(&self) -> &[TelephoneProperty] {
+	fn r#telephone(&self) -> &[TelephoneProperty] {
 		self.r#telephone.as_slice()
 	}
-	fn take_telephone(&mut self) -> Vec<TelephoneProperty> {
-		std::mem::take(&mut self.r#telephone)
-	}
-	fn get_tour_booking_page(&self) -> &[TourBookingPageProperty] {
+	fn r#tour_booking_page(&self) -> &[TourBookingPageProperty] {
 		self.r#tour_booking_page.as_slice()
-	}
-	fn take_tour_booking_page(&mut self) -> Vec<TourBookingPageProperty> {
-		std::mem::take(&mut self.r#tour_booking_page)
 	}
 }
 impl ThingTrait for Place {
-	fn get_additional_type(&self) -> &[AdditionalTypeProperty] {
+	fn r#additional_type(&self) -> &[AdditionalTypeProperty] {
 		self.r#additional_type.as_slice()
 	}
-	fn take_additional_type(&mut self) -> Vec<AdditionalTypeProperty> {
-		std::mem::take(&mut self.r#additional_type)
-	}
-	fn get_alternate_name(&self) -> &[AlternateNameProperty] {
+	fn r#alternate_name(&self) -> &[AlternateNameProperty] {
 		self.r#alternate_name.as_slice()
 	}
-	fn take_alternate_name(&mut self) -> Vec<AlternateNameProperty> {
-		std::mem::take(&mut self.r#alternate_name)
-	}
-	fn get_description(&self) -> &[DescriptionProperty] {
+	fn r#description(&self) -> &[DescriptionProperty] {
 		self.r#description.as_slice()
 	}
-	fn take_description(&mut self) -> Vec<DescriptionProperty> {
-		std::mem::take(&mut self.r#description)
-	}
-	fn get_disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
+	fn r#disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
 		self.r#disambiguating_description.as_slice()
 	}
-	fn take_disambiguating_description(&mut self) -> Vec<DisambiguatingDescriptionProperty> {
-		std::mem::take(&mut self.r#disambiguating_description)
-	}
-	fn get_identifier(&self) -> &[IdentifierProperty] {
+	fn r#identifier(&self) -> &[IdentifierProperty] {
 		self.r#identifier.as_slice()
 	}
-	fn take_identifier(&mut self) -> Vec<IdentifierProperty> {
-		std::mem::take(&mut self.r#identifier)
-	}
-	fn get_image(&self) -> &[ImageProperty] {
+	fn r#image(&self) -> &[ImageProperty] {
 		self.r#image.as_slice()
 	}
-	fn take_image(&mut self) -> Vec<ImageProperty> {
-		std::mem::take(&mut self.r#image)
-	}
-	fn get_main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
+	fn r#main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
 		self.r#main_entity_of_page.as_slice()
 	}
-	fn take_main_entity_of_page(&mut self) -> Vec<MainEntityOfPageProperty> {
-		std::mem::take(&mut self.r#main_entity_of_page)
-	}
-	fn get_name(&self) -> &[NameProperty] {
+	fn r#name(&self) -> &[NameProperty] {
 		self.r#name.as_slice()
 	}
-	fn take_name(&mut self) -> Vec<NameProperty> {
-		std::mem::take(&mut self.r#name)
-	}
-	fn get_owner(&self) -> &[OwnerProperty] {
+	fn r#owner(&self) -> &[OwnerProperty] {
 		self.r#owner.as_slice()
 	}
-	fn take_owner(&mut self) -> Vec<OwnerProperty> {
-		std::mem::take(&mut self.r#owner)
-	}
-	fn get_potential_action(&self) -> &[PotentialActionProperty] {
+	fn r#potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
 	}
-	fn take_potential_action(&mut self) -> Vec<PotentialActionProperty> {
-		std::mem::take(&mut self.r#potential_action)
-	}
-	fn get_same_as(&self) -> &[SameAsProperty] {
+	fn r#same_as(&self) -> &[SameAsProperty] {
 		self.r#same_as.as_slice()
 	}
-	fn take_same_as(&mut self) -> Vec<SameAsProperty> {
-		std::mem::take(&mut self.r#same_as)
-	}
-	fn get_subject_of(&self) -> &[SubjectOfProperty] {
+	fn r#subject_of(&self) -> &[SubjectOfProperty] {
 		self.r#subject_of.as_slice()
 	}
-	fn take_subject_of(&mut self) -> Vec<SubjectOfProperty> {
-		std::mem::take(&mut self.r#subject_of)
-	}
-	fn get_url(&self) -> &[UrlProperty] {
+	fn r#url(&self) -> &[UrlProperty] {
 		self.r#url.as_slice()
-	}
-	fn take_url(&mut self) -> Vec<UrlProperty> {
-		std::mem::take(&mut self.r#url)
 	}
 }

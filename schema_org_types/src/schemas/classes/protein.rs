@@ -306,179 +306,92 @@ pub struct Protein {
 /// This trait is for properties from <https://schema.org/Protein>.
 pub trait ProteinTrait {
 	/// Get <https://schema.org/hasBioPolymerSequence> from [`Self`] as borrowed slice.
-	fn get_has_bio_polymer_sequence(&self) -> &[HasBioPolymerSequenceProperty];
-	/// Take <https://schema.org/hasBioPolymerSequence> from [`Self`] as owned vector.
-	fn take_has_bio_polymer_sequence(&mut self) -> Vec<HasBioPolymerSequenceProperty>;
+	fn r#has_bio_polymer_sequence(&self) -> &[HasBioPolymerSequenceProperty];
 }
 impl ProteinTrait for Protein {
-	fn get_has_bio_polymer_sequence(&self) -> &[HasBioPolymerSequenceProperty] {
+	fn r#has_bio_polymer_sequence(&self) -> &[HasBioPolymerSequenceProperty] {
 		self.r#has_bio_polymer_sequence.as_slice()
-	}
-	fn take_has_bio_polymer_sequence(&mut self) -> Vec<HasBioPolymerSequenceProperty> {
-		std::mem::take(&mut self.r#has_bio_polymer_sequence)
 	}
 }
 impl BioChemEntityTrait for Protein {
-	fn get_associated_disease(&self) -> &[AssociatedDiseaseProperty] {
+	fn r#associated_disease(&self) -> &[AssociatedDiseaseProperty] {
 		self.r#associated_disease.as_slice()
 	}
-	fn take_associated_disease(&mut self) -> Vec<AssociatedDiseaseProperty> {
-		std::mem::take(&mut self.r#associated_disease)
-	}
-	fn get_bio_chem_interaction(&self) -> &[BioChemInteractionProperty] {
+	fn r#bio_chem_interaction(&self) -> &[BioChemInteractionProperty] {
 		self.r#bio_chem_interaction.as_slice()
 	}
-	fn take_bio_chem_interaction(&mut self) -> Vec<BioChemInteractionProperty> {
-		std::mem::take(&mut self.r#bio_chem_interaction)
-	}
-	fn get_bio_chem_similarity(&self) -> &[BioChemSimilarityProperty] {
+	fn r#bio_chem_similarity(&self) -> &[BioChemSimilarityProperty] {
 		self.r#bio_chem_similarity.as_slice()
 	}
-	fn take_bio_chem_similarity(&mut self) -> Vec<BioChemSimilarityProperty> {
-		std::mem::take(&mut self.r#bio_chem_similarity)
-	}
-	fn get_biological_role(&self) -> &[BiologicalRoleProperty] {
+	fn r#biological_role(&self) -> &[BiologicalRoleProperty] {
 		self.r#biological_role.as_slice()
 	}
-	fn take_biological_role(&mut self) -> Vec<BiologicalRoleProperty> {
-		std::mem::take(&mut self.r#biological_role)
-	}
-	fn get_funding(&self) -> &[FundingProperty] {
+	fn r#funding(&self) -> &[FundingProperty] {
 		self.r#funding.as_slice()
 	}
-	fn take_funding(&mut self) -> Vec<FundingProperty> {
-		std::mem::take(&mut self.r#funding)
-	}
-	fn get_has_bio_chem_entity_part(&self) -> &[HasBioChemEntityPartProperty] {
+	fn r#has_bio_chem_entity_part(&self) -> &[HasBioChemEntityPartProperty] {
 		self.r#has_bio_chem_entity_part.as_slice()
 	}
-	fn take_has_bio_chem_entity_part(&mut self) -> Vec<HasBioChemEntityPartProperty> {
-		std::mem::take(&mut self.r#has_bio_chem_entity_part)
-	}
-	fn get_has_molecular_function(&self) -> &[HasMolecularFunctionProperty] {
+	fn r#has_molecular_function(&self) -> &[HasMolecularFunctionProperty] {
 		self.r#has_molecular_function.as_slice()
 	}
-	fn take_has_molecular_function(&mut self) -> Vec<HasMolecularFunctionProperty> {
-		std::mem::take(&mut self.r#has_molecular_function)
-	}
-	fn get_has_representation(&self) -> &[HasRepresentationProperty] {
+	fn r#has_representation(&self) -> &[HasRepresentationProperty] {
 		self.r#has_representation.as_slice()
 	}
-	fn take_has_representation(&mut self) -> Vec<HasRepresentationProperty> {
-		std::mem::take(&mut self.r#has_representation)
-	}
-	fn get_is_encoded_by_bio_chem_entity(&self) -> &[IsEncodedByBioChemEntityProperty] {
+	fn r#is_encoded_by_bio_chem_entity(&self) -> &[IsEncodedByBioChemEntityProperty] {
 		self.r#is_encoded_by_bio_chem_entity.as_slice()
 	}
-	fn take_is_encoded_by_bio_chem_entity(&mut self) -> Vec<IsEncodedByBioChemEntityProperty> {
-		std::mem::take(&mut self.r#is_encoded_by_bio_chem_entity)
-	}
-	fn get_is_involved_in_biological_process(&self) -> &[IsInvolvedInBiologicalProcessProperty] {
+	fn r#is_involved_in_biological_process(&self) -> &[IsInvolvedInBiologicalProcessProperty] {
 		self.r#is_involved_in_biological_process.as_slice()
 	}
-	fn take_is_involved_in_biological_process(
-		&mut self,
-	) -> Vec<IsInvolvedInBiologicalProcessProperty> {
-		std::mem::take(&mut self.r#is_involved_in_biological_process)
-	}
-	fn get_is_located_in_subcellular_location(&self) -> &[IsLocatedInSubcellularLocationProperty] {
+	fn r#is_located_in_subcellular_location(&self) -> &[IsLocatedInSubcellularLocationProperty] {
 		self.r#is_located_in_subcellular_location.as_slice()
 	}
-	fn take_is_located_in_subcellular_location(
-		&mut self,
-	) -> Vec<IsLocatedInSubcellularLocationProperty> {
-		std::mem::take(&mut self.r#is_located_in_subcellular_location)
-	}
-	fn get_is_part_of_bio_chem_entity(&self) -> &[IsPartOfBioChemEntityProperty] {
+	fn r#is_part_of_bio_chem_entity(&self) -> &[IsPartOfBioChemEntityProperty] {
 		self.r#is_part_of_bio_chem_entity.as_slice()
 	}
-	fn take_is_part_of_bio_chem_entity(&mut self) -> Vec<IsPartOfBioChemEntityProperty> {
-		std::mem::take(&mut self.r#is_part_of_bio_chem_entity)
-	}
-	fn get_taxonomic_range(&self) -> &[TaxonomicRangeProperty] {
+	fn r#taxonomic_range(&self) -> &[TaxonomicRangeProperty] {
 		self.r#taxonomic_range.as_slice()
-	}
-	fn take_taxonomic_range(&mut self) -> Vec<TaxonomicRangeProperty> {
-		std::mem::take(&mut self.r#taxonomic_range)
 	}
 }
 impl ThingTrait for Protein {
-	fn get_additional_type(&self) -> &[AdditionalTypeProperty] {
+	fn r#additional_type(&self) -> &[AdditionalTypeProperty] {
 		self.r#additional_type.as_slice()
 	}
-	fn take_additional_type(&mut self) -> Vec<AdditionalTypeProperty> {
-		std::mem::take(&mut self.r#additional_type)
-	}
-	fn get_alternate_name(&self) -> &[AlternateNameProperty] {
+	fn r#alternate_name(&self) -> &[AlternateNameProperty] {
 		self.r#alternate_name.as_slice()
 	}
-	fn take_alternate_name(&mut self) -> Vec<AlternateNameProperty> {
-		std::mem::take(&mut self.r#alternate_name)
-	}
-	fn get_description(&self) -> &[DescriptionProperty] {
+	fn r#description(&self) -> &[DescriptionProperty] {
 		self.r#description.as_slice()
 	}
-	fn take_description(&mut self) -> Vec<DescriptionProperty> {
-		std::mem::take(&mut self.r#description)
-	}
-	fn get_disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
+	fn r#disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
 		self.r#disambiguating_description.as_slice()
 	}
-	fn take_disambiguating_description(&mut self) -> Vec<DisambiguatingDescriptionProperty> {
-		std::mem::take(&mut self.r#disambiguating_description)
-	}
-	fn get_identifier(&self) -> &[IdentifierProperty] {
+	fn r#identifier(&self) -> &[IdentifierProperty] {
 		self.r#identifier.as_slice()
 	}
-	fn take_identifier(&mut self) -> Vec<IdentifierProperty> {
-		std::mem::take(&mut self.r#identifier)
-	}
-	fn get_image(&self) -> &[ImageProperty] {
+	fn r#image(&self) -> &[ImageProperty] {
 		self.r#image.as_slice()
 	}
-	fn take_image(&mut self) -> Vec<ImageProperty> {
-		std::mem::take(&mut self.r#image)
-	}
-	fn get_main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
+	fn r#main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
 		self.r#main_entity_of_page.as_slice()
 	}
-	fn take_main_entity_of_page(&mut self) -> Vec<MainEntityOfPageProperty> {
-		std::mem::take(&mut self.r#main_entity_of_page)
-	}
-	fn get_name(&self) -> &[NameProperty] {
+	fn r#name(&self) -> &[NameProperty] {
 		self.r#name.as_slice()
 	}
-	fn take_name(&mut self) -> Vec<NameProperty> {
-		std::mem::take(&mut self.r#name)
-	}
-	fn get_owner(&self) -> &[OwnerProperty] {
+	fn r#owner(&self) -> &[OwnerProperty] {
 		self.r#owner.as_slice()
 	}
-	fn take_owner(&mut self) -> Vec<OwnerProperty> {
-		std::mem::take(&mut self.r#owner)
-	}
-	fn get_potential_action(&self) -> &[PotentialActionProperty] {
+	fn r#potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
 	}
-	fn take_potential_action(&mut self) -> Vec<PotentialActionProperty> {
-		std::mem::take(&mut self.r#potential_action)
-	}
-	fn get_same_as(&self) -> &[SameAsProperty] {
+	fn r#same_as(&self) -> &[SameAsProperty] {
 		self.r#same_as.as_slice()
 	}
-	fn take_same_as(&mut self) -> Vec<SameAsProperty> {
-		std::mem::take(&mut self.r#same_as)
-	}
-	fn get_subject_of(&self) -> &[SubjectOfProperty] {
+	fn r#subject_of(&self) -> &[SubjectOfProperty] {
 		self.r#subject_of.as_slice()
 	}
-	fn take_subject_of(&mut self) -> Vec<SubjectOfProperty> {
-		std::mem::take(&mut self.r#subject_of)
-	}
-	fn get_url(&self) -> &[UrlProperty] {
+	fn r#url(&self) -> &[UrlProperty] {
 		self.r#url.as_slice()
-	}
-	fn take_url(&mut self) -> Vec<UrlProperty> {
-		std::mem::take(&mut self.r#url)
 	}
 }

@@ -273,195 +273,101 @@ pub struct PropertyValueSpecification {
 /// This trait is for properties from <https://schema.org/PropertyValueSpecification>.
 pub trait PropertyValueSpecificationTrait {
 	/// Get <https://schema.org/defaultValue> from [`Self`] as borrowed slice.
-	fn get_default_value(&self) -> &[DefaultValueProperty];
-	/// Take <https://schema.org/defaultValue> from [`Self`] as owned vector.
-	fn take_default_value(&mut self) -> Vec<DefaultValueProperty>;
+	fn r#default_value(&self) -> &[DefaultValueProperty];
 	/// Get <https://schema.org/maxValue> from [`Self`] as borrowed slice.
-	fn get_max_value(&self) -> &[MaxValueProperty];
-	/// Take <https://schema.org/maxValue> from [`Self`] as owned vector.
-	fn take_max_value(&mut self) -> Vec<MaxValueProperty>;
+	fn r#max_value(&self) -> &[MaxValueProperty];
 	/// Get <https://schema.org/minValue> from [`Self`] as borrowed slice.
-	fn get_min_value(&self) -> &[MinValueProperty];
-	/// Take <https://schema.org/minValue> from [`Self`] as owned vector.
-	fn take_min_value(&mut self) -> Vec<MinValueProperty>;
+	fn r#min_value(&self) -> &[MinValueProperty];
 	/// Get <https://schema.org/multipleValues> from [`Self`] as borrowed slice.
-	fn get_multiple_values(&self) -> &[MultipleValuesProperty];
-	/// Take <https://schema.org/multipleValues> from [`Self`] as owned vector.
-	fn take_multiple_values(&mut self) -> Vec<MultipleValuesProperty>;
+	fn r#multiple_values(&self) -> &[MultipleValuesProperty];
 	/// Get <https://schema.org/readonlyValue> from [`Self`] as borrowed slice.
-	fn get_readonly_value(&self) -> &[ReadonlyValueProperty];
-	/// Take <https://schema.org/readonlyValue> from [`Self`] as owned vector.
-	fn take_readonly_value(&mut self) -> Vec<ReadonlyValueProperty>;
+	fn r#readonly_value(&self) -> &[ReadonlyValueProperty];
 	/// Get <https://schema.org/stepValue> from [`Self`] as borrowed slice.
-	fn get_step_value(&self) -> &[StepValueProperty];
-	/// Take <https://schema.org/stepValue> from [`Self`] as owned vector.
-	fn take_step_value(&mut self) -> Vec<StepValueProperty>;
+	fn r#step_value(&self) -> &[StepValueProperty];
 	/// Get <https://schema.org/valueMaxLength> from [`Self`] as borrowed slice.
-	fn get_value_max_length(&self) -> &[ValueMaxLengthProperty];
-	/// Take <https://schema.org/valueMaxLength> from [`Self`] as owned vector.
-	fn take_value_max_length(&mut self) -> Vec<ValueMaxLengthProperty>;
+	fn r#value_max_length(&self) -> &[ValueMaxLengthProperty];
 	/// Get <https://schema.org/valueMinLength> from [`Self`] as borrowed slice.
-	fn get_value_min_length(&self) -> &[ValueMinLengthProperty];
-	/// Take <https://schema.org/valueMinLength> from [`Self`] as owned vector.
-	fn take_value_min_length(&mut self) -> Vec<ValueMinLengthProperty>;
+	fn r#value_min_length(&self) -> &[ValueMinLengthProperty];
 	/// Get <https://schema.org/valueName> from [`Self`] as borrowed slice.
-	fn get_value_name(&self) -> &[ValueNameProperty];
-	/// Take <https://schema.org/valueName> from [`Self`] as owned vector.
-	fn take_value_name(&mut self) -> Vec<ValueNameProperty>;
+	fn r#value_name(&self) -> &[ValueNameProperty];
 	/// Get <https://schema.org/valuePattern> from [`Self`] as borrowed slice.
-	fn get_value_pattern(&self) -> &[ValuePatternProperty];
-	/// Take <https://schema.org/valuePattern> from [`Self`] as owned vector.
-	fn take_value_pattern(&mut self) -> Vec<ValuePatternProperty>;
+	fn r#value_pattern(&self) -> &[ValuePatternProperty];
 	/// Get <https://schema.org/valueRequired> from [`Self`] as borrowed slice.
-	fn get_value_required(&self) -> &[ValueRequiredProperty];
-	/// Take <https://schema.org/valueRequired> from [`Self`] as owned vector.
-	fn take_value_required(&mut self) -> Vec<ValueRequiredProperty>;
+	fn r#value_required(&self) -> &[ValueRequiredProperty];
 }
 impl PropertyValueSpecificationTrait for PropertyValueSpecification {
-	fn get_default_value(&self) -> &[DefaultValueProperty] {
+	fn r#default_value(&self) -> &[DefaultValueProperty] {
 		self.r#default_value.as_slice()
 	}
-	fn take_default_value(&mut self) -> Vec<DefaultValueProperty> {
-		std::mem::take(&mut self.r#default_value)
-	}
-	fn get_max_value(&self) -> &[MaxValueProperty] {
+	fn r#max_value(&self) -> &[MaxValueProperty] {
 		self.r#max_value.as_slice()
 	}
-	fn take_max_value(&mut self) -> Vec<MaxValueProperty> {
-		std::mem::take(&mut self.r#max_value)
-	}
-	fn get_min_value(&self) -> &[MinValueProperty] {
+	fn r#min_value(&self) -> &[MinValueProperty] {
 		self.r#min_value.as_slice()
 	}
-	fn take_min_value(&mut self) -> Vec<MinValueProperty> {
-		std::mem::take(&mut self.r#min_value)
-	}
-	fn get_multiple_values(&self) -> &[MultipleValuesProperty] {
+	fn r#multiple_values(&self) -> &[MultipleValuesProperty] {
 		self.r#multiple_values.as_slice()
 	}
-	fn take_multiple_values(&mut self) -> Vec<MultipleValuesProperty> {
-		std::mem::take(&mut self.r#multiple_values)
-	}
-	fn get_readonly_value(&self) -> &[ReadonlyValueProperty] {
+	fn r#readonly_value(&self) -> &[ReadonlyValueProperty] {
 		self.r#readonly_value.as_slice()
 	}
-	fn take_readonly_value(&mut self) -> Vec<ReadonlyValueProperty> {
-		std::mem::take(&mut self.r#readonly_value)
-	}
-	fn get_step_value(&self) -> &[StepValueProperty] {
+	fn r#step_value(&self) -> &[StepValueProperty] {
 		self.r#step_value.as_slice()
 	}
-	fn take_step_value(&mut self) -> Vec<StepValueProperty> {
-		std::mem::take(&mut self.r#step_value)
-	}
-	fn get_value_max_length(&self) -> &[ValueMaxLengthProperty] {
+	fn r#value_max_length(&self) -> &[ValueMaxLengthProperty] {
 		self.r#value_max_length.as_slice()
 	}
-	fn take_value_max_length(&mut self) -> Vec<ValueMaxLengthProperty> {
-		std::mem::take(&mut self.r#value_max_length)
-	}
-	fn get_value_min_length(&self) -> &[ValueMinLengthProperty] {
+	fn r#value_min_length(&self) -> &[ValueMinLengthProperty] {
 		self.r#value_min_length.as_slice()
 	}
-	fn take_value_min_length(&mut self) -> Vec<ValueMinLengthProperty> {
-		std::mem::take(&mut self.r#value_min_length)
-	}
-	fn get_value_name(&self) -> &[ValueNameProperty] {
+	fn r#value_name(&self) -> &[ValueNameProperty] {
 		self.r#value_name.as_slice()
 	}
-	fn take_value_name(&mut self) -> Vec<ValueNameProperty> {
-		std::mem::take(&mut self.r#value_name)
-	}
-	fn get_value_pattern(&self) -> &[ValuePatternProperty] {
+	fn r#value_pattern(&self) -> &[ValuePatternProperty] {
 		self.r#value_pattern.as_slice()
 	}
-	fn take_value_pattern(&mut self) -> Vec<ValuePatternProperty> {
-		std::mem::take(&mut self.r#value_pattern)
-	}
-	fn get_value_required(&self) -> &[ValueRequiredProperty] {
+	fn r#value_required(&self) -> &[ValueRequiredProperty] {
 		self.r#value_required.as_slice()
-	}
-	fn take_value_required(&mut self) -> Vec<ValueRequiredProperty> {
-		std::mem::take(&mut self.r#value_required)
 	}
 }
 impl ThingTrait for PropertyValueSpecification {
-	fn get_additional_type(&self) -> &[AdditionalTypeProperty] {
+	fn r#additional_type(&self) -> &[AdditionalTypeProperty] {
 		self.r#additional_type.as_slice()
 	}
-	fn take_additional_type(&mut self) -> Vec<AdditionalTypeProperty> {
-		std::mem::take(&mut self.r#additional_type)
-	}
-	fn get_alternate_name(&self) -> &[AlternateNameProperty] {
+	fn r#alternate_name(&self) -> &[AlternateNameProperty] {
 		self.r#alternate_name.as_slice()
 	}
-	fn take_alternate_name(&mut self) -> Vec<AlternateNameProperty> {
-		std::mem::take(&mut self.r#alternate_name)
-	}
-	fn get_description(&self) -> &[DescriptionProperty] {
+	fn r#description(&self) -> &[DescriptionProperty] {
 		self.r#description.as_slice()
 	}
-	fn take_description(&mut self) -> Vec<DescriptionProperty> {
-		std::mem::take(&mut self.r#description)
-	}
-	fn get_disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
+	fn r#disambiguating_description(&self) -> &[DisambiguatingDescriptionProperty] {
 		self.r#disambiguating_description.as_slice()
 	}
-	fn take_disambiguating_description(&mut self) -> Vec<DisambiguatingDescriptionProperty> {
-		std::mem::take(&mut self.r#disambiguating_description)
-	}
-	fn get_identifier(&self) -> &[IdentifierProperty] {
+	fn r#identifier(&self) -> &[IdentifierProperty] {
 		self.r#identifier.as_slice()
 	}
-	fn take_identifier(&mut self) -> Vec<IdentifierProperty> {
-		std::mem::take(&mut self.r#identifier)
-	}
-	fn get_image(&self) -> &[ImageProperty] {
+	fn r#image(&self) -> &[ImageProperty] {
 		self.r#image.as_slice()
 	}
-	fn take_image(&mut self) -> Vec<ImageProperty> {
-		std::mem::take(&mut self.r#image)
-	}
-	fn get_main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
+	fn r#main_entity_of_page(&self) -> &[MainEntityOfPageProperty] {
 		self.r#main_entity_of_page.as_slice()
 	}
-	fn take_main_entity_of_page(&mut self) -> Vec<MainEntityOfPageProperty> {
-		std::mem::take(&mut self.r#main_entity_of_page)
-	}
-	fn get_name(&self) -> &[NameProperty] {
+	fn r#name(&self) -> &[NameProperty] {
 		self.r#name.as_slice()
 	}
-	fn take_name(&mut self) -> Vec<NameProperty> {
-		std::mem::take(&mut self.r#name)
-	}
-	fn get_owner(&self) -> &[OwnerProperty] {
+	fn r#owner(&self) -> &[OwnerProperty] {
 		self.r#owner.as_slice()
 	}
-	fn take_owner(&mut self) -> Vec<OwnerProperty> {
-		std::mem::take(&mut self.r#owner)
-	}
-	fn get_potential_action(&self) -> &[PotentialActionProperty] {
+	fn r#potential_action(&self) -> &[PotentialActionProperty] {
 		self.r#potential_action.as_slice()
 	}
-	fn take_potential_action(&mut self) -> Vec<PotentialActionProperty> {
-		std::mem::take(&mut self.r#potential_action)
-	}
-	fn get_same_as(&self) -> &[SameAsProperty] {
+	fn r#same_as(&self) -> &[SameAsProperty] {
 		self.r#same_as.as_slice()
 	}
-	fn take_same_as(&mut self) -> Vec<SameAsProperty> {
-		std::mem::take(&mut self.r#same_as)
-	}
-	fn get_subject_of(&self) -> &[SubjectOfProperty] {
+	fn r#subject_of(&self) -> &[SubjectOfProperty] {
 		self.r#subject_of.as_slice()
 	}
-	fn take_subject_of(&mut self) -> Vec<SubjectOfProperty> {
-		std::mem::take(&mut self.r#subject_of)
-	}
-	fn get_url(&self) -> &[UrlProperty] {
+	fn r#url(&self) -> &[UrlProperty] {
 		self.r#url.as_slice()
-	}
-	fn take_url(&mut self) -> Vec<UrlProperty> {
-		std::mem::take(&mut self.r#url)
 	}
 }
